@@ -13,6 +13,7 @@ interface Props {
   external?: boolean;
   cursorType?: string;
   status?: ProjectStatus;
+  thumbnailScale?: number;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   external = false,
   cursorType = 'case-study',
   status = 'published',
+  thumbnailScale = 1,
 } = Astro.props;
 
 const isComingSoon = status === 'coming-soon';
@@ -47,6 +49,7 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
         {video ? (
           <video
             class="absolute inset-0 w-full h-full object-cover"
+            style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
             src={video}
             autoplay
             loop
@@ -56,6 +59,7 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
         ) : image ? (
           <img
             class="absolute inset-0 w-full h-full object-cover"
+            style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
             src={image}
             alt={`Project thumbnail for ${title}`}
           />
