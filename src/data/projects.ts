@@ -37,11 +37,11 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
     {
       title: 'Redesigning Web3 Trading',
       label: 'Moralis - Shipped 2024',
-      href: '/projects/pokergpt',
+      href: '/projects/account-abstraction',
       aspect: 'aspect-[10/7]',
       placeholderColor: '#DDD0FC50',
       cursorType: 'case-study',
-      status: 'coming-soon',
+      status: 'published',
       image: '/redesigning-thumbnail.gif',
       thumbnailScale: 1.12,
     },

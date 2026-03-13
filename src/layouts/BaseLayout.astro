@@ -16,7 +16,7 @@ const {
   ogImage = '/images/og-image.png',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://tatianahernandez.dev');
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
 ---
 
 <!doctype html>
@@ -32,11 +32,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://tatianah
     <meta name="description" content={description} />
     <meta name="author" content="Tatiana Hernandez" />
     <meta name="creator" content="Tatiana Hernandez" />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     <meta property="og:site_name" content="Tatiana Hernandez | Product Designer & Engineer" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
