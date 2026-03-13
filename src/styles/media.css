@@ -1,0 +1,3 @@
+video[data-inline-autoplay]::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+}

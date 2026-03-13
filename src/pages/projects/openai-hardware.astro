@@ -1,17 +1,6 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
-
-const sections = [
-  'Overview',
-  'Solution',
-  'Core Flows',
-  'Research',
-  'Exploring Form Factors',
-  'Prototyping and Testing',
-  'Design Decisions',
-  'Designing for Hardware Constraints',
-  'Reflection',
-];
+import { openAiHardwareSections } from '../../data/projects';
 
 // Base path for project assets (served from public/)
 const img  = (name: string) => `/projects/openai-hardware/images/${name}`;
@@ -21,7 +10,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 <ProjectLayout
   title="OpenAI x Hardware | Tatiana Hernandez"
   description="The future of AI & hardware"
-  sections={sections}
+  sections={openAiHardwareSections}
 >
   <!-- Project header -->
   <div class="flex flex-col gap-8">
@@ -135,7 +124,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
     </section>
 
     <!-- Core Flows -->
-    <section id="core flows" class="flex flex-col gap-4">
+    <section id="core-flows" class="flex flex-col gap-4">
       <h4 class="!opacity-100 mb-1">Core Flows</h4>
 
       {[
@@ -233,7 +222,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
     </section>
 
     <!-- Prototyping and Testing -->
-    <section id="prototyping and testing" class="flex flex-col gap-4">
+    <section id="prototyping-and-testing" class="flex flex-col gap-4">
       <h4 class="!opacity-100 mb-1">Prototyping and Testing</h4>
       <h2 class="-mb-2">Prototyping interfaces for real-world memory</h2>
       <p>We explored a ton of concepts for these 3 strategic directions, here are select few of them:</p>
@@ -282,7 +271,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
     </section>
 
     <!-- Design Decisions -->
-    <section id="Design Decisions" class="flex flex-col gap-4">
+    <section id="design-decisions" class="flex flex-col gap-4">
       <h4 class="!opacity-100 mb-1">Design Decisions</h4>
       <h2 class="-mb-2">We identified the most intuitive way to bring this feature to life.</h2>
       <p>With insights and iteration from prototyping and testing, we got to thinking how a clear, intuitive solution could be integrated within the existing ChatGPT ecosystem.</p>

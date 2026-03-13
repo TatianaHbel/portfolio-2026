@@ -1,8 +1,8 @@
 ---
 const pathname = Astro.url.pathname;
-const isWork   = pathname === '/';
-const isFun    = pathname === '/fun';
-const isAbout  = pathname === '/about';
+const isWork = pathname === '/';
+const isFun = pathname === '/fun';
+const isAbout = pathname === '/about';
 ---
 
 <!-- Desktop + mobile nav -->
@@ -12,7 +12,6 @@ const isAbout  = pathname === '/about';
   style="opacity:0"
 >
   <div class="max-w-[1800px] w-full flex items-center gap-6 relative">
-
     <!-- Logo -->
     <div class="flex items-center w-full">
       <a class="flex flex-col sm:flex-row sm:inline-flex sm:gap-4 gap-0 cursor-pointer !opacity-100" href="/">
@@ -25,13 +24,13 @@ const isAbout  = pathname === '/about';
     <div class="md:flex hidden gap-2 w-full justify-end items-center">
       <div class="flex gap-1 items-center">
         <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/">
-          <h4 class:list={[isWork ? "!text-primary" : "opacity-60 hover:!opacity-100"]}>Work</h4>
+          <h4 class:list={[isWork ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Work</h4>
         </a>
         <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/fun">
-          <h4 class:list={[isFun ? "!text-primary" : "opacity-60 hover:!opacity-100"]}>Fun</h4>
+          <h4 class:list={[isFun ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Fun</h4>
         </a>
         <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/about">
-          <h4 class:list={[isAbout ? "!text-primary" : "opacity-60 hover:!opacity-100"]}>About</h4>
+          <h4 class:list={[isAbout ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>About</h4>
         </a>
         <a href="/Tatiana_Hernandez_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100">
           <h4 class="opacity-60 hover:!opacity-100">Resume</h4>
@@ -57,30 +56,27 @@ const isAbout  = pathname === '/about';
     <div class="md:hidden flex gap-4 items-center">
       <button id="hamburger-btn" aria-label="Toggle menu">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="cursor-pointer hover:opacity-50">
-          <path id="hamburger-top"    class="transition-all duration-300 origin-center" d="M4 8H20"  stroke="currentColor" stroke-width="2"></path>
+          <path id="hamburger-top" class="transition-all duration-300 origin-center" d="M4 8H20" stroke="currentColor" stroke-width="2"></path>
           <path id="hamburger-bottom" class="transition-all duration-300 origin-center" d="M4 16H20" stroke="currentColor" stroke-width="2"></path>
         </svg>
       </button>
     </div>
-
   </div>
 
   <!-- Mobile dropdown -->
   <div
     id="mobile-menu"
-    class="md:hidden absolute left-0 right-0 z-60 top-full p-6 border-b border-foreground/10 bg-background
-           transition-all duration-300 ease-in-out
-           opacity-0 -translate-y-2 pointer-events-none"
+    class="md:hidden absolute left-0 right-0 z-60 top-full p-6 border-b border-foreground/10 bg-background transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none"
   >
     <div class="flex flex-col gap-1">
       <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/">
-        <h4 class:list={[isWork ? "!text-primary" : "opacity-60 hover:!opacity-100"]}>Work</h4>
+        <h4 class:list={[isWork ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Work</h4>
       </a>
       <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/fun">
-        <h4 class:list={[isFun ? "!text-primary" : "opacity-60 hover:!opacity-100"]}>Fun</h4>
+        <h4 class:list={[isFun ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Fun</h4>
       </a>
       <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/about">
-        <h4 class:list={[isAbout ? "!text-primary" : "opacity-60 hover:!opacity-100"]}>About</h4>
+        <h4 class:list={[isAbout ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>About</h4>
       </a>
       <a href="/Tatiana_Hernandez_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100">
         <h4 class="opacity-60 hover:!opacity-100">Resume</h4>
@@ -102,43 +98,7 @@ const isAbout  = pathname === '/about';
 </div>
 
 <script>
-  // ── Header fade-in ────────────────────────────────────────────
-  const header = document.getElementById('site-header');
-  if (header) {
-    header.style.transition = 'opacity 0.3s ease-out';
-    requestAnimationFrame(() => { header.style.opacity = '1'; });
-  }
+  import { initHeader } from '../scripts/header';
 
-  // ── Hamburger menu toggle ──────────────────────────────────────
-  const hamburgerBtn   = document.getElementById('hamburger-btn');
-  const mobileMenu     = document.getElementById('mobile-menu');
-  const topLine        = document.getElementById('hamburger-top');
-  const bottomLine     = document.getElementById('hamburger-bottom');
-  let menuOpen = false;
-
-  hamburgerBtn?.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    if (menuOpen) {
-      mobileMenu?.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
-      mobileMenu?.classList.add('opacity-100', 'translate-y-0');
-      topLine?.classList.add('rotate-45', 'translate-y-[2.9px]');
-      bottomLine?.classList.add('-rotate-45', '-translate-y-[2.9px]');
-    } else {
-      mobileMenu?.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
-      mobileMenu?.classList.remove('opacity-100', 'translate-y-0');
-      topLine?.classList.remove('rotate-45', 'translate-y-[2.9px]');
-      bottomLine?.classList.remove('-rotate-45', '-translate-y-[2.9px]');
-    }
-  });
-
-  // Close menu on outside click
-  document.addEventListener('mousedown', (e) => {
-    if (menuOpen && header && !header.contains(e.target as Node)) {
-      menuOpen = false;
-      mobileMenu?.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
-      mobileMenu?.classList.remove('opacity-100', 'translate-y-0');
-      topLine?.classList.remove('rotate-45', 'translate-y-[2.9px]');
-      bottomLine?.classList.remove('-rotate-45', '-translate-y-[2.9px]');
-    }
-  });
+  initHeader();
 </script>

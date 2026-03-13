@@ -1,0 +1,13 @@
+@utility filter-primary {
+  filter: brightness(0) saturate(1) invert(54%) sepia(89%) saturate(1180%)
+    hue-rotate(335deg) brightness(90%) contrast(94%);
+}
+
+@utility auto-grow-textarea {
+  resize: none;
+  field-sizing: content;
+  min-height: 24px;
+  max-height: 120px;
+  overflow-y: auto;
+  height: auto !important;
+}

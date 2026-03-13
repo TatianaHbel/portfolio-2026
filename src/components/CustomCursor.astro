@@ -1,0 +1,15 @@
+<div
+  id="custom-cursor"
+  class="custom-cursor fixed pointer-events-none z-[9999] flex items-center"
+>
+  <div id="cursor-inner" class="custom-cursor__inner">
+    <span id="cursor-icon" class="custom-cursor__icon"></span>
+    <span id="cursor-label" class="custom-cursor__label font-mono"></span>
+  </div>
+</div>
+
+<script>
+  import { initCustomCursor } from '../scripts/custom-cursor';
+
+  initCustomCursor();
+</script>

@@ -1,6 +1,7 @@
 ---
-import Header from '../components/Header.astro';
+import CustomCursor from '../components/CustomCursor.astro';
 import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -54,30 +55,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://tatianah
     <link rel="apple-touch-icon" href="/images/favicon.ico" sizes="180x180" />
 
     <!-- Font preloads (critical fonts only) -->
-    <link rel="preload" href="/fonts/3296bccdacdd55f7-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/4cf2300e9c8272f7-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/93f479601ee12b01-s.p.woff2"  as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/993e471824edad3f-s.p.otf"    as="font" crossorigin="" type="font/otf"   />
-    <link rel="preload" href="/fonts/eda5476450c54b37-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/fcda245ca6032974-s.p.otf"   as="font" crossorigin="" type="font/otf"   />
+    <link rel="preload" href="/fonts/crimson-pro-latin.woff2" as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/geist-latin.woff2" as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/tiempos-text-italic.otf" as="font" crossorigin="" type="font/otf" />
+    <link rel="preload" href="/fonts/crimson-pro-italic-latin.woff2" as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/tiempos-text-regular.otf" as="font" crossorigin="" type="font/otf" />
   </head>
 
   <body class="antialiased font-geist-sans">
-
-    <!-- Custom cursor -->
-    <div
-      id="custom-cursor"
-      class="fixed pointer-events-none z-[9999] flex items-center"
-      style="left:0px;top:0px;transform:translateY(-50%);opacity:0;transition:opacity 0.3s ease-out, transform 0.1s ease-out;visibility:hidden"
-    >
-      <div
-        id="cursor-inner"
-        style="display:flex;align-items:center;background:var(--color-primary);color:#fff;border-radius:999px;width:16px;height:16px;font-weight:500;font-size:0.875rem;padding:0;user-select:none;pointer-events:none;white-space:nowrap;box-shadow:none;transition:width 0.2s ease-out, height 0.2s ease-out, border-radius 0.2s ease-out, gap 0.2s ease-out, box-shadow 0.2s ease-out, color 0.2s ease-out, transform 0.1s ease-out, padding 0.2s ease-out, opacity 0.2s ease-out;justify-content:flex-start;transform:scale(1);opacity:1"
-      >
-        <span id="cursor-icon" style="opacity:0;transition:opacity 0.2s ease-out, margin 0.2s ease-out;display:flex;align-items:center;margin-right:0;width:16px;overflow:hidden"></span>
-        <span id="cursor-label" class="font-mono" style="opacity:0;transition:opacity 0.2s ease-out, width 0.2s ease-out;width:0;overflow:hidden;white-space:nowrap"></span>
-      </div>
-    </div>
+    <CustomCursor />
 
     <div class="flex h-[100dvh] overflow-hidden">
       <div class="flex-1 transition-all duration-200 ease-in-out overflow-y-auto">
@@ -90,87 +77,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://tatianah
         </div>
       </div>
     </div>
-
-    <!-- Custom cursor script -->
-    <script>
-      const cursor    = document.getElementById('custom-cursor');
-      const inner     = document.getElementById('cursor-inner');
-      const labelEl   = document.getElementById('cursor-label');
-
-      if (cursor && inner) {
-        let visible = false;
-
-        document.addEventListener('mousemove', (e) => {
-          cursor.style.left = e.clientX + 'px';
-          cursor.style.top  = e.clientY + 'px';
-          if (!visible) {
-            visible = true;
-            cursor.style.opacity    = '1';
-            cursor.style.visibility = 'visible';
-          }
-        });
-
-        document.addEventListener('mouseleave', () => {
-          cursor.style.opacity = '0';
-          visible = false;
-        });
-
-        // Expand cursor on data-cursor elements
-        const LABELS: Record<string, string> = {
-          'pointer':    '',
-          'email':      'Email',
-          'case-study': 'View Case Study',
-          'overview':   'Overview',
-          'site':       'Visit Site',
-        };
-
-        const ICONS: Record<string, string> = {
-          'case-study': '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
-          'site':       '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
-        };
-
-        const iconEl = document.getElementById('cursor-icon');
-
-        function setCursorState(type: string | null) {
-          if (!type || type === 'pointer') {
-            inner!.style.width   = '16px';
-            inner!.style.height  = '16px';
-            inner!.style.padding = '0';
-            if (labelEl) { labelEl.style.opacity = '0'; labelEl.style.width = '0'; }
-            if (iconEl)  { iconEl.style.opacity = '0'; iconEl.style.marginRight = '0'; iconEl.innerHTML = ''; }
-          } else {
-            const label = LABELS[type] ?? type;
-            const icon  = ICONS[type] ?? null;
-            inner!.style.padding = '6px 14px';
-            inner!.style.width   = 'auto';
-            inner!.style.height  = '32px';
-            if (iconEl && icon) {
-              iconEl.innerHTML = icon;
-              iconEl.style.opacity = '1';
-              iconEl.style.marginRight = '6px';
-            } else if (iconEl) {
-              iconEl.style.opacity = '0';
-              iconEl.style.marginRight = '0';
-              iconEl.innerHTML = '';
-            }
-            if (labelEl) {
-              labelEl.textContent  = label;
-              labelEl.style.width  = 'auto';
-              labelEl.style.opacity = '1';
-            }
-          }
-        }
-
-        document.addEventListener('mouseover', (e) => {
-          const el = (e.target as HTMLElement).closest('[data-cursor]');
-          setCursorState(el?.getAttribute('data-cursor') ?? null);
-        });
-        document.addEventListener('mouseout', (e) => {
-          const el = (e.target as HTMLElement).closest('[data-cursor]');
-          if (el) setCursorState(null);
-        });
-      }
-    </script>
-
   </body>
 </html>

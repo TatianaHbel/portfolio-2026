@@ -1,16 +1,18 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { homeProjectColumns } from '../data/projects';
+import { experienceTimeline } from '../data/timeline';
+
+const { left: leftProjects, right: rightProjects } = homeProjectColumns;
 ---
 
 <BaseLayout title="Tatiana Hernandez | Product Designer + Engineer">
   <div class="flex flex-col p-6 w-full items-center gap-12 font-geist-sans">
     <main class="flex flex-col w-full max-w-[1800px]">
-
       <div class="w-full">
         <!-- Hero -->
         <div class="grid grid-cols-1 gap-12 lg:gap-6 lg:pt-[26vh] pt-8 pb-8 w-full lg:grid-cols-2">
-
           <div class="flex flex-col w-full gap-4">
             <h1 class="max-w-[700px]">I'm Tatiana, a product designer who <span class="italic">engineers</span>.</h1>
           </div>
@@ -18,119 +20,54 @@ import ProjectCard from '../components/ProjectCard.astro';
           <!-- Experience timeline -->
           <div class="flex flex-col gap-3 w-full align-bottom justify-end">
             <div class="flex flex-col gap-2 lg:gap-[2px]">
-
-              <div class="flex gap-2">
-                <h4 class="w-26 min-w-26">2025</h4>
-                <div class="flex flex-col lg:flex-row gap-0.5">
-                  <div class="w-56 min-w-56"><a href="https://bloomberg.com" target="_blank" rel="noopener noreferrer">Bloomberg</a></div>
-                  <p>Software Engineering Intern</p>
+              {experienceTimeline.map((entry) => (
+                <div class="flex gap-2">
+                  <h4 class="w-26 min-w-26">{entry.year}</h4>
+                  <div class="flex flex-col lg:flex-row gap-0.5">
+                    <div class="w-56 min-w-56">
+                      <a href={entry.companyUrl} target="_blank" rel="noopener noreferrer">{entry.company}</a>
+                    </div>
+                    <p>{entry.role}</p>
+                  </div>
                 </div>
-              </div>
-
-              <div class="flex gap-2">
-                <h4 class="w-26 min-w-26">2025</h4>
-                <div class="flex flex-col lg:flex-row gap-0.5">
-                  <div class="w-56 min-w-56"><a href="https://1password.com" target="_blank" rel="noopener noreferrer">1Password</a></div>
-                  <p>Product Design Intern</p>
-                </div>
-              </div>
-
-              <div class="flex gap-2">
-                <h4 class="w-26 min-w-26">2024</h4>
-                <div class="flex flex-col lg:flex-row gap-0.5">
-                  <div class="w-56 min-w-56"><a href="https://rbc.com" target="_blank" rel="noopener noreferrer">Royal Bank of Canada</a></div>
-                  <p>Software Engineering Intern</p>
-                </div>
-              </div>
-
-              <div class="flex gap-2">
-                <h4 class="w-26 min-w-26">2023</h4>
-                <div class="flex flex-col lg:flex-row gap-0.5">
-                  <div class="w-56 min-w-56"><a href="https://onova.io" target="_blank" rel="noopener noreferrer">Onova</a></div>
-                  <p>Product Design + Engineering Intern</p>
-                </div>
-              </div>
-
+              ))}
             </div>
           </div>
         </div>
 
         <!-- Project grid -->
         <div class="grid grid-cols-1 gap-6 transition-all duration-300 ease-in-out lg:grid-cols-2">
-
           <!-- Left column -->
           <div class="flex flex-col gap-6">
-            <ProjectCard
-              title="The future of AI & hardware"
-              label="OpenAI x Hardware • Concept 2025"
-              href="/projects/openai-hardware"
-              aspect="aspect-[16/9]"
-              placeholderColor="#E98D3450"
-              cursorType="case-study"
-            />
-            <ProjectCard
-              title="Novel consumer AI experiences"
-              label="Amazon Alexa+ • Contract 2025"
-              href="/projects/alexa"
-              aspect="aspect-[8/5]"
-              placeholderColor="#00144550"
-              cursorType="overview"
-            />
-            <ProjectCard
-              title="Mobile-first for Figma"
-              label="Figma • Concept 2025"
-              href="/projects/figma"
-              aspect="aspect-[10/7]"
-              placeholderColor="#D0A8D850"
-              cursorType="case-study"
-            />
-            <ProjectCard
-              title="Patent-pending AI"
-              label="Royal Bank of Canada • Handed off 2024"
-              href="/projects/rbc"
-              aspect="aspect-[16/9]"
-              placeholderColor="#E8F2FB"
-              cursorType="overview"
-            />
+            {leftProjects.map((project) => (
+              <ProjectCard
+                title={project.title}
+                label={project.label}
+                href={project.href}
+                aspect={project.aspect}
+                placeholderColor={project.placeholderColor}
+                external={project.external}
+                cursorType={project.cursorType}
+                status={project.status}
+              />
+            ))}
           </div>
 
           <!-- Right column -->
           <div class="flex flex-col gap-6">
-            <ProjectCard
-              title="The world's first AI poker coach"
-              label="PokerGPT • Shipped 2023"
-              href="/projects/pokergpt"
-              aspect="aspect-[10/7]"
-              placeholderColor="#DDD0FC50"
-              cursorType="case-study"
-            />
-            <ProjectCard
-              title="Bringing autofill to macOS"
-              label="1Password • Shipped 2025"
-              href="/projects/1password"
-              aspect="aspect-[8/5]"
-              placeholderColor="#1A316E50"
-              cursorType="case-study"
-            />
-            <ProjectCard
-              title="Making 0-1 building for everyone"
-              label="Hack Western 12 • Shipped 2025"
-              href="https://hackwestern.com"
-              aspect="aspect-[8/5]"
-              placeholderColor="#1A1A1A"
-              external={true}
-              cursorType="site"
-            />
-            <ProjectCard
-              title="Innovation management for Fortune 500s"
-              label="Earth • Shipped 2023"
-              href="/projects/earth"
-              aspect="aspect-[16/9]"
-              placeholderColor="#7AAEE950"
-              cursorType="case-study"
-            />
+            {rightProjects.map((project) => (
+              <ProjectCard
+                title={project.title}
+                label={project.label}
+                href={project.href}
+                aspect={project.aspect}
+                placeholderColor={project.placeholderColor}
+                external={project.external}
+                cursorType={project.cursorType}
+                status={project.status}
+              />
+            ))}
           </div>
-
         </div>
       </div>
 

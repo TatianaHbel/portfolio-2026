@@ -1,10 +1,11 @@
 ---
+import type { ProjectSection } from '../data/projects';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   title: string;
   description?: string;
-  sections?: string[];
+  sections?: ProjectSection[];
 }
 
 const { title, description, sections = [] } = Astro.props;
@@ -13,7 +14,6 @@ const { title, description, sections = [] } = Astro.props;
 <BaseLayout title={title} description={description}>
   <div class="min-h-screen px-6">
     <main class="grid max-w-[1800px] mx-auto grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-8">
-
       <!-- Sidebar -->
       <aside class="md:sticky md:top-0 md:h-fit px-0 pt-12 pb-0 md:py-12 min-w-40">
         <a data-cursor="pointer" class="w-full text-left !opacity-100" href="/">
@@ -36,12 +36,13 @@ const { title, description, sections = [] } = Astro.props;
           <nav id="project-sidebar-nav" class="mt-8 hidden md:block">
             <div class="flex flex-col items-start gap-2">
               {sections.map((section) => (
-                <button
-                  data-section={section}
-                  class="section-nav-btn flex items-start transition-colors cursor-pointer text-left hover:text-foreground opacity-50"
+                <a
+                  href={`#${section.id}`}
+                  data-section-id={section.id}
+                  class="section-nav-link flex items-start transition-colors cursor-pointer text-left hover:text-foreground opacity-50"
                 >
-                  {section}
-                </button>
+                  {section.label}
+                </a>
               ))}
             </div>
           </nav>
@@ -55,50 +56,48 @@ const { title, description, sections = [] } = Astro.props;
 
       <!-- Right spacer -->
       <div class="p-6 py-12"></div>
-
     </main>
   </div>
 
   <script>
-    // Sidebar scroll-spy: highlight the active section
-    const navBtns = document.querySelectorAll<HTMLButtonElement>('.section-nav-btn');
+    const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.section-nav-link'));
+    const projectSections = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
 
-    function scrollToSection(sectionId: string) {
-      const el = document.getElementById(sectionId)
-        ?? document.querySelector(`[id="${sectionId.toLowerCase()}"]`)
-        ?? document.querySelector(`section[id*="${sectionId.toLowerCase().split(' ')[0]}"]`);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    function setActiveSection(activeId: string | null) {
+      navLinks.forEach((link) => {
+        const isActive = link.dataset.sectionId === activeId;
+        link.classList.toggle('opacity-100', isActive);
+        link.classList.toggle('!text-foreground', isActive);
+        link.classList.toggle('opacity-50', !isActive);
+
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
     }
 
-    navBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const section = btn.getAttribute('data-section');
-        if (section) scrollToSection(section);
-      });
-    });
+    if (projectSections[0]) {
+      setActiveSection(projectSections[0].id);
+    }
 
-    // Scroll-spy: mark active section
-    const sections = document.querySelectorAll<HTMLElement>('section[id]');
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            navBtns.forEach((btn) => {
-              const match = btn.getAttribute('data-section')?.toLowerCase() === id.toLowerCase()
-                || id.toLowerCase().includes(btn.getAttribute('data-section')?.toLowerCase().split(' ')[0] ?? '');
-              btn.classList.toggle('opacity-100', match);
-              btn.classList.toggle('!text-foreground', match);
-              btn.classList.toggle('opacity-50', !match);
-            });
-          }
-        });
+        const activeEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (activeEntry) {
+          setActiveSection(activeEntry.target.id);
+        }
       },
-      { rootMargin: '-20% 0px -60% 0px' }
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
     );
 
-    sections.forEach((s) => observer.observe(s));
+    projectSections.forEach((section) => observer.observe(section));
   </script>
 </BaseLayout>
