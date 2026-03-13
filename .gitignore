@@ -3,3 +3,6 @@
 .astro/
 node_modules/
 dist/
+
+# Large media files
+**/*.mp4
