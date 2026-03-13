@@ -1,0 +1,25 @@
+---
+interface Item {
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  items: Item[];
+  class?: string;
+  columns?: number;
+}
+
+const { items, class: className = 'mt-2', columns } = Astro.props;
+const colClass = columns === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3';
+const layoutClass = columns ? `grid grid-cols-1 ${colClass}` : 'flex flex-col md:flex-row';
+---
+
+<div class={`w-full gap-6 ${layoutClass} ${className}`}>
+  {items.map(({ title, desc }) => (
+    <div class="flex flex-col gap-1 w-full">
+      <h3>{title}</h3>
+      <p>{desc}</p>
+    </div>
+  ))}
+</div>

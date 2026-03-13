@@ -2,6 +2,8 @@
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import InfoGrid from '../../components/InfoGrid.astro';
+import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
 import { openAiHardwareSections } from '../../data/projects';
 
 // Base path for project assets (served from public/)
@@ -45,20 +47,11 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
       <h4 class="!text-foreground mb-1">Overview</h4>
       <h2 class="-mb-2">What should OpenAI build as their first AI device?</h2>
       <p>As a team of 3 product designers, our goal was to land on a clear vision within 7 weeks.</p>
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Product Strategy</h3>
-          <p>Thinking broadly about OpenAI, the AI landscape, and exploring widely in the solution space.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Prototyping &amp; Testing</h3>
-          <p>Going wide in ideation and rapidly testing concepts with users.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Iterating with Feedback</h3>
-          <p>Continuously iterating on concepts and validating product decisions.</p>
-        </div>
-      </div>
+      <InfoGrid items={[
+        { title: 'Product Strategy', desc: 'Thinking broadly about OpenAI, the AI landscape, and exploring widely in the solution space.' },
+        { title: 'Prototyping & Testing', desc: 'Going wide in ideation and rapidly testing concepts with users.' },
+        { title: 'Iterating with Feedback', desc: 'Continuously iterating on concepts and validating product decisions.' },
+      ]} />
 
       <h4 class="!text-foreground mt-8">Problem</h4>
       <h2 class="-mb-2">ChatGPT is at the top of the stack.</h2>
@@ -74,20 +67,11 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
       <h4 class="!text-foreground mt-8">Opportunity</h4>
       <h2 class="-mb-2">Memory as the core of OpenAI's device ecosystem.</h2>
       <p>Memory should be OpenAI's new moat. LLMs are becoming commoditized, but personalization and context are the new differentiators. With hardware, OpenAI will benefit from:</p>
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Independence</h3>
-          <p>No longer at the mercy of the lower layers</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Ecosystem lock-in</h3>
-          <p>Capture users with a tightly-integrated experience like Apple does today</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>New input modalities</h3>
-          <p>A device that can see, hear, and remember in ways an app can't</p>
-        </div>
-      </div>
+      <InfoGrid items={[
+        { title: 'Independence', desc: "No longer at the mercy of the lower layers" },
+        { title: 'Ecosystem lock-in', desc: "Capture users with a tightly-integrated experience like Apple does today" },
+        { title: 'New input modalities', desc: "A device that can see, hear, and remember in ways an app can't" },
+      ]} />
     </section>
 
     <!-- Solution -->
@@ -165,20 +149,11 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
       <p>We explored product direction and form factor, and designed for an experience that will show users how Moments work and the immediate value of Tomo.</p>
 
       <h4 class="!text-foreground mt-8">Strategic Directions</h4>
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Productivity Tools</h3>
-          <p>Targeting students, massive AI adopters, with a familiar form factor.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Home Devices</h3>
-          <p>A less competitive space with fewer constraints on battery life and data plans.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Wearables</h3>
-          <p>On-the-go form factors fit for mass adoption.</p>
-        </div>
-      </div>
+      <InfoGrid items={[
+        { title: 'Productivity Tools', desc: 'Targeting students, massive AI adopters, with a familiar form factor.' },
+        { title: 'Home Devices', desc: 'A less competitive space with fewer constraints on battery life and data plans.' },
+        { title: 'Wearables', desc: 'On-the-go form factors fit for mass adoption.' },
+      ]} />
       <div class="w-full">
         <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
           <img alt="Form factor exploration" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_23.png')} 1x, ${img('image.png')} 2x`} src={img('image.png')} />
@@ -186,20 +161,11 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
       </div>
 
       <h4 class="!text-foreground mt-8">Why Tomo?</h4>
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Enhances ChatGPT</h3>
-          <p>Leverages the app's large and fast-growing user base.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Leverages OpenAI's strengths</h3>
-          <p>Taps into OpenAI's unique strengths of strong foundational models, memory, and agents.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Easier to scale</h3>
-          <p>Much cheaper to build and easier to scale than glasses, watches etc.</p>
-        </div>
-      </div>
+      <InfoGrid items={[
+        { title: 'Enhances ChatGPT', desc: "Leverages the app's large and fast-growing user base." },
+        { title: "Leverages OpenAI's strengths", desc: "Taps into OpenAI's unique strengths of strong foundational models, memory, and agents." },
+        { title: 'Easier to scale', desc: 'Much cheaper to build and easier to scale than glasses, watches etc.' },
+      ]} />
       <div class="w-full">
         <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
           <img alt="Why Tomo" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_26.png')} 1x, ${img('image_4.png')} 2x`} src={img('image_4.png')} />
@@ -244,16 +210,10 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
       </div>
 
       <h4 class="!text-foreground mt-8">Key User Insights</h4>
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Memory for recall, not reliving</h3>
-          <p>People want to look back and remembering important things, rather than re-experiencing them.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Surface relevant suggestions</h3>
-          <p>Users want personalized prompts, reminders, and tasks—both in the moment and as a recap at the end of their day.</p>
-        </div>
-      </div>
+      <InfoGrid items={[
+        { title: 'Memory for recall, not reliving', desc: 'People want to look back and remembering important things, rather than re-experiencing them.' },
+        { title: 'Surface relevant suggestions', desc: 'Users want personalized prompts, reminders, and tasks—both in the moment and as a recap at the end of their day.' },
+      ]} />
     </section>
 
     <!-- Design Decisions -->
@@ -328,9 +288,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       </div>
       <p>So we had to ask:</p>
-      <div class="w-full">
-        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">How do we maximize memory despite constraints of camera battery life?</h3>
-      </div>
+      <CaseStudyBlockquote>How do we maximize memory despite constraints of camera battery life?</CaseStudyBlockquote>
 
       <h4 class="!text-foreground mt-8">Constraining the experience</h4>
       <h2 class="-mb-2">Context-based Capture</h2>
@@ -401,25 +359,17 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
           <img alt="Memory vs privacy tradeoff" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_19.png')} 1x, ${img('image_11.png')} 2x`} src={img('image_11.png')} />
         </div>
       </div>
-      <div class="w-full">
-        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">This is a trade-off that we're willing to make for mass adoption.</h3>
-      </div>
+      <CaseStudyBlockquote>This is a trade-off that we're willing to make for mass adoption.</CaseStudyBlockquote>
     </section>
 
     <!-- Reflection -->
     <section id="reflection" class="flex flex-col gap-4">
       <h4 class="!text-foreground mb-1">Reflection</h4>
       <h2 class="-mb-2">What I learned</h2>
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Social signals matter.</h3>
-          <p>We can't design just for the user, but also for those who will be around them and perceive them. What does Tomo imply for social settings? How can we design hardware for self-expression?</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Think in systems.</h3>
-          <p>It's not just about designing an amazing feature, but how it fits into the existing system, and how it fits into users' mental models.</p>
-        </div>
-      </div>
+      <InfoGrid items={[
+        { title: 'Social signals matter.', desc: "We can't design just for the user, but also for those who will be around them and perceive them. What does Tomo imply for social settings? How can we design hardware for self-expression?" },
+        { title: 'Think in systems.', desc: "It's not just about designing an amazing feature, but how it fits into the existing system, and how it fits into users' mental models." },
+      ]} />
     </section>
 
   </div>

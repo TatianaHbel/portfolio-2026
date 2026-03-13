@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`w-full ${className}`.trim()}>
+  <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">
+    <slot />
+  </h3>
+</div>
