@@ -15,8 +15,8 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
   <!-- Project header -->
   <div class="flex flex-col gap-8">
     <div class="flex flex-col gap-4">
-      <h4>OpenAI x Hardware • Concept 2025</h4>
-      <h1>The future of AI &amp; hardware</h1>
+      <h4>Amadeus Protocol • Concept 2026</h4>
+      <h1>The future of AI Agents</h1>
     </div>
 
     <!-- Hero thumbnail -->
@@ -453,4 +453,131 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
     video.addEventListener('loadeddata', () => video.classList.remove('opacity-0'));
     if (video.readyState >= 3) video.classList.remove('opacity-0');
   });
+
+  // Grainient — WebGL animated gradient
+  (function () {
+    const canvas = document.getElementById('grainient-hero') as HTMLCanvasElement;
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') as WebGLRenderingContext | null;
+    if (!gl) return;
+
+    const vert = `
+      attribute vec2 a_pos;
+      void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+    `;
+
+    const frag = `
+      precision mediump float;
+      uniform float u_time;
+      uniform vec2  u_res;
+
+      // --- hash / noise ---
+      float hash(vec2 p) {
+        return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+      }
+      float vnoise(vec2 p) {
+        vec2 i = floor(p), f = fract(p);
+        f = f * f * (3.0 - 2.0 * f);
+        return mix(
+          mix(hash(i), hash(i + vec2(1,0)), f.x),
+          mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), f.x), f.y
+        );
+      }
+      float fbm(vec2 p) {
+        float v = 0.0, a = 0.5;
+        for (int i = 0; i < 6; i++) { v += a * vnoise(p); p *= 2.1; a *= 0.5; }
+        return v;
+      }
+
+      // --- colour helpers ---
+      vec3 adjustContrast(vec3 c, float cont) {
+        return clamp((c - 0.5) * cont + 0.5, 0.0, 1.0);
+      }
+      vec3 adjustSaturation(vec3 c, float sat) {
+        float luma = dot(c, vec3(0.2126, 0.7152, 0.0722));
+        return mix(vec3(luma), c, sat);
+      }
+
+      void main() {
+        vec2 uv = gl_FragCoord.xy / u_res;
+
+        // zoom 0.9 + centre offset (centerX=0, centerY=0)
+        vec2 center = vec2(0.5);
+        uv = (uv - center) / 0.9 + center;
+
+        float t = u_time * 0.25; // timeSpeed
+
+        // warp  (warpFrequency=5, warpSpeed=2, warpAmplitude=50)
+        float wAmp = 50.0 / min(u_res.x, u_res.y);
+        vec2 q = vec2(
+          fbm(uv * 5.0 + vec2(t * 2.0, 0.0)),
+          fbm(uv * 5.0 + vec2(0.0,     t * 2.0))
+        );
+        vec2 wuv = uv + (q * 2.0 - 1.0) * wAmp;
+
+        // slow rotation (rotationAmount=500 → treated as deg total sweep)
+        float ang = t * 0.04;
+        mat2 rot = mat2(cos(ang), -sin(ang), sin(ang), cos(ang));
+        wuv = rot * (wuv - 0.5) + 0.5;
+
+        // colour blend
+        float n1 = fbm(wuv * 2.0 + vec2(t * 0.3));
+        float n2 = fbm(wuv * 2.0 + vec2(t * 0.15, t * 0.2));
+
+        vec3 c1 = vec3(0.329, 0.031, 0.851); // #5408d9
+        vec3 c2 = vec3(0.141, 0.012, 0.369); // #24035e
+        vec3 c3 = vec3(0.525, 0.984, 0.094); // #86fb18
+
+        vec3 col = mix(c1, c2, n1);
+        col = mix(col, c3, n2 * 0.38); // colorBalance=0 → keep greens subtle
+
+        // post — contrast 1.5, saturation 1
+        col = adjustContrast(col, 1.5);
+        col = adjustSaturation(col, 1.0);
+
+        // static grain (grainAnimated=false, grainAmount=0.1, grainScale=2)
+        float grain = hash(floor(gl_FragCoord.xy / 2.0)) * 0.1 - 0.05;
+        col = clamp(col + grain, 0.0, 1.0);
+
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    function compile(type: number, src: string) {
+      const s = gl!.createShader(type)!;
+      gl!.shaderSource(s, src); gl!.compileShader(s); return s;
+    }
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vert));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, frag));
+    gl.linkProgram(prog); gl.useProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, 'a_pos');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+    const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uRes  = gl.getUniformLocation(prog, 'u_res');
+
+    function resize() {
+      canvas.width  = canvas.clientWidth  * devicePixelRatio;
+      canvas.height = canvas.clientHeight * devicePixelRatio;
+      gl!.viewport(0, 0, canvas.width, canvas.height);
+    }
+    resize();
+    new ResizeObserver(resize).observe(canvas);
+
+    let start = performance.now();
+    function frame() {
+      const t = (performance.now() - start) * 0.001;
+      gl!.uniform1f(uTime, t);
+      gl!.uniform2f(uRes, canvas.width, canvas.height);
+      gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(frame);
+    }
+    frame();
+  })();
 </script>

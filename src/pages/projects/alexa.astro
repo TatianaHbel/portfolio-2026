@@ -1,0 +1,228 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+const sections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'context', label: 'Context' },
+  { id: 'discovery--insights', label: 'Discovery & Insights' },
+  { id: 'solution', label: 'Solution' },
+  { id: 'achievements', label: 'Achievements' },
+  { id: 'learnings', label: 'Learnings' },
+];
+---
+
+<ProjectLayout
+  title="Bridge the Gap | Tatiana Hernandez"
+  description="Bridge the Gap — Amazon Alexa+"
+  sections={sections}
+>
+  <!-- Project header -->
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-4">
+      <h4>Amazon Alexa+ • Contract 2025</h4>
+      <h1>Bridge the Gap</h1>
+    </div>
+
+    <!-- Hero thumbnail -->
+    <div class="w-full aspect-[16/9] border-1 border-foreground/10">
+      <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for Amazon Alexa+">
+        <div class="absolute inset-0 animate-pulse transition-all duration-500 ease-out" style="background-color:#00144550;opacity:0.25" aria-label="Loading project preview"></div>
+      </div>
+    </div>
+
+    <!-- Project metadata -->
+    <div class="flex flex-col md:flex-row gap-6 md:gap-12">
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Role</h4>
+        <p>Product Designer</p>
+      </div>
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Timeline</h4>
+        <p>2025</p>
+      </div>
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Team</h4>
+        <p>Contract</p>
+      </div>
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Skills</h4>
+        <div class="flex flex-col gap-0">
+          <p>Product Design</p>
+          <p>AI UX</p>
+          <p>Consumer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case study content -->
+  <div class="flex flex-col gap-12">
+
+    <!-- Overview -->
+    <section id="overview" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Overview</h4>
+      <h2 class="-mb-2">What does a meaningful AI-first consumer experience look like?</h2>
+      <p>Amazon Alexa+ marks a new chapter for voice AI — moving beyond task automation toward a genuinely intelligent, context-aware assistant. As a contract designer on this initiative, I explored how to make that shift feel natural, useful, and trustworthy for everyday users.</p>
+
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>The opportunity</h3>
+          <p>Alexa has hundreds of millions of users — but most interactions are shallow: timers, music, weather. The challenge was designing experiences that leverage a much more capable AI without overwhelming or alienating the existing user base.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>My role</h3>
+          <p>Design exploration focused on novel consumer AI interactions — identifying where AI capability creates real value for users and how to surface that value in ways that feel intuitive, not impressive.</p>
+        </div>
+      </div>
+
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+    </section>
+
+    <!-- Context -->
+    <section id="context" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Context</h4>
+      <h2 class="-mb-2">Voice AI at an inflection point.</h2>
+      <p>The launch of large language models changed what's possible in conversational AI overnight. Alexa had the distribution — the question was how to redesign the experience to match the new capability without breaking the trust of existing users who rely on it daily.</p>
+
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Existing users expect reliability</h3>
+          <p>Alexa's core user base values predictability above all else. Any new AI capabilities had to be introduced in a way that felt additive — not disruptive to the routines people had already built around the device.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>New users expect intelligence</h3>
+          <p>First-time smart home buyers in 2025 arrive with expectations shaped by ChatGPT and similar tools. The bar for what "AI" means has moved dramatically — and Alexa+ needed to meet it.</p>
+        </div>
+      </div>
+
+      <div class="w-full mt-4">
+        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">The design challenge wasn't making Alexa smarter — it was making the intelligence visible in ways people actually care about.</h3>
+      </div>
+
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+    </section>
+
+    <!-- Discovery & Insights -->
+    <section id="discovery--insights" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Discovery & Insights</h4>
+      <h2 class="-mb-2">Research that shaped the direction.</h2>
+      <p>We explored how people currently use Alexa, where they feel let down, and what they wish it could do — cross-referenced with what the new AI capabilities actually enable.</p>
+
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Users don't know what to ask for</h3>
+          <p>Most users mentally cap Alexa at its known capabilities. They don't experiment because past failures trained them not to. Surfacing new capabilities proactively — rather than waiting for users to discover them — was a key design lever.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Context is the missing ingredient</h3>
+          <p>The biggest gap wasn't knowledge — it was memory and context. Users wanted Alexa to understand their patterns, preferences, and current situation without having to re-explain every time.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Trust is earned through accuracy</h3>
+          <p>Users forgave gaps in capability far more readily than incorrect answers. Confident wrong answers eroded trust faster than honest uncertainty. Designing for appropriate humility was essential.</p>
+        </div>
+      </div>
+
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section id="solution" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Solution</h4>
+      <h2 class="-mb-2">Designing for AI that feels like a natural extension of daily life.</h2>
+      <p>Three core design directions emerged from the research — each targeting a different dimension of the AI experience.</p>
+
+      <h4 class="!opacity-100 mt-8">#1 — Proactive intelligence</h4>
+      <p>Rather than waiting for commands, Alexa+ surfaces relevant suggestions at the right moment — based on time, context, and learned patterns. The design had to make these proactive nudges feel helpful, not intrusive.</p>
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">#2 — Persistent context</h4>
+      <p>Designing for a continuous conversation model — where Alexa remembers what was discussed, adapts to household preferences, and reduces the cognitive load of repeating context across sessions.</p>
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">#3 — Calibrated confidence</h4>
+      <p>An interaction model that communicates certainty honestly — using language patterns and UI signals that distinguish between high-confidence responses and exploratory suggestions. Building trust through transparency.</p>
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+
+      <div class="h-[1px] w-full bg-foreground/10 mt-16 mb-8"></div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Achievements</h4>
+      <p>Concept testing with users across household types showed strong positive response to the proactive intelligence direction — particularly for families and older adults who found the reduced command burden meaningful.</p>
+
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Reduced friction in daily routines</h3>
+          <p>Proactive suggestions eliminated repeated commands for common patterns — morning routines, commute prep, shopping reminders — without requiring users to learn new interaction models.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Higher perceived intelligence</h3>
+          <p>Users described the persistent context design as "actually understanding me" — a qualitative shift from the transactional feel of classic voice assistants.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Trust maintained through honesty</h3>
+          <p>The calibrated confidence patterns tested well with skeptical users — those most likely to abandon AI tools after a wrong answer responded positively to explicit uncertainty signals.</p>
+        </div>
+      </div>
+
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+    </section>
+
+    <!-- Learnings -->
+    <section id="learnings" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Learnings</h4>
+      <p>Designing for consumer AI at scale surfaces challenges that don't appear in enterprise or tools-focused contexts. Here are the key things this contract taught me:</p>
+
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Distribution creates design constraints.</h3>
+          <p>When your product is already in 100 million homes, "redesign" means something very different than a greenfield build. Every interaction pattern you introduce has to survive contact with an enormous range of users, devices, and contexts. Elegance has to be robust.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>AI capability ≠ user value.</h3>
+          <p>The most technically impressive features weren't the ones users found most valuable. Value came from reducing friction in things people already did every day — not from showcasing what the model could do. The design job is to find the overlap between capability and genuine daily need.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Voice is underrated as a design medium.</h3>
+          <p>Most AI design conversations happen in the context of chat interfaces. Working in voice forced a different kind of clarity — you can't rely on visual hierarchy, progressive disclosure, or hover states. Every interaction has to work as language first.</p>
+        </div>
+      </div>
+
+      <div class="w-full mt-8">
+        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">Designs delivered as part of the Alexa+ contract engagement.</h3>
+      </div>
+    </section>
+
+  </div>
+</ProjectLayout>
+
+<script>
+  document.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
+    if (img.complete) {
+      img.classList.remove('opacity-0');
+    } else {
+      img.addEventListener('load', () => img.classList.remove('opacity-0'));
+    }
+  });
+
+  document.querySelectorAll<HTMLVideoElement>('video[data-inline-autoplay]').forEach((video) => {
+    video.addEventListener('loadeddata', () => video.classList.remove('opacity-0'));
+    if (video.readyState >= 3) video.classList.remove('opacity-0');
+  });
+</script>
