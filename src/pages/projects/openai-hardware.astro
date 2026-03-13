@@ -1,0 +1,467 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+const sections = [
+  'Overview',
+  'Solution',
+  'Core Flows',
+  'Research',
+  'Exploring Form Factors',
+  'Prototyping and Testing',
+  'Design Decisions',
+  'Designing for Hardware Constraints',
+  'Reflection',
+];
+
+// Base path for project assets (served from public/)
+const img  = (name: string) => `/projects/openai-hardware/images/${name}`;
+const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
+---
+
+<ProjectLayout
+  title="OpenAI x Hardware | Tatiana Hernandez"
+  description="The future of AI & hardware"
+  sections={sections}
+>
+  <!-- Project header -->
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-4">
+      <h4>OpenAI x Hardware • Concept 2025</h4>
+      <h1>The future of AI &amp; hardware</h1>
+    </div>
+
+    <!-- Hero thumbnail -->
+    <div class="w-full aspect-[16/9] border-1 border-foreground/10">
+      <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for OpenAI x Hardware">
+        <div class="absolute inset-0 animate-pulse transition-all duration-500 ease-out" style="background-color:#E98D3450;opacity:0.25" aria-label="Loading project preview"></div>
+      </div>
+    </div>
+
+    <!-- Project metadata -->
+    <div class="flex flex-col md:flex-row gap-6 md:gap-12">
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Role</h4>
+        <p>Product Designer</p>
+      </div>
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Timeline</h4>
+        <p>August - September 2025</p>
+      </div>
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Team</h4>
+        <p>3 Designers</p>
+      </div>
+      <div class="flex w-full flex-col gap-2">
+        <h4 class="!opacity-100">Skills</h4>
+        <div class="flex flex-col gap-0">
+          <p>Product Design</p>
+          <p>Product Strategy</p>
+          <p>Prototyping</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case study content -->
+  <div class="flex flex-col gap-12">
+
+    <!-- Overview -->
+    <section id="overview" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Overview</h4>
+      <h2 class="-mb-2">What should OpenAI build as their first AI device?</h2>
+      <p>As a team of 3 product designers, our goal was to land on a clear vision within 7 weeks.</p>
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Product Strategy</h3>
+          <p>Thinking broadly about OpenAI, the AI landscape, and exploring widely in the solution space.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Prototyping &amp; Testing</h3>
+          <p>Going wide in ideation and rapidly testing concepts with users.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Iterating with Feedback</h3>
+          <p>Continuously iterating on concepts and validating product decisions.</p>
+        </div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">Problem</h4>
+      <h2 class="-mb-2">ChatGPT is at the top of the stack.</h2>
+      <p>ChatGPT is an app, at the top of this technology stack. That's a risky place to be because it means leaves OpenAI at the mercy of the lower layers, like the platform, the operating system, and the hardware.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="ChatGPT stack problem diagram" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" src={img('1-problem.svg')} />
+        </div>
+      </div>
+      <p>Apple and Google are building their own consumer AI ecosystems, but with the advantage of being able to control the entire stack.</p>
+      <p>However, OpenAI is currently dominating consumer AI, and Apple has recently dropped the ball on their Apple Intelligence integrations. This creates an opportunity for OpenAI to build an AI device and capture consumers in their own ecosystem.</p>
+
+      <h4 class="!opacity-100 mt-8">Opportunity</h4>
+      <h2 class="-mb-2">Memory as the core of OpenAI's device ecosystem.</h2>
+      <p>Memory should be OpenAI's new moat. LLMs are becoming commoditized, but personalization and context are the new differentiators. With hardware, OpenAI will benefit from:</p>
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Independence</h3>
+          <p>No longer at the mercy of the lower layers</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Ecosystem lock-in</h3>
+          <p>Capture users with a tightly-integrated experience like Apple does today</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>New input modalities</h3>
+          <p>A device that can see, hear, and remember in ways an app can't</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section id="solution" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Solution</h4>
+      <h2 class="-mb-2">Tomo: the AI device that remembers so you don't have to...</h2>
+      <p>A pin and pendant wearable, serving as a camera and microphone on-the-go.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Tomo device" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_28.png')} 1x, ${img('image_3.png')} 2x`} src={img('image_3.png')} />
+        </div>
+      </div>
+      <h2 class="-mb-2">...powering Moments, logging memories in your everyday life in ChatGPT.</h2>
+      <p>Moments is a new atomic unit in ChatGPT, logging all the events, conversations, and solo adventures captured with Tomo.</p>
+      <div class="w-full">
+        <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden group">
+          <video src={vid('moments.mp4')} autoplay muted loop class="w-full h-auto object-cover opacity-0 transition-opacity duration-500 ease-in-out object-contain" preload="auto" playsinline data-inline-autoplay="true"></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Flows -->
+    <section id="core flows" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Core Flows</h4>
+
+      {[
+        { src: vid('cf-smart-prompt.mp4'),  title: 'Smart prompts, in-the-moment',      desc: 'Get prompts relevant to you in-the-moment, with Tomo.' },
+        { src: vid('cf-chat-context.mp4'),  title: 'Chat with real-time context',        desc: 'ChatGPT can now respond to you with understanding of your real life.' },
+        { src: vid('cf-moments.mp4'),       title: 'Look back on your moments',          desc: 'In the new Moments page, you can look back on everything that\'s happened, categorized by context.' },
+        { src: vid('cf-apartmoment.mp4'),   title: 'Review a specific moment',           desc: 'Tap into each moment to see all the important things that happened.' },
+      ].map(({ src, title, desc }) => (
+        <div class="w-full flex gap-6 my-4 items-center">
+          <div class="grid grid-cols-1 md:grid-cols-[60%_auto] md:gap-8 md:items-end">
+            <div class="md:hidden flex flex-col pb-6">
+              <h3 class="mt-2 text-sm">{title}</h3>
+              <p class="mt-1 text-sm">{desc}</p>
+            </div>
+            <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden group">
+              <video src={src} autoplay muted loop class="w-full h-auto object-cover opacity-0 transition-opacity duration-500 ease-in-out overflow-clip" preload="auto" playsinline data-inline-autoplay="true"></video>
+            </div>
+            <div class="flex flex-col h-fit">
+              <h3 class="hidden md:block mt-2 text-sm">{title}</h3>
+              <p class="hidden md:block mt-1 text-sm">{desc}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <h3 class="!opacity-100 mt-4 -mb-3">Onboarding to Tomo</h3>
+      <p>Designing for an experience that will show users how Moments work and the immediate value of Tomo.</p>
+      <div class="w-full">
+        <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden group">
+          <video src={vid('onboarding.mp4')} autoplay muted loop class="w-full h-auto object-cover opacity-0 transition-opacity duration-500 ease-in-out object-contain" preload="auto" playsinline data-inline-autoplay="true"></video>
+        </div>
+      </div>
+      <div class="h-[1px] w-full bg-foreground/10 mt-16 mb-8"></div>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Research</h4>
+      <h2 class="-mb-2">Researching the AI landscape and current devices on the market</h2>
+      <p>We went deep into understanding OpenAI, and the world of consumer AI, agents, trends, and more. We researched existing devices and tried some out ourselves!</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="AI research landscape" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_21.png')} 1x, ${img('image_9.png')} 2x`} src={img('image_9.png')} />
+        </div>
+      </div>
+    </section>
+
+    <!-- Exploring Form Factors -->
+    <section id="exploring-form-factors" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Exploring Form Factors</h4>
+      <h2 class="-mb-2">Exploring product direction and form factor</h2>
+      <p>We explored product direction and form factor, and designed for an experience that will show users how Moments work and the immediate value of Tomo.</p>
+
+      <h4 class="!opacity-100 mt-8">Strategic Directions</h4>
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Productivity Tools</h3>
+          <p>Targeting students, massive AI adopters, with a familiar form factor.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Home Devices</h3>
+          <p>A less competitive space with fewer constraints on battery life and data plans.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Wearables</h3>
+          <p>On-the-go form factors fit for mass adoption.</p>
+        </div>
+      </div>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Form factor exploration" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_23.png')} 1x, ${img('image.png')} 2x`} src={img('image.png')} />
+        </div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">Why Tomo?</h4>
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Enhances ChatGPT</h3>
+          <p>Leverages the app's large and fast-growing user base.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Leverages OpenAI's strengths</h3>
+          <p>Taps into OpenAI's unique strengths of strong foundational models, memory, and agents.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Easier to scale</h3>
+          <p>Much cheaper to build and easier to scale than glasses, watches etc.</p>
+        </div>
+      </div>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Why Tomo" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_26.png')} 1x, ${img('image_4.png')} 2x`} src={img('image_4.png')} />
+        </div>
+      </div>
+    </section>
+
+    <!-- Prototyping and Testing -->
+    <section id="prototyping and testing" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Prototyping and Testing</h4>
+      <h2 class="-mb-2">Prototyping interfaces for real-world memory</h2>
+      <p>We explored a ton of concepts for these 3 strategic directions, here are select few of them:</p>
+
+      {[
+        { vids: [vid('exp1-prompt.mp4'), vid('exp2-bg-mode.mp4')],   title: 'ChatGPT Feature Power-ups',  desc: 'Using real-life context to enhance existing features in the app' },
+        { vids: [vid('exp3-decons-ar.mp4'), vid('exp4-transcript.mp4')], title: 'In-the-moment Canvas',   desc: 'Exploring interfaces focused on real-time assistance' },
+        { vids: [vid('exp5-stories.mp4'), vid('exp6-timeline.mp4')],  title: 'Memory-centered UI',        desc: 'Focusing on helping users look back on their day' },
+      ].map(({ vids, title, desc }) => (
+        <div class="w-full flex flex-col md:flex-row gap-6 items-end my-2">
+          <div class="grid grid-cols-2 gap-6 md:gap-5 w-full md:w-1/2">
+            {vids.map((v) => (
+              <div class="w-full flex flex-col h-fit justify-start gap-4">
+                <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden group">
+                  <video src={v} autoplay muted loop class="w-full h-auto object-cover opacity-0 transition-opacity duration-500 ease-in-out" preload="auto" playsinline data-inline-autoplay="true"></video>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="flex w-full md:w-1/3 flex-col h-fit pb-8 md:pb-0">
+            <h3 class="mt-2 text-sm">{title}</h3>
+            <p class="mt-1 text-sm">{desc}</p>
+          </div>
+        </div>
+      ))}
+
+      <h3 class="!opacity-100 mt-4 -mb-3">Testing and iterating with feedback!</h3>
+      <p>We got users to try these prototypes, observed how they used them, how they felt, and got tons of valuable feedback.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden group">
+          <video src={vid('user-testing.mp4')} autoplay muted loop class="w-full h-auto object-cover opacity-0 transition-opacity duration-500 ease-in-out object-contain" preload="auto" playsinline data-inline-autoplay="true"></video>
+        </div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">Key User Insights</h4>
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Memory for recall, not reliving</h3>
+          <p>People want to look back and remembering important things, rather than re-experiencing them.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Surface relevant suggestions</h3>
+          <p>Users want personalized prompts, reminders, and tasks—both in the moment and as a recap at the end of their day.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design Decisions -->
+    <section id="Design Decisions" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Design Decisions</h4>
+      <h2 class="-mb-2">We identified the most intuitive way to bring this feature to life.</h2>
+      <p>With insights and iteration from prototyping and testing, we got to thinking how a clear, intuitive solution could be integrated within the existing ChatGPT ecosystem.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Systems thinking diagram" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" src={img('systems-thinking.svg')} />
+        </div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">Where we landed</h4>
+      <h2 class="-mb-2">Insight 1: Memory for recall, not reliving</h2>
+      <div class="w-full flex gap-6 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div class="w-full flex flex-col h-fit justify-start gap-4 mb-2">
+            <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden group">
+              <video src={vid('ins-chat-context.mp4')} autoplay muted loop class="w-full h-auto object-cover opacity-0 transition-opacity duration-500 ease-in-out" preload="auto" playsinline data-inline-autoplay="true"></video>
+            </div>
+            <div class="flex flex-col h-fit w-full">
+              <h3 class="mt-1 text-sm">Moments as chat context</h3>
+              <p class="mt-1 text-sm">People want to look back and remembering important things, rather than re-experiencing them.</p>
+            </div>
+          </div>
+          <div class="w-full flex flex-col h-fit justify-start gap-4 mb-2">
+            <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden">
+              <img alt="Moments log page" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300" srcset={`${img('image_22.png')} 1x, ${img('image_2.png')} 2x`} src={img('image_2.png')} />
+            </div>
+            <div class="flex flex-col h-fit w-full">
+              <h3 class="mt-1 text-sm">Moments log as a new page</h3>
+              <p class="mt-1 text-sm">Users want personalized prompts, reminders, and tasks—both in the moment and as a recap at the end of their day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="-mb-2">Insight 2: Surface relevant suggestions</h2>
+      <div class="w-full flex gap-6 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div class="w-full flex flex-col h-fit justify-start gap-4 mb-2">
+            <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden">
+              <img alt="Smart prompts in-the-moment" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300" srcset={`${img('image_17.png')} 1x, ${img('image_1.png')} 2x`} src={img('image_1.png')} />
+            </div>
+            <div class="flex flex-col h-fit w-full">
+              <h3 class="mt-1 text-sm">Smart prompts in-the-moment</h3>
+              <p class="mt-1 text-sm">We want to give users relevant prompts with real-time context, in a less invasive way than our initial exploration.</p>
+            </div>
+          </div>
+          <div class="w-full flex flex-col h-fit justify-start gap-4 mb-2">
+            <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden group">
+              <video src={vid('ins-moment-prompt.mp4')} autoplay muted loop class="w-full h-auto object-cover opacity-0 transition-opacity duration-500 ease-in-out" preload="auto" playsinline data-inline-autoplay="true"></video>
+            </div>
+            <div class="flex flex-col h-fit w-full">
+              <h3 class="mt-1 text-sm">Smart Prompts for every moment</h3>
+              <p class="mt-1 text-sm">With prompts for every moment, users can look back on their day and get smart suggestions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Constraints -->
+    <section id="hardware-constraints" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Designing for Hardware Constraints</h4>
+      <h2 class="-mb-2">A device that is light-weight and always-recording isn't possible, yet.</h2>
+      <p>We researched a bunch of products and found that high-quality camera recording doesn't last more than a few hours.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Research devices" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_24.png')} 1x, ${img('image_8.png')} 2x`} src={img('image_8.png')} />
+        </div>
+      </div>
+      <p>So we had to ask:</p>
+      <div class="w-full">
+        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">How do we maximize memory despite constraints of camera battery life?</h3>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">Constraining the experience</h4>
+      <h2 class="-mb-2">Context-based Capture</h2>
+      <p>In this case, Tomo would use real-time cues to choose when to record, balancing battery with context capture.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Context-based capture" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_16.png')} 1x, ${img('image_5.png')} 2x`} src={img('image_5.png')} />
+        </div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">Considerations</h4>
+      {[
+        { src1: img('image_20.png'), src2: img('image_7.png'),   title: 'How do we communicate rationale for recording?',   desc: 'We could use a notification to let users know why Tomo is recording.' },
+        { src1: img('image_18.png'), src2: img('image_6.png'),   title: 'Can AI detect when to record?',                   desc: 'We found that with transcripts alone, AI is pretty good at identifying moments worth recording.' },
+      ].map(({ src1, src2, title, desc }) => (
+        <div class="w-full flex gap-6 my-4 items-center">
+          <div class="grid grid-cols-1 md:grid-cols-[60%_auto] md:gap-8 md:items-end">
+            <div class="md:hidden flex flex-col pb-6">
+              <h3 class="mt-2 text-sm">{title}</h3>
+              <p class="mt-1 text-sm">{desc}</p>
+            </div>
+            <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden">
+              <img alt={title} loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 overflow-clip" srcset={`${src1} 1x, ${src2} 2x`} src={src2} />
+            </div>
+            <div class="flex flex-col h-fit">
+              <h3 class="hidden md:block mt-2 text-sm">{title}</h3>
+              <p class="hidden md:block mt-1 text-sm">{desc}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <h2 class="-mb-2">Manual Capture</h2>
+      <p>In this case, the user is always manually pressing or holding down the button to capture images and videos.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Manual capture" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_15.png')} 1x, ${img('image_10.png')} 2x`} src={img('image_10.png')} />
+        </div>
+      </div>
+
+      <h4 class="!opacity-100 mt-8">Considerations</h4>
+      {[
+        { src1: img('image_29.png'), src2: img('image_13.png'), title: 'How do we remind users to record?',          desc: 'We could have a subtle on-device indicator to remind users to record at specific moments with non-visual cues.' },
+        { src1: img('image_25.png'), src2: img('image_12.png'), title: 'What does a less visual interface look like?', desc: 'We could use icons to represent moments without visual captures, and pull context from other sources, like LinkedIn headshots for coffee chats.' },
+        { src1: img('image_27.png'), src2: img('image_14.png'), title: 'How do we deal with imperfect captures?',     desc: 'We can use AI to enhance captures, like making shots more flattering, or making blurry photos clearer.' },
+      ].map(({ src1, src2, title, desc }) => (
+        <div class="w-full flex gap-6 my-4 items-center">
+          <div class="grid grid-cols-1 md:grid-cols-[60%_auto] md:gap-8 md:items-end">
+            <div class="md:hidden flex flex-col pb-6">
+              <h3 class="mt-2 text-sm">{title}</h3>
+              <p class="mt-1 text-sm">{desc}</p>
+            </div>
+            <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden">
+              <img alt={title} loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 overflow-clip" srcset={`${src1} 1x, ${src2} 2x`} src={src2} />
+            </div>
+            <div class="flex flex-col h-fit">
+              <h3 class="hidden md:block mt-2 text-sm">{title}</h3>
+              <p class="hidden md:block mt-1 text-sm">{desc}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <h2 class="-mb-2">Trading memory for privacy</h2>
+      <p>With manual capture, we're making this tradeoff of less memory captured for more user privacy. This is something we should lean into as a strength. Privacy really matters to users, and we want to make it a deliberate design decision that helps us gain trust with users and lowers the barrier to entry of using a product like this.</p>
+      <div class="w-full">
+        <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+          <img alt="Memory vs privacy tradeoff" loading="lazy" width="1920" height="1080" class="w-full h-auto object-cover opacity-0 transition-opacity duration-300 object-contain" srcset={`${img('image_19.png')} 1x, ${img('image_11.png')} 2x`} src={img('image_11.png')} />
+        </div>
+      </div>
+      <div class="w-full">
+        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">This is a trade-off that we're willing to make for mass adoption.</h3>
+      </div>
+    </section>
+
+    <!-- Reflection -->
+    <section id="reflection" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Reflection</h4>
+      <h2 class="-mb-2">What I learned</h2>
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Social signals matter.</h3>
+          <p>We can't design just for the user, but also for those who will be around them and perceive them. What does Tomo imply for social settings? How can we design hardware for self-expression?</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Think in systems.</h3>
+          <p>It's not just about designing an amazing feature, but how it fits into the existing system, and how it fits into users' mental models.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</ProjectLayout>
+
+<script>
+  // Reveal images and videos as they load
+  document.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
+    if (img.complete) {
+      img.classList.remove('opacity-0');
+    } else {
+      img.addEventListener('load', () => img.classList.remove('opacity-0'));
+    }
+  });
+
+  document.querySelectorAll<HTMLVideoElement>('video[data-inline-autoplay]').forEach((video) => {
+    video.addEventListener('loadeddata', () => video.classList.remove('opacity-0'));
+    if (video.readyState >= 3) video.classList.remove('opacity-0');
+  });
+</script>

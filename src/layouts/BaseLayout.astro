@@ -1,0 +1,176 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "I'm Tatiana, a product builder who loves bringing ideas to life with design + code.",
+  ogImage = '/images/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://tatianahernandez.dev');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#fafcfd" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Tatiana Hernandez" />
+    <meta name="creator" content="Tatiana Hernandez" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Tatiana Hernandez | Product Designer & Engineer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.ico" sizes="16x16" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/images/favicon.ico" sizes="180x180" />
+
+    <!-- Font preloads (critical fonts only) -->
+    <link rel="preload" href="/fonts/3296bccdacdd55f7-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/4cf2300e9c8272f7-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/93f479601ee12b01-s.p.woff2"  as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/993e471824edad3f-s.p.otf"    as="font" crossorigin="" type="font/otf"   />
+    <link rel="preload" href="/fonts/eda5476450c54b37-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
+    <link rel="preload" href="/fonts/fcda245ca6032974-s.p.otf"   as="font" crossorigin="" type="font/otf"   />
+  </head>
+
+  <body class="antialiased font-geist-sans">
+
+    <!-- Custom cursor -->
+    <div
+      id="custom-cursor"
+      class="fixed pointer-events-none z-[9999] flex items-center"
+      style="left:0px;top:0px;transform:translateY(-50%);opacity:0;transition:opacity 0.3s ease-out, transform 0.1s ease-out;visibility:hidden"
+    >
+      <div
+        id="cursor-inner"
+        style="display:flex;align-items:center;background:var(--color-primary);color:#fff;border-radius:999px;width:16px;height:16px;font-weight:500;font-size:0.875rem;padding:0;user-select:none;pointer-events:none;white-space:nowrap;box-shadow:none;transition:width 0.2s ease-out, height 0.2s ease-out, border-radius 0.2s ease-out, gap 0.2s ease-out, box-shadow 0.2s ease-out, color 0.2s ease-out, transform 0.1s ease-out, padding 0.2s ease-out, opacity 0.2s ease-out;justify-content:flex-start;transform:scale(1);opacity:1"
+      >
+        <span id="cursor-icon" style="opacity:0;transition:opacity 0.2s ease-out, margin 0.2s ease-out;display:flex;align-items:center;margin-right:0;width:16px;overflow:hidden"></span>
+        <span id="cursor-label" class="font-mono" style="opacity:0;transition:opacity 0.2s ease-out, width 0.2s ease-out;width:0;overflow:hidden;white-space:nowrap"></span>
+      </div>
+    </div>
+
+    <div class="flex h-[100dvh] overflow-hidden">
+      <div class="flex-1 transition-all duration-200 ease-in-out overflow-y-auto">
+        <div class="min-h-screen flex flex-col">
+          <Header />
+          <main class="flex-1">
+            <slot />
+          </main>
+          <Footer />
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom cursor script -->
+    <script>
+      const cursor    = document.getElementById('custom-cursor');
+      const inner     = document.getElementById('cursor-inner');
+      const labelEl   = document.getElementById('cursor-label');
+
+      if (cursor && inner) {
+        let visible = false;
+
+        document.addEventListener('mousemove', (e) => {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top  = e.clientY + 'px';
+          if (!visible) {
+            visible = true;
+            cursor.style.opacity    = '1';
+            cursor.style.visibility = 'visible';
+          }
+        });
+
+        document.addEventListener('mouseleave', () => {
+          cursor.style.opacity = '0';
+          visible = false;
+        });
+
+        // Expand cursor on data-cursor elements
+        const LABELS: Record<string, string> = {
+          'pointer':    '',
+          'email':      'Email',
+          'case-study': 'View Case Study',
+          'overview':   'Overview',
+          'site':       'Visit Site',
+        };
+
+        const ICONS: Record<string, string> = {
+          'case-study': '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
+          'site':       '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
+        };
+
+        const iconEl = document.getElementById('cursor-icon');
+
+        function setCursorState(type: string | null) {
+          if (!type || type === 'pointer') {
+            inner!.style.width   = '16px';
+            inner!.style.height  = '16px';
+            inner!.style.padding = '0';
+            if (labelEl) { labelEl.style.opacity = '0'; labelEl.style.width = '0'; }
+            if (iconEl)  { iconEl.style.opacity = '0'; iconEl.style.marginRight = '0'; iconEl.innerHTML = ''; }
+          } else {
+            const label = LABELS[type] ?? type;
+            const icon  = ICONS[type] ?? null;
+            inner!.style.padding = '6px 14px';
+            inner!.style.width   = 'auto';
+            inner!.style.height  = '32px';
+            if (iconEl && icon) {
+              iconEl.innerHTML = icon;
+              iconEl.style.opacity = '1';
+              iconEl.style.marginRight = '6px';
+            } else if (iconEl) {
+              iconEl.style.opacity = '0';
+              iconEl.style.marginRight = '0';
+              iconEl.innerHTML = '';
+            }
+            if (labelEl) {
+              labelEl.textContent  = label;
+              labelEl.style.width  = 'auto';
+              labelEl.style.opacity = '1';
+            }
+          }
+        }
+
+        document.addEventListener('mouseover', (e) => {
+          const el = (e.target as HTMLElement).closest('[data-cursor]');
+          setCursorState(el?.getAttribute('data-cursor') ?? null);
+        });
+        document.addEventListener('mouseout', (e) => {
+          const el = (e.target as HTMLElement).closest('[data-cursor]');
+          if (el) setCursorState(null);
+        });
+      }
+    </script>
+
+  </body>
+</html>

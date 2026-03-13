@@ -1,0 +1,55 @@
+---
+interface Props {
+  title: string;
+  label: string;       // e.g. "OpenAI x Hardware • Concept 2025"
+  href: string;
+  aspect?: string;     // Tailwind aspect ratio class, default "aspect-[16/9]"
+  placeholderColor?: string; // hex background for loading placeholder
+  external?: boolean;
+  cursorType?: string; // data-cursor value: "case-study" | "overview" | "site"
+}
+
+const {
+  title,
+  label,
+  href,
+  aspect = 'aspect-[16/9]',
+  placeholderColor = '#E98D3450',
+  external = false,
+  cursorType = 'case-study',
+} = Astro.props;
+---
+
+<a
+  class="group block transition-all duration-300 ease-in-out !opacity-100"
+  data-cursor={cursorType}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <div class="flex flex-col gap-2">
+    <!-- Thumbnail -->
+    <div class={`relative w-full ${aspect} border-1 border-foreground/10 overflow-hidden box-border transition-all duration-300 ease-in-out`}>
+      <div class="relative w-full h-full overflow-hidden" role="img" aria-label={`Project thumbnail for ${title}`}>
+        <div
+          class="absolute inset-0 animate-pulse transition-all duration-500 ease-out"
+          style={`background-color:${placeholderColor};opacity:0.25`}
+          aria-label="Loading project preview"
+        ></div>
+      </div>
+      <div class="absolute inset-0 bg-background/0 transition-colors duration-300 ease-in-out group-hover:bg-background/40"></div>
+    </div>
+
+    <!-- Caption -->
+    <div class="flex flex-col justify-between gap-0.5 mt-1 transition-colors duration-300 ease-in-out lg:flex-row">
+      <h3
+        class="!text-[17px] overflow-hidden !text-foreground"
+        style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical"
+      >{title}</h3>
+      <h4
+        class="transition-colors duration-300 ease-in-out !text-[15px] overflow-hidden"
+        style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical"
+      >{label}</h4>
+    </div>
+  </div>
+</a>
