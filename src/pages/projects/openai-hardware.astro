@@ -1,6 +1,7 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import { openAiHardwareSections } from '../../data/projects';
 
 // Base path for project assets (served from public/)
@@ -23,7 +24,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
     <!-- Hero thumbnail -->
     <div class="w-full aspect-[16/9] border-1 border-foreground/10">
       <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for OpenAI x Hardware">
-        <div class="absolute inset-0 animate-pulse transition-all duration-500 ease-out" style="background-color:#E98D3450;opacity:0.25" aria-label="Loading project preview"></div>
+        <ImagePlaceholder color="#E98D3450" />
       </div>
     </div>
 
@@ -41,7 +42,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Overview -->
     <section id="overview" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Overview</h4>
+      <h4 class="!text-foreground mb-1">Overview</h4>
       <h2 class="-mb-2">What should OpenAI build as their first AI device?</h2>
       <p>As a team of 3 product designers, our goal was to land on a clear vision within 7 weeks.</p>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
@@ -59,7 +60,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Problem</h4>
+      <h4 class="!text-foreground mt-8">Problem</h4>
       <h2 class="-mb-2">ChatGPT is at the top of the stack.</h2>
       <p>ChatGPT is an app, at the top of this technology stack. That's a risky place to be because it means leaves OpenAI at the mercy of the lower layers, like the platform, the operating system, and the hardware.</p>
       <div class="w-full">
@@ -70,7 +71,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
       <p>Apple and Google are building their own consumer AI ecosystems, but with the advantage of being able to control the entire stack.</p>
       <p>However, OpenAI is currently dominating consumer AI, and Apple has recently dropped the ball on their Apple Intelligence integrations. This creates an opportunity for OpenAI to build an AI device and capture consumers in their own ecosystem.</p>
 
-      <h4 class="!opacity-100 mt-8">Opportunity</h4>
+      <h4 class="!text-foreground mt-8">Opportunity</h4>
       <h2 class="-mb-2">Memory as the core of OpenAI's device ecosystem.</h2>
       <p>Memory should be OpenAI's new moat. LLMs are becoming commoditized, but personalization and context are the new differentiators. With hardware, OpenAI will benefit from:</p>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
@@ -91,7 +92,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Solution -->
     <section id="solution" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Solution</h4>
+      <h4 class="!text-foreground mb-1">Solution</h4>
       <h2 class="-mb-2">Tomo: the AI device that remembers so you don't have to...</h2>
       <p>A pin and pendant wearable, serving as a camera and microphone on-the-go.</p>
       <div class="w-full">
@@ -110,7 +111,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Core Flows -->
     <section id="core-flows" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Core Flows</h4>
+      <h4 class="!text-foreground mb-1">Core Flows</h4>
 
       {[
         { src: vid('cf-smart-prompt.mp4'),  title: 'Smart prompts, in-the-moment',      desc: 'Get prompts relevant to you in-the-moment, with Tomo.' },
@@ -135,7 +136,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       ))}
 
-      <h3 class="!opacity-100 mt-4 -mb-3">Onboarding to Tomo</h3>
+      <h3 class="!text-foreground mt-4 -mb-3">Onboarding to Tomo</h3>
       <p>Designing for an experience that will show users how Moments work and the immediate value of Tomo.</p>
       <div class="w-full">
         <div class="relative w-full border-[1px] border-foreground/10 bg-foreground-light/10 animate-pulse overflow-hidden group">
@@ -147,7 +148,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Research -->
     <section id="research" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Research</h4>
+      <h4 class="!text-foreground mb-1">Research</h4>
       <h2 class="-mb-2">Researching the AI landscape and current devices on the market</h2>
       <p>We went deep into understanding OpenAI, and the world of consumer AI, agents, trends, and more. We researched existing devices and tried some out ourselves!</p>
       <div class="w-full">
@@ -159,11 +160,11 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Exploring Form Factors -->
     <section id="exploring-form-factors" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Exploring Form Factors</h4>
+      <h4 class="!text-foreground mb-1">Exploring Form Factors</h4>
       <h2 class="-mb-2">Exploring product direction and form factor</h2>
       <p>We explored product direction and form factor, and designed for an experience that will show users how Moments work and the immediate value of Tomo.</p>
 
-      <h4 class="!opacity-100 mt-8">Strategic Directions</h4>
+      <h4 class="!text-foreground mt-8">Strategic Directions</h4>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
           <h3>Productivity Tools</h3>
@@ -184,7 +185,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Why Tomo?</h4>
+      <h4 class="!text-foreground mt-8">Why Tomo?</h4>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
           <h3>Enhances ChatGPT</h3>
@@ -208,7 +209,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Prototyping and Testing -->
     <section id="prototyping-and-testing" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Prototyping and Testing</h4>
+      <h4 class="!text-foreground mb-1">Prototyping and Testing</h4>
       <h2 class="-mb-2">Prototyping interfaces for real-world memory</h2>
       <p>We explored a ton of concepts for these 3 strategic directions, here are select few of them:</p>
 
@@ -234,7 +235,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       ))}
 
-      <h3 class="!opacity-100 mt-4 -mb-3">Testing and iterating with feedback!</h3>
+      <h3 class="!text-foreground mt-4 -mb-3">Testing and iterating with feedback!</h3>
       <p>We got users to try these prototypes, observed how they used them, how they felt, and got tons of valuable feedback.</p>
       <div class="w-full">
         <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden group">
@@ -242,7 +243,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Key User Insights</h4>
+      <h4 class="!text-foreground mt-8">Key User Insights</h4>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
           <h3>Memory for recall, not reliving</h3>
@@ -257,7 +258,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Design Decisions -->
     <section id="design-decisions" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Design Decisions</h4>
+      <h4 class="!text-foreground mb-1">Design Decisions</h4>
       <h2 class="-mb-2">We identified the most intuitive way to bring this feature to life.</h2>
       <p>With insights and iteration from prototyping and testing, we got to thinking how a clear, intuitive solution could be integrated within the existing ChatGPT ecosystem.</p>
       <div class="w-full">
@@ -266,7 +267,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Where we landed</h4>
+      <h4 class="!text-foreground mt-8">Where we landed</h4>
       <h2 class="-mb-2">Insight 1: Memory for recall, not reliving</h2>
       <div class="w-full flex gap-6 items-center">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -318,7 +319,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Hardware Constraints -->
     <section id="hardware-constraints" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Designing for Hardware Constraints</h4>
+      <h4 class="!text-foreground mb-1">Designing for Hardware Constraints</h4>
       <h2 class="-mb-2">A device that is light-weight and always-recording isn't possible, yet.</h2>
       <p>We researched a bunch of products and found that high-quality camera recording doesn't last more than a few hours.</p>
       <div class="w-full">
@@ -331,7 +332,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">How do we maximize memory despite constraints of camera battery life?</h3>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Constraining the experience</h4>
+      <h4 class="!text-foreground mt-8">Constraining the experience</h4>
       <h2 class="-mb-2">Context-based Capture</h2>
       <p>In this case, Tomo would use real-time cues to choose when to record, balancing battery with context capture.</p>
       <div class="w-full">
@@ -340,7 +341,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Considerations</h4>
+      <h4 class="!text-foreground mt-8">Considerations</h4>
       {[
         { src1: img('image_20.png'), src2: img('image_7.png'),   title: 'How do we communicate rationale for recording?',   desc: 'We could use a notification to let users know why Tomo is recording.' },
         { src1: img('image_18.png'), src2: img('image_6.png'),   title: 'Can AI detect when to record?',                   desc: 'We found that with transcripts alone, AI is pretty good at identifying moments worth recording.' },
@@ -370,7 +371,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
         </div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Considerations</h4>
+      <h4 class="!text-foreground mt-8">Considerations</h4>
       {[
         { src1: img('image_29.png'), src2: img('image_13.png'), title: 'How do we remind users to record?',          desc: 'We could have a subtle on-device indicator to remind users to record at specific moments with non-visual cues.' },
         { src1: img('image_25.png'), src2: img('image_12.png'), title: 'What does a less visual interface look like?', desc: 'We could use icons to represent moments without visual captures, and pull context from other sources, like LinkedIn headshots for coffee chats.' },
@@ -407,7 +408,7 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 
     <!-- Reflection -->
     <section id="reflection" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Reflection</h4>
+      <h4 class="!text-foreground mb-1">Reflection</h4>
       <h2 class="-mb-2">What I learned</h2>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">

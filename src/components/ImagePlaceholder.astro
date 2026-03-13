@@ -1,0 +1,14 @@
+---
+interface Props {
+  color?: string;
+  label?: string;
+}
+
+const { color = '#E98D3450', label = 'Loading project preview' } = Astro.props;
+---
+
+<div
+  class="absolute inset-0 animate-pulse transition-all duration-500 ease-out"
+  style={`background-color:${color};opacity:0.25`}
+  aria-label={label}
+></div>

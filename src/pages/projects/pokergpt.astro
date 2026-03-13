@@ -1,6 +1,7 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 
 const sections = [
   { id: 'overview', label: 'Overview' },
@@ -29,7 +30,7 @@ const sections = [
     <!-- Hero thumbnail -->
     <div class="w-full aspect-[16/9] border-1 border-foreground/10">
       <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for Account Abstraction">
-        <div class="absolute inset-0 animate-pulse transition-all duration-500 ease-out" style="background-color:#1A244550;opacity:0.25" aria-label="Loading project preview"></div>
+        <ImagePlaceholder color="#1A244550" />
       </div>
     </div>
 
@@ -47,7 +48,7 @@ const sections = [
 
     <!-- Overview -->
     <section id="overview" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Overview</h4>
+      <h4 class="!text-foreground mb-1">Overview</h4>
       <p>Moralis Money helps crypto users discover tokens before they trend — but once they did, trading them felt slow, complex, and disconnected. With a growing user base of active token hunters, the gap between discovery and trade was costing us conversions every day.</p>
 
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
@@ -68,10 +69,10 @@ const sections = [
 
     <!-- The Problem -->
     <section id="the-problem" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">From Discovery to Drop-off</h4>
+      <h4 class="!text-foreground mb-1">From Discovery to Drop-off</h4>
       <h2 class="-mb-2">Why Were Users Not Completing Trades — And What Was It Costing Us.</h2>
 
-      <h4 class="!opacity-100 mt-8">The experience (Before)</h4>
+      <h4 class="!text-foreground mt-8">The experience (Before)</h4>
       <p>Users came to Moralis to discover trending tokens...But when it came time to trading, they had to:</p>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
@@ -99,7 +100,7 @@ const sections = [
         <div class="flex flex-col gap-1 w-full"></div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">Before vs. After</h4>
+      <h4 class="!text-foreground mt-8">Before vs. After</h4>
       <p>Five steps across two platforms became a single, in-context action.</p>
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
         <div class="w-full aspect-[16/9]" style="background-color:#1A244520;"></div>
@@ -119,7 +120,7 @@ const sections = [
 
     <!-- Discovery & Insights -->
     <section id="discovery--insights" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Discovery & Insights</h4>
+      <h4 class="!text-foreground mb-1">Discovery & Insights</h4>
       <h2 class="-mb-2">Research that drove our design direction.</h2>
       <p>We ran user interviews and flow analytics to understand pain points. We learned:</p>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
@@ -140,23 +141,23 @@ const sections = [
 
     <!-- Solution -->
     <section id="solution" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Solution</h4>
+      <h4 class="!text-foreground mb-1">Solution</h4>
       <h2 class="-mb-2">Designing a Seamless Web3 Trading Experience</h2>
       <p>From Confusion To Clarity — How We Made Trading Intuitive Again In Three Steps.</p>
 
-      <h4 class="!opacity-100 mt-8">#1 — Widget</h4>
+      <h4 class="!text-foreground mt-8">#1 — Widget</h4>
       <p>We created an embedded trade widget users could access from any screen. We A/B tested it against a fullscreen version and found the sidebar format increased trading activity and kept users in context.</p>
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
         <div class="w-full aspect-[16/9]" style="background-color:#1A244520;"></div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">#2 — Sidebar Experience</h4>
+      <h4 class="!text-foreground mt-8">#2 — Sidebar Experience</h4>
       <p>We presented a trading sidebar accessible from any Moralis Money screen. The sidebar includes fields for selecting the buy and sell tokens, integrating our token search (so users were able to find trending tokens and immediately trade them).</p>
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
         <div class="w-full aspect-[16/9]" style="background-color:#1A244520;"></div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">#3 — Account Abstraction Onboarding</h4>
+      <h4 class="!text-foreground mt-8">#3 — Account Abstraction Onboarding</h4>
       <p>Onboarding flow designed to deploy and activate the "Trading Account" via account abstraction. We guide the user from the welcome screen to depositing funds and confirming that their smart account is ready, reducing friction with clear messages and animations.</p>
       <p>The key design decision: explain what a trading account <em>does for you</em>, not what it <em>is</em> technically. Users don't need to understand smart contracts — they need to understand why this unlocks a better trading experience.</p>
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
@@ -168,7 +169,7 @@ const sections = [
 
     <!-- Achievements -->
     <section id="achievements" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Achievements</h4>
+      <h4 class="!text-foreground mb-1">Achievements</h4>
       <p>During this exploration, we conducted usability tests with prototypes across multiple rounds of testing. The results were clear: participants who went through the guided onboarding understood the trading account concept significantly better than those who encountered the previous experience — which simply launched a technical MetaMask window with no explanation or context.</p>
 
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
@@ -199,7 +200,7 @@ const sections = [
 
     <!-- What's Next -->
     <section id="whats-next" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">What's Next</h4>
+      <h4 class="!text-foreground mb-1">What's Next</h4>
       <p>With a validated foundation in place, we worked with the product team to explore what a more advanced trading experience could look like — one that served power users without sacrificing the simplicity we had built for newcomers.</p>
 
       <h2 class="-mb-2">What if we provided users with professional-grade tools while maintaining simplicity?</h2>
@@ -217,7 +218,7 @@ const sections = [
 
     <!-- Learnings -->
     <section id="learnings" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Learnings</h4>
+      <h4 class="!text-foreground mb-1">Learnings</h4>
       <p>This initiative not only expanded the functionality of Moralis Money but also solidified its position as an essential tool for traders and developers in the crypto ecosystem. Here are some key learnings from my experience:</p>
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">

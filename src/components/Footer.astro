@@ -27,12 +27,10 @@ import { socialLinks } from '../data/config';
       <div class="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-3 md:gap-8">
         {socialLinks.map((link) => (
           <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:!opacity-100">
-            <h4 class="cursor-pointer !opacity-100 hover:!text-primary">{link.label}</h4>
+            <h4 class="cursor-pointer hover:!text-primary">{link.label}</h4>
           </a>
         ))}
-        <div class="relative inline-flex md:static">
-          <button data-cursor="email" class="hover:!opacity-100 opacity-60 text-foreground font-mono text-start">EMAIL</button>
-        </div>
+        <a href="mailto:tati.hbel@gmail.com" data-cursor="email" class="hover:!opacity-100 opacity-60 font-mono text-start">EMAIL</a>
       </div>
     </div>
 

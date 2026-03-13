@@ -11,14 +11,14 @@ const isAbout = pathname === '/about';
 <!-- Desktop + mobile nav -->
 <div
   id="site-header"
-  class="flex justify-center px-6 py-5 z-50 bg-background gap-6 border-b border-foreground/10 lg:h-16 align-center items-center relative min-h-[32px]"
+  class="flex justify-center px-6 py-5 z-40 bg-background gap-6 border-b border-foreground/10 lg:h-16 align-center items-center relative min-h-[32px]"
   style="opacity:0"
 >
   <div class="max-w-[1800px] w-full flex items-center gap-6 relative">
     <!-- Logo -->
     <div class="flex items-center w-full">
       <a class="flex flex-col sm:flex-row sm:inline-flex sm:gap-4 gap-0 cursor-pointer !opacity-100" href="/">
-        <h4 class="!opacity-100 !text-foreground !font-medium">Tatiana Hernandez</h4>
+        <h4 class="!text-foreground !font-medium">Tatiana Hernandez</h4>
         <h4 class="flex items-center gap-0">Product Designer + Vibecoder</h4>
       </a>
     </div>
@@ -61,7 +61,7 @@ const isAbout = pathname === '/about';
   <!-- Mobile dropdown -->
   <div
     id="mobile-menu"
-    class="md:hidden absolute left-0 right-0 z-60 top-full p-6 border-b border-foreground/10 bg-background transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none"
+    class="md:hidden absolute left-0 right-0 z-50 top-full p-6 border-b border-foreground/10 bg-background transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none"
   >
     <div class="flex flex-col gap-1">
       <NavLink href="/" label="Work" isActive={isWork} />
@@ -74,7 +74,7 @@ const isAbout = pathname === '/about';
   <!-- TatianaLLM FAB (mobile) -->
   <button
     id="chat-open-btn-mobile"
-    class="md:hidden fixed bottom-6 right-6 z-[60] flex items-center justify-center hover:text-primary active:scale-95 transition-all duration-200 rounded-full shadow-lg bg-primary w-12 h-12 opacity-100"
+    class="md:hidden fixed bottom-6 right-6 z-50 flex items-center justify-center hover:text-primary active:scale-95 transition-all duration-200 rounded-full shadow-lg bg-primary w-12 h-12 opacity-100"
     style="bottom:max(1.5rem, env(safe-area-inset-bottom, 1.5rem));right:max(1.5rem, env(safe-area-inset-right, 1.5rem))"
     aria-label="Open AI chat"
   >

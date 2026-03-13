@@ -1,5 +1,6 @@
 ---
 import type { ProjectStatus } from '../data/projects';
+import ImagePlaceholder from './ImagePlaceholder.astro';
 
 interface Props {
   title: string;
@@ -36,14 +37,12 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
 >
   <div class="flex flex-col gap-2">
     <!-- Thumbnail -->
-    <div class={`relative w-full ${aspect} border-1 border-foreground/10 overflow-hidden box-border transition-all duration-300 ease-in-out`}>
-      <div class="relative w-full h-full overflow-hidden" role="img" aria-label={`Project thumbnail for ${title}`}>
-        <div
-          class="absolute inset-0 animate-pulse transition-all duration-500 ease-out"
-          style={`background-color:${placeholderColor};opacity:0.25`}
-          aria-label="Loading project preview"
-        ></div>
-      </div>
+    <div
+      class={`relative w-full ${aspect} border-1 border-foreground/10 overflow-hidden box-border transition-all duration-300 ease-in-out`}
+      role="img"
+      aria-label={`Project thumbnail for ${title}`}
+    >
+      <ImagePlaceholder color={placeholderColor} />
       {isComingSoon && <span class="project-card__status">Coming Soon</span>}
       <div class="absolute inset-0 bg-background/0 transition-colors duration-300 ease-in-out group-hover:bg-background/40"></div>
     </div>
