@@ -10,6 +10,9 @@ export interface HomeProjectCardData {
   cursorType: ProjectCursorType;
   status: ProjectStatus;
   external?: boolean;
+  video?: string;
+  image?: string;
+  overlayText?: string;
 }
 
 export interface ProjectSection {
@@ -20,22 +23,25 @@ export interface ProjectSection {
 export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]> = {
   left: [
     {
-      title: 'The future of AI & hardware',
-      label: 'OpenAI x Hardware - Concept 2025',
+      title: 'The future of AI Agents',
+      label: 'Amadeus Protocol - Concept 2026',
       href: '/projects/openai-hardware',
       aspect: 'aspect-[16/9]',
       placeholderColor: '#E98D3450',
       cursorType: 'case-study',
       status: 'published',
+      video: '/gradient_amadeus_thumbnail.webm',
+      overlayText: 'The Future of AI Agents',
     },
     {
-      title: 'Novel consumer AI experiences',
+      title: 'Bridge the Gap',
       label: 'Amazon Alexa+ - Contract 2025',
       href: '/projects/alexa',
       aspect: 'aspect-[8/5]',
       placeholderColor: '#00144550',
-      cursorType: 'overview',
-      status: 'coming-soon',
+      cursorType: 'case-study',
+      status: 'published',
+      image: '/thumbnail-bridge-the-gap.jpg',
     },
     {
       title: 'Mobile-first for Figma',
@@ -58,8 +64,8 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
   ],
   right: [
     {
-      title: "The world's first AI poker coach",
-      label: 'PokerGPT - Shipped 2023',
+      title: 'Redesigning Web3 Trading',
+      label: 'Moralis - Shipped 2024',
       href: '/projects/pokergpt',
       aspect: 'aspect-[10/7]',
       placeholderColor: '#DDD0FC50',

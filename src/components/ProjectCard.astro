@@ -8,6 +8,9 @@ interface Props {
   href: string;
   aspect?: string;
   placeholderColor?: string;
+  video?: string;
+  image?: string;
+  overlayText?: string;
   external?: boolean;
   cursorType?: string;
   status?: ProjectStatus;
@@ -19,6 +22,9 @@ const {
   href,
   aspect = 'aspect-[16/9]',
   placeholderColor = '#E98D3450',
+  video,
+  image,
+  overlayText,
   external = false,
   cursorType = 'case-study',
   status = 'published',
@@ -37,12 +43,34 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
 >
   <div class="flex flex-col gap-2">
     <!-- Thumbnail -->
-    <div
-      class={`relative w-full ${aspect} border-1 border-foreground/10 overflow-hidden box-border transition-all duration-300 ease-in-out`}
-      role="img"
-      aria-label={`Project thumbnail for ${title}`}
-    >
-      <ImagePlaceholder color={placeholderColor} />
+    <div class={`relative w-full ${aspect} border-1 border-foreground/10 overflow-hidden box-border transition-all duration-300 ease-in-out`}>
+      <div class="relative w-full h-full overflow-hidden" role="img" aria-label={`Project thumbnail for ${title}`}>
+        {video ? (
+          <video
+            class="absolute inset-0 w-full h-full object-cover"
+            src={video}
+            autoplay
+            loop
+            muted
+            playsinline
+          />
+        ) : image ? (
+          <img
+            class="absolute inset-0 w-full h-full object-cover"
+            src={image}
+            alt={`Project thumbnail for ${title}`}
+          />
+        ) : (
+          <ImagePlaceholder color={placeholderColor} />
+        )}
+      </div>
+      {overlayText && (
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+          <span class="text-center font-semibold text-xl md:text-2xl leading-tight tracking-tight px-4 text-white/90">
+            {overlayText}
+          </span>
+        </div>
+      )}
       {isComingSoon && <span class="project-card__status">Coming Soon</span>}
       <div class="absolute inset-0 bg-background/0 transition-colors duration-300 ease-in-out group-hover:bg-background/40"></div>
     </div>
