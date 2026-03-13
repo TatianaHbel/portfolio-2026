@@ -12,7 +12,7 @@ export const experienceTimeline: TimelineEntry[] = [
     role: 'Lead Product Designer',
   },
   {
-    year: '2025',
+    year: '2025 - 2025',
     company: 'Calcorp',
     role: 'Sr Product Designer',
   },
