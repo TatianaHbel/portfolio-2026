@@ -13,6 +13,7 @@ export interface HomeProjectCardData {
   video?: string;
   image?: string;
   overlayText?: string;
+  thumbnailScale?: number;
 }
 
 export interface ProjectSection {
@@ -71,6 +72,8 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#DDD0FC50',
       cursorType: 'case-study',
       status: 'coming-soon',
+      image: '/redesigning-thumbnail.gif',
+      thumbnailScale: 1.12,
     },
     {
       title: 'Bringing autofill to macOS',
