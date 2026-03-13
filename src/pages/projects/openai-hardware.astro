@@ -425,17 +425,6 @@ const vid  = (name: string) => `/projects/openai-hardware/media/${name}`;
 </ProjectLayout>
 
 <script>
-  // Reveal images and videos as they load
-  document.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
-    if (img.complete) {
-      img.classList.remove('opacity-0');
-    } else {
-      img.addEventListener('load', () => img.classList.remove('opacity-0'));
-    }
-  });
-
-  document.querySelectorAll<HTMLVideoElement>('video[data-inline-autoplay]').forEach((video) => {
-    video.addEventListener('loadeddata', () => video.classList.remove('opacity-0'));
-    if (video.readyState >= 3) video.classList.remove('opacity-0');
-  });
+  import { initMediaReveal } from '../../scripts/media-reveal';
+  initMediaReveal();
 </script>
