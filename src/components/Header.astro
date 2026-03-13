@@ -1,4 +1,7 @@
 ---
+import NavLink from './NavLink.astro';
+import { resumeUrl } from '../data/config';
+
 const pathname = Astro.url.pathname;
 const isWork = pathname === '/';
 const isFun = pathname === '/fun';
@@ -23,18 +26,10 @@ const isAbout = pathname === '/about';
     <!-- Desktop nav -->
     <div class="md:flex hidden gap-2 w-full justify-end items-center">
       <div class="flex gap-1 items-center">
-        <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/">
-          <h4 class:list={[isWork ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Work</h4>
-        </a>
-        <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/fun">
-          <h4 class:list={[isFun ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Fun</h4>
-        </a>
-        <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/about">
-          <h4 class:list={[isAbout ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>About</h4>
-        </a>
-        <a href="/Tatiana_Hernandez_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100">
-          <h4 class="opacity-60 hover:!opacity-100">Resume</h4>
-        </a>
+        <NavLink href="/" label="Work" isActive={isWork} />
+        <NavLink href="/fun" label="Fun" isActive={isFun} />
+        <NavLink href="/about" label="About" isActive={isAbout} />
+        <NavLink href={resumeUrl} label="Resume" external />
       </div>
 
       <!-- TatianaLLM button (desktop) -->
@@ -69,18 +64,10 @@ const isAbout = pathname === '/about';
     class="md:hidden absolute left-0 right-0 z-60 top-full p-6 border-b border-foreground/10 bg-background transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none"
   >
     <div class="flex flex-col gap-1">
-      <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/">
-        <h4 class:list={[isWork ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Work</h4>
-      </a>
-      <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/fun">
-        <h4 class:list={[isFun ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>Fun</h4>
-      </a>
-      <a data-cursor="pointer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100" href="/about">
-        <h4 class:list={[isAbout ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>About</h4>
-      </a>
-      <a href="/Tatiana_Hernandez_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100">
-        <h4 class="opacity-60 hover:!opacity-100">Resume</h4>
-      </a>
+      <NavLink href="/" label="Work" isActive={isWork} />
+      <NavLink href="/fun" label="Fun" isActive={isFun} />
+      <NavLink href="/about" label="About" isActive={isAbout} />
+      <NavLink href={resumeUrl} label="Resume" external />
     </div>
   </div>
 

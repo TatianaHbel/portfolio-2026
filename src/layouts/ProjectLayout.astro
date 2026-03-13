@@ -60,44 +60,9 @@ const { title, description, sections = [] } = Astro.props;
   </div>
 
   <script>
-    const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.section-nav-link'));
-    const projectSections = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+    import { initSectionNav } from '../scripts/section-nav';
 
-    function setActiveSection(activeId: string | null) {
-      navLinks.forEach((link) => {
-        const isActive = link.dataset.sectionId === activeId;
-        link.classList.toggle('opacity-100', isActive);
-        link.classList.toggle('!text-foreground', isActive);
-        link.classList.toggle('opacity-50', !isActive);
-
-        if (isActive) {
-          link.setAttribute('aria-current', 'true');
-        } else {
-          link.removeAttribute('aria-current');
-        }
-      });
-    }
-
-    if (projectSections[0]) {
-      setActiveSection(projectSections[0].id);
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const activeEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (activeEntry) {
-          setActiveSection(activeEntry.target.id);
-        }
-      },
-      {
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      }
-    );
-
-    projectSections.forEach((section) => observer.observe(section));
+    initSectionNav();
   </script>
 </BaseLayout>
+

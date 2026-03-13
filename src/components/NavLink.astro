@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  isActive?: boolean;
+  external?: boolean;
+}
+
+const { href, label, isActive = false, external = false } = Astro.props;
+---
+
+<a
+  href={href}
+  data-cursor="pointer"
+  class="px-3 py-1.5 rounded-full transition-colors hover:bg-primary/15 !opacity-100"
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  <h4 class:list={[isActive ? '!text-primary' : 'opacity-60 hover:!opacity-100']}>{label}</h4>
+</a>

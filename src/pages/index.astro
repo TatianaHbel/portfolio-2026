@@ -2,31 +2,7 @@
 import ProjectCard from '../components/ProjectCard.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { homeProjectColumns } from '../data/projects';
-
-const experienceTimeline = [
-  {
-    year: '2025 - 2026',
-    company: 'Amadeus Protocol',
-    role: 'Lead Product Designer',
-  },
-  {
-    year: '2025',
-    company: 'Calcorp',
-    role: 'Sr Product Designer',
-  },
-  {
-    year: '2022 - 2025',
-    company: 'Moralis',
-    companyUrl: 'https://moralis.com',
-    role: 'Sr Product Designer',
-  },
-  {
-    year: '2021 - 2022',
-    company: 'Zigurat',
-    companyUrl: 'https://www.e-zigurat.com',
-    role: 'Product Design + Engineering Intern',
-  },
-];
+import { experienceTimeline } from '../data/timeline';
 
 const { left: leftProjects, right: rightProjects } = homeProjectColumns;
 ---

@@ -1,4 +1,5 @@
 ---
+import { socialLinks } from '../data/config';
 ---
 
 <footer class="w-full flex items-center justify-center px-6 py-5 border-t border-foreground/10">
@@ -24,21 +25,14 @@
     <!-- Social links -->
     <div class="flex flex-row items-end gap-3 md:gap-8 w-full md:w-fit justify-between">
       <div class="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-3 md:gap-8">
-        <a href="https://www.linkedin.com/in/tatiana-jiayi-chen/" target="_blank" rel="noopener noreferrer" class="hover:!opacity-100">
-          <h4 class="cursor-pointer !opacity-100 hover:!text-primary">Linkedin</h4>
-        </a>
+        {socialLinks.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:!opacity-100">
+            <h4 class="cursor-pointer !opacity-100 hover:!text-primary">{link.label}</h4>
+          </a>
+        ))}
         <div class="relative inline-flex md:static">
           <button data-cursor="email" class="hover:!opacity-100 opacity-60 text-foreground font-mono text-start">EMAIL</button>
         </div>
-        <a href="https://x.com/tatianajychen" target="_blank" rel="noopener noreferrer" class="hover:!opacity-100">
-          <h4 class="cursor-pointer !opacity-100 hover:!text-primary">X</h4>
-        </a>
-        <a href="https://github.com/tatianachxn" target="_blank" rel="noopener noreferrer" class="hover:!opacity-100">
-          <h4 class="cursor-pointer !opacity-100 hover:!text-primary">Github</h4>
-        </a>
-        <a href="https://devpost.com/tatianac0715" target="_blank" rel="noopener noreferrer" class="hover:!opacity-100">
-          <h4 class="cursor-pointer !opacity-100 hover:!text-primary">Devpost</h4>
-        </a>
       </div>
     </div>
 
