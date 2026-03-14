@@ -1,11 +1,11 @@
 @theme {
-  --color-background: #fafcfd;
-  --color-foreground: #32404f;
-  --color-foreground-light: #32404f95;
-  --color-primary: #e65f2e;
+  --color-background: #fafcfd;         /* Page background */
+  --color-foreground: #32404f;         /* Primary text */
+  --color-foreground-light: #32404f95; /* Muted / secondary text */
+  --color-primary: #e65f2e;            /* Accent / orange */
 
-  --font-geist-sans: "Geist", "Geist Fallback";
-  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";
-  --font-crimson-pro: "Crimson Pro", "Crimson Pro Fallback";
-  --font-tiempos-text: "tiemposText", "tiemposText Fallback";
+  --font-geist-sans: "Geist", "Geist Fallback";             /* Body text */
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";   /* Code / h4 */
+  --font-crimson-pro: "Crimson Pro", "Crimson Pro Fallback"; /* Serif body */
+  --font-tiempos-text: "tiemposText", "tiemposText Fallback"; /* h1–h3 display */
 }

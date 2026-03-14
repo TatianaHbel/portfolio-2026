@@ -1,5 +1,6 @@
 {
-  "name": "tmp-astro-scaffold",
+  "name": "tatiana-portfolio",
+  "description": "Personal portfolio for Tatiana Hernandez, product designer + vibecoder. Built with Astro + Tailwind CSS v4.",
   "type": "module",
   "version": "0.0.1",
   "engines": {
