@@ -1,58 +1,39 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
-
-const sections = [
-  { id: 'overview', label: 'Overview' },
-  { id: 'context', label: 'Context' },
-  { id: 'discovery--insights', label: 'Discovery & Insights' },
-  { id: 'solution', label: 'Solution' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'learnings', label: 'Learnings' },
-];
+import ProjectMetadata from '../../components/ProjectMetadata.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import InfoGrid from '../../components/InfoGrid.astro';
+import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
+import { alexaSections } from '../../data/projects';
 ---
 
 <ProjectLayout
   title="Bridge the Gap | Tatiana Hernandez"
-  description="Bridge the Gap — Amazon Alexa+"
-  sections={sections}
+  description="Bridge the Gap — Moralis Concept 2024"
+  sections={alexaSections}
 >
   <!-- Project header -->
   <div class="flex flex-col gap-8">
     <div class="flex flex-col gap-4">
-      <h4>Amazon Alexa+ • Contract 2025</h4>
+      <h4>Moralis • Concept 2024</h4>
       <h1>Bridge the Gap</h1>
+      <p class="italic opacity-60">Turning cross-chain swaps into a confident first step into crypto</p>
     </div>
 
     <!-- Hero thumbnail -->
     <div class="w-full aspect-[16/9] border-1 border-foreground/10">
-      <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for Amazon Alexa+">
-        <div class="absolute inset-0 animate-pulse transition-all duration-500 ease-out" style="background-color:#00144550;opacity:0.25" aria-label="Loading project preview"></div>
+      <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for Bridge the Gap">
+        <ImagePlaceholder color="#00144550" />
       </div>
     </div>
 
     <!-- Project metadata -->
-    <div class="flex flex-col md:flex-row gap-6 md:gap-12">
-      <div class="flex w-full flex-col gap-2">
-        <h4 class="!opacity-100">Role</h4>
-        <p>Product Designer</p>
-      </div>
-      <div class="flex w-full flex-col gap-2">
-        <h4 class="!opacity-100">Timeline</h4>
-        <p>2025</p>
-      </div>
-      <div class="flex w-full flex-col gap-2">
-        <h4 class="!opacity-100">Team</h4>
-        <p>Contract</p>
-      </div>
-      <div class="flex w-full flex-col gap-2">
-        <h4 class="!opacity-100">Skills</h4>
-        <div class="flex flex-col gap-0">
-          <p>Product Design</p>
-          <p>AI UX</p>
-          <p>Consumer</p>
-        </div>
-      </div>
-    </div>
+    <ProjectMetadata
+      role="Product Designer"
+      timeline="2024"
+      team="Solo concept"
+      skills={['Mobile Design', 'Web3 / DeFi', 'UX Writing']}
+    />
   </div>
 
   <!-- Case study content -->
@@ -61,17 +42,17 @@ const sections = [
     <!-- Overview -->
     <section id="overview" class="flex flex-col gap-4">
       <h4 class="!opacity-100 mb-1">Overview</h4>
-      <h2 class="-mb-2">What does a meaningful AI-first consumer experience look like?</h2>
-      <p>Amazon Alexa+ marks a new chapter for voice AI — moving beyond task automation toward a genuinely intelligent, context-aware assistant. As a contract designer on this initiative, I explored how to make that shift feel natural, useful, and trustworthy for everyday users.</p>
+      <h2 class="-mb-2">DeFi is full of promise — and full of friction.</h2>
+      <p>For many new users, their first encounter with decentralized finance is also their last. Between gas fees, wallet approvals, bridges, and block explorers, even a basic token swap becomes a maze of confusion. And if the swap happens between chains? The drop-off is near total — unless we redesign the rules.</p>
 
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
           <h3>The opportunity</h3>
-          <p>Alexa has hundreds of millions of users — but most interactions are shallow: timers, music, weather. The challenge was designing experiences that leverage a much more capable AI without overwhelming or alienating the existing user base.</p>
+          <p>DeFi adoption is growing, but UX is the single biggest barrier to entry for non-technical users. Most people who try it once never come back — not because of the technology, but because of how it makes them feel.</p>
         </div>
         <div class="flex flex-col gap-1 w-full">
           <h3>My role</h3>
-          <p>Design exploration focused on novel consumer AI interactions — identifying where AI capability creates real value for users and how to surface that value in ways that feel intuitive, not impressive.</p>
+          <p>Design a mobile cross-chain swap experience from concept to handoff, with a focus on trust, plain language, and zero anxiety — making DeFi accessible to anyone, not just those already fluent in it.</p>
         </div>
       </div>
 
@@ -80,52 +61,55 @@ const sections = [
       </div>
     </section>
 
-    <!-- Context -->
-    <section id="context" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Context</h4>
-      <h2 class="-mb-2">Voice AI at an inflection point.</h2>
-      <p>The launch of large language models changed what's possible in conversational AI overnight. Alexa had the distribution — the question was how to redesign the experience to match the new capability without breaking the trust of existing users who rely on it daily.</p>
+    <!-- The User -->
+    <section id="the-user" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">The User</h4>
+      <h2 class="-mb-2">Designing for the crypto-curious newcomer.</h2>
+      <p>Not the power trader managing a multi-chain portfolio — the person who just bought their first $20 in ETH and wants to explore what comes next. This is who we designed for.</p>
 
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Existing users expect reliability</h3>
-          <p>Alexa's core user base values predictability above all else. Any new AI capabilities had to be introduced in a way that felt additive — not disruptive to the routines people had already built around the device.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>New users expect intelligence</h3>
-          <p>First-time smart home buyers in 2025 arrive with expectations shaped by ChatGPT and similar tools. The bar for what "AI" means has moved dramatically — and Alexa+ needed to meet it.</p>
-        </div>
-      </div>
+      <InfoGrid items={[
+        { title: 'What they know', desc: 'Heard of Bitcoin, maybe has a Coinbase account. Knows "blockchain = something secure." Has no mental model for what a bridge, a gas fee, or a token approval actually does.' },
+        { title: 'What they fear', desc: 'Sending funds to the wrong address. Losing money to gas without understanding why. Not knowing what they\'re approving. The feeling of being one wrong tap away from losing everything.' },
+        { title: 'What they need', desc: 'Confidence at every step. Plain language, not jargon. Clear feedback that tells them what\'s happening and why. No dead ends, no black boxes, no moments that feel like a trap.' },
+      ]} />
 
-      <div class="w-full mt-4">
-        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">The design challenge wasn't making Alexa smarter — it was making the intelligence visible in ways people actually care about.</h3>
-      </div>
+      <CaseStudyBlockquote>The user isn't intimidated by crypto — they're intimidated by feeling stupid about crypto.</CaseStudyBlockquote>
 
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
         <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
       </div>
     </section>
 
-    <!-- Discovery & Insights -->
-    <section id="discovery--insights" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Discovery & Insights</h4>
-      <h2 class="-mb-2">Research that shaped the direction.</h2>
-      <p>We explored how people currently use Alexa, where they feel let down, and what they wish it could do — cross-referenced with what the new AI capabilities actually enable.</p>
+    <!-- The Challenge -->
+    <section id="the-challenge" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">The Challenge</h4>
+      <h2 class="-mb-2">This wasn't just a UI problem.</h2>
+      <p>Three layers of friction, stacked on top of each other. Each one is manageable alone — together, they create a wall.</p>
 
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Users don't know what to ask for</h3>
-          <p>Most users mentally cap Alexa at its known capabilities. They don't experiment because past failures trained them not to. Surfacing new capabilities proactively — rather than waiting for users to discover them — was a key design lever.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Context is the missing ingredient</h3>
-          <p>The biggest gap wasn't knowledge — it was memory and context. Users wanted Alexa to understand their patterns, preferences, and current situation without having to re-explain every time.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Trust is earned through accuracy</h3>
-          <p>Users forgave gaps in capability far more readily than incorrect answers. Confident wrong answers eroded trust faster than honest uncertainty. Designing for appropriate humility was essential.</p>
-        </div>
+      <InfoGrid items={[
+        { title: 'A trust problem', desc: 'Hidden steps — bridge approvals, gas estimation, route selection — create anxiety at every turn. Users can\'t tell if they\'re about to complete a transaction or accidentally lose their funds.' },
+        { title: 'A language problem', desc: '"Slippage", "gas", "bridge", "approval" — these concepts aren\'t inherently bad, but they\'re rarely explained in ways that feel human or relevant. The vocabulary of DeFi was built by engineers, not for people.' },
+        { title: 'A confidence problem', desc: 'The first impression of a DeFi app determines the user\'s entire relationship with the product — and often with crypto altogether. A single confusing moment early in the flow is enough to lose them permanently.' },
+      ]} />
+
+      <CaseStudyBlockquote>DeFi doesn't need to be simplified — it needs to be translated.</CaseStudyBlockquote>
+
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
       </div>
+    </section>
+
+    <!-- Design Process -->
+    <section id="design-process" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Design Process</h4>
+      <h2 class="-mb-2">From confusion map to confident flow.</h2>
+      <p>Before touching Figma, I spent time understanding where existing cross-chain experiences break down — and why. The process had three distinct phases.</p>
+
+      <InfoGrid items={[
+        { title: 'Mapping the friction', desc: 'Walked through 5 existing cross-chain interfaces as a first-time user. Documented every moment of confusion, every piece of jargon, every step that had no clear "why." The list was long.' },
+        { title: 'Rewriting the language', desc: 'Before designing any screen, I rewrote every key term and action in plain language. "Approve token" → "Allow this app to use your token." "Slippage" → "Max price change you\'ll accept." Language-first, then UI.' },
+        { title: 'Designing for emotional states', desc: 'Each step in the flow was mapped to a target user emotion: confusion → clarity → trust → confidence. Every visual and copy decision was made in service of moving the user along that arc.' },
+      ]} />
 
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
         <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
@@ -135,23 +119,22 @@ const sections = [
     <!-- Solution -->
     <section id="solution" class="flex flex-col gap-4">
       <h4 class="!opacity-100 mb-1">Solution</h4>
-      <h2 class="-mb-2">Designing for AI that feels like a natural extension of daily life.</h2>
-      <p>Three core design directions emerged from the research — each targeting a different dimension of the AI experience.</p>
+      <h2 class="-mb-2">A step-by-step swap experience that earns trust at every click.</h2>
+      <p>The app guides users through a cross-chain swap using plain language, real-time feedback, and visible progress — reducing confusion and building confidence at each stage of the flow.</p>
 
-      <h4 class="!opacity-100 mt-8">#1 — Proactive intelligence</h4>
-      <p>Rather than waiting for commands, Alexa+ surfaces relevant suggestions at the right moment — based on time, context, and learned patterns. The design had to make these proactive nudges feel helpful, not intrusive.</p>
+      <InfoGrid items={[
+        { title: 'Smart defaults, no jargon', desc: 'Pre-filled routes, estimated outcomes, no technical choices pushed to the user unless necessary. The interface asks one thing at a time: "I want to swap this → into that." Everything else is handled invisibly.' },
+        { title: 'Visible progress', desc: 'Each step shows what\'s happening and why. No black boxes — users see the bridge route, the gas estimate, and the expected outcome before confirming anything. Transparency as a trust signal.' },
+        { title: 'Earned permissions', desc: 'Wallet approvals are introduced with context, not as a cold popup. The app explains what it\'s asking for and why before requesting it — because permission without context feels like a threat.' },
+      ]} />
+
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
         <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
       </div>
 
-      <h4 class="!opacity-100 mt-8">#2 — Persistent context</h4>
-      <p>Designing for a continuous conversation model — where Alexa remembers what was discussed, adapts to household preferences, and reduces the cognitive load of repeating context across sessions.</p>
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
-      </div>
+      <h4 class="!opacity-100 mt-8">Key design decision: step-by-step over all-at-once</h4>
+      <p>The initial instinct was to show a full swap summary upfront — a common pattern in DeFi interfaces. But after testing both approaches, step-by-step consistently outperformed. It felt slower, but users arrived at the confirmation step already informed rather than suddenly overwhelmed. The friction was worth it.</p>
 
-      <h4 class="!opacity-100 mt-8">#3 — Calibrated confidence</h4>
-      <p>An interaction model that communicates certainty honestly — using language patterns and UI signals that distinguish between high-confidence responses and exploratory suggestions. Building trust through transparency.</p>
       <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
         <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
       </div>
@@ -159,23 +142,51 @@ const sections = [
       <div class="h-[1px] w-full bg-foreground/10 mt-16 mb-8"></div>
     </section>
 
-    <!-- Achievements -->
-    <section id="achievements" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Achievements</h4>
-      <p>Concept testing with users across household types showed strong positive response to the proactive intelligence direction — particularly for families and older adults who found the reduced command burden meaningful.</p>
+    <!-- Design Handoff -->
+    <section id="design-handoff" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Design Handoff</h4>
+      <h2 class="-mb-2">Bridging design and engineering.</h2>
+      <p>This project is a real-world example of how I structure and present a design handoff in a freelance context. My approach focuses on bringing clarity to dev teams, answering questions before they're asked, and maintaining living documentation that connects design decisions to product strategy — not just a Figma file with measurements.</p>
 
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
-          <h3>Reduced friction in daily routines</h3>
-          <p>Proactive suggestions eliminated repeated commands for common patterns — morning routines, commute prep, shopping reminders — without requiring users to learn new interaction models.</p>
+          <h3>Annotated specs</h3>
+          <p>Every component includes interaction notes, edge cases, and the reasoning behind design decisions — not just measurements. A dev reading the file should understand not just what to build, but why it works this way.</p>
         </div>
         <div class="flex flex-col gap-1 w-full">
-          <h3>Higher perceived intelligence</h3>
-          <p>Users described the persistent context design as "actually understanding me" — a qualitative shift from the transactional feel of classic voice assistants.</p>
+          <h3>Pre-answered questions</h3>
+          <p>Before sharing the file, I walked through it as a developer and documented every "wait, what happens if...?" scenario I encountered. Empty states, error states, loading states — covered before they become blockers.</p>
         </div>
         <div class="flex flex-col gap-1 w-full">
-          <h3>Trust maintained through honesty</h3>
-          <p>The calibrated confidence patterns tested well with skeptical users — those most likely to abandon AI tools after a wrong answer responded positively to explicit uncertainty signals.</p>
+          <h3>Living documentation</h3>
+          <p>Handoff files are organized by user flow, not screen number. Built to stay usable after the first review — so when a developer comes back to it three weeks later, they can still find what they need.</p>
+        </div>
+      </div>
+
+      <CaseStudyBlockquote>A good handoff doesn't just describe the design — it defends it.</CaseStudyBlockquote>
+
+      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
+        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section id="impact" class="flex flex-col gap-4">
+      <h4 class="!opacity-100 mb-1">Impact</h4>
+      <p>Concept project — no production metrics, but validated through concept testing with non-crypto users across different levels of technical familiarity.</p>
+
+      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Reduced cognitive load</h3>
+          <p>In concept testing, users completed the swap flow without stopping to ask "what does this mean?" — a first for most of them in a DeFi context. The plain-language rewrites eliminated the most common friction points before they became drop-off moments.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Trust signals worked</h3>
+          <p>Users described the confirmation step as "reassuring" rather than "scary" — the primary emotional goal of the project. The visible progress model and earned permissions pattern directly shaped how safe users felt at the most high-stakes moment in the flow.</p>
+        </div>
+        <div class="flex flex-col gap-1 w-full">
+          <h3>Handoff format adopted</h3>
+          <p>The annotation and documentation structure developed for this project was adopted by the client team as their standard handoff format going forward — extending the impact of the work beyond the project itself.</p>
         </div>
       </div>
 
@@ -187,26 +198,24 @@ const sections = [
     <!-- Learnings -->
     <section id="learnings" class="flex flex-col gap-4">
       <h4 class="!opacity-100 mb-1">Learnings</h4>
-      <p>Designing for consumer AI at scale surfaces challenges that don't appear in enterprise or tools-focused contexts. Here are the key things this contract taught me:</p>
+      <p>Three things this project taught me about designing for complex technical spaces — and about how design shapes trust.</p>
 
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
-          <h3>Distribution creates design constraints.</h3>
-          <p>When your product is already in 100 million homes, "redesign" means something very different than a greenfield build. Every interaction pattern you introduce has to survive contact with an enormous range of users, devices, and contexts. Elegance has to be robust.</p>
+          <h3>DeFi doesn't need to be simplified — it needs to be translated.</h3>
+          <p>The problem isn't the complexity of the technology — it's the language used to describe it. Concepts like bridging, gas, or slippage aren't bad. But they're rarely framed in ways that feel relevant or human. When I focused on translating these into natural, empathetic language — without dumbing them down — users felt less intimidated and more in control. It's not about hiding complexity. It's about framing it so it feels approachable.</p>
         </div>
         <div class="flex flex-col gap-1 w-full">
-          <h3>AI capability ≠ user value.</h3>
-          <p>The most technically impressive features weren't the ones users found most valuable. Value came from reducing friction in things people already did every day — not from showcasing what the model could do. The design job is to find the overlap between capability and genuine daily need.</p>
+          <h3>Design sets the tone before you say a word.</h3>
+          <p>Spacing, icons, copy tone, animations — these play a subtle but powerful role in shaping the user's emotional state before they've read a single instruction. A swap is more than a transaction; it's a moment of trust. So I designed for feelings: calmness, clarity, momentum. That meant removing anything noisy or ambiguous, and reinforcing progress through soft, purposeful cues. The goal wasn't just usability — it was confidence.</p>
         </div>
         <div class="flex flex-col gap-1 w-full">
-          <h3>Voice is underrated as a design medium.</h3>
-          <p>Most AI design conversations happen in the context of chat interfaces. Working in voice forced a different kind of clarity — you can't rely on visual hierarchy, progressive disclosure, or hover states. Every interaction has to work as language first.</p>
+          <h3>First impressions are emotional, not technical.</h3>
+          <p>The first few screens of a crypto app can shape a user's entire relationship with the product — or with the ecosystem. I learned to treat those initial interactions with care: make them welcoming, predictable, and supportive. If the first impression feels like a test, users walk away. If it feels like support, they lean in. That's why the early steps of the flow focus on reassurance before control.</p>
         </div>
       </div>
 
-      <div class="w-full mt-8">
-        <h3 class="italic py-0 my-6 pl-4 border-l-2 border-foreground-light">Designs delivered as part of the Alexa+ contract engagement.</h3>
-      </div>
+      <CaseStudyBlockquote>Before asking for wallet permissions, I ask for attention — and earn it.</CaseStudyBlockquote>
     </section>
 
   </div>
@@ -219,10 +228,5 @@ const sections = [
     } else {
       img.addEventListener('load', () => img.classList.remove('opacity-0'));
     }
-  });
-
-  document.querySelectorAll<HTMLVideoElement>('video[data-inline-autoplay]').forEach((video) => {
-    video.addEventListener('loadeddata', () => video.classList.remove('opacity-0'));
-    if (video.readyState >= 3) video.classList.remove('opacity-0');
   });
 </script>

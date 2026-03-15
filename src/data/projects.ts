@@ -67,7 +67,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
   right: [
     {
       title: 'Bridge the Gap',
-      label: 'Amazon Alexa+ - Contract 2025',
+      label: 'Moralis - Concept 2024',
       href: '/projects/alexa',
       aspect: 'aspect-[8/5]',
       placeholderColor: '#00144550',
@@ -105,6 +105,17 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
     },
   ],
 };
+
+export const alexaSections: ProjectSection[] = [
+  { id: 'overview',       label: 'Overview' },
+  { id: 'the-user',       label: 'The User' },
+  { id: 'the-challenge',  label: 'The Challenge' },
+  { id: 'design-process', label: 'Design Process' },
+  { id: 'solution',       label: 'Solution' },
+  { id: 'design-handoff', label: 'Design Handoff' },
+  { id: 'impact',         label: 'Impact' },
+  { id: 'learnings',      label: 'Learnings' },
+];
 
 export const openAiHardwareSections: ProjectSection[] = [
   { id: 'overview', label: 'Overview' },
