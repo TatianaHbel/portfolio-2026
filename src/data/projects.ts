@@ -76,13 +76,14 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       image: '/thumbnail-bridge-the-gap.jpg',
     },
     {
-      title: 'Bringing autofill to macOS',
-      label: '1Password - Shipped 2025',
+      title: 'UX at a Web3 Startup',
+      label: 'Moralis - Shipped 2024-2026',
       href: '/projects/1password',
       aspect: 'aspect-[8/5]',
       placeholderColor: '#1A316E50',
       cursorType: 'case-study',
-      status: 'coming-soon',
+      status: 'published',
+      image: '/moralis-developers-01.jpg',
     },
     {
       title: 'Making 0-1 building for everyone',
@@ -105,6 +106,15 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
     },
   ],
 };
+
+export const onePasswordSections: ProjectSection[] = [
+  { id: 'overview',   label: 'Overview' },
+  { id: 'my-role',    label: 'My Role' },
+  { id: 'dashboard',  label: 'Dashboard Redesign' },
+  { id: 'streams',    label: 'Streams' },
+  { id: 'more-work',  label: 'More Work' },
+  { id: 'learnings',  label: 'Learnings' },
+];
 
 export const alexaSections: ProjectSection[] = [
   { id: 'overview',       label: 'Overview' },
