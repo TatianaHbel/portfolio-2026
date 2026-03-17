@@ -1,12 +1,685 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { experienceTimeline } from '../data/timeline';
+import { currently } from '../data/currently';
 ---
 
-<BaseLayout title="About — Tatiana Hernandez" description="About Tatiana Hernandez, product designer and developer.">
-  <div class="min-h-screen px-6 py-24 flex items-center justify-center">
-    <div class="text-center flex flex-col gap-4">
-      <h1>About</h1>
-      <p>Coming soon.</p>
+<BaseLayout title="About — Tatiana Hernandez" description="One of a kind product designer who vibecodes. Designing at the intersection of systems and people.">
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 1 · HERO — Full-bleed polaroid portrait
+  ═══════════════════════════════════════════ -->
+  <section class="polaroid-portrait-section relative overflow-hidden">
+
+    <!-- Full bleed background photo -->
+    <img
+      src="/img/tati_02.jpg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      aria-hidden="true"
+    />
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-foreground/40 pointer-events-none"></div>
+
+    <!-- Text — bottom left -->
+    <div class="absolute bottom-10 left-6 md:bottom-16 md:left-14 z-10">
+      <!-- "One of a kind." above the role title -->
+      <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-background/50 mb-4">
+        Hola <span class="text-primary">·</span> Hello <span class="text-primary">·</span> Salut <span class="text-primary">·</span> Hallo
+      </p>
+      <div class="overflow-hidden mb-2">
+        <h1 class="hero-h1-light">One of a</h1>
+      </div>
+      <div class="overflow-hidden mb-6">
+        <h1 class="hero-h1-light italic">kind.</h1>
+      </div>
+      <h2 class="text-background leading-[1.1] mb-3 text-[clamp(1.4rem,3.5vw,2.2rem)]">
+        Product Designer.<br/><em>Vibecoder.</em>
+      </h2>
+      <p class="font-mono text-[11px] uppercase tracking-widest text-background/45">
+        Since 2012 · SaaS · Web3 · Fintech
+      </p>
     </div>
-  </div>
+
+    <!-- Floating polaroid — right (same photo as background) -->
+    <div class="portrait-polaroid absolute right-6 top-1/2 md:right-16 z-10"
+         style="transform: translateY(-50%) rotate(-2.5deg)">
+      <div class="portrait-polaroid-image">
+        <img
+          src="/img/tati_02.jpg"
+          alt="Tatiana Hernandez"
+          class="w-full h-full object-cover opacity-0 transition-opacity duration-700"
+          loading="eager"
+          onload="this.style.opacity='1'"
+        />
+      </div>
+      <div class="portrait-polaroid-chin">
+        <span class="polaroid-label">tati_hernandez</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 right-6 md:right-16 z-10 opacity-35 flex flex-col items-center gap-2">
+      <p class="font-mono text-[10px] uppercase tracking-widest text-background writing-vertical">scroll</p>
+      <div class="w-px h-8 bg-background/40 animate-bounce-big"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 3 · ABOUT — Bio
+  ═══════════════════════════════════════════ -->
+  <section class="about-bio px-6 md:px-12 py-24 md:py-32 border-t border-foreground/8">
+    <div class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+
+      <!-- Left: polaroid photo -->
+      <div class="reveal-block flex md:justify-start">
+        <div class="about-polaroid" style="transform: rotate(-1.5deg)">
+          <div class="about-polaroid-image bg-foreground/8">
+            <img
+              src="/img/tati_03.jpg"
+              alt="Tatiana Hernandez — portrait"
+              class="w-full h-full object-cover opacity-0 transition-opacity duration-700"
+              loading="lazy"
+              onload="this.style.opacity='1'"
+            />
+          </div>
+          <div class="about-polaroid-chin"></div>
+        </div>
+      </div>
+
+      <!-- Right: bio text -->
+      <div class="flex flex-col gap-8 pt-4">
+        <div>
+          <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-4">about me</h4>
+          <div class="overflow-hidden mb-6">
+            <h2 class="clip-reveal leading-tight">I design things.<br/>I also build them.</h2>
+          </div>
+          <div class="flex flex-col gap-4 text-foreground/65 max-w-lg">
+            <p class="reveal-block" style="--delay:0ms">I'm a product designer who got tired of handing off files and started writing code. Now I do both, and I can't imagine going back.</p>
+            <p class="reveal-block" style="--delay:80ms">I've been designing since 2012 — across SaaS, fintech, and Web3. I'm drawn to complex systems that need to feel simple. I think good design is mostly about removing things.</p>
+            <p class="reveal-block" style="--delay:160ms">Outside of work I make generative art and take photos on film.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 reveal-block" style="--delay:220ms">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-foreground/10 text-[12px] font-mono text-foreground/55">
+            <span class="w-1.5 h-1.5 bg-primary animate-heartbeat inline-block"></span>
+            Available for work
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-foreground/10 text-[12px] font-mono text-foreground/55">
+            Lead Product Designer @ Amadeus Protocol
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 4 · EXPERIENCE — 2 column
+  ═══════════════════════════════════════════ -->
+  <section class="about-experience px-6 md:px-12 py-24 md:py-32 border-t border-foreground/8">
+    <div class="max-w-[1800px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-8 md:gap-20">
+
+        <!-- Left: sticky title -->
+        <div>
+          <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] md:sticky md:top-28">experience</h4>
+        </div>
+
+        <!-- Right: entries -->
+        <div class="flex flex-col">
+          {experienceTimeline.map((entry, i) => (
+            <div
+              class="reveal-block py-6 border-b border-foreground/8 last:border-0"
+              style={`--delay:${i * 80}ms`}
+            >
+              <p class="font-mono text-[11px] text-foreground/35 mb-2 uppercase tracking-wider">{entry.year}</p>
+              <div class="flex flex-col gap-0.5">
+                <div class="flex items-baseline gap-2 flex-wrap">
+                  {entry.companyUrl ? (
+                    <a
+                      href={entry.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-medium text-foreground hover:text-primary transition-colors duration-200"
+                      data-cursor="site"
+                      aria-label={`Visit ${entry.company} (opens in new tab)`}
+                    >
+                      {entry.company}
+                    </a>
+                  ) : (
+                    <span class="font-medium text-foreground">{entry.company}</span>
+                  )}
+                  <span class="text-[12px] font-mono text-foreground/40">{entry.role}</span>
+                </div>
+                {entry.context && (
+                  <p class="text-[13px] text-foreground/45 italic mt-1">{entry.context}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 5 · MOMENTS — Horizontal Polaroid Carousel
+  ═══════════════════════════════════════════ -->
+  <section class="about-moments py-24 border-t border-foreground/8">
+    <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-10 px-6 md:px-12 max-w-[1800px] mx-auto">moments</h4>
+
+    <div class="moments-track" id="moments-carousel">
+      {[
+        { file: 'tati_01.JPG', label: 'Tatiana',   rot: '-2deg' },
+        { file: 'tati_02.jpg', label: 'film',       rot: '2.5deg' },
+        { file: 'tati_03.jpg', label: 'light',      rot: '-1.5deg' },
+        { file: 'tati_04.jpg', label: 'somewhere',  rot: '3deg' },
+        { file: 'tati_02.jpg', label: 'portrait',   rot: '-2.5deg' },
+        { file: 'tati_03.jpg', label: 'analog',     rot: '1.5deg' },
+      ].map((item) => (
+        <div
+          class="moment-polaroid flex-shrink-0"
+          style={`transform: rotate(${item.rot})`}
+          data-cursor="pointer"
+        >
+          <div class="moment-image bg-foreground/8">
+            <img
+              src={`/img/${item.file}`}
+              alt={item.label}
+              class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+              loading="lazy"
+              onload="this.style.opacity='1'"
+            />
+          </div>
+          <div class="moment-chin">
+            <span class="polaroid-label">{item.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-[11px] font-mono text-foreground/25 uppercase tracking-widest mt-4 px-6 md:px-12">drag →</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 6 · DRAG CARDS — above footer
+  ═══════════════════════════════════════════ -->
+  <section class="cards-floor px-6 md:px-12 py-24 border-t border-foreground/8">
+    <div class="max-w-[1800px] mx-auto">
+      <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-16">right now</h4>
+
+      <!-- Cards spread on a surface — draggable -->
+      <div class="cards-floor-inner relative" style="height: 380px">
+
+        <!-- Card: Now listening (dark) -->
+        <div class="drag-card polaroid-card status-card"
+             data-rotation="8deg" data-tx="0" data-ty="0"
+             style="background:var(--color-foreground); z-index:1; width:200px; height:250px; left:0; top:40px"
+             data-cursor="pointer">
+          <div class="status-card-inner">
+            <p class="status-label" style="color:rgba(250,252,253,0.4)">now listening</p>
+            <p class="status-value" style="color:#fafcfd">{currently[2].value}</p>
+          </div>
+        </div>
+
+        <!-- Card: Now reading (yellow) -->
+        <div class="drag-card polaroid-card status-card"
+             data-rotation="-4deg" data-tx="0" data-ty="0"
+             style="background:var(--color-secondary); z-index:2; width:200px; height:250px; left:180px; top:20px"
+             data-cursor="pointer">
+          <div class="status-card-inner">
+            <p class="status-label" style="color:rgba(50,64,79,0.45)">now reading</p>
+            <p class="status-value" style="color:var(--color-foreground)">{currently[1].value}</p>
+          </div>
+        </div>
+
+        <!-- Card: Now building (violet) -->
+        <div class="drag-card polaroid-card status-card"
+             data-rotation="2deg" data-tx="0" data-ty="0"
+             style="background:var(--color-primary); z-index:3; width:200px; height:250px; left:360px; top:60px"
+             data-cursor="pointer">
+          <div class="status-card-inner">
+            <p class="status-label" style="color:rgba(250,252,253,0.5)">now building</p>
+            <p class="status-value" style="color:#fafcfd">{currently[0].value}</p>
+          </div>
+        </div>
+
+        <!-- Card: Photo (front) — iconic Polaroid proportions -->
+        <div class="drag-card polaroid-card photo-card"
+             data-rotation="-6deg" data-tx="0" data-ty="0"
+             style="z-index:4; width:190px; left:540px; top:20px"
+             data-cursor="pointer">
+          <div class="polaroid-image bg-foreground/5">
+            <img
+              src="/img/tati_01.JPG"
+              alt="Tatiana Hernandez"
+              class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+              loading="lazy"
+              onload="this.style.opacity='1'"
+            />
+          </div>
+          <div class="polaroid-chin">
+            <span class="polaroid-label">designer</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="font-mono text-[11px] text-foreground/25 uppercase tracking-widest mt-6">← drag the cards →</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 7 · CONNECT
+  ═══════════════════════════════════════════ -->
+  <section class="px-6 md:px-12 py-24 md:py-40 border-t border-foreground/8">
+    <div class="max-w-[1800px] mx-auto max-w-2xl">
+      <div class="overflow-hidden mb-6">
+        <h2 class="clip-reveal leading-tight">Let's connect</h2>
+      </div>
+      <div class="flex items-center gap-3 mb-6 reveal-block">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 border border-primary/30 text-[11px] font-mono text-primary">
+          <span class="w-1.5 h-1.5 bg-primary animate-heartbeat inline-block"></span>
+          Available For Work
+        </span>
+      </div>
+      <p class="text-foreground/60 mb-10 text-[17px] leading-relaxed max-w-lg reveal-block">
+        I'm curious about work, people, and what happens when you put them together with technology. If something resonates — reach out.
+      </p>
+      <div class="flex flex-wrap items-center gap-4 reveal-block">
+        <a
+          href="mailto:tati.hbel@gmail.com"
+          class="magnetic-btn inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-mono text-[13px] uppercase tracking-wider hover:bg-primary transition-colors duration-300"
+          data-cursor="email"
+          aria-label="Send email to Tatiana"
+        >
+          Say hello
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a
+          href="mailto:tati.hbel@gmail.com"
+          class="font-mono text-[13px] text-foreground/50 hover:text-foreground transition-colors duration-200"
+          data-cursor="email"
+          aria-label="Email tati.hbel@gmail.com"
+        >
+          tati.hbel@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<!-- ═══════════════════════════════════════════
+     STYLES
+═══════════════════════════════════════════ -->
+<style>
+  /* ── Hero: CSS animation (no JS needed, always visible) ──── */
+  .hero-h1 {
+    font-family: var(--font-tiempos-text);
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-foreground);
+  }
+
+  /* Light version for dark hero background */
+  .hero-h1-light {
+    font-family: var(--font-tiempos-text);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  /* ── Cards floor section ─────────────────── */
+  .cards-floor-inner {
+    overflow: visible;
+  }
+  .cards-floor-inner .drag-card {
+    position: absolute;
+  }
+
+  /* ── Scroll clip-path reveal ──────────────── */
+  .clip-reveal {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clip-reveal.visible {
+    clip-path: inset(0 0% 0 0);
+  }
+
+  /* ── Scroll opacity reveal ────────────────── */
+  .reveal-block {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--delay, 0ms);
+  }
+  .reveal-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     ICONIC POLAROID FORMAT
+     Real Polaroid = white frame on all 4 sides.
+     Thin border top + left + right (10–12px).
+     Tall chin at bottom (~64–72px).
+     Image area is square (aspect-ratio: 1).
+  ══════════════════════════════════════════════════════════════ */
+
+  /* ── Hero: full-bleed portrait section ────── */
+  .polaroid-portrait-section {
+    height: 85vh;
+    min-height: 520px;
+  }
+
+  /* Floating polaroid in hero */
+  .portrait-polaroid {
+    background: #fff;
+    box-shadow: 0 24px 72px rgba(0,0,0,0.40), 0 4px 16px rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+    padding: 10px 10px 0;       /* thin white border: top + sides */
+  }
+  @media (min-width: 768px) {
+    .portrait-polaroid { width: 280px; padding: 12px 12px 0; }
+  }
+  .portrait-polaroid-image {
+    width: 100%;
+    aspect-ratio: 1;             /* square image area — pure Polaroid */
+    overflow: hidden;
+  }
+  .portrait-polaroid-chin {
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 768px) {
+    .portrait-polaroid-chin { height: 72px; }
+  }
+
+  /* ── About section polaroid ──────────────── */
+  .about-polaroid {
+    background: #fff;
+    box-shadow: 0 10px 48px rgba(0,0,0,0.12), 0 2px 10px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    flex-shrink: 0;
+    padding: 12px 12px 0;        /* thin white border: top + sides */
+  }
+  @media (min-width: 768px) {
+    .about-polaroid { width: 340px; }
+  }
+  .about-polaroid-image {
+    width: 100%;
+    aspect-ratio: 1;             /* square image area */
+    overflow: hidden;
+  }
+  .about-polaroid-chin {
+    height: 68px;
+    background: #fff;
+  }
+
+  /* ── Moments carousel ────────────────────── */
+  .moments-track {
+    display: flex;
+    gap: 20px;
+    padding: 16px 24px 64px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+  .moments-track:active { cursor: grabbing; }
+  .moments-track::-webkit-scrollbar { display: none; }
+
+  .moment-polaroid {
+    scroll-snap-align: start;
+    background: #fff;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.11), 0 2px 6px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    width: 190px;
+    flex-shrink: 0;
+    padding: 9px 9px 0;          /* thin white border: top + sides */
+    transition: box-shadow 0.2s ease;
+  }
+  @media (min-width: 768px) {
+    .moment-polaroid { width: 240px; padding: 11px 11px 0; }
+  }
+  .moment-polaroid:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  }
+  .moment-image {
+    width: 100%;
+    aspect-ratio: 1;             /* square image area */
+    overflow: hidden;
+  }
+  .moment-chin {
+    height: 52px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+  @media (min-width: 768px) {
+    .moment-chin { height: 60px; }
+  }
+
+  /* ── Polaroid label (shared italic text in chin) ── */
+  .polaroid-label {
+    font-family: var(--font-crimson-pro);
+    font-style: italic;
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Drag cards (photo card) ─────────────── */
+  .polaroid-card {
+    position: absolute;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
+    will-change: transform;
+  }
+  .polaroid-card:active { cursor: grabbing; }
+
+  /* Photo drag card: iconic polaroid proportions */
+  .polaroid-card.photo-card {
+    background: #fff;
+    padding: 9px 9px 0;
+  }
+  .polaroid-image {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+  .polaroid-chin {
+    flex-shrink: 0;
+    height: 52px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Status cards: solid-color polaroid-shaped cards */
+  .status-card {
+    overflow: hidden;
+  }
+  .status-card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    gap: 8px;
+  }
+  .status-label {
+    font-family: var(--font-geist-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .status-value {
+    font-family: var(--font-crimson-pro);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  /* ── Vertical writing ─────────────────────── */
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* ── Reduced motion ──────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .clip-reveal { clip-path: none; transition: none; }
+    .reveal-block { opacity: 1; transform: none; transition: none; }
+    .polaroid-card { transition: none; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════ -->
+<script>
+  // ── Scroll reveals (clip-path + opacity) ──────────────────────
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+  );
+  document.querySelectorAll('.clip-reveal, .reveal-block').forEach((el) => io.observe(el));
+
+  // ── Draggable cards — clean, no DOM-matrix reading ────────────
+  // Each card stores rotation in data-rotation, initial offset in data-tx/data-ty.
+  // JS tracks accumulated tx/ty per card — never reads from computed style.
+  document.querySelectorAll<HTMLElement>('.drag-card').forEach((card) => {
+    const rot = card.dataset.rotation ?? '0deg';
+    let tx = parseFloat(card.dataset.tx ?? '0');
+    let ty = parseFloat(card.dataset.ty ?? '0');
+    let vx = 0, vy = 0;
+    let startX = 0, startY = 0;
+    let startTx = 0, startTy = 0;
+    let prevX = 0, prevY = 0;
+    let isDragging = false;
+    let animFrame = 0;
+
+    // Apply initial transform from data attributes
+    card.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot})`;
+    // translate-first so drag is always in screen space
+
+    card.addEventListener('pointerdown', (e: PointerEvent) => {
+      isDragging = true;
+      cancelAnimationFrame(animFrame);
+      card.setPointerCapture(e.pointerId);
+      card.style.transition = 'none'; // CRITICAL: zero lag during drag
+      card.style.zIndex = '10';
+      startX = e.clientX;
+      startY = e.clientY;
+      startTx = tx;
+      startTy = ty;
+      prevX = e.clientX;
+      prevY = e.clientY;
+      vx = 0; vy = 0;
+    });
+
+    card.addEventListener('pointermove', (e: PointerEvent) => {
+      if (!isDragging) return;
+      vx = e.clientX - prevX;
+      vy = e.clientY - prevY;
+      prevX = e.clientX;
+      prevY = e.clientY;
+      tx = startTx + (e.clientX - startX);
+      ty = startTy + (e.clientY - startY);
+      card.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot})`;
+    });
+
+    const onRelease = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      // Momentum: decay velocity, keep no CSS transition (all handled in rAF)
+      const decay = () => {
+        vx *= 0.85;
+        vy *= 0.85;
+        tx += vx;
+        ty += vy;
+        card.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot})`;
+        if (Math.abs(vx) > 0.25 || Math.abs(vy) > 0.25) {
+          animFrame = requestAnimationFrame(decay);
+        }
+      };
+      animFrame = requestAnimationFrame(decay);
+    };
+
+    card.addEventListener('pointerup', onRelease);
+    card.addEventListener('pointercancel', onRelease);
+  });
+
+  // ── Drag-to-scroll moments carousel ───────────────────────────
+  const carousel = document.getElementById('moments-carousel') as HTMLElement | null;
+  if (carousel) {
+    let isDown = false;
+    let startScrollX = 0;
+    let startClientX = 0;
+    carousel.addEventListener('pointerdown', (e: PointerEvent) => {
+      isDown = true;
+      carousel.setPointerCapture(e.pointerId);
+      startScrollX = carousel.scrollLeft;
+      startClientX = e.clientX;
+    });
+    carousel.addEventListener('pointermove', (e: PointerEvent) => {
+      if (!isDown) return;
+      carousel.scrollLeft = startScrollX - (e.clientX - startClientX);
+    });
+    const stopDrag = () => { isDown = false; };
+    carousel.addEventListener('pointerup', stopDrag);
+    carousel.addEventListener('pointercancel', stopDrag);
+  }
+
+  // ── Magnetic CTA button ────────────────────────────────────────
+  const magneticBtn = document.querySelector<HTMLElement>('.magnetic-btn');
+  if (magneticBtn) {
+    magneticBtn.addEventListener('mousemove', (e: MouseEvent) => {
+      const r = magneticBtn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      if (Math.sqrt(dx * dx + dy * dy) < 80) {
+        magneticBtn.style.transform = `translate(${dx * 0.35}px, ${dy * 0.35}px)`;
+      }
+    });
+    magneticBtn.addEventListener('mouseleave', () => {
+      magneticBtn.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1), background-color 0.3s';
+      magneticBtn.style.transform = 'translate(0,0)';
+    });
+    magneticBtn.addEventListener('mouseenter', () => {
+      magneticBtn.style.transition = 'transform 0.1s ease, background-color 0.3s';
+    });
+  }
+</script>
