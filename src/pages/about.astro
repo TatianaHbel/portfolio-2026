@@ -11,14 +11,32 @@ import { currently } from '../data/currently';
   ═══════════════════════════════════════════ -->
   <section class="polaroid-portrait-section relative overflow-hidden">
 
-    <!-- Full bleed background photo -->
-    <img
-      src="/img/tati_02.jpg"
-      alt=""
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-      aria-hidden="true"
-    />
+    <!-- Slideshow: all photos stacked, JS crossfades every 5s -->
+    <div id="hero-slideshow" class="absolute inset-0" aria-hidden="true">
+      {[
+        'D2651FF8-AE93-4BDC-B3CF-88F17CEC9848.jpg',
+        'IMG_0822.jpg',
+        'IMG_2415.jpg',
+        'IMG_2930.jpg',
+        'IMG_3705.jpg',
+        'IMG_7925.JPG',
+        'IMG_8960.jpg',
+        'IMG_9756.jpg',
+        'Tatiana Portrait.jpg',
+        'tati_01.JPG',
+        'tati_02.jpg',
+        'tati_03.jpg',
+        'tati_04.jpg',
+      ].map((file, i) => (
+        <img
+          src={`/img/photos/${file}`}
+          alt=""
+          class="hero-slide absolute inset-0 w-full h-full object-cover"
+          style={`opacity: ${i === 0 ? 1 : 0}; transition: opacity 1.2s ease-in-out;`}
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
+    </div>
 
     <!-- Overlay -->
     <div class="absolute inset-0 bg-foreground/40 pointer-events-none"></div>
@@ -43,17 +61,33 @@ import { currently } from '../data/currently';
       </p>
     </div>
 
-    <!-- Floating polaroid — right (same photo as background) -->
+    <!-- Floating polaroid — right, syncs with slideshow -->
     <div class="portrait-polaroid absolute right-6 top-1/2 md:right-16 z-10"
          style="transform: translateY(-50%)">
-      <div class="portrait-polaroid-image">
-        <img
-          src="/img/tati_02.jpg"
-          alt="Tatiana Hernandez"
-          class="w-full h-full object-cover opacity-0 transition-opacity duration-700"
-          loading="eager"
-          onload="this.style.opacity='1'"
-        />
+      <div class="portrait-polaroid-image" id="hero-polaroid-wrap">
+        {[
+          'D2651FF8-AE93-4BDC-B3CF-88F17CEC9848.jpg',
+          'IMG_0822.jpg',
+          'IMG_2415.jpg',
+          'IMG_2930.jpg',
+          'IMG_3705.jpg',
+          'IMG_7925.JPG',
+          'IMG_8960.jpg',
+          'IMG_9756.jpg',
+          'Tatiana Portrait.jpg',
+          'tati_01.JPG',
+          'tati_02.jpg',
+          'tati_03.jpg',
+          'tati_04.jpg',
+        ].map((file, i) => (
+          <img
+            src={`/img/photos/${file}`}
+            alt="Tatiana Hernandez"
+            class="hero-polaroid-slide absolute inset-0 w-full h-full object-cover"
+            style={`opacity: ${i === 0 ? 1 : 0}; transition: opacity 1.2s ease-in-out;`}
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+        ))}
       </div>
       <div class="portrait-polaroid-chin">
         <span class="polaroid-label">tati_hernandez</span>
@@ -395,6 +429,7 @@ import { currently } from '../data/currently';
     width: 100%;
     aspect-ratio: 1;             /* square image area — pure Polaroid */
     overflow: hidden;
+    position: relative;
   }
   .portrait-polaroid-chin {
     width: 100%;
@@ -564,6 +599,21 @@ import { currently } from '../data/currently';
      SCRIPTS
 ═══════════════════════════════════════════ -->
 <script>
+  // ── Hero slideshow — crossfade every 5s ───────────────────────
+  const bgSlides = Array.from(document.querySelectorAll<HTMLElement>('.hero-slide'));
+  const polaroidSlides = Array.from(document.querySelectorAll<HTMLElement>('.hero-polaroid-slide'));
+  let currentSlide = 0;
+
+  if (bgSlides.length > 1) {
+    setInterval(() => {
+      bgSlides[currentSlide].style.opacity = '0';
+      polaroidSlides[currentSlide].style.opacity = '0';
+      currentSlide = (currentSlide + 1) % bgSlides.length;
+      bgSlides[currentSlide].style.opacity = '1';
+      polaroidSlides[currentSlide].style.opacity = '1';
+    }, 5000);
+  }
+
   // ── Scroll reveals (clip-path + opacity) ──────────────────────
   const io = new IntersectionObserver(
     (entries) => entries.forEach((e) => {
