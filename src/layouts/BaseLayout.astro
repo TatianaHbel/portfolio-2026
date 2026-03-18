@@ -17,6 +17,10 @@ const {
 } = Astro.props;
 
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+
+// Page label shown in loader for non-home pages (e.g. "About — Tatiana" → "About")
+const isHome = Astro.url.pathname === '/';
+const pageLabel = isHome ? '' : title.split(/\s[—–|]\s/)[0].trim();
 ---
 
 <!doctype html>
@@ -65,6 +69,29 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : unde
   </head>
 
   <body class="antialiased font-geist-sans">
+
+    <!-- ── Loading screen ──────────────────────────────────────── -->
+    <!-- data-home / data-label passed to JS for session logic -->
+    <div id="loader" data-home={isHome ? '1' : ''} data-label={pageLabel}>
+      <div id="loader-screen">
+        <!-- Greetings (home first-visit only) -->
+        <div id="loader-greetings">
+          <span>Hola</span>
+          <span>Hello</span>
+          <span>Salut</span>
+          <span>Bonjour</span>
+          <span>Ciao</span>
+          <span>Hallo</span>
+        </div>
+        <!-- Section label (all other pages) -->
+        <div id="loader-label"></div>
+        <!-- Circular arc — hangs below screen, creates curved exit edge -->
+        <div class="loader-arc">
+          <div class="loader-arc-inner"></div>
+        </div>
+      </div>
+    </div>
+
     <CustomCursor />
 
     <div class="flex h-[100dvh] overflow-hidden">
@@ -79,4 +106,146 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : unde
       </div>
     </div>
   </body>
+
+<style>
+  /* ── Loading screen ───────────────────────────────────── */
+  #loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    /* no overflow:hidden — lets the circular arc extend below viewport */
+  }
+
+  #loader-screen {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100vh;
+    background: var(--color-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;  /* arc hangs below */
+    transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  #loader-screen.exit {
+    /* Extra clearance so the arc (180px below screen bottom) fully exits */
+    transform: translateY(calc(-100% - 200px));
+  }
+
+  /* Greetings container — relative so spans can stack inside it */
+  #loader-greetings {
+    position: relative;
+    width: 100%;
+    height: clamp(3rem, 9vw, 7.5rem);
+  }
+  #loader-greetings span {
+    font-family: var(--font-tiempos-text);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    color: #fff;
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #loader-greetings span.active { opacity: 1; }
+
+  /* Label — plain flex child, centered by parent flex container */
+  #loader-label {
+    font-family: var(--font-tiempos-text);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    color: #fff;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  #loader-label.active { opacity: 1; }
+
+  /* ── Circular arc — true ellipse for organic exit curve ── */
+  /* Hangs 80px below the bottom of loader-screen.
+     overflow:hidden on the wrapper clips the ellipse to show
+     only its bottom arc → convex-downward curve as it slides up. */
+  .loader-arc {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120vw;
+    height: 100px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .loader-arc-inner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;         /* tall ellipse = gradual, natural arc */
+    background: var(--color-foreground);
+    border-radius: 50%;
+  }
+</style>
+
+<script>
+  (function () {
+    const loader    = document.getElementById('loader') as HTMLElement;
+    const screen    = document.getElementById('loader-screen') as HTMLElement;
+    const greetings = document.getElementById('loader-greetings') as HTMLElement;
+    const labelEl   = document.getElementById('loader-label') as HTMLElement;
+    const spans     = Array.from(greetings.querySelectorAll<HTMLElement>('span'));
+
+    const isHome  = loader.dataset.home === '1';
+    const label   = loader.dataset.label ?? '';
+    const SEEN_KEY = 'tati-loader-seen';
+
+    const slideUp = () => {
+      screen.classList.add('exit');
+      screen.addEventListener('transitionend', () => {
+        loader.style.display = 'none';
+      }, { once: true });
+    };
+
+    // Home, first visit in session → full greeting cycle
+    if (isHome && !sessionStorage.getItem(SEEN_KEY)) {
+      sessionStorage.setItem(SEEN_KEY, '1');
+      greetings.style.display = 'block';
+      labelEl.style.display   = 'none';
+
+      const WORD_MS = 260, GAP_MS = 60;
+      let i = 0;
+      spans[0].classList.add('active');
+
+      const cycle = setInterval(() => {
+        spans[i].classList.remove('active');
+        i++;
+        if (i < spans.length) {
+          spans[i].classList.add('active');
+        } else {
+          clearInterval(cycle);
+          setTimeout(slideUp, 300);
+        }
+      }, WORD_MS + GAP_MS);
+
+    // All other pages (or home return visits) → section label + quick slide
+    } else {
+      greetings.style.display = 'none';
+      labelEl.style.display   = 'block';
+      labelEl.textContent     = label || 'Work';
+
+      // Tiny delay so the label renders before fade-in triggers
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          labelEl.classList.add('active');
+          setTimeout(slideUp, 500);
+        });
+      });
+    }
+  })();
+</script>
+
 </html>
