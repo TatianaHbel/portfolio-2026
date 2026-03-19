@@ -21,14 +21,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
 
       <nav class="ds-nav" aria-label="Design system sections">
-        <a href="#overview"     class="ds-nav-link active">Overview</a>
-        <a href="#colors"       class="ds-nav-link">Colors</a>
-        <a href="#typography"   class="ds-nav-link">Typography</a>
-        <a href="#foundations"  class="ds-nav-link">Foundations</a>
-        <a href="#spacing"      class="ds-nav-link">Grid & Spacing</a>
-        <a href="#components"   class="ds-nav-link">Components</a>
-        <a href="#animations"   class="ds-nav-link">Animations</a>
-        <a href="#states"       class="ds-nav-link">Interaction States</a>
+        <a href="#overview"    class="ds-nav-link active">Overview</a>
+        <a href="#colors"      class="ds-nav-link">Colors</a>
+        <a href="#typography"  class="ds-nav-link">Typography</a>
+        <a href="#buttons"     class="ds-nav-link">Buttons</a>
+        <a href="#foundations" class="ds-nav-link">Foundations</a>
+        <a href="#states"      class="ds-nav-link">Interaction States</a>
+        <a href="#navigation"  class="ds-nav-link">Navigation</a>
+        <a href="#animations"  class="ds-nav-link">Animations</a>
+        <a href="#spacing"     class="ds-nav-link">Grid & Spacing</a>
       </nav>
 
       <div class="ds-sidebar-footer">
@@ -172,7 +173,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             { token: '--ds-text',         value: '#2E3141',             role: 'Primary text'                },
             { token: '--ds-text-muted',   value: '#8B8796',             role: 'Text muted'                  },
             { token: '--ds-border',       value: 'rgba(46,49,65,0.10)', role: 'Subtle border'               },
-            { token: '--ds-accent',       value: '#DA6D5B',             role: 'Primary accent (Coral)'      },
+            { token: '--ds-accent',       value: '#ED7752',             role: 'Primary accent (Peach)'      },
             { token: '--ds-accent-rose',  value: '#ED527A',             role: 'Secondary accent — Rose'     },
             { token: '--ds-accent-sky',   value: '#52C8ED',             role: 'Secondary accent — Sky'      },
             { token: '--ds-accent-lime',  value: '#ABBA2B',             role: 'Secondary accent — Lime'     },
@@ -224,6 +225,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                 { label: '100', hex: '#FEFBCF', token: '--ds-yellow-100', dark: false },
                 { label: '500', hex: '#F8E816', token: '--ds-yellow-500', dark: false },
                 { label: '700', hex: '#9C9007', token: '--ds-yellow-700', dark: true  },
+              ]
+            },
+            {
+              name: 'Peach',
+              stops: [
+                { label: '100', hex: '#FDEEE8', token: '--ds-peach-100', dark: false },
+                { label: '500', hex: '#ED7752', token: '--ds-peach',     dark: true  },
+                { label: '700', hex: '#C95E38', token: '--ds-peach-deep', dark: true  },
               ]
             },
           ].map(set => (
@@ -340,105 +349,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <!-- ── SECTION 3: Foundations ─────────────────── -->
-    <section id="foundations" class="ds-section">
+    <!-- ── SECTION 3: Buttons ────────────────────── -->
+    <section id="buttons" class="ds-section">
       <div class="ds-section-label-row">
         <span class="ds-label ds-mono">03</span>
-        <h2 class="ds-section-title">Foundations</h2>
-      </div>
-      <p class="ds-section-desc">Core design tokens — the single source of truth for every visual decision.</p>
-
-      <!-- Radius -->
-      <div class="ds-subsection">
-        <h3 class="ds-subsection-title">Border Radius</h3>
-        <div class="ds-radius-grid">
-          {[
-            { name: 'sm',   val: '4px',    px: 4 },
-            { name: 'md',   val: '8px',    px: 8 },
-            { name: 'lg',   val: '16px',   px: 16 },
-            { name: 'full', val: '9999px', px: 9999 },
-          ].map(r => (
-            <div class="ds-radius-item">
-              <div class="ds-radius-box" style={`border-radius: ${r.px}px`}></div>
-              <p class="ds-mono ds-muted">{r.name}</p>
-              <p class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{r.val}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Shadows -->
-      <div class="ds-subsection">
-        <h3 class="ds-subsection-title">Shadows</h3>
-        <div class="ds-shadow-grid">
-          <div class="ds-shadow-item">
-            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-sm)">sm</div>
-            <p class="ds-mono ds-muted">shadow-sm</p>
-          </div>
-          <div class="ds-shadow-item">
-            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-md)">md</div>
-            <p class="ds-mono ds-muted">shadow-md</p>
-          </div>
-          <div class="ds-shadow-item">
-            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-glow-pink)">glow-coral</div>
-            <p class="ds-mono ds-muted">glow-coral</p>
-          </div>
-          <div class="ds-shadow-item">
-            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-glow-teal)">glow-golden</div>
-            <p class="ds-mono ds-muted">glow-golden</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── SECTION 4: Grid & Spacing ─────────────── -->
-    <section id="spacing" class="ds-section">
-      <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">04</span>
-        <h2 class="ds-section-title">Grid & Spacing</h2>
-      </div>
-      <p class="ds-section-desc">8pt grid system. Every measurement is a multiple of 4.</p>
-
-      <div class="ds-subsection">
-        <h3 class="ds-subsection-title">Spacing Scale</h3>
-        <div class="ds-spacing-scale">
-          {[
-            { name: 'space-1', val: '4px',  px: 4  },
-            { name: 'space-2', val: '8px',  px: 8  },
-            { name: 'space-3', val: '12px', px: 12 },
-            { name: 'space-4', val: '16px', px: 16 },
-            { name: 'space-6', val: '24px', px: 24 },
-            { name: 'space-8', val: '32px', px: 32 },
-            { name: 'space-12', val: '48px', px: 48 },
-            { name: 'space-16', val: '64px', px: 64 },
-          ].map(s => (
-            <div class="ds-spacing-row">
-              <span class="ds-mono ds-muted" style="font-size:11px;min-width:72px">{s.name}</span>
-              <div class="ds-spacing-bar" style={`width:${s.px * 2}px`}></div>
-              <span class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{s.val}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div class="ds-subsection">
-        <h3 class="ds-subsection-title">12-Column Grid</h3>
-        <div class="ds-grid-demo">
-          {Array.from({ length: 12 }).map(_ => (
-            <div class="ds-grid-col">
-              <div class="ds-grid-col-inner"></div>
-            </div>
-          ))}
-        </div>
-        <p class="ds-muted" style="font-size:13px;margin-top:12px">12 columns · 24px gutter · 64px margin</p>
-      </div>
-    </section>
-
-    <!-- ── SECTION 5: Components ──────────────────── -->
-    <section id="components" class="ds-section">
-      <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">05</span>
-        <h2 class="ds-section-title">Components</h2>
+        <h2 class="ds-section-title">Buttons</h2>
       </div>
       <p class="ds-section-desc">Production-ready UI patterns. Every state. Every variant.</p>
 
@@ -449,7 +364,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
           <!-- Color palette tabs -->
           <div class="ds-btn-palette-tabs">
-            <button class="ds-btn-palette-tab is-active" data-color="coral"  style="--tab-color:#DA6D5B"><span class="ds-btn-palette-dot" style="background:#DA6D5B"></span>Coral</button>
+            <button class="ds-btn-palette-tab is-active" data-color="peach"  style="--tab-color:#ED7752"><span class="ds-btn-palette-dot" style="background:#ED7752"></span>Peach</button>
             <button class="ds-btn-palette-tab"            data-color="rose"   style="--tab-color:#ED527A"><span class="ds-btn-palette-dot" style="background:#ED527A"></span>Rose</button>
             <button class="ds-btn-palette-tab"            data-color="sky"    style="--tab-color:#52C8ED"><span class="ds-btn-palette-dot" style="background:#52C8ED"></span>Sky</button>
             <button class="ds-btn-palette-tab"            data-color="lime"   style="--tab-color:#ABBA2B"><span class="ds-btn-palette-dot" style="background:#ABBA2B"></span>Lime</button>
@@ -465,73 +380,113 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <!-- PREVIEW -->
           <div id="btn-preview" class="ds-preview-canvas">
 
-            <div class="ds-btn-color-panel" data-color="coral">
-              <div class="ds-preview-row">
-                <button class="ds-btn ds-btn-primary">Filled</button>
-                <button class="ds-btn ds-btn-ghost">Outline</button>
-                <button class="ds-btn ds-btn-secondary">Ghost</button>
-                <button class="ds-btn ds-btn-primary" disabled>Disabled</button>
-              </div>
-              <div class="ds-preview-row" style="margin-top:16px">
-                <button class="ds-btn ds-btn-primary ds-btn-sm">Small</button>
-                <button class="ds-btn ds-btn-primary">Default</button>
-                <button class="ds-btn ds-btn-primary ds-btn-lg">Large</button>
+            <div class="ds-btn-color-panel" data-color="peach">
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-peach ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-peach">Default</button>
+                    <button class="ds-btn ds-btn-peach ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-peach ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-peach-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-peach-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-peach ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="ds-btn-color-panel" data-color="rose" style="display:none">
-              <div class="ds-preview-row">
-                <button class="ds-btn ds-btn-rose">Filled</button>
-                <button class="ds-btn ds-btn-rose-outline">Outline</button>
-                <button class="ds-btn ds-btn-rose-ghost">Ghost</button>
-                <button class="ds-btn ds-btn-rose" disabled>Disabled</button>
-              </div>
-              <div class="ds-preview-row" style="margin-top:16px">
-                <button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
-                <button class="ds-btn ds-btn-rose">Default</button>
-                <button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-rose">Default</button>
+                    <button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-rose ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-rose-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-rose-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-rose ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="ds-btn-color-panel" data-color="sky" style="display:none">
-              <div class="ds-preview-row">
-                <button class="ds-btn ds-btn-sky">Filled</button>
-                <button class="ds-btn ds-btn-sky-outline">Outline</button>
-                <button class="ds-btn ds-btn-sky-ghost">Ghost</button>
-                <button class="ds-btn ds-btn-sky" disabled>Disabled</button>
-              </div>
-              <div class="ds-preview-row" style="margin-top:16px">
-                <button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
-                <button class="ds-btn ds-btn-sky">Default</button>
-                <button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-sky">Default</button>
+                    <button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-sky ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-sky-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-sky-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-sky ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="ds-btn-color-panel" data-color="lime" style="display:none">
-              <div class="ds-preview-row">
-                <button class="ds-btn ds-btn-lime">Filled</button>
-                <button class="ds-btn ds-btn-lime-outline">Outline</button>
-                <button class="ds-btn ds-btn-lime-ghost">Ghost</button>
-                <button class="ds-btn ds-btn-lime" disabled>Disabled</button>
-              </div>
-              <div class="ds-preview-row" style="margin-top:16px">
-                <button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
-                <button class="ds-btn ds-btn-lime">Default</button>
-                <button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-lime">Default</button>
+                    <button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-lime ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-lime-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-lime-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-lime ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
-              <div class="ds-preview-row">
-                <button class="ds-btn ds-btn-yellow">Filled</button>
-                <button class="ds-btn ds-btn-yellow-outline">Outline</button>
-                <button class="ds-btn ds-btn-yellow-ghost">Ghost</button>
-                <button class="ds-btn ds-btn-yellow" disabled>Disabled</button>
-              </div>
-              <div class="ds-preview-row" style="margin-top:16px">
-                <button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
-                <button class="ds-btn ds-btn-yellow">Default</button>
-                <button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-yellow">Default</button>
+                    <button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-yellow ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-yellow-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-yellow-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-yellow ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -540,37 +495,52 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <!-- CODE -->
           <div id="btn-code" class="ds-code-panel" style="display:none">
 
-            <div class="ds-btn-color-panel" data-color="coral">
-              <button class="ds-copy-btn" data-code="btn-coral">Copy</button>
-              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-primary">Filled</button>
-<button class="ds-btn ds-btn-ghost">Outline</button>
-<button class="ds-btn ds-btn-secondary">Ghost</button>`}</code></pre>
+            <div class="ds-btn-color-panel" data-color="peach">
+              <button class="ds-copy-btn" data-code="btn-peach">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-peach ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-peach">Default</button>
+<button class="ds-btn ds-btn-peach ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-peach">Filled</button>
+<button class="ds-btn ds-btn-peach-outline">Outline</button>
+<button class="ds-btn ds-btn-peach-ghost">Ghost</button>`}</code></pre>
             </div>
 
             <div class="ds-btn-color-panel" data-color="rose" style="display:none">
               <button class="ds-copy-btn" data-code="btn-rose">Copy</button>
-              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-rose">Filled</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-rose">Default</button>
+<button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-rose">Filled</button>
 <button class="ds-btn ds-btn-rose-outline">Outline</button>
 <button class="ds-btn ds-btn-rose-ghost">Ghost</button>`}</code></pre>
             </div>
 
             <div class="ds-btn-color-panel" data-color="sky" style="display:none">
               <button class="ds-copy-btn" data-code="btn-sky">Copy</button>
-              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-sky">Filled</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-sky">Default</button>
+<button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-sky">Filled</button>
 <button class="ds-btn ds-btn-sky-outline">Outline</button>
 <button class="ds-btn ds-btn-sky-ghost">Ghost</button>`}</code></pre>
             </div>
 
             <div class="ds-btn-color-panel" data-color="lime" style="display:none">
               <button class="ds-copy-btn" data-code="btn-lime">Copy</button>
-              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-lime">Filled</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-lime">Default</button>
+<button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-lime">Filled</button>
 <button class="ds-btn ds-btn-lime-outline">Outline</button>
 <button class="ds-btn ds-btn-lime-ghost">Ghost</button>`}</code></pre>
             </div>
 
             <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
               <button class="ds-copy-btn" data-code="btn-yellow">Copy</button>
-              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-yellow">Filled</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-yellow">Default</button>
+<button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-yellow">Filled</button>
 <button class="ds-btn ds-btn-yellow-outline">Outline</button>
 <button class="ds-btn ds-btn-yellow-ghost">Ghost</button>`}</code></pre>
             </div>
@@ -659,111 +629,85 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <div id="badge-preview" class="ds-preview-canvas">
             <div class="ds-preview-row">
-              <span class="ds-badge ds-badge-pink">Pink</span>
-              <span class="ds-badge ds-badge-teal">Teal</span>
-              <span class="ds-badge ds-badge-carmine">Carmine</span>
+              <span class="ds-badge ds-badge-rose">Rose</span>
+              <span class="ds-badge ds-badge-sky">Sky</span>
+              <span class="ds-badge ds-badge-lime">Lime</span>
+              <span class="ds-badge ds-badge-yellow">Yellow</span>
+              <span class="ds-badge ds-badge-peach">Peach</span>
               <span class="ds-badge ds-badge-neutral">Neutral</span>
               <span class="ds-badge ds-badge-outline">Outline</span>
             </div>
           </div>
           <div id="badge-code" class="ds-code-panel" style="display:none">
             <button class="ds-copy-btn" data-code="badge">Copy</button>
-            <pre class="ds-code"><code>{`<span class="ds-badge ds-badge-pink">Pink</span>
-<span class="ds-badge ds-badge-teal">Teal</span>
-<span class="ds-badge ds-badge-carmine">Carmine</span>
+            <pre class="ds-code"><code>{`<span class="ds-badge ds-badge-rose">Rose</span>
+<span class="ds-badge ds-badge-sky">Sky</span>
+<span class="ds-badge ds-badge-lime">Lime</span>
+<span class="ds-badge ds-badge-yellow">Yellow</span>
+<span class="ds-badge ds-badge-peach">Peach</span>
+<span class="ds-badge ds-badge-neutral">Neutral</span>
 <span class="ds-badge ds-badge-outline">Outline</span>`}</code></pre>
           </div>
         </div>
       </div>
 
-      <!-- NAV BAR -->
-      <div class="ds-subsection">
-        <h3 class="ds-subsection-title">Navigation</h3>
-        <div class="ds-preview-block">
-          <div class="ds-preview-canvas" style="padding:0">
-            <nav class="ds-navbar">
-              <span class="ds-navbar-brand">TH</span>
-              <div class="ds-navbar-links">
-                <a href="#" class="ds-navbar-link ds-navbar-link-active">Work</a>
-                <a href="#" class="ds-navbar-link">About</a>
-                <a href="#" class="ds-navbar-link">Contact</a>
-              </div>
-              <button class="ds-btn ds-btn-primary ds-btn-sm">Say hello</button>
-            </nav>
-          </div>
-        </div>
-      </div>
-
     </section>
 
-    <!-- ── SECTION 6: Animations ──────────────────── -->
-    <section id="animations" class="ds-section">
+    <!-- ── SECTION 4: Foundations ─────────────────── -->
+    <section id="foundations" class="ds-section">
       <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">06</span>
-        <h2 class="ds-section-title">Animations</h2>
+        <span class="ds-label ds-mono">04</span>
+        <h2 class="ds-section-title">Foundations</h2>
       </div>
-      <p class="ds-section-desc">Intentional motion. Calm, tactile, never flashy.</p>
+      <p class="ds-section-desc">Core design tokens — the single source of truth for every visual decision.</p>
 
+      <!-- Radius -->
       <div class="ds-subsection">
-        <h3 class="ds-subsection-title">Easing Curves</h3>
-        <div class="ds-easing-grid">
+        <h3 class="ds-subsection-title">Border Radius</h3>
+        <div class="ds-radius-grid">
           {[
-            { name: 'ds-ease (spring)', val: 'cubic-bezier(0.16, 1, 0.3, 1)', class: 'ease-spring' },
-            { name: 'ease-in-out',      val: 'ease-in-out',                    class: 'ease-inout'  },
-            { name: 'ease-out',         val: 'ease-out',                       class: 'ease-out'    },
-          ].map(e => (
-            <div class="ds-easing-item">
-              <div class="ds-easing-track">
-                <div class={`ds-easing-ball ${e.class}`}></div>
-              </div>
-              <div>
-                <p class="ds-mono" style="font-size:12px;color:var(--ds-text)">{e.name}</p>
-                <p class="ds-mono ds-muted" style="font-size:11px">{e.val}</p>
-              </div>
+            { name: 'sm',   val: '4px',    px: 4 },
+            { name: 'md',   val: '8px',    px: 8 },
+            { name: 'lg',   val: '16px',   px: 16 },
+            { name: 'full', val: '9999px', px: 9999 },
+          ].map(r => (
+            <div class="ds-radius-item">
+              <div class="ds-radius-box" style={`border-radius: ${r.px}px`}></div>
+              <p class="ds-mono ds-muted">{r.name}</p>
+              <p class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{r.val}</p>
             </div>
           ))}
         </div>
       </div>
 
+      <!-- Shadows -->
       <div class="ds-subsection">
-        <h3 class="ds-subsection-title">Hover Lift</h3>
-        <div class="ds-preview-canvas">
-          <div class="ds-preview-row">
-            <div class="ds-card ds-hover-lift" style="width:180px;padding:20px;cursor:pointer">
-              <p class="ds-mono ds-muted" style="font-size:11px">Hover me</p>
-              <p style="font-size:15px;color:var(--ds-text);margin-top:8px">translateY(-4px)</p>
-            </div>
-            <div class="ds-card ds-hover-glow" style="width:180px;padding:20px;cursor:pointer">
-              <p class="ds-mono ds-muted" style="font-size:11px">Hover me</p>
-              <p style="font-size:15px;color:var(--ds-text);margin-top:8px">Glow pulse</p>
-            </div>
+        <h3 class="ds-subsection-title">Shadows</h3>
+        <div class="ds-shadow-grid">
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-sm)">sm</div>
+            <p class="ds-mono ds-muted">shadow-sm</p>
           </div>
-        </div>
-      </div>
-
-      <div class="ds-subsection">
-        <h3 class="ds-subsection-title">Keyframes</h3>
-        <div class="ds-token-table">
-          {[
-            { name: 'glow-pulse',  desc: 'Pink glow breathing on accent elements',       duration: '2s infinite' },
-            { name: 'fade-up',     desc: 'Opacity 0→1 + translateY(20px)→0',             duration: '0.6s ease'   },
-            { name: 'shimmer',     desc: 'Background-position sweep for skeleton states', duration: '1.5s linear' },
-            { name: 'spin',        desc: 'Full 360° rotation for loading indicators',     duration: '1s linear'   },
-          ].map(k => (
-            <div class="ds-token-row">
-              <code class="ds-mono" style="font-size:12px;color:var(--ds-accent)">{k.name}</code>
-              <span class="ds-muted" style="font-size:13px">{k.desc}</span>
-              <span class="ds-mono ds-muted" style="font-size:11px">{k.duration}</span>
-            </div>
-          ))}
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-md)">md</div>
+            <p class="ds-mono ds-muted">shadow-md</p>
+          </div>
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-glow-pink)">glow-coral</div>
+            <p class="ds-mono ds-muted">glow-coral</p>
+          </div>
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-glow-teal)">glow-golden</div>
+            <p class="ds-mono ds-muted">glow-golden</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── SECTION 7: Interaction States ─────────── -->
+    <!-- ── SECTION 5: Interaction States ─────────── -->
     <section id="states" class="ds-section">
       <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">07</span>
+        <span class="ds-label ds-mono">05</span>
         <h2 class="ds-section-title">Interaction States</h2>
       </div>
       <p class="ds-section-desc">Every interactive element communicates its state clearly.</p>
@@ -821,6 +765,214 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     </section>
 
+    <!-- ── SECTION 6: Navigation ──────────────────── -->
+    <section id="navigation" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">06</span>
+        <h2 class="ds-section-title">Navigation</h2>
+      </div>
+      <p class="ds-section-desc">Nav links with blob hover — pill que escala con spring para feedback táctil.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Nav Link States</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Hover sobre cada item para ver la animación. El estado activo mantiene el blob visible.</p>
+
+        <!-- Demo strip -->
+        <div class="ds-preview-canvas" style="display:flex;align-items:center;justify-content:center;gap:4px;min-height:96px;padding:24px">
+          {['Work', 'Fun', 'About', 'Resume'].map((label, i) => (
+            <a class:list={['ds-navitem', i === 0 ? 'ds-navitem--active' : '']} href="#navigation">
+              <span class="ds-navitem-blob" aria-hidden="true"></span>
+              <span class="ds-navitem-label">{label}</span>
+            </a>
+          ))}
+        </div>
+
+        <!-- States breakdown -->
+        <div class="ds-nav-states-grid">
+          {[
+            { label: 'Default',  state: '',                     desc: 'opacity 50%, sin blob'         },
+            { label: 'Hover',    state: 'ds-navitem--hover',    desc: 'blob scale 1, opacity 15%'     },
+            { label: 'Active',   state: 'ds-navitem--active',   desc: 'blob persiste, text peach'     },
+            { label: 'Pressed',  state: 'ds-navitem--pressed',  desc: 'blob sólido 90%, label blanco' },
+          ].map(s => (
+            <div class="ds-nav-state-card">
+              <div class="ds-nav-state-preview">
+                <a class:list={['ds-navitem', s.state]} href="#navigation">
+                  <span class="ds-navitem-blob" aria-hidden="true"></span>
+                  <span class="ds-navitem-label">Work</span>
+                </a>
+              </div>
+              <p class="ds-mono" style="font-size:11px;font-weight:600;color:var(--ds-text);margin-bottom:2px">{s.label}</p>
+              <p class="ds-mono ds-muted" style="font-size:10px">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Especificaciones</h3>
+        <div class="ds-nav-specs">
+          {[
+            { prop: 'Color',           value: 'var(--ds-peach) · #ED7752'                  },
+            { prop: 'Color deep',      value: 'var(--ds-peach-deep) · #C95E38'             },
+            { prop: 'Blob default',    value: 'opacity 0, scale 0.82'                      },
+            { prop: 'Blob hover',      value: 'opacity 15%, scale 1'                       },
+            { prop: 'Blob active',     value: 'opacity 18%, scale 1'                       },
+            { prop: 'Blob pressed',    value: 'opacity 90%, scale 0.94 · label blanco'     },
+            { prop: 'Easing hover',    value: 'cubic-bezier(0.34, 1.56, 0.64, 1) · 220ms' },
+            { prop: 'Easing press',    value: 'ease-out · 60ms'                            },
+            { prop: 'Padding',         value: '6px 12px · border-radius 9999px'            },
+            { prop: 'Cursor',          value: 'dot Peach #ED7752'                          },
+          ].map(r => (
+            <div class="ds-nav-spec-row">
+              <span class="ds-mono ds-muted" style="font-size:11px;min-width:120px">{r.prop}</span>
+              <span class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{r.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 7: Animations ──────────────────── -->
+    <section id="animations" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">07</span>
+        <h2 class="ds-section-title">Animations</h2>
+      </div>
+      <p class="ds-section-desc">Intentional motion. Calm, tactile, never flashy.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Easing Curves</h3>
+        <div class="ds-easing-grid">
+          {[
+            { name: 'ds-ease (spring)', val: 'cubic-bezier(0.16, 1, 0.3, 1)', class: 'ease-spring' },
+            { name: 'ease-in-out',      val: 'ease-in-out',                    class: 'ease-inout'  },
+            { name: 'ease-out',         val: 'ease-out',                       class: 'ease-out'    },
+          ].map(e => (
+            <div class="ds-easing-item">
+              <div class="ds-easing-track">
+                <div class={`ds-easing-ball ${e.class}`}></div>
+              </div>
+              <div>
+                <p class="ds-mono" style="font-size:12px;color:var(--ds-text)">{e.name}</p>
+                <p class="ds-mono ds-muted" style="font-size:11px">{e.val}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Hover Lift</h3>
+        <div class="ds-preview-canvas">
+          <div class="ds-preview-row">
+            <div class="ds-card ds-hover-lift" style="width:180px;padding:20px;cursor:pointer">
+              <p class="ds-mono ds-muted" style="font-size:11px">Hover me</p>
+              <p style="font-size:15px;color:var(--ds-text);margin-top:8px">translateY(-4px)</p>
+            </div>
+            <div class="ds-card ds-hover-glow" style="width:180px;padding:20px;cursor:pointer">
+              <p class="ds-mono ds-muted" style="font-size:11px">Hover me</p>
+              <p style="font-size:15px;color:var(--ds-text);margin-top:8px">Glow pulse</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Keyframes</h3>
+        <div class="ds-keyframe-demos">
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo">
+              <div class="ds-kf-glow-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">glow-pulse</code>
+              <p class="ds-keyframe-desc">Peach glow breathing on accent elements</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">2s infinite</span>
+          </div>
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo">
+              <div class="ds-kf-fade-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">fade-up</code>
+              <p class="ds-keyframe-desc">Opacity 0→1 + translateY(20px)→0</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">0.6s ease</span>
+          </div>
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo" style="width:140px">
+              <div class="ds-kf-shimmer-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">shimmer</code>
+              <p class="ds-keyframe-desc">Background-position sweep for skeleton states</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">1.5s linear</span>
+          </div>
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo">
+              <div class="ds-kf-spin-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">spin</code>
+              <p class="ds-keyframe-desc">Full 360° rotation for loading indicators</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">1s linear</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 8: Grid & Spacing ─────────────── -->
+    <section id="spacing" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">08</span>
+        <h2 class="ds-section-title">Grid & Spacing</h2>
+      </div>
+      <p class="ds-section-desc">8pt grid system. Every measurement is a multiple of 4.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Spacing Scale</h3>
+        <div class="ds-spacing-scale">
+          {[
+            { name: 'space-1', val: '4px',  px: 4  },
+            { name: 'space-2', val: '8px',  px: 8  },
+            { name: 'space-3', val: '12px', px: 12 },
+            { name: 'space-4', val: '16px', px: 16 },
+            { name: 'space-6', val: '24px', px: 24 },
+            { name: 'space-8', val: '32px', px: 32 },
+            { name: 'space-12', val: '48px', px: 48 },
+            { name: 'space-16', val: '64px', px: 64 },
+          ].map(s => (
+            <div class="ds-spacing-row">
+              <span class="ds-mono ds-muted" style="font-size:11px;min-width:72px">{s.name}</span>
+              <div class="ds-spacing-bar" style={`width:${s.px * 2}px`}></div>
+              <span class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{s.val}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">12-Column Grid</h3>
+        <div class="ds-grid-demo">
+          {Array.from({ length: 12 }).map(_ => (
+            <div class="ds-grid-col">
+              <div class="ds-grid-col-inner"></div>
+            </div>
+          ))}
+        </div>
+        <p class="ds-muted" style="font-size:13px;margin-top:12px">12 columns · 24px gutter · 64px margin</p>
+      </div>
+    </section>
+
     <!-- Footer spacer -->
     <div style="height: 120px"></div>
 
@@ -838,6 +990,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     /* Base palette */
     --ds-coral:      #DA6D5B;
     --ds-peach:      #ED7752;
+    --ds-peach-deep: #C95E38;
     --ds-blush:      #F0A891;
     --ds-golden:     #E6B83A;
     --ds-cyan:       #0094BA;
@@ -877,7 +1030,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     --ds-surface-2:    #F0EDE8;
     --ds-text:         #2E3141;
     --ds-text-muted:   #8B8796;
-    --ds-accent:       #DA6D5B;
+    --ds-accent:       #ED7752;
     --ds-accent-2:     #0094BA;
     --ds-accent-rose:  #ED527A;
     --ds-accent-sky:   #52C8ED;
@@ -1086,11 +1239,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     font-weight: 500;
     text-transform: uppercase;
   }
-  .ds-badge-pink    { background: rgba(218,109,91,0.12); color: var(--ds-coral); }
-  .ds-badge-teal    { background: rgba(0,148,186,0.12); color: #006B8A; }
-  .ds-badge-carmine { background: rgba(196,90,73,0.12);  color: var(--ds-coral-deep); }
-  .ds-badge-neutral { background: rgba(46,49,65,0.07);   color: var(--ds-text-muted); }
+  .ds-badge-rose    { background: rgba(237,82,122,0.12);  color: var(--ds-rose-700); }
+  .ds-badge-sky     { background: rgba(82,200,237,0.15);  color: var(--ds-sky-700); }
+  .ds-badge-lime    { background: rgba(171,186,43,0.15);  color: var(--ds-lime-700); }
+  .ds-badge-yellow  { background: rgba(248,232,22,0.2);   color: var(--ds-yellow-700); }
+  .ds-badge-peach   { background: rgba(237,119,82,0.12);  color: var(--ds-peach-deep); }
+  .ds-badge-neutral { background: rgba(46,49,65,0.07);    color: var(--ds-text-muted); }
   .ds-badge-outline { background: transparent; border: 1px solid var(--ds-border); color: var(--ds-text-muted); }
+  /* Legacy aliases */
+  .ds-badge-pink    { background: rgba(237,119,82,0.12);  color: var(--ds-peach-deep); }
+  .ds-badge-teal    { background: rgba(82,200,237,0.15);  color: var(--ds-sky-700); }
+  .ds-badge-carmine { background: rgba(237,82,122,0.12);  color: var(--ds-rose-700); }
 
   /* ── Buttons ──────────────────────────────────────── */
   .ds-btn {
@@ -1114,12 +1273,41 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .ds-btn-sm { padding: 7px 14px; font-size: 12px; }
   .ds-btn-lg { padding: 15px 32px; font-size: 15px; }
 
+  .ds-btn-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .ds-btn-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ds-btn-col-label {
+    font-family: var(--ds-font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ds-text-muted);
+  }
+  .ds-btn-col-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .ds-btn-state {
+    min-width: 88px;
+    justify-content: center;
+  }
+
   .ds-btn-primary {
-    background: var(--ds-coral);
+    background: var(--ds-peach);
     color: #fff;
   }
   .ds-btn-primary:hover:not(:disabled) {
-    background: var(--ds-coral-deep);
+    background: var(--ds-peach-deep);
     transform: translateY(-1px);
   }
   .ds-btn-primary:active:not(:disabled) {
@@ -1143,10 +1331,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .ds-btn-ghost {
     background: transparent;
     color: var(--ds-accent);
-    border: 1px solid rgba(218,109,91,0.35);
+    border: 1px solid rgba(237,119,82,0.35);
   }
   .ds-btn-ghost:hover:not(:disabled) {
-    background: rgba(218,109,91,0.07);
+    background: rgba(237,119,82,0.07);
     border-color: var(--ds-accent);
   }
 
@@ -1251,6 +1439,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .ds-btn-yellow-ghost { background: transparent; color: var(--ds-yellow-700); border: 1px solid rgba(248,232,22,0.5); }
   .ds-btn-yellow-ghost:hover:not(:disabled) { background: var(--ds-yellow-100); border-color: var(--ds-yellow-500); }
 
+  .ds-btn-peach { background: var(--ds-peach); color: #fff; }
+  .ds-btn-peach:hover:not(:disabled) { background: var(--ds-peach-deep); transform: translateY(-1px); }
+  .ds-btn-peach:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-peach:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .ds-btn-peach-outline { background: transparent; color: var(--ds-peach-deep); border: 1px solid var(--ds-peach); }
+  .ds-btn-peach-outline:hover:not(:disabled) { background: rgba(237,119,82,0.08); }
+
+  .ds-btn-peach-ghost { background: transparent; color: var(--ds-peach-deep); border: 1px solid rgba(237,119,82,0.35); }
+  .ds-btn-peach-ghost:hover:not(:disabled) { background: rgba(237,119,82,0.07); border-color: var(--ds-peach); }
+
   /* ── Inputs ───────────────────────────────────────── */
   .ds-input-group { display: flex; flex-direction: column; gap: 6px; }
   .ds-input-label {
@@ -1316,48 +1515,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     line-height: 1.1;
   }
   .ds-card-body { font-size: 14px; color: var(--ds-text-muted); line-height: 1.65; }
-
-  /* ── Navbar ───────────────────────────────────────── */
-  .ds-navbar {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 0 24px;
-    height: 52px;
-    background: var(--ds-text);
-    border-bottom: 3px solid var(--ds-coral);
-  }
-  .ds-navbar-brand {
-    font-family: var(--ds-font-mono);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: #ffffff;
-    margin-right: auto;
-  }
-  .ds-navbar-links { display: flex; gap: 0; margin-right: auto; }
-  .ds-navbar-link {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    padding: 0 14px;
-    height: 52px;
-    display: flex;
-    align-items: center;
-    transition: color var(--ds-duration);
-    position: relative;
-  }
-  .ds-navbar-link:hover { color: rgba(255,255,255,0.85); }
-  .ds-navbar-link-active {
-    color: #ffffff;
-  }
-  .ds-navbar-link-active::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0; right: 0;
-    height: 3px;
-    background: var(--ds-coral);
-  }
 
   /* ── Preview blocks ───────────────────────────────── */
   .ds-preview-block {
@@ -1637,6 +1794,68 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .ds-hover-lift:hover  { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(47,47,47,0.16); }
   .ds-hover-glow:hover  { box-shadow: 0 0 0 3px var(--ds-red); }
 
+  /* ── Keyframe demos ──────────────────────────────── */
+  .ds-keyframe-demos { display: flex; flex-direction: column; gap: 0; }
+  .ds-keyframe-card {
+    display: grid;
+    grid-template-columns: 140px 1fr 90px;
+    gap: 24px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--ds-border);
+  }
+  .ds-keyframe-card:last-child { border-bottom: none; }
+  .ds-kf-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 52px;
+  }
+  .ds-kf-info { display: flex; flex-direction: column; gap: 4px; }
+  .ds-keyframe-name { font-size: 12px; color: var(--ds-accent); }
+  .ds-keyframe-desc { font-size: 13px; color: var(--ds-text-muted); margin: 0; }
+  .ds-keyframe-duration { font-size: 11px; color: var(--ds-text-muted); text-align: right; }
+
+  /* glow-pulse demo */
+  .ds-kf-glow-demo {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--ds-peach);
+    animation: ds-glow-pulse 2s ease-in-out infinite;
+  }
+  /* fade-up demo */
+  .ds-kf-fade-demo {
+    width: 56px; height: 22px;
+    border-radius: 3px;
+    background: var(--ds-peach);
+    animation: ds-fade-up 1.4s ease infinite alternate;
+  }
+  @keyframes ds-fade-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  /* shimmer demo */
+  .ds-kf-shimmer-demo {
+    width: 100%; height: 14px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--ds-surface-2) 25%, #dedad4 50%, var(--ds-surface-2) 75%);
+    background-size: 300% 100%;
+    animation: ds-shimmer 1.5s linear infinite;
+  }
+  @keyframes ds-shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+  }
+  /* spin demo */
+  .ds-kf-spin-demo {
+    width: 28px; height: 28px;
+    border: 3px solid rgba(237,119,82,0.2);
+    border-top-color: var(--ds-peach);
+    border-radius: 50%;
+    animation: ds-spin 1s linear infinite;
+  }
+
   /* ── States grid ─────────────────────────────────── */
   .ds-states-grid {
     display: grid;
@@ -1685,8 +1904,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   /* ── Glow pulse ──────────────────────────────────── */
   @keyframes ds-glow-pulse {
-    0%, 100% { box-shadow: 0 0 0 2px rgba(218,109,91,0.3); }
-    50%       { box-shadow: 0 0 0 5px rgba(218,109,91,0.5); }
+    0%, 100% { box-shadow: 0 0 0 2px rgba(237,119,82,0.3); }
+    50%       { box-shadow: 0 0 0 8px rgba(237,119,82,0.5); }
   }
 
   /* ── Overview section ────────────────────────────── */
@@ -1761,6 +1980,159 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .ds-overview-actions .ds-btn {
     justify-content: center;
     width: 100%;
+  }
+
+  /* ── Section 8: Navigation ───────────────────────── */
+
+  /* nav item base */
+  /* ── nav token ── */
+  .ds-navitem { --nav-color: var(--ds-peach); --nav-color-deep: var(--ds-peach-deep); }
+
+  .ds-navitem {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='%23ED7752'/%3E%3C/svg%3E") 12 12, pointer;
+    text-decoration: none;
+    isolation: isolate;
+    user-select: none;
+  }
+
+  /* blob */
+  .ds-navitem-blob {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: var(--nav-color);
+    opacity: 0;
+    transform: scale(0.82);
+    transition:
+      opacity 180ms ease-out,
+      transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* label */
+  .ds-navitem-label {
+    position: relative;
+    z-index: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ds-text);
+    opacity: 0.5;
+    transition: opacity 180ms ease-out, color 180ms ease-out;
+    font-family: var(--ds-font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* hover */
+  .ds-navitem:hover .ds-navitem-blob {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  .ds-navitem:hover .ds-navitem-label {
+    opacity: 1;
+    color: var(--nav-color-deep);
+  }
+
+  /* active */
+  .ds-navitem--active .ds-navitem-blob {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+  .ds-navitem--active .ds-navitem-label {
+    opacity: 1;
+    color: var(--nav-color-deep);
+  }
+
+  /* hover frozen (state card) */
+  .ds-navitem--hover .ds-navitem-blob {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  .ds-navitem--hover .ds-navitem-label {
+    opacity: 1;
+    color: var(--nav-color-deep);
+  }
+
+  /* pressed — más notable: blob sólido + sombra interna + escala clara */
+  .ds-navitem--pressed .ds-navitem-blob {
+    opacity: 0.9;
+    transform: scale(0.94);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.18);
+  }
+  .ds-navitem--pressed .ds-navitem-label {
+    opacity: 1;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+
+  /* press feedback on real click */
+  .ds-navitem:active .ds-navitem-blob {
+    opacity: 0.9;
+    transform: scale(0.94);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.18);
+    transition-duration: 60ms;
+  }
+  .ds-navitem:active .ds-navitem-label {
+    color: #fff;
+    opacity: 1;
+  }
+
+  /* states breakdown grid */
+  .ds-nav-states-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .ds-nav-state-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 16px 16px;
+    border: 1px solid var(--ds-border);
+    border-radius: 10px;
+    background: var(--ds-surface);
+  }
+
+  .ds-nav-state-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    margin-bottom: 4px;
+  }
+
+  /* specs table */
+  .ds-nav-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--ds-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .ds-nav-spec-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--ds-border);
+  }
+
+  .ds-nav-spec-row:last-child {
+    border-bottom: none;
+  }
+
+  .ds-nav-spec-row:nth-child(even) {
+    background: var(--ds-surface);
   }
 </style>
 
