@@ -41,16 +41,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   <!-- Main panel -->
   <main class="ds-main">
+    <div id="ds-progress" aria-hidden="true"></div>
 
     <!-- ── Hero ─────────────────────────────────────── -->
     <header class="ds-hero">
-      <p class="ds-mono ds-muted ds-label">Tatiana Hernandez · Brand Identity</p>
-      <h1 class="ds-hero-title">Personal Brand<br/><em>Guidelines</em></h1>
-      <p class="ds-hero-sub">
+      <p class="ds-mono ds-muted ds-label ds-hero-enter">Tatiana Hernandez · Brand Identity</p>
+      <h1 class="ds-hero-title ds-hero-enter">Personal Brand<br/><em>Guidelines</em></h1>
+      <p class="ds-hero-sub ds-hero-enter">
         The design system behind this portfolio — documented as a live handoff artifact
         for developers.
       </p>
-      <div class="ds-hero-badges">
+      <div class="ds-hero-badges ds-hero-enter">
         <span class="ds-badge ds-badge-pink">Design System</span>
         <span class="ds-badge ds-badge-outline">Web · Figma</span>
       </div>
@@ -79,11 +80,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div class="ds-overview-right">
           <div class="ds-overview-stats">
             <div class="ds-overview-stat">
-              <span class="ds-overview-stat-value">7</span>
+              <span class="ds-overview-stat-value" data-count-to="7">0</span>
               <span class="ds-mono ds-muted ds-overview-stat-label">sections</span>
             </div>
             <div class="ds-overview-stat">
-              <span class="ds-overview-stat-value">1</span>
+              <span class="ds-overview-stat-value" data-count-to="1">0</span>
               <span class="ds-mono ds-muted ds-overview-stat-label">source of truth</span>
             </div>
             <div class="ds-overview-stat">
@@ -1115,7 +1116,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .ds-nav-link.active {
     color: var(--ds-accent);
     border-left-color: var(--ds-accent);
-    font-weight: 500;
+    border-left-width: 3px;
+    padding-left: 15px;
+    font-weight: 600;
+    background: rgba(237, 119, 82, 0.07);
+    border-radius: 0 6px 6px 0;
   }
   .ds-sidebar-footer {
     display: flex;
@@ -1155,7 +1160,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin: 20px 0 24px;
   }
   .ds-hero-title em {
-    color: var(--ds-accent);
+    background: linear-gradient(135deg, var(--ds-coral) 20%, var(--ds-accent-rose) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-style: italic;
   }
   .ds-hero-sub {
@@ -1710,7 +1718,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     padding: 10px 12px;
     transition: transform var(--ds-duration) var(--ds-ease);
   }
-  .ds-swatch:hover { transform: translateY(-2px); }
+  .ds-swatch:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 28px rgba(46,49,65,0.13); }
   .ds-swatch-info { display: flex; flex-direction: column; gap: 2px; }
   .ds-swatch-name { font-size: 12px; font-weight: 500; }
   .ds-swatch-hex  { font-family: var(--ds-font-mono); font-size: 11px; }
@@ -1724,7 +1732,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid var(--ds-border);
+    transition: background var(--ds-duration) var(--ds-ease);
+    cursor: default;
   }
+  .ds-token-row:hover { background: var(--ds-surface-2); padding-left: 6px; }
   .ds-token-row:last-child { border-bottom: none; }
   .ds-token-swatch {
     width: 20px; height: 20px;
@@ -2134,6 +2145,82 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .ds-nav-spec-row:nth-child(even) {
     background: var(--ds-surface);
   }
+
+  /* ── Hero entrance stagger ──────────────────────────── */
+  @keyframes ds-slide-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .ds-hero-enter {
+    opacity: 0;
+    animation: ds-slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .ds-hero-enter:nth-child(1) { animation-delay: 0ms; }
+  .ds-hero-enter:nth-child(2) { animation-delay: 90ms; }
+  .ds-hero-enter:nth-child(3) { animation-delay: 180ms; }
+  .ds-hero-enter:nth-child(4) { animation-delay: 270ms; }
+
+  /* ── Scroll progress bar ────────────────────────────── */
+  #ds-progress {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--ds-coral), var(--ds-accent-rose), var(--ds-accent-sky));
+    transform-origin: left;
+    transform: scaleX(0);
+    z-index: 200;
+    pointer-events: none;
+  }
+  @media (max-width: 768px) {
+    #ds-progress { left: 0; }
+  }
+
+  /* ── Swatch copy pop ─────────────────────────────────── */
+  @keyframes ds-swatch-pop {
+    0%   { transform: translateY(0) scale(1) rotate(0deg); }
+    35%  { transform: translateY(-7px) scale(1.08) rotate(2.5deg); }
+    70%  { transform: translateY(-4px) scale(1.03) rotate(-1deg); }
+    100% { transform: translateY(-4px) scale(1.02) rotate(0deg); }
+  }
+  .ds-swatch.ds-just-copied {
+    animation: ds-swatch-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+  }
+
+  /* ── Overview stat hover ─────────────────────────────── */
+  .ds-overview-stat {
+    transition: background var(--ds-duration) var(--ds-ease);
+    cursor: default;
+  }
+  .ds-overview-stat:hover {
+    background: rgba(237, 119, 82, 0.05);
+  }
+  .ds-overview-stat-value {
+    transition: color var(--ds-duration) var(--ds-ease);
+  }
+  .ds-overview-stat:hover .ds-overview-stat-value {
+    color: var(--ds-accent);
+  }
+
+  /* ── Section reveal ─────────────────────────────────── */
+  .ds-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ds-reveal.ds-reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .ds-reveal[data-delay="1"] { transition-delay: 60ms; }
+  .ds-reveal[data-delay="2"] { transition-delay: 120ms; }
+  .ds-reveal[data-delay="3"] { transition-delay: 180ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .ds-reveal { opacity: 1; transform: none; transition: none; }
+  }
 </style>
 
 <!-- ════════════════════════════════════════════════════════
@@ -2246,16 +2333,92 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   });
 
   // ── Download CSS ───────────────────────────────────────
-  document.getElementById('ds-download-css')?.addEventListener('click', () => {
-    const styleEl = document.querySelector<HTMLStyleElement>('style');
-    if (!styleEl) return;
-    const css = styleEl.textContent ?? '';
-    const blob = new Blob([css], { type: 'text/css' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'tatiana-design-system.css';
-    a.click();
-    URL.revokeObjectURL(url);
+  document.getElementById('ds-download-css')?.addEventListener('click', function() {
+    const btn = this as HTMLButtonElement;
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<span class="ds-spinner" style="margin-right:8px"></span>Preparing…';
+    btn.style.opacity = '0.75';
+    btn.style.pointerEvents = 'none';
+    setTimeout(() => {
+      const styleEl = document.querySelector<HTMLStyleElement>('style');
+      if (!styleEl) { btn.innerHTML = originalHTML; btn.style.opacity = ''; btn.style.pointerEvents = ''; return; }
+      const css = styleEl.textContent ?? '';
+      const blob = new Blob([css], { type: 'text/css' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'tatiana-design-system.css';
+      a.click();
+      URL.revokeObjectURL(url);
+      btn.innerHTML = '✓ Downloaded';
+      btn.style.opacity = '';
+      setTimeout(() => { btn.innerHTML = originalHTML; btn.style.pointerEvents = ''; }, 2200);
+    }, 500);
+  });
+
+  // ── Section scroll reveal ──────────────────────────────
+  const dsRevealEls = document.querySelectorAll<HTMLElement>(
+    '.ds-section-label-row, .ds-section-desc, .ds-subsection, .ds-overview-grid'
+  );
+  const dsRevealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('ds-reveal-visible');
+          dsRevealObserver.unobserve(e.target);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -40px 0px', threshold: 0.04 }
+  );
+  dsRevealEls.forEach((el, i) => {
+    el.classList.add('ds-reveal');
+    dsRevealObserver.observe(el);
+  });
+
+  // ── Stats count-up animation ──────────────────────────
+  const countEls = document.querySelectorAll<HTMLElement>('[data-count-to]');
+  const countObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        const target = parseInt(el.dataset.countTo ?? '0', 10);
+        const duration = 900;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(ease * target));
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        countObserver.unobserve(el);
+      });
+    },
+    { threshold: 0.5 }
+  );
+  countEls.forEach(el => countObserver.observe(el));
+
+  // ── Scroll progress bar ────────────────────────────────
+  const dsMainEl = document.querySelector<HTMLElement>('.ds-main');
+  const dsProgressEl = document.getElementById('ds-progress');
+  if (dsMainEl && dsProgressEl) {
+    const updateProgress = () => {
+      const { scrollTop, scrollHeight, clientHeight } = dsMainEl;
+      const pct = scrollHeight <= clientHeight ? 0 : scrollTop / (scrollHeight - clientHeight);
+      dsProgressEl.style.transform = `scaleX(${Math.min(pct, 1).toFixed(4)})`;
+    };
+    dsMainEl.addEventListener('scroll', updateProgress, { passive: true });
+  }
+
+  // ── Swatch copy pop feedback ──────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-swatch[data-copy]').forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      swatch.classList.remove('ds-just-copied');
+      void swatch.offsetWidth;
+      swatch.classList.add('ds-just-copied');
+      swatch.addEventListener('animationend', () => swatch.classList.remove('ds-just-copied'), { once: true });
+    });
   });
 </script>
