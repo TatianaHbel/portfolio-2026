@@ -14,24 +14,24 @@ const { left: leftProjects, right: rightProjects } = homeProjectColumns;
         <!-- Hero -->
         <div class="grid grid-cols-1 gap-12 lg:gap-6 lg:pt-[26vh] pt-8 pb-8 w-full lg:grid-cols-2">
           <div class="flex flex-col w-full gap-4">
-            <h1 class="max-w-[700px]">I'm Tatiana, a product designer who <span class="italic">vibecodes</span>.</h1>
+            <h1 class="max-w-[700px] animate-slide-in-up" style="animation-delay: 0.15s">I'm Tatiana, a product designer who <span class="italic vibecode-delight">vibecodes</span>.</h1>
           </div>
 
           <!-- Experience timeline -->
           <div class="flex flex-col gap-3 w-full align-bottom justify-end">
             <div class="flex flex-col gap-2 lg:gap-[2px]">
-              {experienceTimeline.map((entry) => (
-                <div class="flex gap-2">
-                  <h4 class="w-26 min-w-26">{entry.year}</h4>
+              {experienceTimeline.map((entry, i) => (
+                <div class="flex gap-2 animate-slide-in-up group/tl" style={`animation-delay: ${0.32 + i * 0.07}s`}>
+                  <h4 class="w-26 min-w-26 transition-colors duration-200 group-hover/tl:!text-foreground">{entry.year}</h4>
                   <div class="flex flex-col lg:flex-row gap-0.5">
                     <div class="w-56 min-w-56">
                       {entry.companyUrl ? (
-                        <a href={entry.companyUrl} target="_blank" rel="noopener noreferrer">{entry.company}</a>
+                        <a href={entry.companyUrl} target="_blank" rel="noopener noreferrer" class="transition-colors duration-200">{entry.company}</a>
                       ) : (
-                        <span>{entry.company}</span>
+                        <span class="transition-colors duration-200 group-hover/tl:!text-foreground">{entry.company}</span>
                       )}
                     </div>
-                    <p>{entry.role}</p>
+                    <p class="transition-colors duration-200 group-hover/tl:!text-foreground">{entry.role}</p>
                   </div>
                 </div>
               ))}
@@ -87,3 +87,21 @@ const { left: leftProjects, right: rightProjects } = homeProjectColumns;
     </main>
   </div>
 </BaseLayout>
+
+<script>
+  const reveals = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>

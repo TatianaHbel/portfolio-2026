@@ -248,4 +248,22 @@ const pageLabel = isHome ? '' : title.split(/\s[—–|]\s/)[0].trim();
   })();
 </script>
 
+<script>
+  /* ── Tab visibility trick ── */
+  const _title = document.title;
+  document.addEventListener('visibilitychange', () => {
+    document.title = document.hidden ? '👋 come back soon!' : _title;
+  });
+
+  /* ── Console Easter egg ── */
+  console.log(
+    '%c✦ tatiana.design',
+    'font-size:18px; font-weight:bold; color:#7C3AED; font-family:serif'
+  );
+  console.log(
+    '%cHey — you opened DevTools. We\'re going to get along just fine.\n\nFeel free to poke around. If you like what you see,\nlet\'s talk → tati.hbel@gmail.com',
+    'font-size:13px; color:#32404f; line-height:1.6'
+  );
+</script>
+
 </html>

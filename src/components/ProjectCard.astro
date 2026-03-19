@@ -37,8 +37,9 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
 ---
 
 <a
-  class="group block transition-all duration-300 ease-in-out !opacity-100"
+  class="group block"
   data-cursor={resolvedCursorType}
+  data-reveal
   href={href}
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
@@ -49,7 +50,7 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
       <div class="relative w-full h-full overflow-hidden" role="img" aria-label={`Project thumbnail for ${title}`}>
         {video ? (
           <video
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
             src={video}
             autoplay
@@ -59,7 +60,7 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
           />
         ) : image ? (
           <img
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
             src={image}
             alt={`Project thumbnail for ${title}`}
@@ -82,7 +83,7 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
     <!-- Caption -->
     <div class="flex flex-col justify-between gap-0.5 mt-1 transition-colors duration-300 ease-in-out lg:flex-row">
       <h3 class="project-card__title !text-[17px] overflow-hidden !text-foreground">{title}</h3>
-      <h4 class="project-card__label transition-colors duration-300 ease-in-out !text-[15px] overflow-hidden">{label}</h4>
+      <h4 class="project-card__label transition-all duration-300 ease-in-out !text-[15px] overflow-hidden group-hover:!text-foreground group-hover:!opacity-100">{label}</h4>
     </div>
   </div>
 </a>
