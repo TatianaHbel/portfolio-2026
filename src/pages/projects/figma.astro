@@ -109,19 +109,43 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <span class="ds-label ds-mono">01</span>
         <h2 class="ds-section-title">Colors</h2>
       </div>
-      <p class="ds-section-desc">Coral como masa visual principal. Crema como base. Dorado y sage como acento puntual.</p>
+      <p class="ds-section-desc">Two layers: a warm base for structure, and a personality palette that captures character.</p>
 
       <!-- Base palette -->
       <div class="ds-subsection">
         <h3 class="ds-subsection-title">Base Palette</h3>
+        <div class="ds-swatch-grid ds-swatch-grid-3">
+          {[
+            { name: 'Coral', var: '--ds-coral', hex: '#DA6D5B', light: true  },
+            { name: 'Peach', var: '--ds-peach', hex: '#ED7752', light: true  },
+            { name: 'Blush', var: '--ds-blush', hex: '#F0A891', light: false },
+          ].map(s => (
+            <button
+              class="ds-swatch"
+              data-copy={s.hex}
+              style={`background:${s.hex}`}
+              aria-label={`Copy ${s.hex}`}
+            >
+              <span class="ds-swatch-info" style={`color:${s.light ? 'rgba(255,255,255,0.9)' : '#2E3141'}`}>
+                <span class="ds-swatch-name">{s.name}</span>
+                <span class="ds-mono ds-swatch-hex">{s.hex}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Secondary palette -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Secondary Palette</h3>
         <div class="ds-swatch-grid">
           {[
-            { name: 'Coral',   var: '--ds-coral',  hex: '#DA6D5B', light: true  },
-            { name: 'Peach',   var: '--ds-peach',  hex: '#ED7752', light: true  },
-            { name: 'Blush',   var: '--ds-blush',  hex: '#F0A891', light: false },
-            { name: 'Golden',  var: '--ds-golden', hex: '#E6B83A', light: false },
-            { name: 'Cyan',    var: '--ds-cyan',   hex: '#0094BA', light: false },
-            { name: 'Sage',    var: '--ds-sage',   hex: '#8FA63C', light: true  },
+            { name: 'Rose',    hex: '#ED527A', light: true  },
+            { name: 'Sky',     hex: '#52C8ED', light: false },
+            { name: 'Lime',    hex: '#ABBA2B', light: false },
+            { name: 'Yellow',  hex: '#F8E816', light: false },
+            { name: 'Peach',   hex: '#ED7752', light: true  },
+            { name: 'Rose 700',hex: '#B23E5C', light: true  },
           ].map(s => (
             <button
               class="ds-swatch"
@@ -143,20 +167,84 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <h3 class="ds-subsection-title">Semantic Tokens</h3>
         <div class="ds-token-table">
           {[
-            { token: '--ds-bg',         value: '#FAF8F5',              role: 'Page background'                },
-            { token: '--ds-surface',    value: '#FFFFFF',              role: 'Card / panel surface'           },
-            { token: '--ds-surface-2',  value: '#F0EDE8',              role: 'Elevated surface'               },
-            { token: '--ds-text',       value: '#2E3141',              role: 'Primary text'                   },
-            { token: '--ds-text-muted', value: '#8B8796',              role: 'Secondary text'                 },
-            { token: '--ds-accent',     value: '#DA6D5B',              role: 'Accent — coral (primary)'       },
-            { token: '--ds-accent-2',   value: '#0094BA',              role: 'Accent — cyan (secondary)'      },
-            { token: '--ds-border',     value: 'rgba(46,49,65,0.10)',  role: 'Subtle border'                  },
+            { token: '--ds-bg',           value: '#FAF8F5',             role: 'Page background'             },
+            { token: '--ds-surface-2',    value: '#F0EDE8',             role: 'Elevated surface'            },
+            { token: '--ds-text',         value: '#2E3141',             role: 'Primary text'                },
+            { token: '--ds-text-muted',   value: '#8B8796',             role: 'Text muted'                  },
+            { token: '--ds-border',       value: 'rgba(46,49,65,0.10)', role: 'Subtle border'               },
+            { token: '--ds-accent',       value: '#DA6D5B',             role: 'Primary accent (Coral)'      },
+            { token: '--ds-accent-rose',  value: '#ED527A',             role: 'Secondary accent — Rose'     },
+            { token: '--ds-accent-sky',   value: '#52C8ED',             role: 'Secondary accent — Sky'      },
+            { token: '--ds-accent-lime',  value: '#ABBA2B',             role: 'Secondary accent — Lime'     },
+            { token: '--ds-accent-yellow',value: '#F8E816',             role: 'Secondary accent — Yellow'   },
           ].map(t => (
             <div class="ds-token-row">
               <div class="ds-token-swatch" style={`background:${t.value}`}></div>
               <code class="ds-mono" style="font-size:12px;color:var(--ds-accent)">{t.token}</code>
               <span class="ds-mono ds-muted" style="font-size:11px">{t.value}</span>
               <span class="ds-muted" style="font-size:13px">{t.role}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Color sets -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Color Sets</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Three-stop scale per secondary color: light (100) · base (500) · dark (700).</p>
+        <div class="ds-color-sets">
+          {[
+            {
+              name: 'Rose',
+              stops: [
+                { label: '100', hex: '#FDEDF2', token: '--ds-rose-100', dark: false },
+                { label: '500', hex: '#ED527A', token: '--ds-rose-500', dark: true  },
+                { label: '700', hex: '#B23E5C', token: '--ds-rose-700', dark: true  },
+              ]
+            },
+            {
+              name: 'Sky',
+              stops: [
+                { label: '100', hex: '#EBF9FD', token: '--ds-sky-100',  dark: false },
+                { label: '500', hex: '#52C8ED', token: '--ds-sky-500',  dark: false },
+                { label: '700', hex: '#1E7F9B', token: '--ds-sky-700',  dark: true  },
+              ]
+            },
+            {
+              name: 'Lime',
+              stops: [
+                { label: '100', hex: '#F2F5D3', token: '--ds-lime-100', dark: false },
+                { label: '500', hex: '#ABBA2B', token: '--ds-lime-500', dark: false },
+                { label: '700', hex: '#5F6814', token: '--ds-lime-700', dark: true  },
+              ]
+            },
+            {
+              name: 'Yellow',
+              stops: [
+                { label: '100', hex: '#FEFBCF', token: '--ds-yellow-100', dark: false },
+                { label: '500', hex: '#F8E816', token: '--ds-yellow-500', dark: false },
+                { label: '700', hex: '#9C9007', token: '--ds-yellow-700', dark: true  },
+              ]
+            },
+          ].map(set => (
+            <div class="ds-color-set">
+              <p class="ds-mono ds-muted ds-color-set-name">{set.name}</p>
+              <div class="ds-color-set-stops">
+                {set.stops.map(stop => (
+                  <button
+                    class="ds-color-set-stop"
+                    data-copy={stop.hex}
+                    style={`background:${stop.hex}`}
+                    aria-label={`Copy ${stop.hex}`}
+                  >
+                    <span class="ds-color-set-stop-info" style={`color:${stop.dark ? 'rgba(255,255,255,0.9)' : '#2E3141'}`}>
+                      <span class="ds-mono" style="font-size:10px;opacity:0.7">{stop.label}</span>
+                      <span class="ds-mono" style="font-size:11px;font-weight:500">{stop.hex}</span>
+                      <span class="ds-mono" style={`font-size:9px;opacity:0.6`}>{stop.token}</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -192,7 +280,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <div class="ds-type-row">
             <span class="ds-mono ds-muted ds-type-label">H3 italic / 24px</span>
-            <p style="font-family:var(--ds-font-display);font-size:24px;line-height:1.2;font-style:italic;color:var(--ds-accent)">Interaction Design</p>
+            <p style="font-family:var(--ds-font-display);font-size:24px;line-height:1.2;font-style:italic;color:var(--ds-accent-rose)">Interaction Design</p>
           </div>
         </div>
       </div>
@@ -224,8 +312,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <div class="ds-type-row">
             <span class="ds-mono ds-muted ds-type-label">Code / 13px</span>
-            <p style="font-family:var(--ds-font-mono);font-size:13px;color:var(--ds-lime)">{"const palette = { coral: '#DA6D5B', cyan: '#0094BA' }"}</p>
+            <p style="font-family:var(--ds-font-mono);font-size:13px;color:var(--ds-accent-sky)">{"const palette = { coral: '#DA6D5B', rose: '#ED527A', sky: '#52C8ED' }"}</p>
           </div>
+        </div>
+      </div>
+
+      <!-- Color accents in type -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Color Accents in Type</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Each secondary color as a typographic accent — for labels, callouts, and highlights.</p>
+        <div class="ds-type-scale">
+          {[
+            { label: 'Rose accent',   color: 'var(--ds-accent-rose)',   text: 'Product Design',  token: '--ds-accent-rose'   },
+            { label: 'Sky accent',    color: 'var(--ds-accent-sky)',    text: 'Engineering',     token: '--ds-accent-sky'    },
+            { label: 'Lime accent',   color: 'var(--ds-accent-lime)',   text: 'Brand Identity',  token: '--ds-accent-lime'   },
+            { label: 'Yellow accent', color: 'var(--ds-accent-yellow)', text: 'Design Systems',  token: '--ds-accent-yellow' },
+          ].map(a => (
+            <div class="ds-type-row">
+              <span class="ds-mono ds-muted ds-type-label" style="font-size:10px">{a.label}</span>
+              <div style="display:flex;align-items:baseline;gap:16px">
+                <p style={`font-family:var(--ds-font-display);font-size:22px;font-style:italic;color:${a.color}`}>{a.text}</p>
+                <code class="ds-mono" style={`font-size:11px;color:${a.color};opacity:0.7`}>{a.token}</code>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -336,30 +446,135 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="ds-subsection">
         <h3 class="ds-subsection-title">Buttons</h3>
         <div class="ds-preview-block">
+
+          <!-- Color palette tabs -->
+          <div class="ds-btn-palette-tabs">
+            <button class="ds-btn-palette-tab is-active" data-color="coral"  style="--tab-color:#DA6D5B"><span class="ds-btn-palette-dot" style="background:#DA6D5B"></span>Coral</button>
+            <button class="ds-btn-palette-tab"            data-color="rose"   style="--tab-color:#ED527A"><span class="ds-btn-palette-dot" style="background:#ED527A"></span>Rose</button>
+            <button class="ds-btn-palette-tab"            data-color="sky"    style="--tab-color:#52C8ED"><span class="ds-btn-palette-dot" style="background:#52C8ED"></span>Sky</button>
+            <button class="ds-btn-palette-tab"            data-color="lime"   style="--tab-color:#ABBA2B"><span class="ds-btn-palette-dot" style="background:#ABBA2B"></span>Lime</button>
+            <button class="ds-btn-palette-tab"            data-color="yellow" style="--tab-color:#F8E816"><span class="ds-btn-palette-dot" style="background:#F8E816"></span>Yellow</button>
+          </div>
+
+          <!-- Preview / Code toggle -->
           <div class="ds-preview-tabs">
             <button class="ds-tab is-active" data-panel="btn-preview">Preview</button>
             <button class="ds-tab" data-panel="btn-code">Code</button>
           </div>
+
+          <!-- PREVIEW -->
           <div id="btn-preview" class="ds-preview-canvas">
-            <div class="ds-preview-row">
-              <button class="ds-btn ds-btn-primary">Primary</button>
-              <button class="ds-btn ds-btn-secondary">Secondary</button>
-              <button class="ds-btn ds-btn-ghost">Ghost</button>
-              <button class="ds-btn ds-btn-destructive">Destructive</button>
-              <button class="ds-btn ds-btn-primary" disabled>Disabled</button>
+
+            <div class="ds-btn-color-panel" data-color="coral">
+              <div class="ds-preview-row">
+                <button class="ds-btn ds-btn-primary">Filled</button>
+                <button class="ds-btn ds-btn-ghost">Outline</button>
+                <button class="ds-btn ds-btn-secondary">Ghost</button>
+                <button class="ds-btn ds-btn-primary" disabled>Disabled</button>
+              </div>
+              <div class="ds-preview-row" style="margin-top:16px">
+                <button class="ds-btn ds-btn-primary ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-primary">Default</button>
+                <button class="ds-btn ds-btn-primary ds-btn-lg">Large</button>
+              </div>
             </div>
-            <div class="ds-preview-row" style="margin-top:16px">
-              <button class="ds-btn ds-btn-primary ds-btn-sm">Small</button>
-              <button class="ds-btn ds-btn-primary">Default</button>
-              <button class="ds-btn ds-btn-primary ds-btn-lg">Large</button>
+
+            <div class="ds-btn-color-panel" data-color="rose" style="display:none">
+              <div class="ds-preview-row">
+                <button class="ds-btn ds-btn-rose">Filled</button>
+                <button class="ds-btn ds-btn-rose-outline">Outline</button>
+                <button class="ds-btn ds-btn-rose-ghost">Ghost</button>
+                <button class="ds-btn ds-btn-rose" disabled>Disabled</button>
+              </div>
+              <div class="ds-preview-row" style="margin-top:16px">
+                <button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-rose">Default</button>
+                <button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+              </div>
             </div>
+
+            <div class="ds-btn-color-panel" data-color="sky" style="display:none">
+              <div class="ds-preview-row">
+                <button class="ds-btn ds-btn-sky">Filled</button>
+                <button class="ds-btn ds-btn-sky-outline">Outline</button>
+                <button class="ds-btn ds-btn-sky-ghost">Ghost</button>
+                <button class="ds-btn ds-btn-sky" disabled>Disabled</button>
+              </div>
+              <div class="ds-preview-row" style="margin-top:16px">
+                <button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-sky">Default</button>
+                <button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+              </div>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="lime" style="display:none">
+              <div class="ds-preview-row">
+                <button class="ds-btn ds-btn-lime">Filled</button>
+                <button class="ds-btn ds-btn-lime-outline">Outline</button>
+                <button class="ds-btn ds-btn-lime-ghost">Ghost</button>
+                <button class="ds-btn ds-btn-lime" disabled>Disabled</button>
+              </div>
+              <div class="ds-preview-row" style="margin-top:16px">
+                <button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-lime">Default</button>
+                <button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+              </div>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
+              <div class="ds-preview-row">
+                <button class="ds-btn ds-btn-yellow">Filled</button>
+                <button class="ds-btn ds-btn-yellow-outline">Outline</button>
+                <button class="ds-btn ds-btn-yellow-ghost">Ghost</button>
+                <button class="ds-btn ds-btn-yellow" disabled>Disabled</button>
+              </div>
+              <div class="ds-preview-row" style="margin-top:16px">
+                <button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-yellow">Default</button>
+                <button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+              </div>
+            </div>
+
           </div>
+
+          <!-- CODE -->
           <div id="btn-code" class="ds-code-panel" style="display:none">
-            <button class="ds-copy-btn" data-code="btn">Copy</button>
-            <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-primary">Primary</button>
-<button class="ds-btn ds-btn-secondary">Secondary</button>
-<button class="ds-btn ds-btn-ghost">Ghost</button>
-<button class="ds-btn ds-btn-destructive">Destructive</button>`}</code></pre>
+
+            <div class="ds-btn-color-panel" data-color="coral">
+              <button class="ds-copy-btn" data-code="btn-coral">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-primary">Filled</button>
+<button class="ds-btn ds-btn-ghost">Outline</button>
+<button class="ds-btn ds-btn-secondary">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="rose" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-rose">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-rose">Filled</button>
+<button class="ds-btn ds-btn-rose-outline">Outline</button>
+<button class="ds-btn ds-btn-rose-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="sky" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-sky">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-sky">Filled</button>
+<button class="ds-btn ds-btn-sky-outline">Outline</button>
+<button class="ds-btn ds-btn-sky-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="lime" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-lime">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-lime">Filled</button>
+<button class="ds-btn ds-btn-lime-outline">Outline</button>
+<button class="ds-btn ds-btn-lime-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-yellow">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-yellow">Filled</button>
+<button class="ds-btn ds-btn-yellow-outline">Outline</button>
+<button class="ds-btn ds-btn-yellow-ghost">Ghost</button>`}</code></pre>
+            </div>
+
           </div>
         </div>
       </div>
@@ -639,15 +854,36 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     --ds-coral-deep: #C45A49;
     --ds-olive:      #8FA63C;
 
+    /* Secondary palette — scales */
+    --ds-rose-100:   #FDEDF2;
+    --ds-rose-500:   #ED527A;
+    --ds-rose-700:   #B23E5C;
+
+    --ds-sky-100:    #EBF9FD;
+    --ds-sky-500:    #52C8ED;
+    --ds-sky-700:    #1E7F9B;
+
+    --ds-lime-100:   #F2F5D3;
+    --ds-lime-500:   #ABBA2B;
+    --ds-lime-700:   #5F6814;
+
+    --ds-yellow-100: #FEFBCF;
+    --ds-yellow-500: #F8E816;
+    --ds-yellow-700: #9C9007;
+
     /* Semantic */
-    --ds-bg:         #FAF8F5;
-    --ds-surface:    #FFFFFF;
-    --ds-surface-2:  #F0EDE8;
-    --ds-text:       #2E3141;
-    --ds-text-muted: #8B8796;
-    --ds-accent:     #DA6D5B;
-    --ds-accent-2:   #0094BA;
-    --ds-border:     rgba(46,49,65,0.10);
+    --ds-bg:           #FAF8F5;
+    --ds-surface:      #FFFFFF;
+    --ds-surface-2:    #F0EDE8;
+    --ds-text:         #2E3141;
+    --ds-text-muted:   #8B8796;
+    --ds-accent:       #DA6D5B;
+    --ds-accent-2:     #0094BA;
+    --ds-accent-rose:  #ED527A;
+    --ds-accent-sky:   #52C8ED;
+    --ds-accent-lime:  #ABBA2B;
+    --ds-accent-yellow:#F8E816;
+    --ds-border:       rgba(46,49,65,0.10);
 
     /* Typography */
     --ds-font-display: "tiemposText", serif;
@@ -927,6 +1163,94 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     opacity: 0.65;
   }
 
+  /* ── Palette tab selector ──────────────────────────── */
+  .ds-btn-palette-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 4px;
+    background: var(--ds-surface-2);
+    border-bottom: 1px solid var(--ds-border);
+    overflow-x: auto;
+  }
+  .ds-btn-palette-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 16px;
+    font-family: var(--ds-font-ui);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ds-text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color var(--ds-duration) var(--ds-ease),
+                border-color var(--ds-duration) var(--ds-ease);
+  }
+  .ds-btn-palette-tab:hover { color: var(--ds-text); }
+  .ds-btn-palette-tab.is-active {
+    color: var(--ds-text);
+    border-bottom-color: var(--tab-color, var(--ds-accent));
+  }
+  .ds-btn-palette-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Secondary color buttons ───────────────────────── */
+  /* Rose */
+  .ds-btn-rose { background: var(--ds-rose-500); color: #fff; }
+  .ds-btn-rose:hover:not(:disabled) { background: var(--ds-rose-700); transform: translateY(-1px); }
+  .ds-btn-rose:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-rose:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .ds-btn-rose-outline { background: transparent; color: var(--ds-rose-500); border: 1px solid var(--ds-rose-500); }
+  .ds-btn-rose-outline:hover:not(:disabled) { background: var(--ds-rose-100); }
+
+  .ds-btn-rose-ghost { background: transparent; color: var(--ds-rose-500); border: 1px solid rgba(237,82,122,0.3); }
+  .ds-btn-rose-ghost:hover:not(:disabled) { background: var(--ds-rose-100); border-color: var(--ds-rose-500); }
+
+  /* Sky */
+  .ds-btn-sky { background: var(--ds-sky-500); color: #fff; }
+  .ds-btn-sky:hover:not(:disabled) { background: var(--ds-sky-700); transform: translateY(-1px); }
+  .ds-btn-sky:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-sky:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .ds-btn-sky-outline { background: transparent; color: var(--ds-sky-700); border: 1px solid var(--ds-sky-500); }
+  .ds-btn-sky-outline:hover:not(:disabled) { background: var(--ds-sky-100); }
+
+  .ds-btn-sky-ghost { background: transparent; color: var(--ds-sky-700); border: 1px solid rgba(82,200,237,0.35); }
+  .ds-btn-sky-ghost:hover:not(:disabled) { background: var(--ds-sky-100); border-color: var(--ds-sky-500); }
+
+  /* Lime */
+  .ds-btn-lime { background: var(--ds-lime-500); color: #2E3141; }
+  .ds-btn-lime:hover:not(:disabled) { background: var(--ds-lime-700); color: #fff; transform: translateY(-1px); }
+  .ds-btn-lime:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-lime:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .ds-btn-lime-outline { background: transparent; color: var(--ds-lime-700); border: 1px solid var(--ds-lime-500); }
+  .ds-btn-lime-outline:hover:not(:disabled) { background: var(--ds-lime-100); }
+
+  .ds-btn-lime-ghost { background: transparent; color: var(--ds-lime-700); border: 1px solid rgba(171,186,43,0.4); }
+  .ds-btn-lime-ghost:hover:not(:disabled) { background: var(--ds-lime-100); border-color: var(--ds-lime-500); }
+
+  /* Yellow */
+  .ds-btn-yellow { background: var(--ds-yellow-500); color: #2E3141; }
+  .ds-btn-yellow:hover:not(:disabled) { background: var(--ds-yellow-700); color: #fff; transform: translateY(-1px); }
+  .ds-btn-yellow:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-yellow:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .ds-btn-yellow-outline { background: transparent; color: var(--ds-yellow-700); border: 1px solid var(--ds-yellow-500); }
+  .ds-btn-yellow-outline:hover:not(:disabled) { background: var(--ds-yellow-100); }
+
+  .ds-btn-yellow-ghost { background: transparent; color: var(--ds-yellow-700); border: 1px solid rgba(248,232,22,0.5); }
+  .ds-btn-yellow-ghost:hover:not(:disabled) { background: var(--ds-yellow-100); border-color: var(--ds-yellow-500); }
+
   /* ── Inputs ───────────────────────────────────────── */
   .ds-input-group { display: flex; flex-direction: column; gap: 6px; }
   .ds-input-label {
@@ -1168,6 +1492,57 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 12px;
   }
+  .ds-swatch-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* ── Colors: color sets ───────────────────────────── */
+  .ds-color-sets {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .ds-color-set {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .ds-color-set-name {
+    width: 52px;
+    flex-shrink: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 18px;
+    margin: 0;
+  }
+  .ds-color-set-stops {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    flex: 1;
+  }
+  .ds-color-set-stop {
+    height: 80px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px 12px;
+    transition: transform 0.15s var(--ds-ease), box-shadow 0.15s var(--ds-ease);
+  }
+  .ds-color-set-stop:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ds-shadow-md);
+  }
+  .ds-color-set-stop-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    text-align: left;
+  }
+
   .ds-swatch {
     height: 100px;
     border-radius: 10px;
@@ -1451,6 +1826,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     });
   });
 
+  // ── Button color palette tabs ─────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-btn-palette-tabs').forEach(paletteTabs => {
+    paletteTabs.querySelectorAll<HTMLElement>('.ds-btn-palette-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const color = tab.dataset.color;
+        if (!color) return;
+        paletteTabs.querySelectorAll('.ds-btn-palette-tab').forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const block = paletteTabs.closest<HTMLElement>('.ds-preview-block');
+        if (!block) return;
+        block.querySelectorAll<HTMLElement>('.ds-btn-color-panel').forEach(panel => {
+          panel.style.display = panel.dataset.color === color ? '' : 'none';
+        });
+      });
+    });
+  });
+
   // ── Color swatch copy ─────────────────────────────────
   document.querySelectorAll<HTMLElement>('.ds-swatch[data-copy]').forEach(swatch => {
     swatch.addEventListener('click', () => {
@@ -1461,6 +1853,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           const prev = original.textContent;
           original.textContent = 'Copied!';
           setTimeout(() => { original.textContent = prev; }, 1500);
+        }
+      });
+    });
+  });
+
+  // ── Color set stop copy ────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-color-set-stop[data-copy]').forEach(stop => {
+    stop.addEventListener('click', () => {
+      const hex = stop.dataset.copy ?? '';
+      navigator.clipboard.writeText(hex).then(() => {
+        const hexEl = stop.querySelectorAll<HTMLElement>('.ds-mono')[1];
+        if (hexEl) {
+          const prev = hexEl.textContent;
+          hexEl.textContent = 'Copied!';
+          setTimeout(() => { hexEl.textContent = prev; }, 1500);
         }
       });
     });
