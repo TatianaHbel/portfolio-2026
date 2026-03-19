@@ -46,13 +46,13 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       thumbnailScale: 1.12,
     },
     {
-      title: 'Mobile-first for Figma',
-      label: 'Figma - Concept 2025',
+      title: 'Personal Brand Guidelines',
+      label: 'Design System · 2025',
       href: '/projects/figma',
       aspect: 'aspect-[10/7]',
       placeholderColor: '#D0A8D850',
       cursorType: 'case-study',
-      status: 'coming-soon',
+      status: 'published',
     },
     {
       title: 'Patent-pending AI',
