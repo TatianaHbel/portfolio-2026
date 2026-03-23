@@ -4,5 +4,8 @@
 node_modules/
 dist/
 
+# MCP config (contains API keys)
+.mcp.json
+
 # Large media files
 **/*.mp4
