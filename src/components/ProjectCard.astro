@@ -15,6 +15,7 @@ interface Props {
   cursorType?: string;
   status?: ProjectStatus;
   thumbnailScale?: number;
+  objectFit?: 'cover' | 'contain';
 }
 
 const {
@@ -30,6 +31,7 @@ const {
   cursorType = 'case-study',
   status = 'published',
   thumbnailScale = 1,
+  objectFit = 'cover',
 } = Astro.props;
 
 const isComingSoon = status === 'coming-soon';
@@ -47,10 +49,10 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
   <div class="flex flex-col gap-2">
     <!-- Thumbnail -->
     <div class={`relative w-full ${aspect} border-1 border-foreground/10 overflow-hidden box-border transition-all duration-300 ease-in-out`}>
-      <div class="relative w-full h-full overflow-hidden" role="img" aria-label={`Project thumbnail for ${title}`}>
+      <div class="relative w-full h-full overflow-hidden" role="img" aria-label={`Project thumbnail for ${title}`} style={`background:${placeholderColor}`}>
         {video ? (
           <video
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            class={`absolute inset-0 w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
             style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
             src={video}
             autoplay
@@ -60,7 +62,7 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
           />
         ) : image ? (
           <img
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            class={`absolute inset-0 w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
             style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
             src={image}
             alt={`Project thumbnail for ${title}`}
