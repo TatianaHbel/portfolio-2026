@@ -1,12 +1,82 @@
 @theme {
-  --color-background: #fafcfd;         /* Page background */
-  --color-foreground: #32404f;         /* Primary text */
-  --color-foreground-light: #32404f95; /* Muted / secondary text */
-  --color-primary: #7C3AED;            /* Accent / electric violet */
-  --color-secondary: #FFE711;          /* Secondary / vibrant yellow */
+  /* Aligned to brand guidelines */
+  --color-background: #FAF8F5;          /* Page background  (--ds-bg)           */
+  --color-foreground: #2E3141;          /* Primary text     (--ds-text)          */
+  --color-foreground-light: #8B8796;    /* Muted text       (--ds-text-muted)    */
+  --color-primary: #ED7752;             /* Primary accent   (--ds-accent / Peach)*/
+  --color-secondary: #ED527A;           /* Secondary accent (--ds-accent-rose)   */
 
-  --font-geist-sans: "Geist", "Geist Fallback";             /* Body text */
-  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";   /* Code / h4 */
-  --font-crimson-pro: "Crimson Pro", "Crimson Pro Fallback"; /* Serif body */
-  --font-tiempos-text: "tiemposText", "tiemposText Fallback"; /* h1–h3 display */
+  --font-geist-sans: "Geist", "Geist Fallback";              /* Body text        */
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";    /* Code / h4        */
+  --font-crimson-pro: "Crimson Pro", "Crimson Pro Fallback";  /* Serif body       */
+  --font-tiempos-text: "tiemposText", "tiemposText Fallback"; /* h1–h3 display    */
+}
+
+/* ── Brand Design System tokens — single source of truth ── */
+:root {
+  /* Base palette */
+  --ds-coral:      #DA6D5B;
+  --ds-peach:      #ED7752;
+  --ds-peach-deep: #C95E38;
+  --ds-blush:      #F0A891;
+  --ds-golden:     #E6B83A;
+  --ds-cyan:       #0094BA;
+  --ds-sage:       #8FA63C;
+
+  /* Legacy aliases (keeps component demos working) */
+  --ds-navy:       #2E3141;
+  --ds-carmine:    #DA6D5B;
+  --ds-pink:       #DA6D5B;
+  --ds-light-pink: #ED7752;
+  --ds-lime:       #E6B83A;
+  --ds-red:        #DA6D5B;
+  --ds-red-deep:   #C45A49;
+  --ds-coral-deep: #C45A49;
+  --ds-olive:      #8FA63C;
+
+  /* Secondary palette — scales */
+  --ds-rose-100:    #FDEDF2;
+  --ds-rose-500:    #ED527A;
+  --ds-rose-700:    #B23E5C;
+
+  --ds-sky-100:     #EBF9FD;
+  --ds-sky-500:     #52C8ED;
+  --ds-sky-700:     #1E7F9B;
+
+  --ds-lime-100:    #F2F5D3;
+  --ds-lime-500:    #ABBA2B;
+  --ds-lime-700:    #5F6814;
+
+  --ds-yellow-100:  #FEFBCF;
+  --ds-yellow-500:  #F8E816;
+  --ds-yellow-700:  #9C9007;
+
+  /* Semantic */
+  --ds-bg:            #FAF8F5;
+  --ds-surface:       #FFFFFF;
+  --ds-surface-2:     #F0EDE8;
+  --ds-text:          #2E3141;
+  --ds-text-muted:    #8B8796;
+  --ds-accent:        #ED7752;
+  --ds-accent-2:      #0094BA;
+  --ds-accent-rose:   #ED527A;
+  --ds-accent-sky:    #52C8ED;
+  --ds-accent-lime:   #ABBA2B;
+  --ds-accent-yellow: #F8E816;
+  --ds-border:        rgba(46, 49, 65, 0.10);
+
+  /* Typography */
+  --ds-font-display: "tiemposText", serif;
+  --ds-font-ui:      "Geist", "Geist Fallback", sans-serif;
+  --ds-font-mono:    "Geist Mono", "Geist Mono Fallback", monospace;
+
+  /* Shadows */
+  --ds-shadow-sm:        0 1px 4px rgba(46, 49, 65, 0.08);
+  --ds-shadow-md:        0 6px 24px rgba(46, 49, 65, 0.12);
+  --ds-shadow-glow-pink: 0 4px 20px rgba(218, 109, 91, 0.22);
+  --ds-shadow-glow-teal: 0 4px 20px rgba(0, 148, 186, 0.25);
+
+  /* Motion */
+  --ds-ease:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ds-duration: 0.22s;
 }

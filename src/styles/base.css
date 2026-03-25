@@ -83,7 +83,7 @@
 
   ::selection {
     color: var(--color-primary);
-    background-color: #e65f2e1a;
+    background-color: rgba(237, 119, 82, 0.12);
   }
 
   ::-moz-selection {
