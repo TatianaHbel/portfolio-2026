@@ -47,15 +47,13 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       thumbnailScale: 1.12,
     },
     {
-      title: 'Personal Brand Guidelines',
-      label: 'Design System · 2025',
-      href: '/projects/figma',
+      title: 'Vibe Coding My Brand',
+      label: 'Personal Project · 2025',
+      href: '/projects/vibe-coding-brand',
       aspect: 'aspect-[10/7]',
-      placeholderColor: '#000000',
+      placeholderColor: '#1A1A2E',
       cursorType: 'case-study',
       status: 'published',
-      video: '/personal-ds-thumbnail.mp4',
-      objectFit: 'contain',
     },
     {
       title: 'Patent-pending AI',
@@ -77,6 +75,17 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       cursorType: 'case-study',
       status: 'published',
       image: '/thumbnail-bridge-the-gap.jpg',
+    },
+    {
+      title: 'Personal Brand Guidelines',
+      label: 'Design System · 2025',
+      href: '/projects/figma',
+      aspect: 'aspect-[10/7]',
+      placeholderColor: '#000000',
+      cursorType: 'case-study',
+      status: 'published',
+      video: '/personal-ds-thumbnail.mp4',
+      objectFit: 'contain',
     },
     {
       title: 'UX at a Web3 Startup',
@@ -128,6 +137,14 @@ export const alexaSections: ProjectSection[] = [
   { id: 'design-handoff', label: 'Design Handoff' },
   { id: 'impact',         label: 'Impact' },
   { id: 'learnings',      label: 'Learnings' },
+];
+
+export const vibeCodingBrandSections: ProjectSection[] = [
+  { id: 'overview',  label: 'Overview' },
+  { id: 'the-idea',  label: 'The Idea' },
+  { id: 'process',   label: 'The Process' },
+  { id: 'result',    label: 'The Result' },
+  { id: 'learnings', label: 'Learnings' },
 ];
 
 export const openAiHardwareSections: ProjectSection[] = [

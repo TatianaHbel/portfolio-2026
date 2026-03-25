@@ -1,0 +1,174 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import ProjectMetadata from '../../components/ProjectMetadata.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import InfoGrid from '../../components/InfoGrid.astro';
+import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
+import { vibeCodingBrandSections } from '../../data/projects';
+---
+
+<ProjectLayout
+  title="Vibe Coding My Brand | Tatiana Hernandez"
+  description="How I built my entire personal brand design system by vibe coding with Claude — from first prompt to live portfolio."
+  sections={vibeCodingBrandSections}
+>
+  <!-- Project header -->
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-4">
+      <h4>Personal Project · Designing with Claude</h4>
+      <h1>Vibe Coding My Brand</h1>
+      <p class="opacity-60">How I shipped a living design system without ever opening Figma</p>
+    </div>
+
+    <!-- Hero thumbnail -->
+    <div class="w-full aspect-[16/9] border-1 border-foreground/10">
+      <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Vibe Coding My Brand project thumbnail">
+        <ImagePlaceholder color="#1A1A2E" label="Hero — terminal + design system preview" />
+      </div>
+    </div>
+
+    <!-- Project metadata -->
+    <ProjectMetadata
+      role="Designer + Builder"
+      timeline="2025"
+      team="Solo"
+      skills={['Vibe Coding', 'Claude Code', 'Astro', 'CSS Design Systems']}
+    />
+  </div>
+
+  <!-- Case study content -->
+  <div class="flex flex-col gap-12">
+
+    <!-- Overview -->
+    <section id="overview" class="flex flex-col gap-4">
+      <h4 class="!text-foreground mb-1">Overview</h4>
+      <h2 class="-mb-2">I didn't design this portfolio. I prompted it.</h2>
+      <p>
+        Most designers build their brand in Figma first — tokens, components, specs — then hand it off to someone who builds it. I flipped that. I sat down with Claude Code and started describing what I wanted out loud, iterating in the browser, watching the system take shape in real CSS and real components. No mockups. No handoff. Just conversation and code.
+      </p>
+
+      <InfoGrid items={[
+        { title: 'The goal', desc: 'Build a complete personal brand identity — colors, typography, spacing, components, interactions — entirely through vibe coding sessions with an AI assistant.' },
+        { title: 'The constraint', desc: 'No Figma. The browser was the canvas. Every design decision had to be expressed as a prompt, then refined by seeing it live in the actual product.' },
+      ]} />
+
+      <CaseStudyBlockquote class="mt-4">
+        Vibe coding isn't about writing less code. It's about thinking out loud in a medium that writes back.
+      </CaseStudyBlockquote>
+    </section>
+
+    <!-- The Idea -->
+    <section id="the-idea" class="flex flex-col gap-4">
+      <h4 class="!text-foreground mb-1">The Idea</h4>
+      <h2 class="-mb-2">What if the design system and the product were the same thing?</h2>
+      <p>
+        I wanted my portfolio to feel like it was made by someone who understands both design and engineering deeply — not as separate disciplines, but as a single conversation. That meant the brand guidelines couldn't live in a Figma file that slowly drifts from reality. They had to live in the code itself.
+      </p>
+
+      <div class="w-full aspect-[16/9] border-1 border-foreground/10 mt-2">
+        <div class="relative w-full h-full overflow-hidden">
+          <ImagePlaceholder color="#0D0D1A" label="Sketch / concept — prompt-driven design loop" />
+        </div>
+      </div>
+
+      <InfoGrid columns={3} items={[
+        { title: 'Start from intent', desc: 'Describe the feeling, the function, the constraint — not the pixel values.' },
+        { title: 'Iterate in the browser', desc: 'Every change is live. You see it, react to it, and refine it in the same session.' },
+        { title: 'Let the system emerge', desc: 'Tokens, components, and patterns crystallize naturally as you repeat decisions.' },
+      ]} />
+    </section>
+
+    <!-- The Process -->
+    <section id="process" class="flex flex-col gap-4">
+      <h4 class="!text-foreground mb-1">The Process</h4>
+      <h2 class="-mb-2">Prompting as a design tool.</h2>
+      <p>
+        Each session started with a vague intention and ended with something concrete. The process wasn't linear — it was more like a conversation that kept circling closer to something that felt right.
+      </p>
+
+      <div class="w-full aspect-[16/9] border-1 border-foreground/10 mt-2">
+        <div class="relative w-full h-full overflow-hidden">
+          <ImagePlaceholder color="#111122" label="Screenshot — Claude Code terminal session" />
+        </div>
+      </div>
+
+      <InfoGrid items={[
+        { title: 'Session 1 — Foundation', desc: 'Established the core color palette and typographic scale by describing the emotional register I wanted: "quiet confidence, technical depth, warm but not casual."' },
+        { title: 'Session 2 — Components', desc: 'Built out buttons, badges, cards, and navigation — each prompted by showing Claude the current state and asking what felt off or inconsistent.' },
+      ]} />
+
+      <div class="grid grid-cols-2 gap-4 mt-2">
+        <div class="aspect-[4/3] border-1 border-foreground/10">
+          <div class="relative w-full h-full overflow-hidden">
+            <ImagePlaceholder color="#0A0A18" label="Before — raw HTML scaffold" />
+          </div>
+        </div>
+        <div class="aspect-[4/3] border-1 border-foreground/10">
+          <div class="relative w-full h-full overflow-hidden">
+            <ImagePlaceholder color="#1A1A2E" label="After — styled with design tokens" />
+          </div>
+        </div>
+      </div>
+
+      <InfoGrid items={[
+        { title: 'Session 3 — Interactions', desc: 'Layered in animations, hover states, and the custom cursor — each interaction described in terms of feel ("snappy but not harsh") rather than exact timing values.' },
+        { title: 'Session 4 — Documentation', desc: 'Turned the system into a living reference page at /projects/figma — a design system doc that is itself built with the system it documents.' },
+      ]} />
+
+      <CaseStudyBlockquote>
+        The most useful prompt isn't "make this look better." It's "this feels [X] — what's causing that and how do we change it?"
+      </CaseStudyBlockquote>
+    </section>
+
+    <!-- The Result -->
+    <section id="result" class="flex flex-col gap-4">
+      <h4 class="!text-foreground mb-1">The Result</h4>
+      <h2 class="-mb-2">A brand system that lives in production.</h2>
+      <p>
+        The output isn't a Figma file or a PDF spec sheet. It's a live page — the Personal Brand Guidelines — that runs the exact same CSS as the rest of the portfolio. Browse the catalog, copy the code snippets, or just read it as a document. Either way, what you're seeing is the system in its natural habitat.
+      </p>
+
+      <div class="w-full aspect-[16/9] border-1 border-foreground/10 mt-2">
+        <div class="relative w-full h-full overflow-hidden">
+          <ImagePlaceholder color="#0D0D0D" label="Final — Personal Brand Guidelines page" />
+        </div>
+      </div>
+
+      <InfoGrid columns={3} items={[
+        { title: 'Design tokens', desc: 'Color, typography, spacing, and radius values defined as CSS custom properties — consistent across every page.' },
+        { title: 'Live components', desc: 'Buttons, badges, cards, and navigation patterns documented with real, copyable code.' },
+        { title: 'Zero drift', desc: 'Because the docs are built with the system, they can never fall out of sync with what ships.' },
+      ]} />
+
+      <p class="opacity-60 text-sm mt-2">
+        → <a href="/projects/figma" class="underline underline-offset-2 hover:opacity-100 transition-opacity">View the Personal Brand Guidelines</a>
+      </p>
+    </section>
+
+    <!-- Learnings -->
+    <section id="learnings" class="flex flex-col gap-4">
+      <h4 class="!text-foreground mb-1">Learnings</h4>
+      <h2 class="-mb-2">What vibe coding taught me about design.</h2>
+
+      <InfoGrid items={[
+        { title: 'Language is design', desc: 'When you can\'t point at pixels, you\'re forced to articulate exactly what you mean. That clarity feeds back into how you think about every design decision.' },
+        { title: 'Constraints accelerate', desc: 'No Figma meant no endless exploration. Every session had a concrete output: something that either worked or needed one more iteration.' },
+      ]} />
+
+      <InfoGrid items={[
+        { title: 'The medium shapes the message', desc: 'Designing in the browser from day one meant every decision was tested against real text, real viewport sizes, and real interactions — not ideal mockup conditions.' },
+        { title: 'AI as a thinking partner', desc: 'The best moments weren\'t when Claude generated something perfect. They were when it asked a clarifying question that made me realize I hadn\'t thought something through.' },
+      ]} />
+
+      <CaseStudyBlockquote class="mt-4">
+        I came into this thinking vibe coding was about moving faster. I left knowing it's actually about thinking more clearly.
+      </CaseStudyBlockquote>
+    </section>
+
+  </div>
+</ProjectLayout>
+
+<script>
+  import { initMediaReveal } from '../../scripts/media-reveal';
+  initMediaReveal();
+</script>
