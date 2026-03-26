@@ -259,6 +259,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           ))}
         </div>
       </div>
+
+      <!-- Gradients -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Gradients</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Named gradient tokens used across the system. Reference via CSS variable.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {[
+            {
+              token: '--ds-gradient-brand',
+              value: 'linear-gradient(135deg, #DA6D5B 20%, #ED527A 100%)',
+              label: 'Brand — Coral → Rose',
+              usage: 'Page loader, hero emphasis, primary gradient moments',
+            },
+          ].map(g => (
+            <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center;padding:14px 16px;border:1px solid var(--ds-border);border-radius:8px;background:var(--ds-surface);">
+              <div style={`background:${g.value};border-radius:6px;height:52px;`}></div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <code class="ds-mono" style="font-size:12px;color:var(--ds-accent)">{g.token}</code>
+                <span class="ds-mono ds-muted" style="font-size:10px;">{g.value}</span>
+                <span style="font-size:12px;color:var(--ds-text-muted);margin-top:2px;">{g.usage}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
 
     <!-- ── SECTION 2: Typography ──────────────────── -->

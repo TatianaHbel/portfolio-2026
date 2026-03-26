@@ -70,6 +70,9 @@
   --ds-font-ui:      "Geist", "Geist Fallback", sans-serif;
   --ds-font-mono:    "Geist Mono", "Geist Mono Fallback", monospace;
 
+  /* Gradients */
+  --ds-gradient-brand: linear-gradient(135deg, var(--ds-coral) 20%, var(--ds-accent-rose) 100%);
+
   /* Shadows */
   --ds-shadow-sm:        0 1px 4px rgba(46, 49, 65, 0.08);
   --ds-shadow-md:        0 6px 24px rgba(46, 49, 65, 0.12);

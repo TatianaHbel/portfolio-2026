@@ -1,7 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { experienceTimeline } from '../data/timeline';
-import { currently } from '../data/currently';
+
+const skills = [
+  { label: 'Product Design',        x: 0.47, y: 0.07, sr: -3,  sd: 0   },
+  { label: 'Frontend Development',  x: 0.73, y: 0.11, sr:  5,  sd: 40  },
+  { label: 'Design Systems',        x: 0.11, y: 0.20, sr:  9,  sd: 80  },
+  { label: 'UX Research',           x: 0.05, y: 0.47, sr: -9,  sd: 120 },
+  { label: 'User Interface Design', x: 0.84, y: 0.43, sr:  7,  sd: 60  },
+  { label: 'Prototyping',           x: 0.12, y: 0.73, sr:  3,  sd: 100 },
+  { label: 'Web3 · DeFi',           x: 0.80, y: 0.68, sr: -7,  sd: 20  },
+  { label: 'Generative AI',         x: 0.41, y: 0.88, sr: -4,  sd: 140 },
+  { label: 'Visual Design',         x: 0.65, y: 0.85, sr:  8,  sd: 160 },
+  { label: 'Motion Design',         x: 0.19, y: 0.59, sr: -12, sd: 180 },
+];
 ---
 
 <BaseLayout title="About — Tatiana Hernandez" description="One of a kind product designer who vibecodes. Designing at the intersection of systems and people.">
@@ -98,6 +110,44 @@ import { currently } from '../data/currently';
     <div class="absolute bottom-10 right-6 md:right-16 z-10 opacity-35 flex flex-col items-center gap-2">
       <p class="font-mono text-[10px] uppercase tracking-widest text-background writing-vertical">scroll</p>
       <div class="w-px h-8 bg-background/40 animate-bounce-big"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 2 · SKILLS — What I bring to the table
+  ═══════════════════════════════════════════ -->
+  <section class="skills-table-section border-t border-foreground/8 overflow-hidden">
+    <div class="skills-orbit" id="skills-cluster" aria-label="Skills">
+
+      <!-- Center: icon + title + subtitle (always visible) -->
+      <div class="skills-center">
+        <div class="skills-icon" aria-hidden="true">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+          </svg>
+        </div>
+        <h2 class="skills-heading">What I bring to<br/>the table</h2>
+        <p class="skills-sub">Digital experiences designed to be built,<br class="hidden lg:inline"/> shipped, and used.</p>
+      </div>
+
+      <!-- Mobile: badges in a simple flex-wrap below the title -->
+      <div class="skills-mobile-wrap">
+        {skills.map(s => <span class="skill-badge-mobile">{s.label}</span>)}
+      </div>
+
+      <!-- Desktop: orbit badges — JS sets left/top px from data-x/y, then WAAPI animates -->
+      {skills.map(s => (
+        <span
+          class="skill-badge"
+          data-x={s.x}
+          data-y={s.y}
+          data-sr={`${s.sr}deg`}
+          data-sd={s.sd}
+        >
+          {s.label}
+        </span>
+      ))}
+
     </div>
   </section>
 
@@ -200,148 +250,52 @@ import { currently } from '../data/currently';
   </section>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 5 · MOMENTS — Horizontal Polaroid Carousel
+       SECTION 5 · CONNECT
   ═══════════════════════════════════════════ -->
-  <section class="about-moments py-24 border-t border-foreground/8">
-    <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-10 px-6 md:px-12 max-w-[1800px] mx-auto">moments</h4>
+  <section class="connect-section px-6 md:px-12 py-24 md:py-40 border-t border-foreground/8">
+    <div class="connect-inner mx-auto text-center">
 
-    <div class="moments-track" id="moments-carousel">
-      {[
-        { file: 'tati_01.JPG', label: 'Tatiana',   rot: '-2deg' },
-        { file: 'tati_02.jpg', label: 'film',       rot: '2.5deg' },
-        { file: 'tati_03.jpg', label: 'light',      rot: '-1.5deg' },
-        { file: 'tati_04.jpg', label: 'somewhere',  rot: '3deg' },
-        { file: 'tati_02.jpg', label: 'portrait',   rot: '-2.5deg' },
-        { file: 'tati_03.jpg', label: 'analog',     rot: '1.5deg' },
-      ].map((item) => (
-        <div
-          class="moment-polaroid flex-shrink-0"
-          data-cursor="pointer"
-        >
-          <div class="moment-image bg-foreground/8">
-            <img
-              src={`/img/${item.file}`}
-              alt={item.label}
-              class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
-              loading="lazy"
-              onload="this.style.opacity='1'"
-            />
-          </div>
-          <div class="moment-chin">
-            <span class="polaroid-label">{item.label}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <p class="text-[11px] font-mono text-foreground/25 uppercase tracking-widest mt-4 px-6 md:px-12">drag →</p>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       SECTION 6 · DRAG CARDS — above footer
-  ═══════════════════════════════════════════ -->
-  <section class="cards-floor px-6 md:px-12 py-24 border-t border-foreground/8">
-    <div class="max-w-[1800px] mx-auto">
-      <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-16">right now</h4>
-
-      <!-- Cards spread on a surface — draggable -->
-      <div class="cards-floor-inner relative" style="height: 380px">
-
-        <!-- Card: Now listening (dark) -->
-        <div class="drag-card polaroid-card status-card"
-             data-rotation="0deg" data-tx="0" data-ty="0"
-             style="background:var(--color-foreground); z-index:1; width:200px; height:250px; left:0; top:40px"
-             data-cursor="pointer">
-          <div class="status-card-inner">
-            <p class="status-label" style="color:rgba(250,252,253,0.4)">now listening</p>
-            <p class="status-value" style="color:#fafcfd">{currently[2].value}</p>
-          </div>
-        </div>
-
-        <!-- Card: Now reading (yellow) -->
-        <div class="drag-card polaroid-card status-card"
-             data-rotation="0deg" data-tx="0" data-ty="0"
-             style="background:var(--color-secondary); z-index:2; width:200px; height:250px; left:180px; top:20px"
-             data-cursor="pointer">
-          <div class="status-card-inner">
-            <p class="status-label" style="color:rgba(50,64,79,0.45)">now reading</p>
-            <p class="status-value" style="color:var(--color-foreground)">{currently[1].value}</p>
-          </div>
-        </div>
-
-        <!-- Card: Now building (violet) -->
-        <div class="drag-card polaroid-card status-card"
-             data-rotation="0deg" data-tx="0" data-ty="0"
-             style="background:var(--color-primary); z-index:3; width:200px; height:250px; left:360px; top:60px"
-             data-cursor="pointer">
-          <div class="status-card-inner">
-            <p class="status-label" style="color:rgba(250,252,253,0.5)">now building</p>
-            <p class="status-value" style="color:#fafcfd">{currently[0].value}</p>
-          </div>
-        </div>
-
-        <!-- Card: Photo (front) — iconic Polaroid proportions -->
-        <div class="drag-card polaroid-card photo-card"
-             data-rotation="0deg" data-tx="0" data-ty="0"
-             style="z-index:4; width:190px; left:540px; top:20px"
-             data-cursor="pointer">
-          <div class="polaroid-image bg-foreground/5">
-            <img
-              src="/img/tati_01.JPG"
-              alt="Tatiana Hernandez"
-              class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
-              loading="lazy"
-              onload="this.style.opacity='1'"
-            />
-          </div>
-          <div class="polaroid-chin">
-            <span class="polaroid-label">designer</span>
-          </div>
-        </div>
+      <!-- Monogram icon -->
+      <div class="connect-monogram reveal-block mx-auto mb-10">
+        <span class="connect-monogram-text">T</span>
       </div>
 
-      <p class="font-mono text-[11px] text-foreground/25 uppercase tracking-widest mt-6">← drag the cards →</p>
-    </div>
-  </section>
+      <!-- Heading -->
+      <h2 class="connect-heading reveal-block mb-4">Ready to build something<br/><em>amazing?</em></h2>
 
-  <!-- ═══════════════════════════════════════════
-       SECTION 7 · CONNECT
-  ═══════════════════════════════════════════ -->
-  <section class="px-6 md:px-12 py-24 md:py-40 border-t border-foreground/8">
-    <div class="max-w-[1800px] mx-auto max-w-2xl">
-      <div class="overflow-hidden mb-6">
-        <h2 class="clip-reveal leading-tight">Let's connect</h2>
-      </div>
-      <div class="flex items-center gap-3 mb-6 reveal-block">
+      <!-- Available badge + subtitle -->
+      <div class="flex flex-col items-center gap-3 mb-12 reveal-block">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 border border-primary/30 text-[11px] font-mono text-primary">
           <span class="w-1.5 h-1.5 bg-primary animate-heartbeat inline-block"></span>
           Available For Work
         </span>
+        <p class="text-foreground/50 text-[15px]">Come and say Hola!</p>
       </div>
-      <p class="text-foreground/60 mb-10 text-[17px] leading-relaxed max-w-lg reveal-block">
-        I'm curious about work, people, and what happens when you put them together with technology. If something resonates — reach out.
-      </p>
-      <div class="flex flex-wrap items-center gap-4 reveal-block">
+
+      <!-- Contact rows -->
+      <div class="connect-rows reveal-block mx-auto">
         <a
           href="mailto:tati.hbel@gmail.com"
-          class="magnetic-btn inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-mono text-[13px] uppercase tracking-wider hover:bg-primary transition-colors duration-300"
+          class="connect-row"
           data-cursor="email"
           aria-label="Send email to Tatiana"
         >
-          Say hello
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+          <span class="connect-row-label">Email</span>
+          <span class="connect-row-value">tati.hbel@gmail.com</span>
         </a>
         <a
-          href="mailto:tati.hbel@gmail.com"
-          class="font-mono text-[13px] text-foreground/50 hover:text-foreground transition-colors duration-200"
-          data-cursor="email"
-          aria-label="Email tati.hbel@gmail.com"
+          href="https://www.linkedin.com/in/tatianahernandezbel/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="connect-row"
+          data-cursor="pointer"
+          aria-label="Tatiana on LinkedIn"
         >
-          tati.hbel@gmail.com
+          <span class="connect-row-label">LinkedIn</span>
+          <span class="connect-row-value">linkedin.com/in/tatianahernandezbel</span>
         </a>
       </div>
+
     </div>
   </section>
 
@@ -369,6 +323,129 @@ import { currently } from '../data/currently';
     color: #fff;
   }
 
+  /* ══════════════════════════════════════════════════════════════
+     SKILLS ORBIT SECTION
+  ══════════════════════════════════════════════════════════════ */
+
+  /* ── Shared pill style (mobile + desktop badges) ─────────── */
+  .skill-badge,
+  .skill-badge-mobile {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    background: rgba(237, 119, 82, 0.07);
+    border: 1px solid rgba(237, 119, 82, 0.2);
+    border-radius: 70px;
+    font-family: var(--font-geist-sans);
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    color: var(--color-foreground);
+    white-space: nowrap;
+  }
+
+  /* ── Icon ───────────────────────────────── */
+  .skills-icon {
+    width: 104px;
+    height: 104px;
+    background: var(--color-primary);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin: 0 auto 1.75rem;
+  }
+
+  /* ── Title ──────────────────────────────── */
+  .skills-heading {
+    font-family: var(--font-tiempos-text);
+    font-style: italic;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--color-foreground);
+    margin-bottom: 1.25rem;
+    white-space: nowrap;
+  }
+
+  /* ── Subtitle ───────────────────────────── */
+  .skills-sub {
+    font-family: var(--font-geist-sans);
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    color: var(--color-foreground);
+    opacity: 0.5;
+    line-height: 1.65;
+  }
+
+  /* ══════════════════════════════════════════
+     MOBILE — stacked layout
+  ══════════════════════════════════════════ */
+  .skills-orbit   { padding: 5rem 1.5rem 4rem; }
+  .skills-center  { text-align: center; margin-bottom: 2.5rem; }
+
+  /* Mobile badge wrap */
+  .skills-mobile-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* Desktop orbit badges hidden on mobile */
+  .skill-badge { display: none; }
+
+  /* ══════════════════════════════════════════
+     DESKTOP (lg+) — orbit layout
+  ══════════════════════════════════════════ */
+  @media (min-width: 1024px) {
+    .skills-table-section { padding: 0; }
+
+    /* Fixed-height block container — no flex, no ambiguity */
+    .skills-orbit {
+      position: relative;
+      height: 680px;
+      display: block;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Center content pinned to middle */
+    .skills-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+      pointer-events: none;
+      margin-bottom: 0;
+      max-width: 520px;
+    }
+
+    /* Mobile wrap hidden on desktop */
+    .skills-mobile-wrap { display: none; }
+
+    /* Orbit badges: JS sets left/top in px, WAAPI animates in */
+    .skill-badge {
+      display: inline-flex;
+      position: absolute;
+      /* left/top set by JS — no default needed */
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-badge-mobile { opacity: 1; }
+    @media (min-width: 1024px) {
+      .skill-badge { opacity: 1 !important; transform: translate(-50%, -50%) !important; }
+    }
+  }
+
   /* ── Cards floor section ─────────────────── */
   .cards-floor-inner {
     overflow: visible;
@@ -384,6 +461,95 @@ import { currently } from '../data/currently';
   }
   .clip-reveal.visible {
     clip-path: inset(0 0% 0 0);
+  }
+
+  /* ── Connect section ────────────────────────── */
+  .connect-inner {
+    max-width: 640px;
+  }
+
+  .connect-heading {
+    font-family: var(--font-tiempos-text);
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-foreground);
+  }
+
+  .connect-monogram {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background-color: var(--ds-peach);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .connect-monogram-text {
+    font-family: var(--font-tiempos-text);
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--color-background);
+    line-height: 1;
+  }
+
+  .connect-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .connect-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background-color: var(--ds-surface-2);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color var(--ds-duration) var(--ds-ease);
+  }
+
+  .connect-row:hover {
+    background-color: color-mix(in srgb, var(--ds-peach) 10%, var(--ds-surface-2));
+  }
+
+  .connect-row-label {
+    font-family: var(--font-geist-sans);
+    font-size: 15px;
+    color: var(--color-foreground);
+  }
+
+  .connect-row-value {
+    font-family: var(--font-geist-mono);
+    font-size: 13px;
+    color: var(--color-foreground-light);
+  }
+
+  /* ── Primary button — interaction states ──── */
+  .btn-primary {
+    background-color: var(--ds-peach);
+    color: var(--ds-navy);
+    transition: background-color var(--ds-duration) var(--ds-ease),
+                box-shadow var(--ds-duration) var(--ds-ease),
+                transform var(--ds-duration) var(--ds-ease);
+    outline: none;
+  }
+  .btn-primary:hover {
+    background-color: var(--ds-peach-deep);
+  }
+  .btn-primary:active {
+    background-color: var(--ds-coral-deep);
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--ds-accent);
+    outline-offset: 3px;
+    box-shadow: var(--ds-shadow-glow-pink);
   }
 
   /* ── Scroll opacity reveal ────────────────── */
@@ -613,6 +779,73 @@ import { currently } from '../data/currently';
       polaroidSlides[currentSlide].style.opacity = '1';
     }, 5000);
   }
+
+  // ── Skills cluster scatter-reveal ─────────────────────────────
+  // ── Skills orbit — WAAPI scatter animation ────────────────────
+  (() => {
+    const orbit = document.getElementById('skills-cluster') as HTMLElement | null;
+    if (!orbit) return;
+
+    const skillsIO = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        skillsIO.unobserve(orbit);
+
+        if (!window.matchMedia('(min-width: 1024px)').matches) return;
+
+        const center = orbit.querySelector<HTMLElement>('.skills-center');
+        const badges = Array.from(orbit.querySelectorAll<HTMLElement>('.skill-badge'));
+        if (!center || !badges.length) return;
+
+        // Step 1: set left/top in PIXELS from data-x/y fractions + actual orbit dimensions
+        // Using offsetWidth/Height (no transforms, no viewport offset) for clean pixel math
+        const ow = orbit.offsetWidth;
+        const oh = orbit.offsetHeight;
+        badges.forEach((badge) => {
+          const x = parseFloat(badge.dataset.x ?? '0.5');
+          const y = parseFloat(badge.dataset.y ?? '0.5');
+          badge.style.left = `${x * ow}px`;
+          badge.style.top  = `${y * oh}px`;
+        });
+
+        // Step 2: compute center of title block relative to orbit
+        // getBoundingClientRect works now that orbit is in viewport
+        const orbitRect = orbit.getBoundingClientRect();
+        const cr        = center.getBoundingClientRect();
+        const cx = (cr.left + cr.right)  / 2 - orbitRect.left;
+        const cy = (cr.top  + cr.bottom) / 2 - orbitRect.top;
+
+        // Step 3: WAAPI — each badge flies from center outward to its px position
+        badges.forEach((badge) => {
+          const r  = badge.getBoundingClientRect();
+          const bx = (r.left + r.right)  / 2 - orbitRect.left;
+          const by = (r.top  + r.bottom) / 2 - orbitRect.top;
+          const dx = cx - bx;   // offset: badge_final → center
+          const dy = cy - by;
+
+          const sr = badge.dataset.sr ?? '0deg';
+          const sd = parseInt(badge.dataset.sd ?? '0', 10);
+
+          badge.animate(
+            [
+              {
+                transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.5) rotate(${sr})`,
+                opacity: '0',
+              },
+              {
+                transform: 'translate(-50%, -50%) scale(1) rotate(0deg)',
+                opacity: '1',
+              },
+            ],
+            { duration: 750, delay: sd, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'forwards' }
+          );
+        });
+      }),
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    );
+
+    skillsIO.observe(orbit);
+  })();
 
   // ── Scroll reveals (clip-path + opacity) ──────────────────────
   const io = new IntersectionObserver(
