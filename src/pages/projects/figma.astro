@@ -24,6 +24,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <a href="#overview"    class="ds-nav-link active">Overview</a>
         <a href="#colors"      class="ds-nav-link">Colors</a>
         <a href="#typography"  class="ds-nav-link">Typography</a>
+        <a href="#iconos"      class="ds-nav-link">Icons</a>
         <a href="#buttons"     class="ds-nav-link">Buttons</a>
         <a href="#foundations" class="ds-nav-link">Foundations</a>
         <a href="#states"      class="ds-nav-link">Interaction States</a>
@@ -375,10 +376,55 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <!-- ── SECTION 3: Buttons ────────────────────── -->
-    <section id="buttons" class="ds-section">
+    <!-- ── SECTION 3: Icons ─────────────────────── -->
+    <section id="iconos" class="ds-section">
       <div class="ds-section-label-row">
         <span class="ds-label ds-mono">03</span>
+        <h2 class="ds-section-title">Icons</h2>
+      </div>
+      <p class="ds-section-desc">Custom brand icons — organic shapes that carry personality. Always in <span class="ds-mono" style="color:var(--ds-accent)">#ED7752</span> (Peach).</p>
+
+      <div class="ds-subsection">
+        <div class="ds-icon-grid">
+
+          <div class="ds-icon-card">
+            <div class="ds-icon-preview">
+              <img src="/icons/full-bloom.svg" alt="Full Bloom icon" class="ds-icon-img" />
+            </div>
+            <div class="ds-icon-meta">
+              <span class="ds-icon-name">Full Bloom</span>
+              <span class="ds-mono ds-muted ds-icon-file">full-bloom.svg</span>
+            </div>
+          </div>
+
+          <div class="ds-icon-card">
+            <div class="ds-icon-preview">
+              <img src="/icons/tatis-heart.svg" alt="Tati's Heart icon" class="ds-icon-img" />
+            </div>
+            <div class="ds-icon-meta">
+              <span class="ds-icon-name">Tati's Heart</span>
+              <span class="ds-mono ds-muted ds-icon-file">tatis-heart.svg</span>
+            </div>
+          </div>
+
+          <div class="ds-icon-card">
+            <div class="ds-icon-preview">
+              <img src="/icons/two-full-stars.svg" alt="Two Full Stars icon" class="ds-icon-img" />
+            </div>
+            <div class="ds-icon-meta">
+              <span class="ds-icon-name">Two Full Stars</span>
+              <span class="ds-mono ds-muted ds-icon-file">two-full-stars.svg</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: Buttons ────────────────────── -->
+    <section id="buttons" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">04</span>
         <h2 class="ds-section-title">Buttons</h2>
       </div>
       <p class="ds-section-desc">Production-ready UI patterns. Every state. Every variant.</p>
@@ -682,7 +728,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- ── SECTION 4: Foundations ─────────────────── -->
     <section id="foundations" class="ds-section">
       <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">04</span>
+        <span class="ds-label ds-mono">05</span>
         <h2 class="ds-section-title">Foundations</h2>
       </div>
       <p class="ds-section-desc">Core design tokens — the single source of truth for every visual decision.</p>
@@ -733,7 +779,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- ── SECTION 5: Interaction States ─────────── -->
     <section id="states" class="ds-section">
       <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">05</span>
+        <span class="ds-label ds-mono">06</span>
         <h2 class="ds-section-title">Interaction States</h2>
       </div>
       <p class="ds-section-desc">Every interactive element communicates its state clearly.</p>
@@ -794,7 +840,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- ── SECTION 6: Navigation ──────────────────── -->
     <section id="navigation" class="ds-section">
       <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">06</span>
+        <span class="ds-label ds-mono">07</span>
         <h2 class="ds-section-title">Navigation</h2>
       </div>
       <p class="ds-section-desc">Nav links with blob hover — pill que escala con spring para feedback táctil.</p>
@@ -862,7 +908,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- ── SECTION 7: Animations ──────────────────── -->
     <section id="animations" class="ds-section">
       <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">07</span>
+        <span class="ds-label ds-mono">08</span>
         <h2 class="ds-section-title">Animations</h2>
       </div>
       <p class="ds-section-desc">Intentional motion. Calm, tactile, never flashy.</p>
@@ -959,7 +1005,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- ── SECTION 8: Grid & Spacing ─────────────── -->
     <section id="spacing" class="ds-section">
       <div class="ds-section-label-row">
-        <span class="ds-label ds-mono">08</span>
+        <span class="ds-label ds-mono">09</span>
         <h2 class="ds-section-title">Grid & Spacing</h2>
       </div>
       <p class="ds-section-desc">8pt grid system. Every measurement is a multiple of 4.</p>
@@ -1731,6 +1777,48 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     background: rgba(218,109,91,0.10);
     border: 1px solid rgba(218,109,91,0.25);
     border-radius: 0;
+  }
+
+  /* ── Icon grid ───────────────────────────────────── */
+  .ds-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .ds-icon-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ds-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--ds-surface);
+  }
+  .ds-icon-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    background: var(--ds-bg);
+  }
+  .ds-icon-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+  .ds-icon-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    border-top: 1px solid var(--ds-border);
+  }
+  .ds-icon-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ds-text);
+  }
+  .ds-icon-file {
+    font-size: 11px;
   }
 
   /* ── Easing demos ────────────────────────────────── */
