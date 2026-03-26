@@ -25,6 +25,16 @@ export interface ProjectSection {
 export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]> = {
   left: [
     {
+      title: 'Vibe Coding My Brand',
+      label: 'Personal Project · 2025',
+      href: '/projects/vibe-coding-brand',
+      aspect: 'aspect-[10/7]',
+      placeholderColor: '#DA6D5B',
+      cursorType: 'case-study',
+      status: 'published',
+      image: '/vibe-coding-thumbnail.svg',
+    },
+    {
       title: 'The future of AI Agents',
       label: 'Amadeus Protocol - Concept 2026',
       href: '/projects/openai-hardware',
@@ -47,15 +57,6 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       thumbnailScale: 1.12,
     },
     {
-      title: 'Vibe Coding My Brand',
-      label: 'Personal Project · 2025',
-      href: '/projects/vibe-coding-brand',
-      aspect: 'aspect-[10/7]',
-      placeholderColor: '#1A1A2E',
-      cursorType: 'case-study',
-      status: 'published',
-    },
-    {
       title: 'Patent-pending AI',
       label: 'Royal Bank of Canada - Handed off 2024',
       href: '/projects/rbc',
@@ -67,16 +68,6 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
   ],
   right: [
     {
-      title: 'Bridge the Gap',
-      label: 'Moralis - Concept 2024',
-      href: '/projects/alexa',
-      aspect: 'aspect-[8/5]',
-      placeholderColor: '#00144550',
-      cursorType: 'case-study',
-      status: 'published',
-      image: '/thumbnail-bridge-the-gap.jpg',
-    },
-    {
       title: 'Personal Brand Guidelines',
       label: 'Design System · 2025',
       href: '/projects/figma',
@@ -86,6 +77,16 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       status: 'published',
       video: '/personal-ds-thumbnail.mp4',
       objectFit: 'contain',
+    },
+    {
+      title: 'Bridge the Gap',
+      label: 'Moralis - Concept 2024',
+      href: '/projects/alexa',
+      aspect: 'aspect-[8/5]',
+      placeholderColor: '#00144550',
+      cursorType: 'case-study',
+      status: 'published',
+      image: '/thumbnail-bridge-the-gap.jpg',
     },
     {
       title: 'UX at a Web3 Startup',
