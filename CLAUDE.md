@@ -80,3 +80,6 @@ public/
 - **Adding a new project**: create `src/pages/projects/[slug].astro` using `ProjectLayout`, add an entry to `src/data/projects.ts` (homepage grid is data-driven), put assets in `public/projects/[slug]/`
 - **Homepage data**: project grid and experience timeline are driven by `src/data/projects.ts` and `src/data/timeline.ts` — edit those files rather than `index.astro` directly
 - **Project status**: entries in `projects.ts` use `status: "published" | "coming-soon" | "locked"` to control card visibility/behavior
+
+## Agent Rules
+- As actions are accomplished, keep updating this document to make sure it stays relevant for the next agent.
