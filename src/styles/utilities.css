@@ -1,3 +1,9 @@
+@utility scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility filter-primary {
   /* Colorizes black SVGs to --color-primary (#ED7752 Peach) */
   filter: brightness(0) saturate(100%) invert(57%) sepia(49%) saturate(1853%)

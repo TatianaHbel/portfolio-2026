@@ -2,6 +2,32 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { experienceTimeline } from '../data/timeline';
 
+const heroPhotos = [
+  'D2651FF8-AE93-4BDC-B3CF-88F17CEC9848.jpg',
+  'IMG_0822.jpg',
+  'IMG_2415.jpg',
+  'IMG_2930.jpg',
+  'IMG_3705.jpg',
+  'IMG_7925.JPG',
+  'IMG_8960.jpg',
+  'IMG_9756.jpg',
+  'Tatiana Portrait.jpg',
+  'tati_01.JPG',
+  'tati_02.jpg',
+  'tati_03.jpg',
+  'tati_04.jpg',
+];
+
+const heroPhotoPos: Record<string, string> = {
+  'IMG_3705.jpg':         'center 25%',
+  'IMG_7925.JPG':         'center 25%',
+  'IMG_8960.jpg':         'center 25%',
+  'Tatiana Portrait.jpg': 'center 25%',
+  'tati_04.jpg':          'center 20%',
+  'IMG_9756.jpg':         'center 20%',
+  'tati_03.jpg':          'center top',
+};
+
 const skills = [
   { label: 'Product Design',        x: 0.47, y: 0.07, sr: -3,  sd: 0   },
   { label: 'Frontend Development',  x: 0.73, y: 0.11, sr:  5,  sd: 40  },
@@ -25,26 +51,12 @@ const skills = [
 
     <!-- Slideshow: all photos stacked, JS crossfades every 5s -->
     <div id="hero-slideshow" class="absolute inset-0" aria-hidden="true">
-      {[
-        'D2651FF8-AE93-4BDC-B3CF-88F17CEC9848.jpg',
-        'IMG_0822.jpg',
-        'IMG_2415.jpg',
-        'IMG_2930.jpg',
-        'IMG_3705.jpg',
-        'IMG_7925.JPG',
-        'IMG_8960.jpg',
-        'IMG_9756.jpg',
-        'Tatiana Portrait.jpg',
-        'tati_01.JPG',
-        'tati_02.jpg',
-        'tati_03.jpg',
-        'tati_04.jpg',
-      ].map((file, i) => (
+      {heroPhotos.map((file, i) => (
         <img
           src={`/img/photos/${file}`}
           alt=""
           class="hero-slide absolute inset-0 w-full h-full object-cover"
-          style={`opacity: ${i === 0 ? 1 : 0}; transition: opacity 1.2s ease-in-out;`}
+          style={`object-position: ${heroPhotoPos[file] ?? 'center center'}; opacity: ${i === 0 ? 1 : 0}; transition: opacity 1.2s ease-in-out;`}
           loading={i === 0 ? 'eager' : 'lazy'}
         />
       ))}
@@ -66,43 +78,25 @@ const skills = [
         <h1 class="hero-h1-light italic">kind.</h1>
       </div>
       <h2 class="text-background leading-[1.1] mb-3 text-[clamp(1.4rem,3.5vw,2.2rem)]">
-        Product Designer.<br/><em>Vibecoder.</em>
+        Product Designer. <em>Vibecoder.</em>
       </h2>
-      <p class="font-mono text-[11px] uppercase tracking-widest text-background/45">
-        Since 2012 · SaaS · Web3 · Fintech
-      </p>
     </div>
 
     <!-- Floating polaroid — right, syncs with slideshow -->
     <div class="portrait-polaroid absolute right-6 top-1/2 md:right-16 z-10"
          style="transform: translateY(-50%)">
       <div class="portrait-polaroid-image" id="hero-polaroid-wrap">
-        {[
-          'D2651FF8-AE93-4BDC-B3CF-88F17CEC9848.jpg',
-          'IMG_0822.jpg',
-          'IMG_2415.jpg',
-          'IMG_2930.jpg',
-          'IMG_3705.jpg',
-          'IMG_7925.JPG',
-          'IMG_8960.jpg',
-          'IMG_9756.jpg',
-          'Tatiana Portrait.jpg',
-          'tati_01.JPG',
-          'tati_02.jpg',
-          'tati_03.jpg',
-          'tati_04.jpg',
-        ].map((file, i) => (
+        {heroPhotos.map((file, i) => (
           <img
             src={`/img/photos/${file}`}
             alt="Tatiana Hernandez"
             class="hero-polaroid-slide absolute inset-0 w-full h-full object-cover"
-            style={`opacity: ${i === 0 ? 1 : 0}; transition: opacity 1.2s ease-in-out;`}
+            style={`object-position: ${heroPhotoPos[file] ?? 'center center'}; opacity: ${i === 0 ? 1 : 0}; transition: opacity 1.2s ease-in-out;`}
             loading={i === 0 ? 'eager' : 'lazy'}
           />
         ))}
       </div>
       <div class="portrait-polaroid-chin">
-        <span class="polaroid-label">tati_hernandez</span>
       </div>
     </div>
 
@@ -155,14 +149,14 @@ const skills = [
        SECTION 3 · ABOUT — Bio
   ═══════════════════════════════════════════ -->
   <section class="about-bio px-6 md:px-12 py-24 md:py-32 border-t border-foreground/8">
-    <div class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+    <div class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 items-start">
 
       <!-- Left: polaroid photo -->
       <div class="reveal-block flex md:justify-start">
         <div class="about-polaroid">
           <div class="about-polaroid-image bg-foreground/8">
             <img
-              src="/img/tati_03.jpg"
+              src="/img/photos/tati_02.jpg"
               alt="Tatiana Hernandez — portrait"
               class="w-full h-full object-cover opacity-0 transition-opacity duration-700"
               loading="lazy"
@@ -176,9 +170,9 @@ const skills = [
       <!-- Right: bio text -->
       <div class="flex flex-col gap-8 pt-4">
         <div>
-          <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-4">about me</h4>
-          <div class="overflow-hidden mb-6">
-            <h2 class="clip-reveal leading-tight">I design things.<br/>I also build them.</h2>
+          <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-4">about <span style="background: var(--ds-gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">me</span></h4>
+          <div class="mb-8">
+            <h2 class="leading-tight">I love to <em class="about-hover-word">create</em> and <em class="about-hover-word">try</em> new things.</h2>
           </div>
           <div class="flex flex-col gap-4 text-foreground/65 max-w-lg">
             <p class="reveal-block" style="--delay:0ms">I'm a product designer who got tired of handing off files and started writing code. Now I do both, and I can't imagine going back.</p>
@@ -204,48 +198,71 @@ const skills = [
        SECTION 4 · EXPERIENCE — 2 column
   ═══════════════════════════════════════════ -->
   <section class="about-experience px-6 md:px-12 py-24 md:py-32 border-t border-foreground/8">
-    <div class="max-w-[1800px] mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-8 md:gap-20">
+    <div class="max-w-[1800px] mx-auto flex flex-col gap-8">
 
-        <!-- Left: sticky title -->
-        <div>
-          <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] md:sticky md:top-28">experience</h4>
-        </div>
+      <!-- Title -->
+      <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] text-center w-full">experience</h4>
 
-        <!-- Right: entries -->
-        <div class="flex flex-col">
-          {experienceTimeline.map((entry, i) => (
+      <!-- Horizontal timeline -->
+      {(() => {
+        const entries = [...experienceTimeline].reverse();
+        const n = entries.length;
+        // line runs from center of first dot to center of last dot
+        const offset = `${100 / (n * 2)}%`;
+        return (
+          <div class="relative flex overflow-x-auto gap-0 scrollbar-hide" style="scrollbar-width:none;-ms-overflow-style:none;">
+            <!-- connector line: from center of first dot to center of last dot -->
+            <!-- top = h-5(20px) + mt-2(8px) + half of h-3(6px) = 34px -->
             <div
-              class="reveal-block py-6 border-b border-foreground/8 last:border-0"
-              style={`--delay:${i * 80}ms`}
-            >
-              <p class="font-mono text-[11px] text-foreground/35 mb-2 uppercase tracking-wider">{entry.year}</p>
-              <div class="flex flex-col gap-0.5">
-                <div class="flex items-baseline gap-2 flex-wrap">
-                  {entry.companyUrl ? (
-                    <a
-                      href={entry.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="font-medium text-foreground hover:text-primary transition-colors duration-200"
-                      data-cursor="site"
-                      aria-label={`Visit ${entry.company} (opens in new tab)`}
-                    >
-                      {entry.company}
-                    </a>
-                  ) : (
-                    <span class="font-medium text-foreground">{entry.company}</span>
-                  )}
-                  <span class="text-[12px] font-mono text-foreground/40">{entry.role}</span>
+              class="absolute h-px bg-foreground/15 z-0 pointer-events-none"
+              style={`top:34px; left:${offset}; right:${offset};`}
+            ></div>
+
+            {entries.map((entry, i) => {
+              const isLatest = i === n - 1;
+              return (
+                <div
+                  class="reveal-block group/tl relative flex flex-col items-center flex-1 min-w-[200px]"
+                  style={`--delay:${i * 80}ms`}
+                >
+                  <!-- year: fixed height, centered above dot -->
+                  <p class={`h-5 font-mono uppercase tracking-wider text-center ${isLatest ? 'text-[12px] text-foreground/60' : 'text-[11px] text-foreground/30'}`}>
+                    {entry.year}
+                  </p>
+
+                  <!-- dot: mt-2 so its center = 20+8+6 = 34px from top -->
+                  <div class={`w-3 h-3 rounded-full z-10 shrink-0 mt-2 mb-4 transition-colors duration-200 ${isLatest
+                    ? 'bg-foreground group-hover/tl:bg-primary'
+                    : 'border border-foreground/35 bg-background group-hover/tl:bg-foreground/60 group-hover/tl:border-foreground'
+                  }`}></div>
+
+                  <!-- info: centered text -->
+                  <div class="flex flex-col items-center text-center gap-0.5 px-2">
+                    {entry.companyUrl ? (
+                      <a
+                        href={entry.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class={`font-medium hover:text-primary transition-colors duration-200 ${isLatest ? 'text-[15px] text-foreground' : 'text-[14px] text-foreground/70'}`}
+                        data-cursor="site"
+                        aria-label={`Visit ${entry.company} (opens in new tab)`}
+                      >
+                        {entry.company}
+                      </a>
+                    ) : (
+                      <span class={`font-medium ${isLatest ? 'text-[15px] text-foreground' : 'text-[14px] text-foreground/70'}`}>{entry.company}</span>
+                    )}
+                    <span class={`font-mono text-foreground/40 ${isLatest ? 'text-[13px]' : 'text-[11px]'}`}>{entry.role}</span>
+                    {entry.context && (
+                      <p class={`italic mt-1 ${isLatest ? 'text-[13px] text-foreground/55' : 'text-[12px] text-foreground/35'}`}>{entry.context}</p>
+                    )}
+                  </div>
                 </div>
-                {entry.context && (
-                  <p class="text-[13px] text-foreground/45 italic mt-1">{entry.context}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+              );
+            })}
+          </div>
+        );
+      })()}
     </div>
   </section>
 
@@ -581,6 +598,17 @@ const skills = [
     min-height: 520px;
   }
 
+  /* Sharpness boost for hero background images */
+  .hero-slide {
+    filter: contrast(1.08) saturate(1.1) brightness(1.02);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
   /* Floating polaroid in hero */
   .portrait-polaroid {
     background: #fff;
@@ -617,12 +645,17 @@ const skills = [
     box-shadow: 0 10px 48px rgba(0,0,0,0.12), 0 2px 10px rgba(0,0,0,0.07);
     display: flex;
     flex-direction: column;
-    width: 280px;
+    width: 284px;
     flex-shrink: 0;
     padding: 12px 12px 0;        /* thin white border: top + sides */
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  }
+  .about-polaroid:hover {
+    transform: rotate(2deg) translateY(-4px);
+    box-shadow: 0 18px 56px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.09);
   }
   @media (min-width: 768px) {
-    .about-polaroid { width: 340px; }
+    .about-polaroid { width: 400px; }
   }
   .about-polaroid-image {
     width: 100%;
@@ -632,6 +665,18 @@ const skills = [
   .about-polaroid-chin {
     height: 68px;
     background: #fff;
+  }
+
+  /* ── About hover words ───────────────────── */
+  .about-hover-word {
+    font-style: italic;
+    transition: -webkit-text-fill-color 0.2s ease;
+  }
+  .about-hover-word:hover {
+    background: var(--ds-gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   /* ── Moments carousel ────────────────────── */
