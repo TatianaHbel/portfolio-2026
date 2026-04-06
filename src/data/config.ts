@@ -1,4 +1,4 @@
-export const resumeUrl = '/Tatiana_Hernandez_Resume.pdf';
+export const resumeUrl = '/Resume/CV_Tatiana Hernandez_2026.pdf';
 
 export const socialLinks = [
   { label: 'Linkedin', href: 'https://www.linkedin.com/in/tatianahernandezbel/' },
