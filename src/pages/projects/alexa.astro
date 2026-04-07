@@ -1,7 +1,6 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
-import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import InfoGrid from '../../components/InfoGrid.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
 import { alexaSections } from '../../data/projects';
@@ -21,10 +20,12 @@ import { alexaSections } from '../../data/projects';
     </div>
 
     <!-- Hero thumbnail -->
-    <div class="w-full aspect-[16/9] border-1 border-foreground/10">
-      <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for Bridge the Gap">
-        <ImagePlaceholder color="#00144550" />
-      </div>
+    <div class="w-full border-1 border-foreground/10 overflow-hidden">
+      <img
+        src="/projects/alexa/images/Btg_01.png"
+        alt="Bridge the Gap — hero overview"
+        class="w-full h-auto opacity-0 transition-opacity duration-500"
+      />
     </div>
 
     <!-- Project metadata -->
@@ -56,9 +57,11 @@ import { alexaSections } from '../../data/projects';
         </div>
       </div>
 
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
-      </div>
+      <img
+        src="/projects/alexa/images/Btg_02.png"
+        alt="Bridge the Gap — overview"
+        class="w-full h-auto opacity-0 transition-opacity duration-500"
+      />
     </section>
 
     <!-- The User -->
@@ -80,40 +83,67 @@ import { alexaSections } from '../../data/projects';
       </div>
     </section>
 
-    <!-- The Challenge -->
+    <!-- Challenge & Approach -->
     <section id="the-challenge" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">The Challenge</h4>
-      <h2 class="-mb-2">This wasn't just a UI problem.</h2>
-      <p>Three layers of friction, stacked on top of each other. Each one is manageable alone — together, they create a wall.</p>
+      <h4 class="!opacity-100 mb-1">Challenge & Approach</h4>
+      <h2 class="-mb-2">This wasn't just a UI problem — and the solution wasn't either.</h2>
+      <p>Before opening Figma, I walked through five existing cross-chain interfaces as a first-time user. Three distinct layers of friction emerged. Each one is manageable alone — together, they create a wall. The benchmark below captures exactly where existing products break down.</p>
 
-      <InfoGrid items={[
-        { title: 'A trust problem', desc: 'Hidden steps — bridge approvals, gas estimation, route selection — create anxiety at every turn. Users can\'t tell if they\'re about to complete a transaction or accidentally lose their funds.' },
-        { title: 'A language problem', desc: '"Slippage", "gas", "bridge", "approval" — these concepts aren\'t inherently bad, but they\'re rarely explained in ways that feel human or relevant. The vocabulary of DeFi was built by engineers, not for people.' },
-        { title: 'A confidence problem', desc: 'The first impression of a DeFi app determines the user\'s entire relationship with the product — and often with crypto altogether. A single confusing moment early in the flow is enough to lose them permanently.' },
-      ]} />
+      <div class="group relative mt-2 cursor-zoom-in" data-lightbox-trigger>
+        <img
+          src="/projects/alexa/images/Benchmark.png"
+          alt="Bridge the Gap — benchmark analysis"
+          class="w-full h-auto opacity-0 transition-opacity duration-500"
+          data-lightbox
+        />
+        <!-- Hover overlay -->
+        <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 pointer-events-none"></div>
+        <!-- Zoom hint — always visible, reinforced on hover -->
+        <div class="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-background/80 backdrop-blur-sm border border-foreground/10 text-xs opacity-50 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none select-none">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/>
+          </svg>
+          Click to zoom
+        </div>
+      </div>
+
+      <div class="w-full mt-6 border border-foreground/10">
+        <!-- Problem row -->
+        <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-foreground/10">
+          <div class="md:w-24 shrink-0 flex items-center justify-center p-4 md:p-5 bg-foreground/[0.03]">
+            <span class="text-xs uppercase tracking-widest opacity-40 md:[writing-mode:vertical-lr] md:rotate-180">Problem</span>
+          </div>
+          <div class="flex flex-col gap-2 w-full p-5 md:items-start md:justify-start">
+            <h3>A trust problem</h3>
+            <p class="opacity-70">Hidden steps — bridge approvals, gas estimation, route selection — create anxiety at every turn. Users can't tell if they're completing a transaction or accidentally losing their funds.</p>
+          </div>
+          <div class="flex flex-col gap-2 w-full p-5 border-t md:border-t-0 border-foreground/10">
+            <h3>A language problem</h3>
+            <p class="opacity-70">"Slippage", "gas", "bridge", "approval" — the vocabulary of DeFi was built by engineers, not for people. These concepts aren't inherently bad, but they're rarely framed in ways that feel human.</p>
+          </div>
+          <div class="flex flex-col gap-2 w-full p-5 border-t md:border-t-0 border-foreground/10">
+            <h3>A confidence problem</h3>
+            <p class="opacity-70">The first impression of a DeFi app shapes the user's entire relationship with the product. A single confusing moment early in the flow is enough to lose them permanently.</p>
+          </div>
+        </div>
+        <!-- Response row -->
+        <div class="flex flex-col md:flex-row border-t border-foreground/10 divide-y md:divide-y-0 md:divide-x divide-foreground/10">
+          <div class="md:w-24 shrink-0 flex items-center justify-center p-4 md:p-5 bg-foreground/[0.03]">
+            <span class="text-xs uppercase tracking-widest opacity-40 md:[writing-mode:vertical-lr] md:rotate-180">Response</span>
+          </div>
+          <div class="flex flex-col gap-2 w-full p-5">
+            <p class="opacity-70">Walked through 5 existing cross-chain interfaces as a first-time user. Documented every hidden step — then designed for radical transparency at each one.</p>
+          </div>
+          <div class="flex flex-col gap-2 w-full p-5 border-t md:border-t-0 border-foreground/10">
+            <p class="opacity-70">Before designing any screen, I rewrote every key term in plain language. "Approve token" → "Allow this app to use your token." Language-first, then UI.</p>
+          </div>
+          <div class="flex flex-col gap-2 w-full p-5 border-t md:border-t-0 border-foreground/10">
+            <p class="opacity-70">Each step was mapped to a target emotional state: confusion → clarity → trust → confidence. Every visual and copy decision served that arc.</p>
+          </div>
+        </div>
+      </div>
 
       <CaseStudyBlockquote>DeFi doesn't need to be simplified — it needs to be translated.</CaseStudyBlockquote>
-
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
-      </div>
-    </section>
-
-    <!-- Design Process -->
-    <section id="design-process" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Design Process</h4>
-      <h2 class="-mb-2">From confusion map to confident flow.</h2>
-      <p>Before touching Figma, I spent time understanding where existing cross-chain experiences break down — and why. The process had three distinct phases.</p>
-
-      <InfoGrid items={[
-        { title: 'Mapping the friction', desc: 'Walked through 5 existing cross-chain interfaces as a first-time user. Documented every moment of confusion, every piece of jargon, every step that had no clear "why." The list was long.' },
-        { title: 'Rewriting the language', desc: 'Before designing any screen, I rewrote every key term and action in plain language. "Approve token" → "Allow this app to use your token." "Slippage" → "Max price change you\'ll accept." Language-first, then UI.' },
-        { title: 'Designing for emotional states', desc: 'Each step in the flow was mapped to a target user emotion: confusion → clarity → trust → confidence. Every visual and copy decision was made in service of moving the user along that arc.' },
-      ]} />
-
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
-      </div>
     </section>
 
     <!-- Solution -->
@@ -128,16 +158,20 @@ import { alexaSections } from '../../data/projects';
         { title: 'Earned permissions', desc: 'Wallet approvals are introduced with context, not as a cold popup. The app explains what it\'s asking for and why before requesting it — because permission without context feels like a threat.' },
       ]} />
 
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
-      </div>
+      <img
+        src="/projects/alexa/images/Btg_03.png"
+        alt="Bridge the Gap — solution screens"
+        class="w-full h-auto opacity-0 transition-opacity duration-500"
+      />
 
       <h4 class="!opacity-100 mt-8">Key design decision: step-by-step over all-at-once</h4>
       <p>The initial instinct was to show a full swap summary upfront — a common pattern in DeFi interfaces. But after testing both approaches, step-by-step consistently outperformed. It felt slower, but users arrived at the confirmation step already informed rather than suddenly overwhelmed. The friction was worth it.</p>
 
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
-      </div>
+      <img
+        src="/projects/alexa/images/Btg_04.png"
+        alt="Bridge the Gap — step-by-step decision"
+        class="w-full h-auto opacity-0 transition-opacity duration-500"
+      />
 
       <div class="h-[1px] w-full bg-foreground/10 mt-16 mb-8"></div>
     </section>
@@ -165,59 +199,79 @@ import { alexaSections } from '../../data/projects';
 
       <CaseStudyBlockquote>A good handoff doesn't just describe the design — it defends it.</CaseStudyBlockquote>
 
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
+      <div class="relative w-full aspect-[16/9] overflow-hidden">
+        <iframe
+          src="https://www.youtube.com/embed/boussL_i9ms"
+          title="Bridge the Gap — Design Handoff"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="absolute inset-0 w-full h-full border-0"
+        ></iframe>
       </div>
     </section>
 
-    <!-- Impact -->
-    <section id="impact" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Impact</h4>
-      <p>Concept project — no production metrics, but validated through concept testing with non-crypto users across different levels of technical familiarity.</p>
+    <!-- Impact & Learnings -->
+    <section id="impact" class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4">
+        <h4 class="!opacity-100 mb-1">Impact & Learnings</h4>
+        <h2 class="-mb-2">What it validated — and what it taught me.</h2>
+        <p>Concept project — no production metrics, but validated through concept testing with non-crypto users across different levels of technical familiarity. Here's what came out of it.</p>
 
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Reduced cognitive load</h3>
-          <p>In concept testing, users completed the swap flow without stopping to ask "what does this mean?" — a first for most of them in a DeFi context. The plain-language rewrites eliminated the most common friction points before they became drop-off moments.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Trust signals worked</h3>
-          <p>Users described the confirmation step as "reassuring" rather than "scary" — the primary emotional goal of the project. The visible progress model and earned permissions pattern directly shaped how safe users felt at the most high-stakes moment in the flow.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Handoff format adopted</h3>
-          <p>The annotation and documentation structure developed for this project was adopted by the client team as their standard handoff format going forward — extending the impact of the work beyond the project itself.</p>
+        <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
+          <div class="flex flex-col gap-1 w-full">
+            <h3>Reduced cognitive load</h3>
+            <p class="opacity-70">In concept testing, users completed the swap flow without stopping to ask "what does this mean?" — a first for most of them in a DeFi context. The plain-language rewrites eliminated the most common friction points before they became drop-off moments.</p>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <h3>Trust signals worked</h3>
+            <p class="opacity-70">Users described the confirmation step as "reassuring" rather than "scary" — the primary emotional goal of the project. The visible progress model and earned permissions pattern directly shaped how safe users felt at the most high-stakes moment in the flow.</p>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <h3>Handoff format adopted</h3>
+            <p class="opacity-70">The annotation and documentation structure developed for this project was adopted by the client team as their standard handoff format — extending the impact of the work beyond the project itself.</p>
+          </div>
         </div>
       </div>
 
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#00144520;"></div>
-      </div>
-    </section>
+      <div class="h-px w-full bg-foreground/10"></div>
 
-    <!-- Learnings -->
-    <section id="learnings" class="flex flex-col gap-4">
-      <h4 class="!opacity-100 mb-1">Learnings</h4>
-      <p>Three things this project taught me about designing for complex technical spaces — and about how design shapes trust.</p>
+      <div class="flex flex-col gap-4">
+        <p class="opacity-50 text-sm">Three things this project taught me about designing for complex technical spaces.</p>
 
-      <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
-        <div class="flex flex-col gap-1 w-full">
-          <h3>DeFi doesn't need to be simplified — it needs to be translated.</h3>
-          <p>The problem isn't the complexity of the technology — it's the language used to describe it. Concepts like bridging, gas, or slippage aren't bad. But they're rarely framed in ways that feel relevant or human. When I focused on translating these into natural, empathetic language — without dumbing them down — users felt less intimidated and more in control. It's not about hiding complexity. It's about framing it so it feels approachable.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>Design sets the tone before you say a word.</h3>
-          <p>Spacing, icons, copy tone, animations — these play a subtle but powerful role in shaping the user's emotional state before they've read a single instruction. A swap is more than a transaction; it's a moment of trust. So I designed for feelings: calmness, clarity, momentum. That meant removing anything noisy or ambiguous, and reinforcing progress through soft, purposeful cues. The goal wasn't just usability — it was confidence.</p>
-        </div>
-        <div class="flex flex-col gap-1 w-full">
-          <h3>First impressions are emotional, not technical.</h3>
-          <p>The first few screens of a crypto app can shape a user's entire relationship with the product — or with the ecosystem. I learned to treat those initial interactions with care: make them welcoming, predictable, and supportive. If the first impression feels like a test, users walk away. If it feels like support, they lean in. That's why the early steps of the flow focus on reassurance before control.</p>
+        <div class="flex w-full flex-col md:flex-row gap-6">
+          <div class="flex flex-col gap-1 w-full">
+            <h3>DeFi doesn't need to be simplified — it needs to be translated.</h3>
+            <p class="opacity-70">The problem isn't the complexity of the technology — it's the language used to describe it. When I focused on translating concepts into natural, empathetic language — without dumbing them down — users felt less intimidated and more in control.</p>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <h3>Design sets the tone before you say a word.</h3>
+            <p class="opacity-70">Spacing, icons, copy tone, animations — these shape the user's emotional state before they've read a single instruction. A swap is more than a transaction; it's a moment of trust. I designed for feelings: calmness, clarity, momentum.</p>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <h3>First impressions are emotional, not technical.</h3>
+            <p class="opacity-70">The first few screens of a crypto app shape a user's entire relationship with the product. If the first impression feels like a test, users walk away. If it feels like support, they lean in.</p>
+          </div>
         </div>
       </div>
 
       <CaseStudyBlockquote>Before asking for wallet permissions, I ask for attention — and earn it.</CaseStudyBlockquote>
     </section>
 
+  </div>
+
+  <!-- Closing CTA -->
+  <div class="flex flex-col items-center text-center gap-6 py-16 mt-8 border-t border-foreground/10">
+    <svg class="transition-colors duration-300 hover:text-[#e85d4a] cursor-default" width="32" height="32" viewBox="0 0 351 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M267.839 0.520205C233.1 6.1852 194.47 41.9362 173.223 88.0852C170.691 93.5852 168.071 99.7732 167.402 101.835C166.732 103.898 165.834 105.585 165.407 105.585C164.98 105.585 161.33 100.123 157.297 93.4482C141.701 67.6332 126.333 51.4142 108.263 41.6982C64.9113 18.3882 27.6283 27.5692 9.23233 66.0852C-8.63167 103.488 -0.328674 154.972 32.0333 207.464C47.7003 232.875 67.7053 258.726 84.3643 275.085C89.9653 280.585 99.2763 290.485 105.056 297.085C120.719 314.972 133.749 326.262 151.566 337.387C176.316 352.84 189.097 353.169 209.216 338.873C240.057 316.958 302.071 235.971 327.359 184.585C336.825 165.349 340.462 154.251 345.991 127.741C352.102 98.4362 351.705 71.0232 344.866 50.0712C336.992 25.9492 320.94 9.71121 298.037 2.70021C290.385 0.358205 275.447 -0.720795 267.839 0.520205Z" fill="currentColor" class="opacity-60"/>
+    </svg>
+    <h2>Ready to build something<br/><em>amazing?</em></h2>
+    <a
+      href="mailto:tati.hbel@gmail.com"
+      data-cursor="email"
+      class="inline-flex items-center gap-2 px-6 py-3 border border-foreground/20 hover:border-foreground/60 text-sm transition-colors duration-200"
+    >
+      Come and say Hola!
+    </a>
   </div>
 </ProjectLayout>
 
@@ -228,5 +282,205 @@ import { alexaSections } from '../../data/projects';
     } else {
       img.addEventListener('load', () => img.classList.remove('opacity-0'));
     }
+  });
+
+  // Lightbox overlay with zoom + pan
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.88);
+    overflow: hidden;
+  `;
+
+  // Close button
+  const closeBtn = document.createElement('button');
+  closeBtn.innerHTML = '&times;';
+  closeBtn.style.cssText = `
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    z-index: 10001;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  `;
+  closeBtn.addEventListener('mouseenter', () => closeBtn.style.opacity = '1');
+  closeBtn.addEventListener('mouseleave', () => closeBtn.style.opacity = '0.7');
+
+  // Hints bar
+  const hints = document.createElement('div');
+  hints.style.cssText = `
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    padding: 0.5rem 1.25rem;
+    transition: opacity 0.4s;
+    white-space: nowrap;
+  `;
+  hints.innerHTML = `
+    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="10"/></svg>
+      Scroll to zoom
+    </span>
+    <span style="color:rgba(255,255,255,0.2);font-size:0.6rem;">|</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 9l7-7 7 7M5 15l7 7 7-7"/></svg>
+      Double-click to reset
+    </span>
+    <span style="color:rgba(255,255,255,0.2);font-size:0.6rem;">|</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v10M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+      Drag to pan
+    </span>
+    <span style="color:rgba(255,255,255,0.2);font-size:0.6rem;">|</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      Esc to close
+    </span>
+  `;
+  function showHints() {
+    hints.style.opacity = '1';
+  }
+
+  const overlayImg = document.createElement('img');
+  overlayImg.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 4px;
+    box-shadow: 0 8px 64px rgba(0,0,0,0.5);
+    transform-origin: center center;
+    user-select: none;
+    -webkit-user-drag: none;
+  `;
+
+  overlay.appendChild(closeBtn);
+  overlay.appendChild(hints);
+  overlay.appendChild(overlayImg);
+  document.body.appendChild(overlay);
+
+  // State
+  let scale = 1;
+  let translateX = 0;
+  let translateY = 0;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragOriginX = 0;
+  let dragOriginY = 0;
+
+  function applyTransform() {
+    overlayImg.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scale})`;
+    const cur = scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default';
+    overlay.style.setProperty('cursor', cur, 'important');
+    overlayImg.style.setProperty('cursor', cur, 'important');
+  }
+
+  function resetTransform() {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    applyTransform();
+  }
+
+  function closeLightbox() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+    resetTransform();
+  }
+
+  // Open lightbox — triggered from img or its wrapper
+  function openLightbox(img: HTMLImageElement) {
+    overlayImg.src = img.src;
+    overlayImg.alt = img.alt;
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    resetTransform();
+    showHints();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-lightbox-trigger]').forEach((wrapper) => {
+    const img = wrapper.querySelector<HTMLImageElement>('img[data-lightbox]');
+    if (img) wrapper.addEventListener('click', () => openLightbox(img));
+  });
+
+  document.querySelectorAll<HTMLImageElement>('img[data-lightbox]').forEach((img) => {
+    if (!img.closest('[data-lightbox-trigger]')) {
+      img.addEventListener('click', () => openLightbox(img));
+    }
+  });
+
+  // Close on button
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Close on backdrop click
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeLightbox();
+  });
+
+  // Scroll to zoom
+  overlay.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.15 : 0.15;
+    scale = Math.min(Math.max(scale + delta, 1), 5);
+    if (scale === 1) { translateX = 0; translateY = 0; }
+    applyTransform();
+  }, { passive: false });
+
+  // Double-click to zoom in / reset
+  overlayImg.addEventListener('dblclick', (e) => {
+    e.stopPropagation();
+    if (scale > 1) {
+      resetTransform();
+    } else {
+      scale = 2.5;
+      applyTransform();
+    }
+  });
+
+  // Drag to pan
+  overlayImg.addEventListener('mousedown', (e) => {
+    if (scale <= 1) return;
+    e.preventDefault();
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragOriginX = translateX;
+    dragOriginY = translateY;
+    applyTransform();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    translateX = dragOriginX + (e.clientX - dragStartX);
+    translateY = dragOriginY + (e.clientY - dragStartY);
+    applyTransform();
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    applyTransform();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 </script>

@@ -104,12 +104,10 @@ export const onePasswordSections: ProjectSection[] = [
 export const alexaSections: ProjectSection[] = [
   { id: 'overview',       label: 'Overview' },
   { id: 'the-user',       label: 'The User' },
-  { id: 'the-challenge',  label: 'The Challenge' },
-  { id: 'design-process', label: 'Design Process' },
+  { id: 'the-challenge',  label: 'Challenge & Approach' },
   { id: 'solution',       label: 'Solution' },
   { id: 'design-handoff', label: 'Design Handoff' },
-  { id: 'impact',         label: 'Impact' },
-  { id: 'learnings',      label: 'Learnings' },
+  { id: 'impact',         label: 'Impact & Learnings' },
 ];
 
 export const vibeCodingBrandSections: ProjectSection[] = [
