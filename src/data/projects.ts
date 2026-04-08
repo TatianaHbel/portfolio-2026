@@ -94,7 +94,6 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
 
 export const onePasswordSections: ProjectSection[] = [
   { id: 'overview',   label: 'Overview' },
-  { id: 'my-role',    label: 'My Role' },
   { id: 'dashboard',  label: 'Dashboard Redesign' },
   { id: 'streams',    label: 'Streams' },
   { id: 'more-work',  label: 'More Work' },
