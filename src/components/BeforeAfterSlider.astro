@@ -1,0 +1,91 @@
+---
+interface Props {
+  beforeSrc: string;
+  afterSrc: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+  aspectRatio?: string;
+  title?: string;
+  class?: string;
+}
+
+const {
+  beforeSrc,
+  afterSrc,
+  beforeAlt = 'Before',
+  afterAlt = 'After',
+  aspectRatio = '16 / 9',
+  title,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={['flex flex-col gap-3', className]}>
+  {title && <h4 class="!text-foreground">{title}</h4>}
+
+  <div
+    class="split-slider relative w-full overflow-hidden select-none"
+    style={`cursor: ew-resize; aspect-ratio: ${aspectRatio};`}
+    aria-label="Before and after comparison slider"
+  >
+    <!-- Before (base layer) -->
+    <img
+      class="absolute inset-0 w-full h-full object-cover"
+      src={beforeSrc}
+      alt={beforeAlt}
+      draggable="false"
+    />
+
+    <!-- After (clipped layer) -->
+    <div
+      class="split-after-panel absolute inset-0 overflow-hidden"
+      style="clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);"
+    >
+      <img
+        class="absolute inset-0 w-full h-full object-cover"
+        src={afterSrc}
+        alt={afterAlt}
+        draggable="false"
+      />
+    </div>
+
+    <!-- Vertical divider -->
+    <div
+      class="split-divider absolute top-0 bottom-0 w-[2px] bg-white/80 shadow-[0_0_8px_rgba(0,0,0,0.4)] -translate-x-1/2 z-10"
+      style="left: 50%;"
+    >
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg flex items-center justify-center gap-[3px]">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:-10px;">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.split-slider').forEach((container) => {
+    const afterPanel = container.querySelector<HTMLElement>('.split-after-panel')!;
+    const divider    = container.querySelector<HTMLElement>('.split-divider')!;
+    let isDragging   = false;
+
+    function setSplit(clientX: number) {
+      const rect = container.getBoundingClientRect();
+      let pct = (clientX - rect.left) / rect.width;
+      pct = Math.max(0, Math.min(1, pct));
+      afterPanel.style.clipPath = `polygon(${pct * 100}% 0%, 100% 0%, 100% 100%, ${pct * 100}% 100%)`;
+      divider.style.left = `${pct * 100}%`;
+    }
+
+    container.addEventListener('mousedown', (e) => { isDragging = true; setSplit(e.clientX); });
+    window.addEventListener('mousemove',    (e) => { if (isDragging) setSplit(e.clientX); });
+    window.addEventListener('mouseup',      ()  => { isDragging = false; });
+
+    container.addEventListener('touchstart', (e) => { isDragging = true; setSplit(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove',     (e) => { if (isDragging) setSplit(e.touches[0].clientX); },   { passive: true });
+    window.addEventListener('touchend',      ()  => { isDragging = false; });
+  });
+</script>

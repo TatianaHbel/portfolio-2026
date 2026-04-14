@@ -82,7 +82,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
     {
       title: 'UX at a Web3 Startup',
       label: 'Moralis - Shipped 2024-2026',
-      href: '/projects/1password',
+      href: '/projects/moralis-dashboard',
       aspect: 'aspect-[8/5]',
       placeholderColor: '#1A316E50',
       cursorType: 'case-study',
@@ -92,7 +92,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
   ],
 };
 
-export const onePasswordSections: ProjectSection[] = [
+export const moralisDashboardSections: ProjectSection[] = [
   { id: 'overview',   label: 'Overview' },
   { id: 'dashboard',  label: 'Dashboard Redesign' },
   { id: 'streams',    label: 'Streams' },

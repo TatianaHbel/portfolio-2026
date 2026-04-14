@@ -1,13 +1,14 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
-import { onePasswordSections } from '../../data/projects';
+import BeforeAfterSlider from '../../components/BeforeAfterSlider.astro';
+import { moralisDashboardSections } from '../../data/projects';
 ---
 
 <ProjectLayout
   title="UX at a Web3 Startup | Tatiana Hernandez"
   description="UX at a Web3 Startup — Moralis 2022–2025"
-  sections={onePasswordSections}
+  sections={moralisDashboardSections}
 >
   <!-- Project header -->
   <div class="flex flex-col gap-8">
@@ -65,9 +66,9 @@ import { onePasswordSections } from '../../data/projects';
           <div class="relative w-full overflow-hidden cursor-zoom-in" data-lightbox-trigger data-lightbox-index="0">
             <img
               class="w-full h-auto opacity-0 transition-opacity duration-300"
-              src="/projects/1password/images/Before_01.png"
+              src="/projects/moralis-dashboard/images/Before_01.png"
               alt="Dashboard before redesign — Moralis"
-              data-lightbox-src="/projects/1password/images/Before_01.png"
+              data-lightbox-src="/projects/moralis-dashboard/images/Before_01.png"
               data-lightbox-alt="Dashboard before redesign — Moralis"
             />
           </div>
@@ -79,9 +80,9 @@ import { onePasswordSections } from '../../data/projects';
           <div class="relative w-full overflow-hidden cursor-zoom-in" data-lightbox-trigger data-lightbox-index="1">
             <img
               class="w-full h-auto opacity-0 transition-opacity duration-300"
-              src="/projects/1password/images/After_01.png"
+              src="/projects/moralis-dashboard/images/After_01.png"
               alt="Dashboard after redesign — Moralis"
-              data-lightbox-src="/projects/1password/images/After_01.png"
+              data-lightbox-src="/projects/moralis-dashboard/images/After_01.png"
               data-lightbox-alt="Dashboard after redesign — Moralis"
             />
           </div>
@@ -91,71 +92,15 @@ import { onePasswordSections } from '../../data/projects';
 
       <CaseStudyBlockquote>A dashboard isn't a feature showcase — it's a status report. It should answer the developer's first question before they even ask it.</CaseStudyBlockquote>
 
-      <!-- Before / After split slider -->
-      <div class="flex flex-col gap-3 mt-4">
-        <h4 class="!text-foreground">Side-by-side comparison</h4>
-        <div
-          id="split-container"
-          class="relative w-full overflow-hidden select-none"
-          style="cursor: ew-resize; aspect-ratio: 2880 / 2048;"
-          aria-label="Before and after comparison slider"
-        >
-          <!-- Before (bottom layer, fills container) -->
-          <img
-            id="split-before-img"
-            class="absolute inset-0 w-full h-full object-cover"
-            src="/projects/1password/images/Before_01.png"
-            alt="Dashboard before redesign"
-            draggable="false"
-          />
-
-          <!-- After (top layer, clipped diagonally) -->
-          <div
-            id="split-after-panel"
-            class="absolute inset-0 overflow-hidden"
-          >
-            <img
-              id="split-after-img"
-              class="absolute inset-0 h-full object-cover object-left"
-              src="/projects/1password/images/After_01.png"
-              alt="Dashboard after redesign"
-              draggable="false"
-            />
-          </div>
-
-          <!-- Edge masks: 12px inner frame so image corners are fully visible -->
-          <div class="absolute top-0 inset-x-0 h-3 pointer-events-none z-10" style="background: var(--color-background);"></div>
-          <div class="absolute bottom-0 inset-x-0 h-3 pointer-events-none z-10" style="background: var(--color-background);"></div>
-          <div class="absolute inset-y-0 left-0 w-3 pointer-events-none z-10" style="background: var(--color-background);"></div>
-          <div class="absolute inset-y-0 right-0 w-3 pointer-events-none z-10" style="background: var(--color-background);"></div>
-
-          <!-- Diagonal divider line (SVG) -->
-          <svg id="split-line-svg" class="absolute inset-0 w-full h-full pointer-events-none z-20" overflow="visible">
-            <line
-              id="split-line-el"
-              x1="57.185%" y1="0%"
-              x2="42.815%" y2="100%"
-              stroke="rgba(255,255,255,0.85)"
-              stroke-width="2"
-              style="filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));"
-            />
-          </svg>
-
-          <!-- Handle -->
-          <div
-            id="split-handle"
-            class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg flex items-center justify-center gap-[3px] pointer-events-none z-20"
-            style="left: 50%;"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:-10px;">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </div>
-        </div>
-      </div>
+      <BeforeAfterSlider
+        beforeSrc="/projects/moralis-dashboard/images/Before_01.png"
+        afterSrc="/projects/moralis-dashboard/images/After_01.png"
+        beforeAlt="Dashboard before redesign — Moralis"
+        afterAlt="Dashboard after redesign — Moralis"
+        aspectRatio="2880 / 2048"
+        title="Side-by-side comparison"
+        class="mt-4"
+      />
     </section>
 
     <!-- Streams -->
@@ -217,7 +162,7 @@ import { onePasswordSections } from '../../data/projects';
           class="w-full h-auto opacity-0 translate-y-5
                  transition-[opacity,transform] duration-700"
           style="transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);"
-          src="/projects/1password/images/payments-checkout.png"
+          src="/projects/moralis-dashboard/images/payments-checkout.png"
           alt="Payments and Checkout redesign — Moralis"
           data-reveal-img
         />
@@ -346,50 +291,6 @@ import { onePasswordSections } from '../../data/projects';
     if (e.key === 'ArrowLeft') openLightbox(currentIndex - 1);
     if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
   });
-
-  // Before/After split slider
-  const splitContainer = document.getElementById('split-container') as HTMLElement;
-  const splitAfterPanel = document.getElementById('split-after-panel') as HTMLElement;
-  const splitAfterImg = document.getElementById('split-after-img') as HTMLImageElement;
-  const splitLineEl = document.getElementById('split-line-el') as unknown as SVGLineElement;
-  const splitHandle = document.getElementById('split-handle') as HTMLElement;
-
-  if (splitContainer) {
-    let isDragging = false;
-    const HALF_OFFSET = 7.185;
-
-    function setSplit(clientX: number) {
-      const rect = splitContainer.getBoundingClientRect();
-      let center = (clientX - rect.left) / rect.width;
-      center = Math.max(0, Math.min(1, center));
-
-      const topX = center + HALF_OFFSET / 100;
-      const bottomX = center - HALF_OFFSET / 100;
-
-      splitAfterPanel.style.clipPath =
-        `polygon(${topX * 100}% 0%, 100% 0%, 100% 100%, ${bottomX * 100}% 100%)`;
-      splitAfterImg.style.width = `${rect.width}px`;
-
-      splitLineEl.setAttribute('x1', `${topX * 100}%`);
-      splitLineEl.setAttribute('x2', `${bottomX * 100}%`);
-      splitHandle.style.left = `${center * 100}%`;
-    }
-
-    // Init
-    const initTopX = 0.5 + HALF_OFFSET / 100;
-    const initBottomX = 0.5 - HALF_OFFSET / 100;
-    splitAfterPanel.style.clipPath =
-      `polygon(${initTopX * 100}% 0%, 100% 0%, 100% 100%, ${initBottomX * 100}% 100%)`;
-    splitAfterImg.style.width = `${splitContainer.getBoundingClientRect().width}px`;
-
-    splitContainer.addEventListener('mousedown', (e) => { isDragging = true; setSplit(e.clientX); });
-    window.addEventListener('mousemove', (e) => { if (isDragging) setSplit(e.clientX); });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-
-    splitContainer.addEventListener('touchstart', (e) => { isDragging = true; setSplit(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchmove', (e) => { if (isDragging) setSplit(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchend', () => { isDragging = false; });
-  }
 
   // Standard load reveal for non-scroll images
   document.querySelectorAll<HTMLImageElement>('img:not([data-reveal-img])').forEach((img) => {
