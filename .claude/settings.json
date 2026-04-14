@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/projects/1password)",
+      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/tatianahernandez/Desktop/Projects/thebell/public/projects/1password/images/Before.png\" \"/Users/tatianahernandez/Desktop/Projects/thebell/public/projects/1password/images/After.png\")"
+    ]
+  }
+}
