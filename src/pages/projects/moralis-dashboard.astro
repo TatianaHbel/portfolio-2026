@@ -59,48 +59,18 @@ import { moralisDashboardSections } from '../../data/projects';
       <h2 class="-mb-2">Turning a cluttered control panel into a developer's home base.</h2>
       <p>The dashboard was the first thing every Moralis developer saw after login — it needed to communicate value immediately without overwhelming. The old version failed on both fronts.</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Before -->
-        <div class="flex flex-col gap-4">
-          <h4 class="!text-foreground">Before</h4>
-          <div class="relative w-full overflow-hidden cursor-zoom-in" data-lightbox-trigger data-lightbox-index="0">
-            <img
-              class="w-full h-auto opacity-0 transition-opacity duration-300"
-              src="/projects/moralis-dashboard/images/Before_01.png"
-              alt="Dashboard before redesign — Moralis"
-              data-lightbox-src="/projects/moralis-dashboard/images/Before_01.png"
-              data-lightbox-alt="Dashboard before redesign — Moralis"
-            />
-          </div>
-          <p>Key data — API keys, project details, support options — was buried in a cluttered layout with no hierarchy. Developers had to hunt for information on every visit. As the platform grew, fragmented patterns became friction — scaling the product without scaling confusion meant starting with the foundation.</p>
-        </div>
-        <!-- After -->
-        <div class="flex flex-col gap-4">
-          <h4 class="!text-foreground">After</h4>
-          <div class="relative w-full overflow-hidden cursor-zoom-in" data-lightbox-trigger data-lightbox-index="1">
-            <img
-              class="w-full h-auto opacity-0 transition-opacity duration-300"
-              src="/projects/moralis-dashboard/images/After_01.png"
-              alt="Dashboard after redesign — Moralis"
-              data-lightbox-src="/projects/moralis-dashboard/images/After_01.png"
-              data-lightbox-alt="Dashboard after redesign — Moralis"
-            />
-          </div>
-          <p>A modular layout organized around what developers look for first: usage vs. plan limits, API keys, project health, and a clear path to docs. Redesigning for modularity and consistency was foundational — scaling the product without scaling confusion. Result: <strong>+22% onboarding completion</strong>.</p>
-        </div>
-      </div>
-
-      <CaseStudyBlockquote>A dashboard isn't a feature showcase — it's a status report. It should answer the developer's first question before they even ask it.</CaseStudyBlockquote>
-
       <BeforeAfterSlider
         beforeSrc="/projects/moralis-dashboard/images/Before_01.png"
         afterSrc="/projects/moralis-dashboard/images/After_01.png"
         beforeAlt="Dashboard before redesign — Moralis"
         afterAlt="Dashboard after redesign — Moralis"
         aspectRatio="2880 / 2048"
-        title="Side-by-side comparison"
         class="mt-4"
       />
+
+      <p>The old dashboard buried key data — API keys, project details, usage limits — in a cluttered layout with no clear hierarchy. Developers had to hunt for information on every visit. The redesign reorganized everything around what developers look for first: usage vs. plan limits, API keys, project health, and a clear path to docs. Result: <strong>+22% onboarding completion</strong>.</p>
+
+      <CaseStudyBlockquote>A dashboard isn't a feature showcase — it's a status report. It should answer the developer's first question before they even ask it.</CaseStudyBlockquote>
     </section>
 
     <!-- Streams -->
@@ -196,102 +166,7 @@ import { moralisDashboardSections } from '../../data/projects';
   </div>
 </ProjectLayout>
 
-<!-- Lightbox overlay -->
-<div
-  id="lightbox"
-  class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-10"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Image lightbox"
->
-  <button
-    id="lightbox-close"
-    class="absolute top-4 right-5 text-white/70 hover:text-white text-3xl leading-none transition-colors z-10"
-    aria-label="Close"
-  >&times;</button>
-
-  <!-- Prev arrow -->
-  <button
-    id="lightbox-prev"
-    class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors p-2 z-10"
-    aria-label="Previous image"
-  >
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="15 18 9 12 15 6"></polyline>
-    </svg>
-  </button>
-
-  <img
-    id="lightbox-img"
-    class="max-w-full max-h-full object-contain rounded-sm shadow-2xl"
-    src=""
-    alt=""
-  />
-
-  <!-- Next arrow -->
-  <button
-    id="lightbox-next"
-    class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors p-2 z-10"
-    aria-label="Next image"
-  >
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-  </button>
-</div>
-
 <script>
-  // Lightbox with navigation
-  const lightbox = document.getElementById('lightbox') as HTMLElement;
-  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
-  const lightboxClose = document.getElementById('lightbox-close') as HTMLButtonElement;
-  const lightboxPrev = document.getElementById('lightbox-prev') as HTMLButtonElement;
-  const lightboxNext = document.getElementById('lightbox-next') as HTMLButtonElement;
-
-  // Collect all lightbox-able images in DOM order
-  const triggers = Array.from(document.querySelectorAll<HTMLElement>('[data-lightbox-trigger]'));
-  const images = triggers.map((t) => {
-    const img = t.querySelector<HTMLImageElement>('[data-lightbox-src]');
-    return { src: img?.dataset.lightboxSrc ?? '', alt: img?.dataset.lightboxAlt ?? '' };
-  });
-
-  let currentIndex = 0;
-
-  function updateArrows() {
-    lightboxPrev.style.opacity = images.length > 1 ? '1' : '0';
-    lightboxNext.style.opacity = images.length > 1 ? '1' : '0';
-    lightboxPrev.style.pointerEvents = images.length > 1 ? 'auto' : 'none';
-    lightboxNext.style.pointerEvents = images.length > 1 ? 'auto' : 'none';
-  }
-
-  function openLightbox(index: number) {
-    currentIndex = (index + images.length) % images.length;
-    lightboxImg.src = images[currentIndex].src;
-    lightboxImg.alt = images[currentIndex].alt;
-    lightbox.classList.remove('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = 'hidden';
-    updateArrows();
-  }
-
-  function closeLightbox() {
-    lightbox.classList.add('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = '';
-  }
-
-  triggers.forEach((trigger, i) => {
-    trigger.addEventListener('click', () => openLightbox(i));
-  });
-
-  lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(currentIndex - 1); });
-  lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(currentIndex + 1); });
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') openLightbox(currentIndex - 1);
-    if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
-  });
-
   // Standard load reveal for non-scroll images
   document.querySelectorAll<HTMLImageElement>('img:not([data-reveal-img])').forEach((img) => {
     if (img.complete) {
