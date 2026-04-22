@@ -3,6 +3,7 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
 import BeforeAfterSlider from '../../components/BeforeAfterSlider.astro';
 import { moralisDashboardSections } from '../../data/projects';
+import LightboxImage from '../../components/LightboxImage.astro';
 ---
 
 <ProjectLayout
@@ -70,7 +71,14 @@ import { moralisDashboardSections } from '../../data/projects';
 
       <p>The old dashboard buried key data — API keys, project details, usage limits — in a cluttered layout with no clear hierarchy. Developers had to hunt for information on every visit. The redesign reorganized everything around what developers look for first: usage vs. plan limits, API keys, project health, and a clear path to docs. Result: <strong>+22% onboarding completion</strong>.</p>
 
+      <img src="/projects/moralis-dashboard/images/Dashboard_01.png" alt="Dashboard redesign — Moralis" class="w-full rounded-lg" />
+
       <CaseStudyBlockquote>A dashboard isn't a feature showcase — it's a status report. It should answer the developer's first question before they even ask it.</CaseStudyBlockquote>
+
+      <LightboxImage
+        src="/projects/moralis-dashboard/images/Dashboard_02.png"
+        alt="Dashboard redesign detail — Moralis"
+      />
     </section>
 
     <!-- Streams -->

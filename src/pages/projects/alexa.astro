@@ -4,6 +4,7 @@ import ProjectMetadata from '../../components/ProjectMetadata.astro';
 import InfoGrid from '../../components/InfoGrid.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
 import { alexaSections } from '../../data/projects';
+import LightboxImage from '../../components/LightboxImage.astro';
 ---
 
 <ProjectLayout
@@ -85,23 +86,11 @@ import { alexaSections } from '../../data/projects';
       <h2 class="-mb-2">This wasn't just a UI problem — and the solution wasn't either.</h2>
       <p>Before opening Figma, I walked through five existing cross-chain interfaces as a first-time user. Three distinct layers of friction emerged. Each one is manageable alone — together, they create a wall. The benchmark below captures exactly where existing products break down.</p>
 
-      <div class="group relative mt-2 cursor-zoom-in" data-lightbox-trigger>
-        <img
-          src="/projects/alexa/images/Benchmark.png"
-          alt="Bridge the Gap — benchmark analysis"
-          class="w-full h-auto opacity-0 transition-opacity duration-500"
-          data-lightbox
-        />
-        <!-- Hover overlay -->
-        <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 pointer-events-none"></div>
-        <!-- Zoom hint — always visible, reinforced on hover -->
-        <div class="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-background/80 backdrop-blur-sm border border-foreground/10 text-xs opacity-50 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none select-none">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/>
-          </svg>
-          Click to zoom
-        </div>
-      </div>
+      <LightboxImage
+        src="/projects/alexa/images/Benchmark.png"
+        alt="Bridge the Gap — benchmark analysis"
+        class="mt-2"
+      />
 
       <div class="w-full mt-6 border border-foreground/10">
         <!-- Problem row -->
@@ -265,205 +254,5 @@ import { alexaSections } from '../../data/projects';
     } else {
       img.addEventListener('load', () => img.classList.remove('opacity-0'));
     }
-  });
-
-  // Lightbox overlay with zoom + pan
-  const overlay = document.createElement('div');
-  overlay.style.cssText = `
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0,0,0,0.88);
-    overflow: hidden;
-  `;
-
-  // Close button
-  const closeBtn = document.createElement('button');
-  closeBtn.innerHTML = '&times;';
-  closeBtn.style.cssText = `
-    position: absolute;
-    top: 1.25rem;
-    right: 1.5rem;
-    z-index: 10001;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  `;
-  closeBtn.addEventListener('mouseenter', () => closeBtn.style.opacity = '1');
-  closeBtn.addEventListener('mouseleave', () => closeBtn.style.opacity = '0.7');
-
-  // Hints bar
-  const hints = document.createElement('div');
-  hints.style.cssText = `
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10001;
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 999px;
-    padding: 0.5rem 1.25rem;
-    transition: opacity 0.4s;
-    white-space: nowrap;
-  `;
-  hints.innerHTML = `
-    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="10"/></svg>
-      Scroll to zoom
-    </span>
-    <span style="color:rgba(255,255,255,0.2);font-size:0.6rem;">|</span>
-    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 9l7-7 7 7M5 15l7 7 7-7"/></svg>
-      Double-click to reset
-    </span>
-    <span style="color:rgba(255,255,255,0.2);font-size:0.6rem;">|</span>
-    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v10M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
-      Drag to pan
-    </span>
-    <span style="color:rgba(255,255,255,0.2);font-size:0.6rem;">|</span>
-    <span style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.55);font-size:0.75rem;letter-spacing:0.03em;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      Esc to close
-    </span>
-  `;
-  function showHints() {
-    hints.style.opacity = '1';
-  }
-
-  const overlayImg = document.createElement('img');
-  overlayImg.style.cssText = `
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 4px;
-    box-shadow: 0 8px 64px rgba(0,0,0,0.5);
-    transform-origin: center center;
-    user-select: none;
-    -webkit-user-drag: none;
-  `;
-
-  overlay.appendChild(closeBtn);
-  overlay.appendChild(hints);
-  overlay.appendChild(overlayImg);
-  document.body.appendChild(overlay);
-
-  // State
-  let scale = 1;
-  let translateX = 0;
-  let translateY = 0;
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let dragOriginX = 0;
-  let dragOriginY = 0;
-
-  function applyTransform() {
-    overlayImg.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scale})`;
-    const cur = scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default';
-    overlay.style.setProperty('cursor', cur, 'important');
-    overlayImg.style.setProperty('cursor', cur, 'important');
-  }
-
-  function resetTransform() {
-    scale = 1;
-    translateX = 0;
-    translateY = 0;
-    applyTransform();
-  }
-
-  function closeLightbox() {
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-    resetTransform();
-  }
-
-  // Open lightbox — triggered from img or its wrapper
-  function openLightbox(img: HTMLImageElement) {
-    overlayImg.src = img.src;
-    overlayImg.alt = img.alt;
-    overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    resetTransform();
-    showHints();
-  }
-
-  document.querySelectorAll<HTMLElement>('[data-lightbox-trigger]').forEach((wrapper) => {
-    const img = wrapper.querySelector<HTMLImageElement>('img[data-lightbox]');
-    if (img) wrapper.addEventListener('click', () => openLightbox(img));
-  });
-
-  document.querySelectorAll<HTMLImageElement>('img[data-lightbox]').forEach((img) => {
-    if (!img.closest('[data-lightbox-trigger]')) {
-      img.addEventListener('click', () => openLightbox(img));
-    }
-  });
-
-  // Close on button
-  closeBtn.addEventListener('click', closeLightbox);
-
-  // Close on backdrop click
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeLightbox();
-  });
-
-  // Scroll to zoom
-  overlay.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.15 : 0.15;
-    scale = Math.min(Math.max(scale + delta, 1), 5);
-    if (scale === 1) { translateX = 0; translateY = 0; }
-    applyTransform();
-  }, { passive: false });
-
-  // Double-click to zoom in / reset
-  overlayImg.addEventListener('dblclick', (e) => {
-    e.stopPropagation();
-    if (scale > 1) {
-      resetTransform();
-    } else {
-      scale = 2.5;
-      applyTransform();
-    }
-  });
-
-  // Drag to pan
-  overlayImg.addEventListener('mousedown', (e) => {
-    if (scale <= 1) return;
-    e.preventDefault();
-    isDragging = true;
-    dragStartX = e.clientX;
-    dragStartY = e.clientY;
-    dragOriginX = translateX;
-    dragOriginY = translateY;
-    applyTransform();
-  });
-
-  document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    translateX = dragOriginX + (e.clientX - dragStartX);
-    translateY = dragOriginY + (e.clientY - dragStartY);
-    applyTransform();
-  });
-
-  document.addEventListener('mouseup', () => {
-    if (!isDragging) return;
-    isDragging = false;
-    applyTransform();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
   });
 </script>
