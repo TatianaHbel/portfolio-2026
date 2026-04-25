@@ -1,0 +1,511 @@
+---
+import '../../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buttons — Design System</title>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="custom-cursor" class="custom-cursor fixed pointer-events-none z-60 flex items-center">
+  <div id="cursor-inner" class="custom-cursor__inner">
+    <span id="cursor-icon" class="custom-cursor__icon"></span>
+    <span id="cursor-label" class="custom-cursor__label font-mono"></span>
+  </div>
+</div>
+
+<div class="embed-wrap">
+  <div class="ds-subsection ds-reveal ds-reveal-visible">
+    <h3 class="ds-subsection-title">Buttons</h3>
+    <div class="ds-preview-block">
+
+      <!-- Color palette tabs -->
+      <div class="ds-btn-palette-tabs">
+        <button class="ds-btn-palette-tab is-active" data-color="peach"  data-cursor="pointer" style="--tab-color:#ED7752"><span class="ds-btn-palette-dot" style="background:#ED7752"></span>Peach</button>
+        <button class="ds-btn-palette-tab"            data-color="rose"   data-cursor="pointer" style="--tab-color:#ED527A"><span class="ds-btn-palette-dot" style="background:#ED527A"></span>Rose</button>
+        <button class="ds-btn-palette-tab"            data-color="sky"    data-cursor="pointer" style="--tab-color:#52C8ED"><span class="ds-btn-palette-dot" style="background:#52C8ED"></span>Sky</button>
+        <button class="ds-btn-palette-tab"            data-color="lime"   data-cursor="pointer" style="--tab-color:#ABBA2B"><span class="ds-btn-palette-dot" style="background:#ABBA2B"></span>Lime</button>
+        <button class="ds-btn-palette-tab"            data-color="yellow" data-cursor="pointer" style="--tab-color:#F8E816"><span class="ds-btn-palette-dot" style="background:#F8E816"></span>Yellow</button>
+      </div>
+
+      <!-- Preview / Code toggle -->
+      <div class="ds-preview-tabs">
+        <button class="ds-tab is-active" data-panel="btn-preview" data-cursor="pointer">Preview</button>
+        <button class="ds-tab" data-panel="btn-code" data-cursor="pointer">Code</button>
+      </div>
+
+      <!-- PREVIEW -->
+      <div id="btn-preview" class="ds-preview-canvas">
+
+        <div class="ds-btn-color-panel" data-color="peach">
+          <div class="ds-btn-col-grid">
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">Sizes</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-peach ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-peach">Default</button>
+                <button class="ds-btn ds-btn-peach ds-btn-lg">Large</button>
+              </div>
+            </div>
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">States</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-peach ds-btn-state">Filled</button>
+                <button class="ds-btn ds-btn-peach-outline ds-btn-state">Outline</button>
+                <button class="ds-btn ds-btn-peach-ghost ds-btn-state">Ghost</button>
+                <button class="ds-btn ds-btn-peach ds-btn-state" disabled>Disabled</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="rose" style="display:none">
+          <div class="ds-btn-col-grid">
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">Sizes</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-rose">Default</button>
+                <button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+              </div>
+            </div>
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">States</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-rose ds-btn-state">Filled</button>
+                <button class="ds-btn ds-btn-rose-outline ds-btn-state">Outline</button>
+                <button class="ds-btn ds-btn-rose-ghost ds-btn-state">Ghost</button>
+                <button class="ds-btn ds-btn-rose ds-btn-state" disabled>Disabled</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="sky" style="display:none">
+          <div class="ds-btn-col-grid">
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">Sizes</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-sky">Default</button>
+                <button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+              </div>
+            </div>
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">States</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-sky ds-btn-state">Filled</button>
+                <button class="ds-btn ds-btn-sky-outline ds-btn-state">Outline</button>
+                <button class="ds-btn ds-btn-sky-ghost ds-btn-state">Ghost</button>
+                <button class="ds-btn ds-btn-sky ds-btn-state" disabled>Disabled</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="lime" style="display:none">
+          <div class="ds-btn-col-grid">
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">Sizes</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-lime">Default</button>
+                <button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+              </div>
+            </div>
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">States</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-lime ds-btn-state">Filled</button>
+                <button class="ds-btn ds-btn-lime-outline ds-btn-state">Outline</button>
+                <button class="ds-btn ds-btn-lime-ghost ds-btn-state">Ghost</button>
+                <button class="ds-btn ds-btn-lime ds-btn-state" disabled>Disabled</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
+          <div class="ds-btn-col-grid">
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">Sizes</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
+                <button class="ds-btn ds-btn-yellow">Default</button>
+                <button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+              </div>
+            </div>
+            <div class="ds-btn-col">
+              <span class="ds-btn-col-label">States</span>
+              <div class="ds-btn-col-row">
+                <button class="ds-btn ds-btn-yellow ds-btn-state">Filled</button>
+                <button class="ds-btn ds-btn-yellow-outline ds-btn-state">Outline</button>
+                <button class="ds-btn ds-btn-yellow-ghost ds-btn-state">Ghost</button>
+                <button class="ds-btn ds-btn-yellow ds-btn-state" disabled>Disabled</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CODE -->
+      <div id="btn-code" class="ds-code-panel" style="display:none">
+
+        <div class="ds-btn-color-panel" data-color="peach">
+          <button class="ds-copy-btn" data-code="btn-peach">Copy</button>
+          <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-peach ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-peach">Default</button>
+<button class="ds-btn ds-btn-peach ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-peach">Filled</button>
+<button class="ds-btn ds-btn-peach-outline">Outline</button>
+<button class="ds-btn ds-btn-peach-ghost">Ghost</button>`}</code></pre>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="rose" style="display:none">
+          <button class="ds-copy-btn" data-code="btn-rose">Copy</button>
+          <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-rose">Default</button>
+<button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-rose">Filled</button>
+<button class="ds-btn ds-btn-rose-outline">Outline</button>
+<button class="ds-btn ds-btn-rose-ghost">Ghost</button>`}</code></pre>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="sky" style="display:none">
+          <button class="ds-copy-btn" data-code="btn-sky">Copy</button>
+          <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-sky">Default</button>
+<button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-sky">Filled</button>
+<button class="ds-btn ds-btn-sky-outline">Outline</button>
+<button class="ds-btn ds-btn-sky-ghost">Ghost</button>`}</code></pre>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="lime" style="display:none">
+          <button class="ds-copy-btn" data-code="btn-lime">Copy</button>
+          <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-lime">Default</button>
+<button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-lime">Filled</button>
+<button class="ds-btn ds-btn-lime-outline">Outline</button>
+<button class="ds-btn ds-btn-lime-ghost">Ghost</button>`}</code></pre>
+        </div>
+
+        <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
+          <button class="ds-copy-btn" data-code="btn-yellow">Copy</button>
+          <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-yellow">Default</button>
+<button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-yellow">Filled</button>
+<button class="ds-btn ds-btn-yellow-outline">Outline</button>
+<button class="ds-btn ds-btn-yellow-ghost">Ghost</button>`}</code></pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ds-surface, #FFFFFF);
+    color: var(--ds-text, #2E3141);
+    font-family: var(--ds-font-ui, "Geist", sans-serif);
+    cursor: none;
+  }
+
+  button { cursor: none; }
+
+  .embed-wrap {
+    padding: 24px;
+  }
+
+  .ds-subsection-title {
+    font-size: 11px;
+    font-family: var(--ds-font-mono, monospace);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ds-text-muted, #8B8796);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ds-border, rgba(46,49,65,0.10));
+  }
+
+  /* Preview block chrome */
+  .ds-preview-block {
+    border: 1px solid var(--ds-border, rgba(46,49,65,0.10));
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* Palette tabs */
+  .ds-btn-palette-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 4px;
+    background: var(--ds-surface-2, #F0EDE8);
+    border-bottom: 1px solid var(--ds-border, rgba(46,49,65,0.10));
+    overflow-x: auto;
+  }
+  .ds-btn-palette-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 16px;
+    font-family: var(--ds-font-ui, sans-serif);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ds-text-muted, #8B8796);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.22s, border-color 0.22s;
+  }
+  .ds-btn-palette-tab:hover { color: var(--ds-text, #2E3141); }
+  .ds-btn-palette-tab.is-active {
+    color: var(--ds-text, #2E3141);
+    border-bottom-color: var(--tab-color, var(--ds-accent, #ED7752));
+  }
+  .ds-btn-palette-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Preview/Code tabs */
+  .ds-preview-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--ds-border, rgba(46,49,65,0.10));
+    background: var(--ds-surface, #fff);
+  }
+  .ds-tab {
+    padding: 10px 16px;
+    font-size: 12px;
+    font-family: var(--ds-font-ui, sans-serif);
+    font-weight: 500;
+    color: var(--ds-text-muted, #8B8796);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    transition: color 0.22s, border-color 0.22s;
+  }
+  .ds-tab:hover { color: var(--ds-text, #2E3141); }
+  .ds-tab.is-active {
+    color: var(--ds-text, #2E3141);
+    border-bottom-color: var(--ds-accent, #ED7752);
+  }
+
+  /* Preview canvas */
+  .ds-preview-canvas {
+    padding: 32px;
+    background: var(--ds-surface, #fff);
+  }
+
+  /* Button grid */
+  .ds-btn-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .ds-btn-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ds-btn-col-label {
+    font-family: var(--ds-font-mono, monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ds-text-muted, #8B8796);
+  }
+  .ds-btn-col-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .ds-btn-state { min-width: 88px; justify-content: center; }
+
+  /* Base button */
+  .ds-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    font-family: var(--ds-font-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.22s, color 0.22s, border-color 0.22s, transform 0.22s;
+    border-radius: 3px;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .ds-btn-sm { padding: 7px 14px; font-size: 12px; }
+  .ds-btn-lg { padding: 15px 32px; font-size: 15px; }
+
+  /* Peach */
+  .ds-btn-peach { background: #ED7752; color: #fff; }
+  .ds-btn-peach:hover:not(:disabled) { background: #C95E38; transform: translateY(-1px); }
+  .ds-btn-peach:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-peach:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ds-btn-peach-outline { background: transparent; color: #C95E38; border: 1px solid #ED7752; }
+  .ds-btn-peach-outline:hover:not(:disabled) { background: rgba(237,119,82,0.08); }
+  .ds-btn-peach-ghost { background: transparent; color: #C95E38; border: 1px solid rgba(237,119,82,0.35); }
+  .ds-btn-peach-ghost:hover:not(:disabled) { background: rgba(237,119,82,0.07); border-color: #ED7752; }
+
+  /* Rose */
+  .ds-btn-rose { background: #ED527A; color: #fff; }
+  .ds-btn-rose:hover:not(:disabled) { background: #B23E5C; transform: translateY(-1px); }
+  .ds-btn-rose:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-rose:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ds-btn-rose-outline { background: transparent; color: #ED527A; border: 1px solid #ED527A; }
+  .ds-btn-rose-outline:hover:not(:disabled) { background: #FDEDF2; }
+  .ds-btn-rose-ghost { background: transparent; color: #ED527A; border: 1px solid rgba(237,82,122,0.3); }
+  .ds-btn-rose-ghost:hover:not(:disabled) { background: #FDEDF2; border-color: #ED527A; }
+
+  /* Sky */
+  .ds-btn-sky { background: #52C8ED; color: #fff; }
+  .ds-btn-sky:hover:not(:disabled) { background: #1E7F9B; transform: translateY(-1px); }
+  .ds-btn-sky:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-sky:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ds-btn-sky-outline { background: transparent; color: #1E7F9B; border: 1px solid #52C8ED; }
+  .ds-btn-sky-outline:hover:not(:disabled) { background: #EBF9FD; }
+  .ds-btn-sky-ghost { background: transparent; color: #1E7F9B; border: 1px solid rgba(82,200,237,0.35); }
+  .ds-btn-sky-ghost:hover:not(:disabled) { background: #EBF9FD; border-color: #52C8ED; }
+
+  /* Lime */
+  .ds-btn-lime { background: #ABBA2B; color: #2E3141; }
+  .ds-btn-lime:hover:not(:disabled) { background: #5F6814; color: #fff; transform: translateY(-1px); }
+  .ds-btn-lime:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-lime:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ds-btn-lime-outline { background: transparent; color: #5F6814; border: 1px solid #ABBA2B; }
+  .ds-btn-lime-outline:hover:not(:disabled) { background: #F2F5D3; }
+  .ds-btn-lime-ghost { background: transparent; color: #5F6814; border: 1px solid rgba(171,186,43,0.4); }
+  .ds-btn-lime-ghost:hover:not(:disabled) { background: #F2F5D3; border-color: #ABBA2B; }
+
+  /* Yellow */
+  .ds-btn-yellow { background: #F8E816; color: #2E3141; }
+  .ds-btn-yellow:hover:not(:disabled) { background: #9C9007; color: #fff; transform: translateY(-1px); }
+  .ds-btn-yellow:active:not(:disabled) { transform: translateY(0); }
+  .ds-btn-yellow:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ds-btn-yellow-outline { background: transparent; color: #9C9007; border: 1px solid #F8E816; }
+  .ds-btn-yellow-outline:hover:not(:disabled) { background: #FEFBCF; }
+  .ds-btn-yellow-ghost { background: transparent; color: #9C9007; border: 1px solid rgba(248,232,22,0.5); }
+  .ds-btn-yellow-ghost:hover:not(:disabled) { background: #FEFBCF; border-color: #F8E816; }
+
+  /* Code panel */
+  .ds-code-panel {
+    padding: 24px;
+    background: var(--ds-surface, #fff);
+    position: relative;
+  }
+  .ds-copy-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-family: var(--ds-font-mono, monospace);
+    background: var(--ds-surface-2, #F0EDE8);
+    border: 1px solid var(--ds-border, rgba(46,49,65,0.10));
+    border-radius: 3px;
+    cursor: pointer;
+    color: var(--ds-text-muted, #8B8796);
+    transition: color 0.22s;
+  }
+  .ds-copy-btn:hover { color: var(--ds-text, #2E3141); }
+  .ds-copy-btn.copied { color: #ABBA2B; }
+  .ds-code {
+    font-family: var(--ds-font-mono, monospace);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ds-text, #2E3141);
+    overflow-x: auto;
+    white-space: pre;
+  }
+</style>
+
+<script>
+  import { initCustomCursor } from '../../scripts/custom-cursor';
+  initCustomCursor();
+
+  // Stamp data-cursor on all interactive elements
+  document.querySelectorAll<HTMLElement>('button, .ds-copy-btn').forEach(el => {
+    if (!el.hasAttribute('data-cursor')) el.setAttribute('data-cursor', 'pointer');
+  });
+
+  // Palette tab switching
+  document.querySelectorAll('.ds-btn-palette-tabs').forEach(paletteTabs => {
+    paletteTabs.querySelectorAll('.ds-btn-palette-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const color = (tab as HTMLElement).dataset.color;
+        if (!color) return;
+        paletteTabs.querySelectorAll('.ds-btn-palette-tab').forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const block = paletteTabs.closest('.ds-preview-block');
+        if (!block) return;
+        block.querySelectorAll<HTMLElement>('.ds-btn-color-panel').forEach(panel => {
+          panel.style.display = panel.dataset.color === color ? '' : 'none';
+        });
+      });
+    });
+  });
+
+  // Preview / Code toggle
+  document.querySelectorAll('.ds-preview-tabs').forEach(tabs => {
+    tabs.querySelectorAll('.ds-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const panelId = (tab as HTMLElement).dataset.panel;
+        if (!panelId) return;
+        tabs.querySelectorAll('.ds-tab').forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const block = tabs.closest('.ds-preview-block');
+        if (!block) return;
+        block.querySelectorAll<HTMLElement>('.ds-preview-canvas, .ds-code-panel').forEach(p => {
+          p.style.display = p.id === panelId ? '' : 'none';
+        });
+      });
+    });
+  });
+
+  // Copy button
+  document.querySelectorAll<HTMLElement>('.ds-copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const code = btn.nextElementSibling?.textContent ?? '';
+      navigator.clipboard.writeText(code.trim()).then(() => {
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    });
+  });
+
+  // Auto-resize: notify parent of content height
+  const notifyHeight = () => {
+    window.parent.postMessage({ iframeHeight: document.body.scrollHeight }, '*');
+  };
+  notifyHeight();
+  new ResizeObserver(notifyHeight).observe(document.body);
+</script>
