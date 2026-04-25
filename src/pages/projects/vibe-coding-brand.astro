@@ -1,6 +1,7 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
+
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import InfoGrid from '../../components/InfoGrid.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
@@ -21,10 +22,12 @@ import { vibeCodingBrandSections } from '../../data/projects';
     </div>
 
     <!-- Hero thumbnail -->
-    <div class="w-full aspect-[16/9] border-1 border-foreground/10">
-      <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Vibe Coding My Brand project thumbnail">
-        <ImagePlaceholder color="#1A1A2E" label="Hero — terminal + design system preview" />
-      </div>
+    <div class="w-full border-1 border-foreground/10 overflow-hidden">
+      <img
+        src="/projects/vibe-coding-brand/images/Portfolio_01.gif"
+        alt="Vibe Coding My Brand — portfolio overview"
+        class="w-full h-auto opacity-0 transition-opacity duration-500"
+      />
     </div>
 
     <!-- Project metadata -->
@@ -65,10 +68,12 @@ import { vibeCodingBrandSections } from '../../data/projects';
         I wanted my portfolio to feel like it was made by someone who understands both design and engineering deeply — not as separate disciplines, but as a single conversation. That meant the brand guidelines couldn't live in a Figma file that slowly drifts from reality. They had to live in the code itself.
       </p>
 
-      <div class="w-full aspect-[16/9] border-1 border-foreground/10 mt-2">
-        <div class="relative w-full h-full overflow-hidden">
-          <ImagePlaceholder color="#0D0D1A" label="Sketch / concept — prompt-driven design loop" />
-        </div>
+      <div class="w-full border-1 border-foreground/10 overflow-hidden mt-2">
+        <img
+          src="/projects/vibe-coding-brand/images/Portfolio_02.jpg"
+          alt="Sketch — prompt-driven design loop"
+          class="w-full h-auto opacity-0 transition-opacity duration-500"
+        />
       </div>
 
       <InfoGrid columns={3} items={[
@@ -86,26 +91,43 @@ import { vibeCodingBrandSections } from '../../data/projects';
         Each session started with a vague intention and ended with something concrete. The process wasn't linear — it was more like a conversation that kept circling closer to something that felt right.
       </p>
 
-      <div class="w-full aspect-[16/9] border-1 border-foreground/10 mt-2">
-        <div class="relative w-full h-full overflow-hidden">
-          <ImagePlaceholder color="#111122" label="Screenshot — Claude Code terminal session" />
-        </div>
+      <div class="w-full border-1 border-foreground/10 overflow-hidden mt-2">
+        <img
+          src="/projects/vibe-coding-brand/images/Portfolio_04.gif"
+          alt="Claude Code terminal session"
+          class="w-full h-auto opacity-0 transition-opacity duration-500"
+        />
       </div>
 
-      <InfoGrid items={[
-        { title: 'Session 1 — Foundation', desc: 'Established the core color palette and typographic scale by describing the emotional register I wanted: "quiet confidence, technical depth, warm but not casual."' },
-        { title: 'Session 2 — Components', desc: 'Built out buttons, badges, cards, and navigation — each prompted by showing Claude the current state and asking what felt off or inconsistent.' },
-      ]} />
-
-      <div class="grid grid-cols-2 gap-4 mt-2">
-        <div class="aspect-[4/3] border-1 border-foreground/10">
-          <div class="relative w-full h-full overflow-hidden">
-            <ImagePlaceholder color="#0A0A18" label="Before — raw HTML scaffold" />
+      <div class="flex flex-col gap-12">
+        <!-- Session 1 -->
+        <div class="flex flex-col gap-4">
+          <InfoGrid items={[
+            { title: 'Session 1 — Foundation', desc: 'Established the core color palette and typographic scale by describing the emotional register I wanted: "quiet confidence, technical depth, warm but not casual."' },
+          ]} />
+          <div class="w-full border-1 border-foreground/10 overflow-hidden">
+            <img
+              src="/projects/vibe-coding-brand/images/Portfolio_03.gif"
+              alt="Session 1 — Foundation"
+              class="w-full h-auto opacity-0 transition-opacity duration-500"
+            />
           </div>
         </div>
-        <div class="aspect-[4/3] border-1 border-foreground/10">
-          <div class="relative w-full h-full overflow-hidden">
-            <ImagePlaceholder color="#1A1A2E" label="After — styled with design tokens" />
+
+        <!-- Session 2 -->
+        <div class="flex flex-col gap-4">
+          <InfoGrid items={[
+            { title: 'Session 2 — Components', desc: 'Built out buttons, badges, cards, and navigation — each prompted by showing Claude the current state and asking what felt off or inconsistent.' },
+          ]} />
+          <div class="w-full border-1 border-foreground/10 overflow-hidden">
+            <iframe
+              id="buttons-embed"
+              src="/projects/figma-buttons-embed"
+              title="Buttons — Design System"
+              class="w-full block border-0"
+              style="height: 300px;"
+              scrolling="auto"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -171,4 +193,11 @@ import { vibeCodingBrandSections } from '../../data/projects';
 <script>
   import { initMediaReveal } from '../../scripts/media-reveal';
   initMediaReveal();
+
+  window.addEventListener('message', (e) => {
+    if (e.data?.iframeHeight) {
+      const iframe = document.getElementById('buttons-embed') as HTMLIFrameElement | null;
+      if (iframe) iframe.style.height = e.data.iframeHeight + 'px';
+    }
+  });
 </script>
