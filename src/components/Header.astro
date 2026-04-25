@@ -32,19 +32,6 @@ const isAbout = pathname === '/about';
         <NavLink href={resumeUrl} label="Resume" external />
       </div>
 
-      <!-- TatianaLLM button (desktop) -->
-      <div class="flex gap-2 lg:w-full justify-end items-center">
-        <button
-          id="chat-open-btn"
-          class="group flex align-center items-center hover:opacity-100 hover:text-primary transition-all duration-200 rounded-full p-2 h-8 mr-[-8px] w-auto opacity-50"
-          aria-label="Open AI chat"
-        >
-          <svg width="16" height="16" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="animate-spin-6s origin-center">
-            <path d="M14.5231 29.2759C12.6685 22.5706 7.42938 17.3315 0.724097 15.4769C0.240255 15.3431 0.240255 14.657 0.724097 14.5231C7.42938 12.6685 12.6685 7.42939 14.5231 0.724099C14.6569 0.240257 15.343 0.240257 15.4769 0.724099C17.3315 7.42939 22.5706 12.6685 29.2759 14.5231C29.7597 14.657 29.7597 15.343 29.2759 15.4769C22.5706 17.3315 17.3315 22.5706 15.4769 29.2759C15.343 29.7597 14.657 29.7597 14.5231 29.2759Z" fill="currentColor" class="group-hover:fill-primary transition-colors duration-200"></path>
-          </svg>
-          <div class="text-[15px] overflow-hidden transition-all whitespace-nowrap text-current font-mono uppercase font-regular pl-2.5 max-w-[100px] opacity-100">TatianaLLM</div>
-        </button>
-      </div>
     </div>
 
     <!-- Hamburger (mobile) -->
@@ -71,17 +58,6 @@ const isAbout = pathname === '/about';
     </div>
   </div>
 
-  <!-- TatianaLLM FAB (mobile) -->
-  <button
-    id="chat-open-btn-mobile"
-    class="md:hidden fixed bottom-6 right-6 z-50 flex items-center justify-center hover:text-primary active:scale-95 transition-all duration-200 rounded-full shadow-lg bg-primary w-12 h-12 opacity-100"
-    style="bottom:max(1.5rem, env(safe-area-inset-bottom, 1.5rem));right:max(1.5rem, env(safe-area-inset-right, 1.5rem))"
-    aria-label="Open AI chat"
-  >
-    <svg width="20" height="20" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14.5231 29.2759C12.6685 22.5706 7.42938 17.3315 0.724097 15.4769C0.240255 15.3431 0.240255 14.657 0.724097 14.5231C7.42938 12.6685 12.6685 7.42939 14.5231 0.724099C14.6569 0.240257 15.343 0.240257 15.4769 0.724099C17.3315 7.42939 22.5706 12.6685 29.2759 14.5231C29.7597 14.657 29.7597 15.343 29.2759 15.4769C22.5706 17.3315 17.3315 22.5706 15.4769 29.2759C15.343 29.7597 14.657 29.7597 14.5231 29.2759Z" fill="#FFFFFF"></path>
-    </svg>
-  </button>
 </div>
 
 <script>
