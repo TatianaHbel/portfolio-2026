@@ -81,7 +81,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
     {
       title: 'The future of AI Agents',
       label: 'Amadeus Protocol - Concept 2026',
-      href: '/projects/openai-hardware',
+      href: '/projects/the-future-of-ai-agents',
       aspect: 'aspect-[16/9]',
       placeholderColor: '#E98D3450',
       cursorType: 'case-study',

@@ -1,12 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
 ---
 
-<BaseLayout title="Redesigning Web3 Trading — Tatiana Hernandez" description="Coming soon.">
-  <div class="min-h-screen px-6 py-24 flex items-center justify-center">
-    <div class="text-center flex flex-col gap-4">
+<ProjectLayout
+  title="Redesigning Web3 Trading — Tatiana Hernandez"
+  description="A look at redesigning account abstraction for Web3 trading on Moralis."
+>
+  <!-- Hero block centered in viewport -->
+  <div class="min-h-[65vh] flex items-center">
+    <div class="flex flex-col gap-4 w-full">
       <h1>Redesigning Web3 Trading</h1>
-      <p>Coming soon.</p>
+
+      <!-- YouTube embed — breaks out of column for max presence -->
+      <div class="flex flex-col items-center gap-4 -mx-8 md:-mx-24 lg:-mx-40">
+        <div class="relative w-full" style="padding-bottom: 56.25%;">
+          <iframe
+            class="absolute inset-0 w-full h-full"
+            src="https://www.youtube.com/embed/dRw9a7ns3QI?start=1"
+            title="Redesigning Web3 Trading — Moralis Account Abstraction"
+            style="border: 0;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <p class="text-foreground/40 text-sm tracking-widest uppercase text-center">More Coming Soon</p>
+      </div>
     </div>
   </div>
-</BaseLayout>
+</ProjectLayout>
