@@ -1,0 +1,50 @@
+---
+interface Props {
+  heading?: string;
+  subheading?: string;
+  email?: string;
+  buttonLabel?: string;
+  bordered?: boolean;
+}
+
+const {
+  heading = "Ready to build something",
+  subheading = "amazing?",
+  email = "tati.hbel@gmail.com",
+  buttonLabel = "Come and say Hola!",
+  bordered = true,
+} = Astro.props;
+---
+
+<div class:list={[
+  "flex flex-col items-center text-center gap-6 pt-48 pb-16",
+  bordered && "border-t border-foreground/10",
+]}>
+  <svg
+    class="transition-colors duration-300 hover:text-[#e85d4a] cursor-default"
+    width="32"
+    height="32"
+    viewBox="0 0 351 350"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M267.839 0.520205C233.1 6.1852 194.47 41.9362 173.223 88.0852C170.691 93.5852 168.071 99.7732 167.402 101.835C166.732 103.898 165.834 105.585 165.407 105.585C164.98 105.585 161.33 100.123 157.297 93.4482C141.701 67.6332 126.333 51.4142 108.263 41.6982C64.9113 18.3882 27.6283 27.5692 9.23233 66.0852C-8.63167 103.488 -0.328674 154.972 32.0333 207.464C47.7003 232.875 67.7053 258.726 84.3643 275.085C89.9653 280.585 99.2763 290.485 105.056 297.085C120.719 314.972 133.749 326.262 151.566 337.387C176.316 352.84 189.097 353.169 209.216 338.873C240.057 316.958 302.071 235.971 327.359 184.585C336.825 165.349 340.462 154.251 345.991 127.741C352.102 98.4362 351.705 71.0232 344.866 50.0712C336.992 25.9492 320.94 9.71121 298.037 2.70021C290.385 0.358205 275.447 -0.720795 267.839 0.520205Z"
+      fill="currentColor"
+      class="opacity-60"
+    />
+  </svg>
+
+  <h2>{heading}<br /><em>{subheading}</em></h2>
+
+  <a
+    href={`mailto:${email}`}
+    data-cursor="email"
+    class="inline-flex items-center gap-2 px-6 py-3 border border-foreground/20 hover:border-foreground/60 text-sm transition-colors duration-200"
+  >
+    {buttonLabel}
+  </a>
+</div>

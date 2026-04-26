@@ -1,5 +1,6 @@
 ---
 import ProjectCard from '../components/ProjectCard.astro';
+import ContactCTA from '../components/ContactCTA.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { homeProjectColumns } from '../data/projects';
 import { experienceTimeline } from '../data/timeline';
@@ -85,7 +86,7 @@ const { left: leftProjects, right: rightProjects } = homeProjectColumns;
         </div>
       </div>
 
-      <div class="p-6 py-6"></div>
+      <ContactCTA />
     </main>
   </div>
 </BaseLayout>
