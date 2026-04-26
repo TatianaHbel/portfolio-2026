@@ -52,7 +52,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#DDD0FC50',
       cursorType: 'case-study',
       status: 'coming-soon',
-      image: '/redesigning-thumbnail.gif',
+      video: '/redesigning-thumbnail.webm',
       thumbnailScale: 1.12,
     },
   ],
