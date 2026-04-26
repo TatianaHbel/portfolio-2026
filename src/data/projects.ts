@@ -71,7 +71,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
     {
       title: 'Bridge the Gap',
       label: 'Moralis - Concept 2024',
-      href: '/projects/alexa',
+      href: '/projects/bridge-the-gap',
       aspect: 'aspect-[8/5]',
       placeholderColor: '#00144550',
       cursorType: 'case-study',
@@ -100,7 +100,7 @@ export const moralisDashboardSections: ProjectSection[] = [
   { id: 'learnings',  label: 'Learnings' },
 ];
 
-export const alexaSections: ProjectSection[] = [
+export const bridgeTheGapSections: ProjectSection[] = [
   { id: 'overview',       label: 'Overview' },
   { id: 'the-user',       label: 'The User' },
   { id: 'the-challenge',  label: 'Challenge & Approach' },
