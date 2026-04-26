@@ -84,13 +84,14 @@ import LightboxImage from '../../components/LightboxImage.astro';
     <!-- Streams -->
     <section id="streams" class="flex flex-col gap-4">
       <h4 class="!text-foreground mb-1">Streams</h4>
-      <h2 class="-mb-2">Designing for real-time data — at any scale.</h2>
-      <p>Moralis Streams lets developers monitor real-time wallet and smart contract events across multiple blockchains. Designing this surface meant working at the intersection of complex data, developer workflow, and trust — users needed to know their event listeners were working correctly, at a glance, without diving into logs.</p>
+      <h2 class="-mb-2">Designing for builders, not users</h2>
+      <p>Moralis Streams lets developers monitor real-time wallet and smart contract events across multiple blockchains. Designing this surface meant working at the intersection of complex data, developer workflow, and trust — users needed to know their event listeners were working correctly, at a glance, without diving into logs. Developers optimize for speed, trust, and control — not delight. Every product decision had to earn its place by reducing friction or increasing confidence in the platform.</p>
 
-      <div class="flex flex-col gap-1 mt-2">
-        <h3>Designing for builders, not users</h3>
-        <p>Developers optimize for speed, trust, and control — not delight. Every product decision had to earn its place by reducing friction or increasing confidence in the platform.</p>
-      </div>
+      <img
+        src="/projects/moralis-dashboard/images/Dashboard_Moralis_streams.png"
+        alt="Moralis Streams dashboard — real-time blockchain event monitoring"
+        class="w-full rounded-sm mt-2 opacity-0 transition-opacity duration-300 border-2 border-white"
+      />
 
       <div class="flex w-full flex-col md:flex-row gap-6 mt-2">
         <div class="flex flex-col gap-1 w-full">
@@ -98,17 +99,13 @@ import LightboxImage from '../../components/LightboxImage.astro';
           <p>Real-time event streams generate high-frequency data across multiple chains simultaneously. The UI needed to make that complexity manageable — not just display it. Developers needed to configure, monitor, and debug without getting lost in raw data.</p>
         </div>
         <div class="flex flex-col gap-1 w-full">
-          <h3>What I designed</h3>
-          <p>The full Streams interface: event configuration, customizable filtering, real-time activity monitoring, and status indicators that told developers instantly whether their streams were healthy and delivering events correctly.</p>
+          <h3>What I learned</h3>
+          <p>Developers don't trust interfaces — they trust signals. Status indicators, familiar patterns from tools they already use, and immediate feedback loops mattered far more than visual polish. When users can scan the state of a stream in seconds, their confidence in the whole platform grows. Complexity isn't the enemy; invisible complexity is.</p>
         </div>
         <div class="flex flex-col gap-1 w-full">
           <h3>The result</h3>
           <p>A developer tool that made monitoring blockchain events feel like monitoring any other API — familiar, reliable, and scannable. The design significantly reduced the learning curve for new users and enabled seamless integration of the Streams API into real applications.</p>
         </div>
-      </div>
-
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#1A316E20;"></div>
       </div>
     </section>
 
@@ -119,15 +116,11 @@ import LightboxImage from '../../components/LightboxImage.astro';
 
       <h4 class="!text-foreground mt-8">Nodes</h4>
       <p>Designed the user flow and interface for Moralis Nodes — giving developers easy access to high-performance RPC nodes across major blockchain networks. The design emphasized reliability signals: uptime visibility, response time indicators, and security certifications (SOC 2 Type 2). For infrastructure products, trust isn't built through delight — it's built through transparency and consistency.</p>
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#1A316E20;"></div>
-      </div>
-
-      <h4 class="!text-foreground mt-8">Account Abstraction & Swap Flows</h4>
-      <p>Co-designed the Account Abstraction onboarding flow and owned end-to-end on-chain swap and asset transfer flows within Moralis Money — improving execution transparency and slippage clarity. Redesigned transaction confirmation states and feedback systems to reduce uncertainty during irreversible financial actions. The results were measurable: <strong>+30% wallet activation</strong> and a <strong>15% reduction in slippage-related support tickets within 3 months</strong>.</p>
-      <div class="relative w-full bg-foreground-light/10 animate-pulse overflow-hidden">
-        <div class="w-full aspect-[16/9]" style="background-color:#1A316E20;"></div>
-      </div>
+      <img
+        src="/projects/moralis-dashboard/images/Dashboard_Moralis_Nodes.png"
+        alt="Moralis Nodes dashboard — RPC node management interface"
+        class="w-full rounded-sm mt-2 opacity-0 transition-opacity duration-300 border-2 border-white"
+      />
 
       <h4 class="!text-foreground mt-8">Payments & Checkout</h4>
       <p>Directed the redesign of the payment and checkout flow, including Payment Links, multiple payment method support, and a streamlined plan upgrade path. The focus was reducing conversion friction at the exact moment developers decide to invest in the platform — a high-stakes UX moment with a direct line to revenue. Simplified transaction flows improved overall payment completion and reduced checkout abandonment.</p>
