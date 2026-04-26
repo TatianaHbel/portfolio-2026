@@ -55,6 +55,7 @@ src/
     utilities.css             # Utility classes
     animations.css            # Keyframe animations
     components.css            # Component-specific styles
+    design-system.css         # ds-* classes used by the brand guidelines page (reusable site-wide)
     media.css                 # Responsive / media query overrides
   assets/                     # ★ Static raster images optimized at build by `astro:assets`
     img/photos/               # About-page hero slideshow + portrait

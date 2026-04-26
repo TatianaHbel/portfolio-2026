@@ -64,7 +64,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
     {
       title: 'Personal Brand Guidelines',
       label: 'Design System · 2025',
-      href: '/projects/figma',
+      href: '/projects/personal-brand-guidelines',
       aspect: 'aspect-[10/7]',
       placeholderColor: '#F0EDE8',
       cursorType: 'case-study',
