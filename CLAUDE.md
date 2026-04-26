@@ -70,6 +70,11 @@ public/
   images/                     # favicon.ico, og-image.png (need stable URLs for crawlers)
   *.svg                       # Project card SVG thumbnails (Astro doesn't optimize SVG)
   *.webm / *.mp4              # Videos — Astro doesn't optimize video, must stay in public/
+
+_archive/                     # Files kept in the repo but NOT shipped to Netlify.
+                              # Drop orphan/unreferenced media here instead of deleting,
+                              # so it stays recoverable but doesn't bloat the deploy.
+                              # Examples: WIP draft project assets, deprecated thumbnails.
 ```
 
 ## Image & video pipeline
