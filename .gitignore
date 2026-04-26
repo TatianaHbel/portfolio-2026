@@ -6,4 +6,3 @@ dist/
 
 # MCP config (contains API keys)
 .mcp.json
-public/projects/openai-hardware/media/*
