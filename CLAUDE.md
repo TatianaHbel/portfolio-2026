@@ -56,28 +56,88 @@ src/
     animations.css            # Keyframe animations
     components.css            # Component-specific styles
     media.css                 # Responsive / media query overrides
+  assets/                     # ★ Static raster images optimized at build by `astro:assets`
+    img/photos/               # About-page hero slideshow + portrait
+    thumbnails/               # Homepage project card thumbnails (raster only)
+    projects/
+      bridge-the-gap/         # Inline case-study images (PNG/JPG/WebP)
+      moralis-dashboard/
+      vibe-coding-brand/
 
 public/
   fonts/                      # Geist, Geist Mono, Crimson Pro, tiemposText woff2/otf
-  images/                     # favicon.ico, og-image.png
-  gradient_amadeus_thumbnail.webm   # Thumbnail video for openai-hardware card  ┐
-  redesigning-thumbnail.gif         # Thumbnail for account-abstraction card    │ card thumbnails live here
-  thumbnail-bridge-the-gap.jpg      # Thumbnail for alexa card                  ┘ (public/ root, not per-project subfolder)
-  projects/
-    openai-hardware/
-      images/           # image.png, image_1.png … image_29.png + SVGs
-      media/            # Project MP4 videos
+  icons/                      # Small SVG icons
+  images/                     # favicon.ico, og-image.png (need stable URLs for crawlers)
+  *.svg                       # Project card SVG thumbnails (Astro doesn't optimize SVG)
+  *.webm / *.mp4              # Videos — Astro doesn't optimize video, must stay in public/
 ```
 
-> **Note:** `src/content/` is reserved for future MDX content collections but does not yet exist. Asset folders for account-abstraction, alexa, and other planned projects still need to be created under `public/projects/[slug]/`.
+## Image & video pipeline
+
+This project uses **`astro:assets`** for all raster images. Astro generates multiple WebP variants per source image at build time, with hashed filenames for aggressive cache headers, and emits `srcset` for the browser to pick the right size.
+
+### Where assets live
+
+| Asset type | Location | Why |
+|---|---|---|
+| Raster images (PNG, JPG, WebP) used in pages | `src/assets/...` | Imported as `ImageMetadata`, optimized by Astro |
+| Videos (`.webm`, `.mp4`) | `public/...` | Astro doesn't process video — referenced by absolute URL |
+| SVGs used as project thumbnails | `public/*.svg` | No optimization benefit; referenced as string paths |
+| Favicon, og-image, robots, etc. | `public/images/` | Crawlers/social cards need stable URLs |
+| Resume PDF | `public/Resume/` | Direct download URL |
+
+### Adding a raster image
+
+```astro
+---
+import { Image } from 'astro:assets';
+import myImage from '../../assets/projects/<slug>/MyImage.png';
+---
+
+<!-- Inline content image (standard quality) -->
+<Image src={myImage} alt="..."
+  widths={[800, 1200, 1600]}
+  sizes="(min-width: 1024px) 800px, 100vw"
+  quality={88} />
+```
+
+### Showcase / lightbox images (high quality)
+
+For images that get pixel-peeped or zoomed (designers care here), use `LightboxImage`. It auto-generates a high-quality 2400px-wide WebP variant for the lightbox overlay while serving smaller variants inline.
+
+```astro
+import LightboxImage from '../../components/LightboxImage.astro';
+import detailShot from '../../assets/projects/<slug>/Detail.webp';
+
+<LightboxImage src={detailShot} alt="..." />
+```
+
+### Quality tiers in use
+
+- **Showcase (q92, up to 2400px)** — `BeforeAfterSlider`, `LightboxImage` (lightbox variant uses q95)
+- **Inline content (q88, widths 800–1600)** — case study images
+- **Hero / featured (q90, up to 1600)** — case study hero shots, portrait
+- **Thumbnails (q85, widths 400–1200)** — `ProjectCard` images
+
+### Adding a new project
+
+1. Create `src/pages/projects/[slug].astro` using `ProjectLayout`
+2. Add an entry to `src/data/projects.ts`
+3. Put **raster images** in `src/assets/projects/[slug]/` and import them
+4. Put **videos** in `public/projects/[slug]/media/` (referenced by string path)
+5. If the homepage card uses a raster thumbnail, put it in `src/assets/thumbnails/` and import it in `projects.ts`
+
+### Component contracts
+
+- `ProjectCard` accepts `image: ImageMetadata | string` (string fallback for SVG thumbnails)
+- `LightboxImage` accepts `src: ImageMetadata` (required) — uses `getImage()` to pre-bake a 2400px quality-95 variant served via `data-lightbox-src`
+- `BeforeAfterSlider` accepts `beforeSrc: ImageMetadata` and `afterSrc: ImageMetadata`
 
 ## Key Conventions
 
 - **Design tokens**: see `src/styles/theme.css`
 - **Fonts**: Geist Sans (body), Geist Mono (h4/mono), tiemposText (h1–h3), Crimson Pro (serif)
 - **Custom cursor**: `CustomCursor.astro` component + `src/scripts/custom-cursor.ts`; elements use `data-cursor="pointer|email|case-study|overview|site"` attribute
-- **Project asset paths**: images/videos are served from `public/projects/[slug]/` and referenced with absolute paths like `/projects/openai-hardware/images/image_1.png`
-- **Adding a new project**: create `src/pages/projects/[slug].astro` using `ProjectLayout`, add an entry to `src/data/projects.ts` (homepage grid is data-driven), put assets in `public/projects/[slug]/`
 - **Homepage data**: project grid and experience timeline are driven by `src/data/projects.ts` and `src/data/timeline.ts` — edit those files rather than `index.astro` directly
 - **Project status**: entries in `projects.ts` use `status: "published" | "coming-soon" | "locked"` to control card visibility/behavior
 

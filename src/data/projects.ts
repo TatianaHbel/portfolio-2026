@@ -1,3 +1,6 @@
+import moralisDevelopersThumb from '../assets/thumbnails/moralis-developers-01.jpg';
+import bridgeTheGapThumb from '../assets/thumbnails/thumbnail-bridge-the-gap.jpg';
+
 export type ProjectCursorType = 'case-study' | 'overview' | 'site';
 export type ProjectStatus = 'published' | 'coming-soon' | 'external';
 
@@ -11,7 +14,8 @@ export interface HomeProjectCardData {
   status: ProjectStatus;
   external?: boolean;
   video?: string;
-  image?: string;
+  /** Imported ImageMetadata (preferred) or a string path for SVGs / public files. */
+  image?: ImageMetadata | string;
   overlayText?: string;
   thumbnailScale?: number;
   objectFit?: 'cover' | 'contain';
@@ -42,7 +46,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#1A316E50',
       cursorType: 'case-study',
       status: 'published',
-      image: '/moralis-developers-01.jpg',
+      image: moralisDevelopersThumb,
     },
     {
       title: 'Redesigning Web3 Trading',
@@ -76,7 +80,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#00144550',
       cursorType: 'case-study',
       status: 'published',
-      image: '/thumbnail-bridge-the-gap.jpg',
+      image: bridgeTheGapThumb,
     },
     {
       title: 'The future of AI Agents',

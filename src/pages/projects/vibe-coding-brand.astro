@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
 
@@ -6,6 +7,8 @@ import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import InfoGrid from '../../components/InfoGrid.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
 import { vibeCodingBrandSections } from '../../data/projects';
+
+import Portfolio_02 from '../../assets/projects/vibe-coding-brand/Portfolio_02.jpg';
 ---
 
 <ProjectLayout
@@ -74,9 +77,12 @@ import { vibeCodingBrandSections } from '../../data/projects';
       </p>
 
       <div class="w-full border-1 border-foreground/10 overflow-hidden mt-2">
-        <img
-          src="/projects/vibe-coding-brand/images/Portfolio_02.jpg"
+        <Image
+          src={Portfolio_02}
           alt="Sketch — prompt-driven design loop"
+          widths={[800, 1200, 1600]}
+          sizes="(min-width: 1024px) 800px, 100vw"
+          quality={88}
           class="w-full h-auto opacity-0 transition-opacity duration-500"
         />
       </div>

@@ -1,10 +1,17 @@
 ---
+import { Image } from 'astro:assets';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
 import InfoGrid from '../../components/InfoGrid.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
 import { bridgeTheGapSections } from '../../data/projects';
 import LightboxImage from '../../components/LightboxImage.astro';
+
+import Btg_01 from '../../assets/projects/bridge-the-gap/Btg_01.png';
+import Btg_02 from '../../assets/projects/bridge-the-gap/Btg_02.png';
+import Btg_03 from '../../assets/projects/bridge-the-gap/Btg_03.png';
+import Btg_04 from '../../assets/projects/bridge-the-gap/Btg_04.png';
+import Benchmark from '../../assets/projects/bridge-the-gap/Benchmark.webp';
 ---
 
 <ProjectLayout
@@ -22,9 +29,12 @@ import LightboxImage from '../../components/LightboxImage.astro';
 
     <!-- Hero thumbnail -->
     <div class="w-full border-1 border-foreground/10 overflow-hidden">
-      <img
-        src="/projects/bridge-the-gap/images/Btg_01.png"
+      <Image
+        src={Btg_01}
         alt="Bridge the Gap — hero overview"
+        widths={[800, 1200, 1600]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        quality={90}
         class="w-full h-auto opacity-0 transition-opacity duration-500"
       />
     </div>
@@ -58,9 +68,12 @@ import LightboxImage from '../../components/LightboxImage.astro';
         </div>
       </div>
 
-      <img
-        src="/projects/bridge-the-gap/images/Btg_02.png"
+      <Image
+        src={Btg_02}
         alt="Bridge the Gap — overview"
+        widths={[800, 1200, 1600]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        quality={88}
         class="w-full h-auto opacity-0 transition-opacity duration-500"
       />
     </section>
@@ -87,7 +100,7 @@ import LightboxImage from '../../components/LightboxImage.astro';
       <p>Before opening Figma, I walked through five existing cross-chain interfaces as a first-time user. Three distinct layers of friction emerged. Each one is manageable alone — together, they create a wall. The benchmark below captures exactly where existing products break down.</p>
 
       <LightboxImage
-        src="/projects/bridge-the-gap/images/Benchmark.webp"
+        src={Benchmark}
         alt="Bridge the Gap — benchmark analysis"
         class="mt-2"
       />
@@ -143,18 +156,24 @@ import LightboxImage from '../../components/LightboxImage.astro';
         { title: 'Earned permissions', desc: 'Wallet approvals are introduced with context, not as a cold popup. The app explains what it\'s asking for and why before requesting it — because permission without context feels like a threat.' },
       ]} />
 
-      <img
-        src="/projects/bridge-the-gap/images/Btg_03.png"
+      <Image
+        src={Btg_03}
         alt="Bridge the Gap — solution screens"
+        widths={[800, 1200, 1600]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        quality={88}
         class="w-full h-auto opacity-0 transition-opacity duration-500"
       />
 
       <h4 class="!opacity-100 mt-8">Key design decision: step-by-step over all-at-once</h4>
       <p>The initial instinct was to show a full swap summary upfront — a common pattern in DeFi interfaces. But after testing both approaches, step-by-step consistently outperformed. It felt slower, but users arrived at the confirmation step already informed rather than suddenly overwhelmed. The friction was worth it.</p>
 
-      <img
-        src="/projects/bridge-the-gap/images/Btg_04.png"
+      <Image
+        src={Btg_04}
         alt="Bridge the Gap — step-by-step decision"
+        widths={[800, 1200, 1600]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        quality={88}
         class="w-full h-auto opacity-0 transition-opacity duration-500"
       />
 

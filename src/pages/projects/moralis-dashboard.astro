@@ -1,9 +1,19 @@
 ---
+import { Image } from 'astro:assets';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import CaseStudyBlockquote from '../../components/CaseStudyBlockquote.astro';
 import BeforeAfterSlider from '../../components/BeforeAfterSlider.astro';
 import { moralisDashboardSections } from '../../data/projects';
 import LightboxImage from '../../components/LightboxImage.astro';
+
+import moralisDevelopersThumb from '../../assets/thumbnails/moralis-developers-01.jpg';
+import Before_01 from '../../assets/projects/moralis-dashboard/Before_01.png';
+import After_01 from '../../assets/projects/moralis-dashboard/After_01.webp';
+import Dashboard_01 from '../../assets/projects/moralis-dashboard/Dashboard_01.png';
+import Dashboard_02 from '../../assets/projects/moralis-dashboard/Dashboard_02.webp';
+import StreamsImg from '../../assets/projects/moralis-dashboard/Dashboard_Moralis_streams.png';
+import NodesImg from '../../assets/projects/moralis-dashboard/Dashboard_Moralis_Nodes.png';
+import PaymentsCheckout from '../../assets/projects/moralis-dashboard/payments-checkout.png';
 ---
 
 <ProjectLayout
@@ -21,10 +31,13 @@ import LightboxImage from '../../components/LightboxImage.astro';
     <!-- Hero thumbnail -->
     <div class="w-full aspect-[16/9] border-1 border-foreground/10">
       <div class="relative w-full h-full overflow-hidden" role="img" aria-label="Project thumbnail for UX at a Web3 Startup">
-        <img
+        <Image
           class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300"
-          src="/moralis-developers-01.jpg"
+          src={moralisDevelopersThumb}
           alt="Moralis Developers"
+          widths={[800, 1200, 1600]}
+          sizes="(min-width: 1024px) 800px, 100vw"
+          quality={88}
         />
       </div>
     </div>
@@ -61,8 +74,8 @@ import LightboxImage from '../../components/LightboxImage.astro';
       <p>The dashboard was the first thing every Moralis developer saw after login — it needed to communicate value immediately without overwhelming. The old version failed on both fronts.</p>
 
       <BeforeAfterSlider
-        beforeSrc="/projects/moralis-dashboard/images/Before_01.png"
-        afterSrc="/projects/moralis-dashboard/images/After_01.webp"
+        beforeSrc={Before_01}
+        afterSrc={After_01}
         beforeAlt="Dashboard before redesign — Moralis"
         afterAlt="Dashboard after redesign — Moralis"
         aspectRatio="2880 / 2048"
@@ -71,12 +84,19 @@ import LightboxImage from '../../components/LightboxImage.astro';
 
       <p>The old dashboard buried key data — API keys, project details, usage limits — in a cluttered layout with no clear hierarchy. Developers had to hunt for information on every visit. The redesign reorganized everything around what developers look for first: usage vs. plan limits, API keys, project health, and a clear path to docs. Result: <strong>+22% onboarding completion</strong>.</p>
 
-      <img src="/projects/moralis-dashboard/images/Dashboard_01.png" alt="Dashboard redesign — Moralis" class="w-full rounded-lg" />
+      <Image
+        src={Dashboard_01}
+        alt="Dashboard redesign — Moralis"
+        widths={[800, 1200, 1600]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        quality={88}
+        class="w-full rounded-lg"
+      />
 
       <CaseStudyBlockquote>A dashboard isn't a feature showcase — it's a status report. It should answer the developer's first question before they even ask it.</CaseStudyBlockquote>
 
       <LightboxImage
-        src="/projects/moralis-dashboard/images/Dashboard_02.webp"
+        src={Dashboard_02}
         alt="Dashboard redesign detail — Moralis"
       />
     </section>
@@ -87,9 +107,12 @@ import LightboxImage from '../../components/LightboxImage.astro';
       <h2 class="-mb-2">Designing for builders, not users</h2>
       <p>Moralis Streams lets developers monitor real-time wallet and smart contract events across multiple blockchains. Designing this surface meant working at the intersection of complex data, developer workflow, and trust — users needed to know their event listeners were working correctly, at a glance, without diving into logs. Developers optimize for speed, trust, and control — not delight. Every product decision had to earn its place by reducing friction or increasing confidence in the platform.</p>
 
-      <img
-        src="/projects/moralis-dashboard/images/Dashboard_Moralis_streams.png"
+      <Image
+        src={StreamsImg}
         alt="Moralis Streams dashboard — real-time blockchain event monitoring"
+        widths={[800, 1200, 1600]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        quality={88}
         class="w-full rounded-sm mt-2 opacity-0 transition-opacity duration-300 border-2 border-white"
       />
 
@@ -116,9 +139,12 @@ import LightboxImage from '../../components/LightboxImage.astro';
 
       <h4 class="!text-foreground mt-8">Nodes</h4>
       <p>Designed the user flow and interface for Moralis Nodes — giving developers easy access to high-performance RPC nodes across major blockchain networks. The design emphasized reliability signals: uptime visibility, response time indicators, and security certifications (SOC 2 Type 2). For infrastructure products, trust isn't built through delight — it's built through transparency and consistency.</p>
-      <img
-        src="/projects/moralis-dashboard/images/Dashboard_Moralis_Nodes.png"
+      <Image
+        src={NodesImg}
         alt="Moralis Nodes dashboard — RPC node management interface"
+        widths={[800, 1200, 1600]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        quality={88}
         class="w-full rounded-sm mt-2 opacity-0 transition-opacity duration-300 border-2 border-white"
       />
 
@@ -129,12 +155,15 @@ import LightboxImage from '../../components/LightboxImage.astro';
         class="relative w-full overflow-hidden rounded-sm"
         data-scroll-reveal
       >
-        <img
+        <Image
           class="w-full h-auto opacity-0 translate-y-5
                  transition-[opacity,transform] duration-700"
           style="transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);"
-          src="/projects/moralis-dashboard/images/payments-checkout.png"
+          src={PaymentsCheckout}
           alt="Payments and Checkout redesign — Moralis"
+          widths={[800, 1200, 1600]}
+          sizes="(min-width: 1024px) 800px, 100vw"
+          quality={88}
           data-reveal-img
         />
 

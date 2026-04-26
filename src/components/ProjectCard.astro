@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import type { ProjectStatus } from '../data/projects';
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
@@ -9,7 +10,8 @@ interface Props {
   aspect?: string;
   placeholderColor?: string;
   video?: string;
-  image?: string;
+  /** ImageMetadata from a `src/assets` import, or a string path for SVGs / public files. */
+  image?: ImageMetadata | string;
   overlayText?: string;
   external?: boolean;
   cursorType?: string;
@@ -36,6 +38,12 @@ const {
 
 const isComingSoon = status === 'coming-soon';
 const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
+
+const isImageMetadata = (img: unknown): img is ImageMetadata =>
+  !!img && typeof img === 'object' && 'src' in (img as Record<string, unknown>);
+
+const thumbClass = `absolute inset-0 w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-500 ease-out group-hover:scale-[1.04]`;
+const thumbStyle = thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined;
 ---
 
 <a
@@ -52,18 +60,28 @@ const resolvedCursorType = isComingSoon ? 'coming-soon' : cursorType;
       <div class="relative w-full h-full overflow-hidden" role="img" aria-label={`Project thumbnail for ${title}`} style={`background:${placeholderColor}`}>
         {video ? (
           <video
-            class={`absolute inset-0 w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
-            style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
+            class={thumbClass}
+            style={thumbStyle}
             src={video}
             autoplay
             loop
             muted
             playsinline
           />
+        ) : isImageMetadata(image) ? (
+          <Image
+            class={thumbClass}
+            style={thumbStyle}
+            src={image}
+            alt={`Project thumbnail for ${title}`}
+            widths={[400, 600, 900, 1200]}
+            sizes="(min-width: 1024px) 600px, 100vw"
+            quality={85}
+          />
         ) : image ? (
           <img
-            class={`absolute inset-0 w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
-            style={thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); transform-origin: top center;` : undefined}
+            class={thumbClass}
+            style={thumbStyle}
             src={image}
             alt={`Project thumbnail for ${title}`}
           />
