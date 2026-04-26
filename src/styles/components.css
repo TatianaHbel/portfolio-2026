@@ -1,3 +1,14 @@
+@layer base {
+  .about-cta-btn {
+    border: 1px solid #ED7752;
+    color: #ED7752 !important;
+  }
+  .about-cta-btn:hover {
+    background-color: #ED7752;
+    color: #F0EDE8 !important;
+  }
+}
+
 .custom-cursor {
   left: 0;
   top: 0;
