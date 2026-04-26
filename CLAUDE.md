@@ -65,11 +65,13 @@ src/
       vibe-coding-brand/
 
 public/
+  Resume/                     # Resume PDF (capital R preserved for stable external links)
   fonts/                      # Geist, Geist Mono, Crimson Pro, tiemposText woff2/otf
-  icons/                      # Small SVG icons
+  icons/                      # Small inline SVG icons used inside pages
   images/                     # favicon.ico, og-image.png (need stable URLs for crawlers)
-  *.svg                       # Project card SVG thumbnails (Astro doesn't optimize SVG)
-  *.webm / *.mp4              # Videos — Astro doesn't optimize video, must stay in public/
+  thumbnails/                 # Homepage card thumbnails — SVGs and small VP9 webm clips
+                              # (raster card thumbnails go in src/assets/thumbnails/)
+  projects/[slug]/media/      # Per-project videos (no images here; raster lives in src/assets/)
 
 _archive/                     # Files kept in the repo but NOT shipped to Netlify.
                               # Drop orphan/unreferenced media here instead of deleting,
