@@ -3,6 +3,16 @@ import CustomCursor from '../components/CustomCursor.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import '../styles/global.css';
+import { gaId } from '../data/config';
+
+const fonts: { href: string; type: string }[] = [
+  { href: '/fonts/crimson-pro-latin.woff2',        type: 'font/woff2' },
+  { href: '/fonts/geist-latin.woff2',              type: 'font/woff2' },
+  { href: '/fonts/geist-mono-latin.woff2',         type: 'font/woff2' },
+  { href: '/fonts/tiempos-text-italic.otf',        type: 'font/otf'   },
+  { href: '/fonts/crimson-pro-italic-latin.woff2', type: 'font/woff2' },
+  { href: '/fonts/tiempos-text-regular.otf',       type: 'font/otf'   },
+];
 
 interface Props {
   title: string;
@@ -59,13 +69,20 @@ const pageLabel = isHome ? '' : title.split(/\s[—–|]\s/)[0].trim();
     <link rel="icon" href="/images/favicon.ico" sizes="16x16" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/images/favicon.ico" sizes="180x180" />
 
+    <!-- Google Analytics -->
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script is:inline data-ga-id={gaId}>
+      const _gaId = document.currentScript.getAttribute('data-ga-id');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', _gaId);
+    </script>
+
     <!-- Font preloads (critical fonts only) -->
-    <link rel="preload" href="/fonts/crimson-pro-latin.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/geist-latin.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/tiempos-text-italic.otf" as="font" crossorigin="" type="font/otf" />
-    <link rel="preload" href="/fonts/crimson-pro-italic-latin.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/fonts/tiempos-text-regular.otf" as="font" crossorigin="" type="font/otf" />
+    {fonts.map(({ href, type }) => (
+      <link rel="preload" href={href} as="font" crossorigin="anonymous" type={type} />
+    ))}
   </head>
 
   <body class="antialiased font-geist-sans">
