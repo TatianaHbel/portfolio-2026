@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { ProjectStatus } from '../data/projects';
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
@@ -69,14 +68,13 @@ const thumbStyle = thumbnailScale !== 1 ? `transform: scale(${thumbnailScale}); 
             playsinline
           />
         ) : isImageMetadata(image) ? (
-          <Image
+          <img
             class={thumbClass}
             style={thumbStyle}
-            src={image}
+            src={image.src}
+            width={image.width}
+            height={image.height}
             alt={`Project thumbnail for ${title}`}
-            widths={[600, 900, 1200, 1600, 2000]}
-            sizes="(min-width: 1800px) 864px, (min-width: 1024px) calc(50vw - 36px), 100vw"
-            quality={90}
           />
         ) : image ? (
           <img

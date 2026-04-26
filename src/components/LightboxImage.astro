@@ -1,44 +1,21 @@
 ---
-import { Image, getImage } from 'astro:assets';
-
 interface Props {
   src: ImageMetadata;
   alt: string;
   class?: string;
-  /** Generous default for inline display widths */
-  widths?: number[];
-  /** Quality used for the inline (non-zoomed) image */
-  quality?: number;
 }
 
-const {
-  src,
-  alt,
-  class: className = '',
-  widths = [800, 1200, 1600],
-  quality = 88,
-} = Astro.props;
-
-// Pre-generate a high-quality variant for the lightbox overlay.
-// Capped at the source's native width so we never upscale.
-const lightbox = await getImage({
-  src,
-  width: Math.min(src.width, 2400),
-  format: 'webp',
-  quality: 95,
-});
+const { src, alt, class: className = '' } = Astro.props;
 ---
 
 <div class={`group relative cursor-zoom-in ${className}`} data-lightbox-trigger>
-  <Image
-    src={src}
+  <img
+    src={src.src}
+    width={src.width}
+    height={src.height}
     alt={alt}
-    widths={widths}
-    sizes="(min-width: 1024px) 800px, 100vw"
-    quality={quality}
     class="w-full h-auto opacity-0 transition-opacity duration-500"
     data-lightbox
-    data-lightbox-src={lightbox.src}
   />
   <!-- Hover overlay -->
   <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 pointer-events-none"></div>
@@ -175,8 +152,8 @@ const lightbox = await getImage({
     }
 
     function openLightbox(img: HTMLImageElement) {
-      // Prefer the high-quality lightbox variant when present
-      overlayImg.src = img.dataset.lightboxSrc || img.src;
+      // Use the source image directly — same lossless WebP, displayed at native resolution.
+      overlayImg.src = img.src;
       overlayImg.alt = img.alt;
       overlay.style.display = 'block';
       document.body.style.overflow = 'hidden';

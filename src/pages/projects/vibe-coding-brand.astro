@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import ProjectMetadata from '../../components/ProjectMetadata.astro';
 
@@ -77,12 +76,11 @@ import Portfolio_02 from '../../assets/projects/vibe-coding-brand/Portfolio_02.j
       </p>
 
       <div class="w-full border-1 border-foreground/10 overflow-hidden mt-2">
-        <Image
-          src={Portfolio_02}
+        <img
+          src={Portfolio_02.src}
+          width={Portfolio_02.width}
+          height={Portfolio_02.height}
           alt="Sketch — prompt-driven design loop"
-          widths={[800, 1200, 1600]}
-          sizes="(min-width: 1024px) 800px, 100vw"
-          quality={88}
           class="w-full h-auto opacity-0 transition-opacity duration-500"
         />
       </div>

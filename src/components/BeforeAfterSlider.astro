@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-
 interface Props {
   beforeSrc: ImageMetadata;
   afterSrc: ImageMetadata;
@@ -31,14 +29,13 @@ const {
     aria-label="Before and after comparison slider"
   >
     <!-- Before (base layer) -->
-    <Image
+    <img
       class="absolute inset-0 w-full h-full object-cover"
-      src={beforeSrc}
+      src={beforeSrc.src}
+      width={beforeSrc.width}
+      height={beforeSrc.height}
       alt={beforeAlt}
-      widths={[800, 1200, 1800, 2400]}
-      sizes="(min-width: 1024px) 800px, 100vw"
-      quality={92}
-      draggable={false}
+      draggable="false"
     />
 
     <!-- After (clipped layer) -->
@@ -46,14 +43,13 @@ const {
       class="split-after-panel absolute inset-0 overflow-hidden"
       style="clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);"
     >
-      <Image
+      <img
         class="absolute inset-0 w-full h-full object-cover"
-        src={afterSrc}
+        src={afterSrc.src}
+        width={afterSrc.width}
+        height={afterSrc.height}
         alt={afterAlt}
-        widths={[800, 1200, 1800, 2400]}
-        sizes="(min-width: 1024px) 800px, 100vw"
-        quality={92}
-        draggable={false}
+        draggable="false"
       />
     </div>
 
