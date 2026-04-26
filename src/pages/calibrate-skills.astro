@@ -3,16 +3,16 @@ import '../styles/fonts.css';
 import '../styles/theme.css';
 
 const skills = [
-  { label: 'Product Design',        x: 0.54, y: 0.10, sr: -3,  sd: 0   },
-  { label: 'Frontend Development',  x: 0.71, y: 0.25, sr:  5,  sd: 40  },
-  { label: 'Design Systems',        x: 0.31, y: 0.18, sr:  9,  sd: 80  },
-  { label: 'UX Research',           x: 0.19, y: 0.33, sr: -9,  sd: 120 },
-  { label: 'User Interface Design', x: 0.82, y: 0.40, sr:  7,  sd: 60  },
-  { label: 'Prototyping',           x: 0.27, y: 0.69, sr:  3,  sd: 100 },
-  { label: 'Web3 · DeFi',           x: 0.77, y: 0.58, sr: -7,  sd: 20  },
-  { label: 'Generative AI',         x: 0.49, y: 0.82, sr: -4,  sd: 140 },
-  { label: 'Visual Design',         x: 0.69, y: 0.76, sr:  8,  sd: 160 },
-  { label: 'Motion Design',         x: 0.16, y: 0.52, sr: -12, sd: 180 },
+  { label: 'Product Design',              x: 0.51, y: 0.12, sr: -3,  sd: 0,   er: -1.5 },
+  { label: 'AI-native Product Design',    x: 0.68, y: 0.25, sr:  5,  sd: 40,  er:  2.0 },
+  { label: 'Design Systems',              x: 0.33, y: 0.22, sr:  9,  sd: 80,  er:  2.5 },
+  { label: 'User Research',               x: 0.24, y: 0.38, sr: -9,  sd: 120, er: -2.0 },
+  { label: 'User Interface Design',       x: 0.74, y: 0.38, sr:  7,  sd: 60,  er:  1.5 },
+  { label: 'Prototyping and Wireframing', x: 0.30, y: 0.79, sr:  3,  sd: 100, er:  1.0 },
+  { label: 'Blockchain Experience',       x: 0.79, y: 0.53, sr: -7,  sd: 20,  er: -2.5 },
+  { label: 'Generative AI',              x: 0.58, y: 0.82, sr: -4,  sd: 140, er: -1.5 },
+  { label: 'Visual Design',              x: 0.72, y: 0.70, sr:  8,  sd: 160, er:  2.0 },
+  { label: 'Creativity and Curiosity',   x: 0.21, y: 0.56, sr: -12, sd: 180, er: -3.0 },
 ];
 ---
 
@@ -119,6 +119,7 @@ const skills = [
       border-radius: 70px;
       font-family: var(--font-geist-sans, sans-serif);
       font-size: 14px;
+      font-weight: 600;
       letter-spacing: 0.01em;
       color: var(--color-foreground, #2E3141);
       white-space: nowrap;
@@ -280,8 +281,8 @@ const skills = [
 
       <div class="skills-center">
         <div class="skills-icon">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+          <svg width="44" height="44" viewBox="0 0 351 350" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M267.839 0.520205C233.1 6.1852 194.47 41.9362 173.223 88.0852C170.691 93.5852 168.071 99.7732 167.402 101.835C166.732 103.898 165.834 105.585 165.407 105.585C164.98 105.585 161.33 100.123 157.297 93.4482C141.701 67.6332 126.333 51.4142 108.263 41.6982C64.9113 18.3882 27.6283 27.5692 9.23233 66.0852C-8.63167 103.488 -0.328674 154.972 32.0333 207.464C47.7003 232.875 67.7053 258.726 84.3643 275.085C89.9653 280.585 99.2763 290.485 105.056 297.085C120.719 314.972 133.749 326.262 151.566 337.387C176.316 352.84 189.097 353.169 209.216 338.873C240.057 316.958 302.071 235.971 327.359 184.585C336.825 165.349 340.462 154.251 345.991 127.741C352.102 98.4362 351.705 71.0232 344.866 50.0712C336.992 25.9492 320.94 9.71121 298.037 2.70021C290.385 0.358205 275.447 -0.720795 267.839 0.520205Z"/>
           </svg>
         </div>
         <h2 class="skills-heading">What I bring to<br/>the table</h2>
