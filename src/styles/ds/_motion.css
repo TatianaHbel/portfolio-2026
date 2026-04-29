@@ -1,0 +1,140 @@
+/* ════════════════════════════════════════════════════════
+   DESIGN SYSTEM — MOTION
+   Easing demos, hover effects, named keyframes, and
+   the interactive-states gallery. Everything that
+   visualizes the system's motion vocabulary.
+   ──────────────────────────────────────────────────────── */
+
+/* ── Easing demos ────────────────────────────────── */
+.ds-easing-grid { display: flex; flex-direction: column; gap: 24px; }
+.ds-easing-item { display: flex; gap: 20px; align-items: center; }
+.ds-easing-track {
+  width: 240px;
+  height: 24px;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ds-easing-ball {
+  position: absolute;
+  left: 4px; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  border-radius: 2px;
+  background: var(--ds-red);
+}
+.ds-easing-track:hover .ds-easing-ball {
+  left: calc(100% - 20px);
+}
+.ease-spring  { transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.ease-inout   { transition: left 0.6s ease-in-out; }
+.ease-out     { transition: left 0.6s ease-out; }
+
+/* ── Hover effects ───────────────────────────────── */
+.ds-hover-lift:hover  { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(47,47,47,0.16); }
+.ds-hover-glow:hover  { box-shadow: 0 0 0 3px var(--ds-red); }
+
+/* ── Keyframe demos ──────────────────────────────── */
+.ds-keyframe-demos { display: flex; flex-direction: column; gap: 0; }
+.ds-keyframe-card {
+  display: grid;
+  grid-template-columns: 140px 1fr 90px;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--ds-border);
+}
+.ds-keyframe-card:last-child { border-bottom: none; }
+.ds-kf-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 52px;
+}
+.ds-kf-info { display: flex; flex-direction: column; gap: 4px; }
+.ds-keyframe-name { font-size: 12px; color: var(--ds-accent); }
+.ds-keyframe-desc { font-size: 13px; color: var(--ds-text-muted); margin: 0; }
+.ds-keyframe-duration { font-size: 11px; color: var(--ds-text-muted); text-align: right; }
+
+/* glow-pulse demo */
+.ds-kf-glow-demo {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--ds-peach);
+  animation: ds-glow-pulse 2s ease-in-out infinite;
+}
+@keyframes ds-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(237,119,82,0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(237,119,82,0.5); }
+}
+
+/* fade-up demo */
+.ds-kf-fade-demo {
+  width: 56px; height: 22px;
+  border-radius: 3px;
+  background: var(--ds-peach);
+  animation: ds-fade-up 1.4s ease infinite alternate;
+}
+@keyframes ds-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* shimmer demo */
+.ds-kf-shimmer-demo {
+  width: 100%; height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--ds-surface-2) 25%, #dedad4 50%, var(--ds-surface-2) 75%);
+  background-size: 300% 100%;
+  animation: ds-shimmer 1.5s linear infinite;
+}
+@keyframes ds-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* spin demo (uses ds-spin keyframes from _components.css) */
+.ds-kf-spin-demo {
+  width: 28px; height: 28px;
+  border: 3px solid rgba(237,119,82,0.2);
+  border-top-color: var(--ds-peach);
+  border-radius: 50%;
+  animation: ds-spin 1s linear infinite;
+}
+
+/* ── Interaction-states gallery ──────────────────── */
+.ds-states-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+.ds-state-item { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.ds-state-demo {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+}
+
+/* Force-static states for documentation cards */
+.ds-state-force-hover {
+  background: var(--ds-peach) !important;
+  transform: translateY(-1px) !important;
+}
+.ds-state-force-active {
+  background: var(--ds-coral-deep) !important;
+  transform: scale(0.97) !important;
+}
+.ds-state-force-focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(218,109,91,0.35) !important;
+}

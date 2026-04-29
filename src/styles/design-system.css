@@ -1,0 +1,19 @@
+/* ════════════════════════════════════════════════════════
+   PERSONAL BRAND — DESIGN SYSTEM (index)
+
+   Source of truth for the .ds-* component layer.
+   Tokens live in theme.css. Element styles live in base.css.
+   Site-wide primitives (cursor, project card, scroll
+   reveal) live in components.css.
+
+   This file is an INDEX — each partial below owns a
+   semantic slice of the system. Add new components in
+   their own partial under ds/_*.css and @import here.
+   ──────────────────────────────────────────────────────── */
+
+@import "./ds/_layout.css";
+@import "./ds/_typography.css";
+@import "./ds/_components.css";
+@import "./ds/_patterns.css";
+@import "./ds/_motion.css";
+@import "./ds/_foundations.css";

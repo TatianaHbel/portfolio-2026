@@ -1,0 +1,412 @@
+/* ════════════════════════════════════════════════════════
+   DESIGN SYSTEM — PATTERNS
+   Composite patterns: preview/code blocks, color
+   swatches, token tables, navigation pills, the
+   before/after slider. The bigger building blocks.
+   ──────────────────────────────────────────────────────── */
+
+/* ── Preview blocks ───────────────────────────────── */
+.ds-preview-block {
+  border: 1px solid var(--ds-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ds-preview-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--ds-border);
+  padding: 0;
+  background: var(--ds-surface-2);
+}
+.ds-tab {
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-family: var(--ds-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color var(--ds-duration), border-color var(--ds-duration);
+}
+.ds-tab:hover { color: var(--ds-text); }
+.ds-tab.is-active {
+  color: var(--ds-accent);
+  border-bottom-color: var(--ds-accent);
+  background: var(--ds-surface);
+}
+.ds-preview-canvas {
+  padding: 40px;
+  background: var(--ds-surface);
+}
+.ds-preview-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.ds-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 640px) {
+  .ds-cards-row { grid-template-columns: 1fr; }
+}
+.ds-code-panel {
+  position: relative;
+  background: #1A1A1A;
+  padding: 28px 28px 28px 28px;
+}
+.ds-code {
+  margin: 0;
+  font-family: var(--ds-font-mono);
+  font-size: 12px;
+  color: #A8A49E;
+  line-height: 1.75;
+  overflow-x: auto;
+  white-space: pre;
+}
+.ds-copy-btn {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.45);
+  font-family: var(--ds-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color var(--ds-duration), background var(--ds-duration);
+}
+.ds-copy-btn:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.12); }
+.ds-copy-btn.copied { color: var(--ds-olive); border-color: rgba(143,166,60,0.35); }
+
+/* ── Color swatches ───────────────────────────────── */
+.ds-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.ds-swatch-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.ds-swatch {
+  height: 100px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 12px;
+  transition: transform var(--ds-duration) var(--ds-ease);
+}
+.ds-swatch:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 28px rgba(46,49,65,0.13); }
+.ds-swatch-info { display: flex; flex-direction: column; gap: 2px; }
+.ds-swatch-name { font-size: 12px; font-weight: 500; }
+.ds-swatch-hex  { font-family: var(--ds-font-mono); font-size: 11px; }
+
+/* swatch copy-to-clipboard pop animation */
+@keyframes ds-swatch-pop {
+  0%   { transform: translateY(0) scale(1) rotate(0deg); }
+  35%  { transform: translateY(-7px) scale(1.08) rotate(2.5deg); }
+  70%  { transform: translateY(-4px) scale(1.03) rotate(-1deg); }
+  100% { transform: translateY(-4px) scale(1.02) rotate(0deg); }
+}
+.ds-swatch.ds-just-copied {
+  animation: ds-swatch-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+/* ── Color sets (3-stop scales) ───────────────────── */
+.ds-color-sets {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.ds-color-set {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.ds-color-set-name {
+  width: 52px;
+  flex-shrink: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 18px;
+  margin: 0;
+}
+.ds-color-set-stops {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  flex: 1;
+}
+.ds-color-set-stop {
+  height: 80px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 12px;
+  transition: transform 0.15s var(--ds-ease), box-shadow 0.15s var(--ds-ease);
+}
+.ds-color-set-stop:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ds-shadow-md);
+}
+.ds-color-set-stop-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: left;
+}
+
+/* ── Token table ─────────────────────────────────── */
+.ds-token-table { display: flex; flex-direction: column; gap: 0; }
+.ds-token-row {
+  display: grid;
+  grid-template-columns: 20px 200px 180px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ds-border);
+  transition: background var(--ds-duration) var(--ds-ease);
+  cursor: default;
+}
+.ds-token-row:hover { background: var(--ds-surface-2); padding-left: 6px; }
+.ds-token-row:last-child { border-bottom: none; }
+.ds-token-swatch {
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .ds-token-row { grid-template-columns: 20px 1fr; }
+  .ds-token-row > :nth-child(3),
+  .ds-token-row > :nth-child(4) { display: none; }
+}
+
+/* ── Icon grid ───────────────────────────────────── */
+.ds-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ds-icon-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--ds-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ds-surface);
+}
+.ds-icon-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  background: var(--ds-bg);
+}
+.ds-icon-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.ds-icon-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--ds-border);
+}
+.ds-icon-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ds-text);
+}
+.ds-icon-file { font-size: 11px; }
+
+/* ── Navigation — blob-hover pill ─────────────────── */
+.ds-navitem { --nav-color: var(--ds-peach); --nav-color-deep: var(--ds-peach-deep); }
+
+.ds-navitem {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='%23ED7752'/%3E%3C/svg%3E") 12 12, pointer;
+  text-decoration: none;
+  isolation: isolate;
+  user-select: none;
+}
+
+.ds-navitem-blob {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--nav-color);
+  opacity: 0;
+  transform: scale(0.82);
+  transition:
+    opacity 180ms ease-out,
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ds-navitem-label {
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ds-text);
+  opacity: 0.5;
+  transition: opacity 180ms ease-out, color 180ms ease-out;
+  font-family: var(--ds-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ds-navitem:hover .ds-navitem-blob { opacity: 0.15; transform: scale(1); }
+.ds-navitem:hover .ds-navitem-label { opacity: 1; color: var(--nav-color-deep); }
+
+.ds-navitem--active .ds-navitem-blob { opacity: 0.18; transform: scale(1); }
+.ds-navitem--active .ds-navitem-label { opacity: 1; color: var(--nav-color-deep); }
+
+.ds-navitem--hover .ds-navitem-blob { opacity: 0.15; transform: scale(1); }
+.ds-navitem--hover .ds-navitem-label { opacity: 1; color: var(--nav-color-deep); }
+
+.ds-navitem--pressed .ds-navitem-blob {
+  opacity: 0.9;
+  transform: scale(0.94);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.18);
+}
+.ds-navitem--pressed .ds-navitem-label {
+  opacity: 1;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.ds-navitem:active .ds-navitem-blob {
+  opacity: 0.9;
+  transform: scale(0.94);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.18);
+  transition-duration: 60ms;
+}
+.ds-navitem:active .ds-navitem-label { color: #fff; opacity: 1; }
+
+.ds-nav-states-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.ds-nav-state-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 16px 16px;
+  border: 1px solid var(--ds-border);
+  border-radius: 10px;
+  background: var(--ds-surface);
+}
+
+.ds-nav-state-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  margin-bottom: 4px;
+}
+
+.ds-nav-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--ds-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ds-nav-spec-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--ds-border);
+}
+.ds-nav-spec-row:last-child { border-bottom: none; }
+.ds-nav-spec-row:nth-child(even) { background: var(--ds-surface); }
+
+/* ── Before / After comparison slider ─────────────
+   Drag-to-reveal split view. Used in case studies
+   (wireframe → polished, before → after, etc).
+   JS lives in <BeforeAfterSlider.astro> — these styles
+   are the reusable surface. */
+.split-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  cursor: ew-resize;
+}
+.split-slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.split-after-panel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+}
+.split-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.split-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+@keyframes split-handle-pulse {
+  0%, 100% { scale: 1;    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+  50%      { scale: 1.16; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22); }
+}
+.split-slider:hover .split-handle {
+  animation: split-handle-pulse 1.6s ease-in-out infinite;
+}
+.split-slider:active .split-handle,
+.split-slider.dragging .split-handle {
+  animation: none;
+}

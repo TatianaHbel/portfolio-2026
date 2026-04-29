@@ -1,0 +1,1471 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BeforeAfterSlider from '../../components/BeforeAfterSlider.astro';
+
+// Raw CSS source — bundled at build time so the Download CSS button
+// can hand the visitor the *actual* files behind this page, not a
+// copy that drifts away from production.
+//
+// Each partial under styles/ds/ owns a semantic slice of the system.
+// Adding a new partial? Add the ?raw import here, then concatenate it
+// in the bundle below — the file order matches global.css's chain.
+import fontsCss      from '../../styles/fonts.css?raw';
+import themeCss      from '../../styles/theme.css?raw';
+import baseCss       from '../../styles/base.css?raw';
+import componentsCss from '../../styles/components.css?raw';
+import dsLayoutCss      from '../../styles/ds/_layout.css?raw';
+import dsTypographyCss  from '../../styles/ds/_typography.css?raw';
+import dsComponentsCss  from '../../styles/ds/_components.css?raw';
+import dsPatternsCss    from '../../styles/ds/_patterns.css?raw';
+import dsMotionCss      from '../../styles/ds/_motion.css?raw';
+import dsFoundationsCss from '../../styles/ds/_foundations.css?raw';
+
+const downloadHeader = `/* ──────────────────────────────────────────────────────────────
+ * Tatiana Hernandez — Personal Brand Design System
+ * v1.0 · ${new Date().toISOString().slice(0, 10)}
+ *
+ * This file is the *actual* source behind the design-system page —
+ * the same CSS that ships on every page of the portfolio. Source
+ * lives modular; this download is the build-time concatenation.
+ *
+ * Source files (mirrored 1:1 in the sections below):
+ *   src/styles/fonts.css         — @font-face declarations
+ *   src/styles/theme.css         — design tokens (Tailwind @theme + --ds-*)
+ *   src/styles/base.css          — element-level styles (h1, body, a)
+ *   src/styles/components.css    — site primitives (cursor, project card)
+ *   src/styles/ds/_layout.css        — page chrome
+ *   src/styles/ds/_typography.css    — text utilities + type scale
+ *   src/styles/ds/_components.css    — buttons, inputs, cards, badges
+ *   src/styles/ds/_patterns.css      — preview blocks, swatches, navitems, before/after
+ *   src/styles/ds/_motion.css        — easings, keyframes, hover, states
+ *   src/styles/ds/_foundations.css   — radius, shadows, spacing, grid
+ *
+ * Dependencies
+ *   • Tailwind CSS v4 (optional, recommended) — picks up the @theme
+ *     block in theme.css so utility classes share the same tokens.
+ *     Without Tailwind, the @theme block is a no-op; the rest works.
+ *
+ *   • Fonts — fonts.css references /fonts/*.woff2 and /fonts/*.otf:
+ *       Geist + Geist Mono   → Vercel, MIT licensed (free to host)
+ *           https://vercel.com/font
+ *       Crimson Pro          → Google Fonts, OFL licensed (free to host)
+ *           https://fonts.google.com/specimen/Crimson+Pro
+ *       tiemposText          → Klim Type Foundry, COMMERCIAL license
+ *           https://klim.co.nz/retail-fonts/tiempos-text/
+ *           You must license and host this yourself; without it the
+ *           CSS falls back to the "tiemposText Fallback" Arial-shim.
+ *
+ *     Place font files at /fonts/ (or rewrite the URLs in fonts.css).
+ *
+ * Drop-in usage
+ *   @import "tailwindcss";        // optional
+ *   @import "./tatiana-design-system.css";
+ *
+ * Then use any .ds-* class in your markup.
+ * ──────────────────────────────────────────────────────────────── */
+
+`;
+
+const sectionHeader = (title: string) =>
+  `\n\n/* ════════════════════════════════════════════════════════\n   ${title}\n   ──────────────────────────────────────────────────────── */\n`;
+
+const downloadBundle = downloadHeader
+  + sectionHeader('fonts.css — @font-face declarations')                + fontsCss
+  + sectionHeader('theme.css — tokens (Tailwind @theme + --ds-*)')       + themeCss
+  + sectionHeader('base.css — element-level styles')                     + baseCss
+  + sectionHeader('components.css — site primitives')                    + componentsCss
+  + sectionHeader('ds/_layout.css — page chrome')                        + dsLayoutCss
+  + sectionHeader('ds/_typography.css — text utilities + type scale')    + dsTypographyCss
+  + sectionHeader('ds/_components.css — buttons, inputs, cards, badges') + dsComponentsCss
+  + sectionHeader('ds/_patterns.css — preview, swatches, nav, before/after') + dsPatternsCss
+  + sectionHeader('ds/_motion.css — easings, keyframes, states')         + dsMotionCss
+  + sectionHeader('ds/_foundations.css — radius, shadows, spacing, grid') + dsFoundationsCss;
+---
+
+<BaseLayout
+  title="Personal Brand Guidelines — Tatiana Hernandez"
+  description="A complete design system and visual language for Tatiana Hernandez — colors, typography, components, and interaction patterns."
+>
+
+<!-- ════════════════════════════════════════════════════════
+     DESIGN SYSTEM ROOT — uses global ds-* classes from
+     src/styles/design-system.css. No inline styles.
+════════════════════════════════════════════════════════ -->
+<div class="ds-root">
+
+  <!-- Sidebar -->
+  <aside class="ds-sidebar">
+    <div class="ds-sidebar-inner">
+      <div class="ds-sidebar-brand">
+        <p class="ds-mono ds-muted">Design System</p>
+        <p class="ds-sidebar-title">Personal Brand</p>
+      </div>
+
+      <nav class="ds-nav" aria-label="Design system sections">
+        <a href="#overview"    class="ds-nav-link active">Overview</a>
+        <a href="#colors"      class="ds-nav-link">Colors</a>
+        <a href="#typography"  class="ds-nav-link">Typography</a>
+        <a href="#iconos"      class="ds-nav-link">Icons</a>
+        <a href="#buttons"     class="ds-nav-link">Components</a>
+        <a href="#foundations" class="ds-nav-link">Foundations</a>
+        <a href="#states"      class="ds-nav-link">Interaction States</a>
+        <a href="#navigation"  class="ds-nav-link">Navigation</a>
+        <a href="#cursor"      class="ds-nav-link">Cursor</a>
+        <a href="#animations"  class="ds-nav-link">Animations</a>
+        <a href="#spacing"     class="ds-nav-link">Grid &amp; Spacing</a>
+      </nav>
+
+      <div class="ds-sidebar-footer">
+        <span class="ds-badge ds-badge-teal">v1.0</span>
+        <span class="ds-mono ds-muted" style="font-size:10px">2025</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main panel -->
+  <main class="ds-main">
+    <div id="ds-progress" aria-hidden="true"></div>
+
+    <!-- ── Hero ─────────────────────────────────────── -->
+    <header class="ds-hero">
+      <p class="ds-mono ds-muted ds-label ds-hero-enter">Tatiana Hernandez · Brand Identity</p>
+      <h1 class="ds-hero-title ds-hero-enter">Personal Brand<br/><em>Guidelines</em></h1>
+      <p class="ds-hero-sub ds-hero-enter">
+        The design system behind this portfolio — documented as a live handoff artifact
+        for developers.
+      </p>
+      <div class="ds-hero-badges ds-hero-enter">
+        <span class="ds-badge ds-badge-pink">Design System</span>
+        <span class="ds-badge ds-badge-outline">Web · Figma</span>
+      </div>
+    </header>
+
+    <!-- ── Overview ──────────────────────────────────── -->
+    <section id="overview" class="ds-section">
+      <div class="ds-overview-grid">
+
+        <div class="ds-overview-left">
+          <h2 class="ds-overview-heading">
+            Design doesn't end<br/>in Figma.
+          </h2>
+          <p class="ds-overview-body">
+            This page <em>is</em> the design system. Every component here runs the exact
+            same CSS as the rest of this portfolio — one file, one source of truth, no
+            drift between documentation and production.
+          </p>
+          <p class="ds-overview-body">
+            It's built as a handoff artifact: browse the catalog, copy snippets directly
+            from the code panels, or download the full stylesheet and drop it into your
+            own project.
+          </p>
+        </div>
+
+        <div class="ds-overview-right">
+          <div class="ds-overview-stats">
+            <div class="ds-overview-stat">
+              <span class="ds-overview-stat-value" data-count-to="10">0</span>
+              <span class="ds-mono ds-muted ds-overview-stat-label">sections</span>
+            </div>
+            <div class="ds-overview-stat">
+              <span class="ds-overview-stat-value" data-count-to="1">0</span>
+              <span class="ds-mono ds-muted ds-overview-stat-label">source of truth</span>
+            </div>
+            <div class="ds-overview-stat">
+              <span class="ds-overview-stat-value">v1.0</span>
+              <span class="ds-mono ds-muted ds-overview-stat-label">current</span>
+            </div>
+          </div>
+          <div class="ds-overview-actions">
+            <button class="ds-btn ds-btn-primary" id="ds-download-css">
+              Download CSS
+            </button>
+            <a href="#colors" class="ds-btn ds-btn-secondary" id="ds-browse-system">
+              Browse system
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 1: Colors ──────────────────────── -->
+    <section id="colors" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">01</span>
+        <h2 class="ds-section-title">Colors</h2>
+      </div>
+      <p class="ds-section-desc">Two layers: a warm base for structure, and a personality palette that captures character.</p>
+
+      <!-- Base palette -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Base Palette</h3>
+        <div class="ds-swatch-grid ds-swatch-grid-3">
+          {[
+            { name: 'Coral', var: '--ds-coral', hex: '#DA6D5B', light: true  },
+            { name: 'Peach', var: '--ds-peach', hex: '#ED7752', light: true  },
+            { name: 'Blush', var: '--ds-blush', hex: '#F0A891', light: false },
+          ].map(s => (
+            <button
+              class="ds-swatch"
+              data-copy={s.hex}
+              style={`background:${s.hex}`}
+              aria-label={`Copy ${s.hex}`}
+            >
+              <span class="ds-swatch-info" style={`color:${s.light ? 'rgba(255,255,255,0.9)' : '#2E3141'}`}>
+                <span class="ds-swatch-name">{s.name}</span>
+                <span class="ds-mono ds-swatch-hex">{s.hex}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Secondary palette -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Secondary Palette</h3>
+        <div class="ds-swatch-grid">
+          {[
+            { name: 'Rose',    hex: '#ED527A', light: true  },
+            { name: 'Sky',     hex: '#52C8ED', light: false },
+            { name: 'Lime',    hex: '#ABBA2B', light: false },
+            { name: 'Yellow',  hex: '#F8E816', light: false },
+            { name: 'Peach',   hex: '#ED7752', light: true  },
+            { name: 'Rose 700',hex: '#B23E5C', light: true  },
+          ].map(s => (
+            <button
+              class="ds-swatch"
+              data-copy={s.hex}
+              style={`background:${s.hex}`}
+              aria-label={`Copy ${s.hex}`}
+            >
+              <span class="ds-swatch-info" style={`color:${s.light ? 'rgba(255,255,255,0.9)' : '#2E3141'}`}>
+                <span class="ds-swatch-name">{s.name}</span>
+                <span class="ds-mono ds-swatch-hex">{s.hex}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Semantic tokens -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Semantic Tokens</h3>
+        <div class="ds-token-table">
+          {[
+            { token: '--ds-bg',           value: '#FAF8F5',             role: 'Page background'             },
+            { token: '--ds-surface-2',    value: '#F0EDE8',             role: 'Elevated surface'            },
+            { token: '--ds-text',         value: '#2E3141',             role: 'Primary text'                },
+            { token: '--ds-text-muted',   value: '#8B8796',             role: 'Text muted'                  },
+            { token: '--ds-border',       value: 'rgba(46,49,65,0.10)', role: 'Subtle border'               },
+            { token: '--ds-accent',       value: '#ED7752',             role: 'Primary accent (Peach)'      },
+            { token: '--ds-accent-rose',  value: '#ED527A',             role: 'Secondary accent — Rose'     },
+            { token: '--ds-accent-sky',   value: '#52C8ED',             role: 'Secondary accent — Sky'      },
+            { token: '--ds-accent-lime',  value: '#ABBA2B',             role: 'Secondary accent — Lime'     },
+            { token: '--ds-accent-yellow',value: '#F8E816',             role: 'Secondary accent — Yellow'   },
+          ].map(t => (
+            <div class="ds-token-row">
+              <div class="ds-token-swatch" style={`background:${t.value}`}></div>
+              <code class="ds-mono" style="font-size:12px;color:var(--ds-accent)">{t.token}</code>
+              <span class="ds-mono ds-muted" style="font-size:11px">{t.value}</span>
+              <span class="ds-muted" style="font-size:13px">{t.role}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Color sets -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Color Sets</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Three-stop scale per secondary color: light (100) · base (500) · dark (700).</p>
+        <div class="ds-color-sets">
+          {[
+            {
+              name: 'Rose',
+              stops: [
+                { label: '100', hex: '#FDEDF2', token: '--ds-rose-100', dark: false },
+                { label: '500', hex: '#ED527A', token: '--ds-rose-500', dark: true  },
+                { label: '700', hex: '#B23E5C', token: '--ds-rose-700', dark: true  },
+              ]
+            },
+            {
+              name: 'Sky',
+              stops: [
+                { label: '100', hex: '#EBF9FD', token: '--ds-sky-100',  dark: false },
+                { label: '500', hex: '#52C8ED', token: '--ds-sky-500',  dark: false },
+                { label: '700', hex: '#1E7F9B', token: '--ds-sky-700',  dark: true  },
+              ]
+            },
+            {
+              name: 'Lime',
+              stops: [
+                { label: '100', hex: '#F2F5D3', token: '--ds-lime-100', dark: false },
+                { label: '500', hex: '#ABBA2B', token: '--ds-lime-500', dark: false },
+                { label: '700', hex: '#5F6814', token: '--ds-lime-700', dark: true  },
+              ]
+            },
+            {
+              name: 'Yellow',
+              stops: [
+                { label: '100', hex: '#FEFBCF', token: '--ds-yellow-100', dark: false },
+                { label: '500', hex: '#F8E816', token: '--ds-yellow-500', dark: false },
+                { label: '700', hex: '#9C9007', token: '--ds-yellow-700', dark: true  },
+              ]
+            },
+            {
+              name: 'Peach',
+              stops: [
+                { label: '100', hex: '#FDEEE8', token: '--ds-peach-100', dark: false },
+                { label: '500', hex: '#ED7752', token: '--ds-peach',     dark: true  },
+                { label: '700', hex: '#C95E38', token: '--ds-peach-deep', dark: true  },
+              ]
+            },
+          ].map(set => (
+            <div class="ds-color-set">
+              <p class="ds-mono ds-muted ds-color-set-name">{set.name}</p>
+              <div class="ds-color-set-stops">
+                {set.stops.map(stop => (
+                  <button
+                    class="ds-color-set-stop"
+                    data-copy={stop.hex}
+                    style={`background:${stop.hex}`}
+                    aria-label={`Copy ${stop.hex}`}
+                  >
+                    <span class="ds-color-set-stop-info" style={`color:${stop.dark ? 'rgba(255,255,255,0.9)' : '#2E3141'}`}>
+                      <span class="ds-mono" style="font-size:10px;opacity:0.7">{stop.label}</span>
+                      <span class="ds-mono" style="font-size:11px;font-weight:500">{stop.hex}</span>
+                      <span class="ds-mono" style={`font-size:9px;opacity:0.6`}>{stop.token}</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Gradients -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Gradients</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Named gradient tokens used across the system. Reference via CSS variable.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {[
+            {
+              token: '--ds-gradient-brand',
+              value: 'linear-gradient(135deg, #DA6D5B 20%, #ED527A 100%)',
+              label: 'Brand — Coral → Rose',
+              usage: 'Page loader, hero emphasis, primary gradient moments',
+            },
+          ].map(g => (
+            <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center;padding:14px 16px;border:1px solid var(--ds-border);border-radius:8px;background:var(--ds-surface);">
+              <div style={`background:${g.value};border-radius:6px;height:52px;`}></div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <code class="ds-mono" style="font-size:12px;color:var(--ds-accent)">{g.token}</code>
+                <span class="ds-mono ds-muted" style="font-size:10px;">{g.value}</span>
+                <span style="font-size:12px;color:var(--ds-text-muted);margin-top:2px;">{g.usage}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 2: Typography ──────────────────── -->
+    <section id="typography" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">02</span>
+        <h2 class="ds-section-title">Typography</h2>
+      </div>
+      <p class="ds-section-desc">Two typefaces. One display, one functional. Never competing.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Display — tiemposText</h3>
+        <div class="ds-type-scale">
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">Display / 64px</span>
+            <p style="font-family:var(--ds-font-display);font-size:64px;line-height:1;letter-spacing:-0.03em;color:var(--ds-text)">Brand Identity</p>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">H1 / 48px</span>
+            <p style="font-family:var(--ds-font-display);font-size:48px;line-height:1.05;letter-spacing:-0.02em;color:var(--ds-text)">Design Systems</p>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">H2 / 36px</span>
+            <p style="font-family:var(--ds-font-display);font-size:36px;line-height:1.1;letter-spacing:-0.015em;color:var(--ds-text)">Visual Language</p>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">H3 / 24px</span>
+            <p style="font-family:var(--ds-font-display);font-size:24px;line-height:1.2;color:var(--ds-text)">Component Patterns</p>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">H3 italic / 24px</span>
+            <p style="font-family:var(--ds-font-display);font-size:24px;line-height:1.2;font-style:italic;color:var(--ds-accent-rose)">Interaction Design</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">UI — Geist Sans</h3>
+        <div class="ds-type-scale">
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">Large / 18px</span>
+            <p style="font-size:18px;color:var(--ds-text);line-height:1.6">A product designer who got tired of handing off files and started writing code.</p>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">Body / 15px</span>
+            <p style="font-size:15px;color:var(--ds-text-muted);line-height:1.65">I've been designing since 2012 — across SaaS, fintech, and Web3. I'm drawn to complex systems that need to feel simple.</p>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">Small / 13px</span>
+            <p style="font-size:13px;color:var(--ds-text-muted);line-height:1.5">Caption text, helper text, metadata</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Mono — Geist Mono</h3>
+        <div class="ds-type-scale">
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">Label / 11px</span>
+            <p style="font-family:var(--ds-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--ds-accent)">SECTION LABEL</p>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-mono ds-muted ds-type-label">Code / 13px</span>
+            <p style="font-family:var(--ds-font-mono);font-size:13px;color:var(--ds-accent-sky)">{"const palette = { coral: '#DA6D5B', rose: '#ED527A', sky: '#52C8ED' }"}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color accents in type -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Color Accents in Type</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Each secondary color as a typographic accent — for labels, callouts, and highlights.</p>
+        <div class="ds-type-scale">
+          {[
+            { label: 'Rose accent',   color: 'var(--ds-accent-rose)',   text: 'Product Design',  token: '--ds-accent-rose'   },
+            { label: 'Sky accent',    color: 'var(--ds-accent-sky)',    text: 'Engineering',     token: '--ds-accent-sky'    },
+            { label: 'Lime accent',   color: 'var(--ds-accent-lime)',   text: 'Brand Identity',  token: '--ds-accent-lime'   },
+            { label: 'Yellow accent', color: 'var(--ds-accent-yellow)', text: 'Design Systems',  token: '--ds-accent-yellow' },
+          ].map(a => (
+            <div class="ds-type-row">
+              <span class="ds-mono ds-muted ds-type-label" style="font-size:10px">{a.label}</span>
+              <div style="display:flex;align-items:baseline;gap:16px">
+                <p style={`font-family:var(--ds-font-display);font-size:22px;font-style:italic;color:${a.color}`}>{a.text}</p>
+                <code class="ds-mono" style={`font-size:11px;color:${a.color};opacity:0.7`}>{a.token}</code>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: Icons ─────────────────────── -->
+    <section id="iconos" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">03</span>
+        <h2 class="ds-section-title">Icons</h2>
+      </div>
+      <p class="ds-section-desc">Custom brand icons — organic shapes that carry personality. Always in <span class="ds-mono" style="color:var(--ds-accent)">#ED7752</span> (Peach).</p>
+
+      <div class="ds-subsection">
+        <div class="ds-icon-grid">
+
+          <div class="ds-icon-card">
+            <div class="ds-icon-preview">
+              <img src="/icons/full-bloom.svg" alt="Full Bloom icon" class="ds-icon-img" />
+            </div>
+            <div class="ds-icon-meta">
+              <span class="ds-icon-name">Full Bloom</span>
+              <span class="ds-mono ds-muted ds-icon-file">full-bloom.svg</span>
+            </div>
+          </div>
+
+          <div class="ds-icon-card">
+            <div class="ds-icon-preview">
+              <img src="/icons/tatis-heart.svg" alt="Tati's Heart icon" class="ds-icon-img" />
+            </div>
+            <div class="ds-icon-meta">
+              <span class="ds-icon-name">Tati's Heart</span>
+              <span class="ds-mono ds-muted ds-icon-file">tatis-heart.svg</span>
+            </div>
+          </div>
+
+          <div class="ds-icon-card">
+            <div class="ds-icon-preview">
+              <img src="/icons/two-full-stars.svg" alt="Two Full Stars icon" class="ds-icon-img" />
+            </div>
+            <div class="ds-icon-meta">
+              <span class="ds-icon-name">Two Full Stars</span>
+              <span class="ds-mono ds-muted ds-icon-file">two-full-stars.svg</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: Components ─────────────────── -->
+    <section id="buttons" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">04</span>
+        <h2 class="ds-section-title">Components</h2>
+      </div>
+      <p class="ds-section-desc">Production-ready UI patterns. Buttons, inputs, cards, badges, and the before/after comparison slider used in case studies. Every state. Every variant.</p>
+
+      <!-- BUTTONS -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Buttons</h3>
+        <div class="ds-preview-block">
+
+          <!-- Color palette tabs -->
+          <div class="ds-btn-palette-tabs">
+            <button class="ds-btn-palette-tab is-active" data-color="peach"  style="--tab-color:#ED7752"><span class="ds-btn-palette-dot" style="background:#ED7752"></span>Peach</button>
+            <button class="ds-btn-palette-tab"            data-color="rose"   style="--tab-color:#ED527A"><span class="ds-btn-palette-dot" style="background:#ED527A"></span>Rose</button>
+            <button class="ds-btn-palette-tab"            data-color="sky"    style="--tab-color:#52C8ED"><span class="ds-btn-palette-dot" style="background:#52C8ED"></span>Sky</button>
+            <button class="ds-btn-palette-tab"            data-color="lime"   style="--tab-color:#ABBA2B"><span class="ds-btn-palette-dot" style="background:#ABBA2B"></span>Lime</button>
+            <button class="ds-btn-palette-tab"            data-color="yellow" style="--tab-color:#F8E816"><span class="ds-btn-palette-dot" style="background:#F8E816"></span>Yellow</button>
+          </div>
+
+          <!-- Preview / Code toggle -->
+          <div class="ds-preview-tabs">
+            <button class="ds-tab is-active" data-panel="btn-preview">Preview</button>
+            <button class="ds-tab" data-panel="btn-code">Code</button>
+          </div>
+
+          <!-- PREVIEW -->
+          <div id="btn-preview" class="ds-preview-canvas">
+
+            <div class="ds-btn-color-panel" data-color="peach">
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-peach ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-peach">Default</button>
+                    <button class="ds-btn ds-btn-peach ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-peach ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-peach-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-peach-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-peach ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="rose" style="display:none">
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-rose">Default</button>
+                    <button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-rose ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-rose-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-rose-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-rose ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="sky" style="display:none">
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-sky">Default</button>
+                    <button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-sky ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-sky-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-sky-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-sky ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="lime" style="display:none">
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-lime">Default</button>
+                    <button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-lime ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-lime-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-lime-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-lime ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
+              <div class="ds-btn-col-grid">
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">Sizes</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
+                    <button class="ds-btn ds-btn-yellow">Default</button>
+                    <button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+                  </div>
+                </div>
+                <div class="ds-btn-col">
+                  <span class="ds-btn-col-label">States</span>
+                  <div class="ds-btn-col-row">
+                    <button class="ds-btn ds-btn-yellow ds-btn-state">Filled</button>
+                    <button class="ds-btn ds-btn-yellow-outline ds-btn-state">Outline</button>
+                    <button class="ds-btn ds-btn-yellow-ghost ds-btn-state">Ghost</button>
+                    <button class="ds-btn ds-btn-yellow ds-btn-state" disabled>Disabled</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CODE -->
+          <div id="btn-code" class="ds-code-panel" style="display:none">
+
+            <div class="ds-btn-color-panel" data-color="peach">
+              <button class="ds-copy-btn" data-code="btn-peach">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-peach ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-peach">Default</button>
+<button class="ds-btn ds-btn-peach ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-peach">Filled</button>
+<button class="ds-btn ds-btn-peach-outline">Outline</button>
+<button class="ds-btn ds-btn-peach-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="rose" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-rose">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-rose ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-rose">Default</button>
+<button class="ds-btn ds-btn-rose ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-rose">Filled</button>
+<button class="ds-btn ds-btn-rose-outline">Outline</button>
+<button class="ds-btn ds-btn-rose-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="sky" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-sky">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-sky ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-sky">Default</button>
+<button class="ds-btn ds-btn-sky ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-sky">Filled</button>
+<button class="ds-btn ds-btn-sky-outline">Outline</button>
+<button class="ds-btn ds-btn-sky-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="lime" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-lime">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-lime ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-lime">Default</button>
+<button class="ds-btn ds-btn-lime ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-lime">Filled</button>
+<button class="ds-btn ds-btn-lime-outline">Outline</button>
+<button class="ds-btn ds-btn-lime-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+            <div class="ds-btn-color-panel" data-color="yellow" style="display:none">
+              <button class="ds-copy-btn" data-code="btn-yellow">Copy</button>
+              <pre class="ds-code"><code>{`<button class="ds-btn ds-btn-yellow ds-btn-sm">Small</button>
+<button class="ds-btn ds-btn-yellow">Default</button>
+<button class="ds-btn ds-btn-yellow ds-btn-lg">Large</button>
+<button class="ds-btn ds-btn-yellow">Filled</button>
+<button class="ds-btn ds-btn-yellow-outline">Outline</button>
+<button class="ds-btn ds-btn-yellow-ghost">Ghost</button>`}</code></pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INPUTS -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Inputs</h3>
+        <div class="ds-preview-block">
+          <div class="ds-preview-tabs">
+            <button class="ds-tab is-active" data-panel="inp-preview">Preview</button>
+            <button class="ds-tab" data-panel="inp-code">Code</button>
+          </div>
+          <div id="inp-preview" class="ds-preview-canvas">
+            <div class="ds-input-group">
+              <label class="ds-input-label">Email address</label>
+              <input type="email" class="ds-input" placeholder="tati@example.com" />
+              <p class="ds-input-hint">Used for project inquiries only.</p>
+            </div>
+            <div class="ds-input-group" style="margin-top:16px">
+              <label class="ds-input-label ds-input-label-error">Email address</label>
+              <input type="email" class="ds-input ds-input-error" placeholder="tati@example.com" value="bad input" />
+              <p class="ds-input-hint ds-input-error-msg">Please enter a valid email.</p>
+            </div>
+            <div class="ds-input-group" style="margin-top:16px">
+              <label class="ds-input-label" style="opacity:0.4">Disabled</label>
+              <input type="text" class="ds-input" placeholder="Not available" disabled />
+            </div>
+          </div>
+          <div id="inp-code" class="ds-code-panel" style="display:none">
+            <button class="ds-copy-btn" data-code="inp">Copy</button>
+            <pre class="ds-code"><code>{`<div class="ds-input-group">
+  <label class="ds-input-label">Label</label>
+  <input type="text" class="ds-input" placeholder="..." />
+  <p class="ds-input-hint">Helper text</p>
+</div>`}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Cards</h3>
+        <div class="ds-preview-block">
+          <div class="ds-preview-tabs">
+            <button class="ds-tab is-active" data-panel="card-preview">Preview</button>
+            <button class="ds-tab" data-panel="card-code">Code</button>
+          </div>
+          <div id="card-preview" class="ds-preview-canvas">
+            <div class="ds-cards-row">
+              <div class="ds-card">
+                <div class="ds-card-tag ds-badge ds-badge-pink">Design</div>
+                <h4 class="ds-card-title">Design Systems</h4>
+                <p class="ds-card-body">Building scalable visual languages for product teams.</p>
+                <button class="ds-btn ds-btn-ghost ds-btn-sm" style="margin-top:16px">Read more</button>
+              </div>
+              <div class="ds-card">
+                <div class="ds-card-tag ds-badge ds-badge-teal">Engineering</div>
+                <h4 class="ds-card-title">Vibecoding</h4>
+                <p class="ds-card-body">Where product design meets code. Building with structure.</p>
+                <button class="ds-btn ds-btn-ghost ds-btn-sm" style="margin-top:16px">Explore</button>
+              </div>
+            </div>
+          </div>
+          <div id="card-code" class="ds-code-panel" style="display:none">
+            <button class="ds-copy-btn" data-code="card">Copy</button>
+            <pre class="ds-code"><code>{`<div class="ds-card">
+  <div class="ds-badge ds-badge-pink">Label</div>
+  <h4 class="ds-card-title">Title</h4>
+  <p class="ds-card-body">Description text.</p>
+</div>`}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Badges</h3>
+        <div class="ds-preview-block">
+          <div class="ds-preview-tabs">
+            <button class="ds-tab is-active" data-panel="badge-preview">Preview</button>
+            <button class="ds-tab" data-panel="badge-code">Code</button>
+          </div>
+          <div id="badge-preview" class="ds-preview-canvas">
+            <div class="ds-preview-row">
+              <span class="ds-badge ds-badge-rose">Rose</span>
+              <span class="ds-badge ds-badge-sky">Sky</span>
+              <span class="ds-badge ds-badge-lime">Lime</span>
+              <span class="ds-badge ds-badge-yellow">Yellow</span>
+              <span class="ds-badge ds-badge-peach">Peach</span>
+              <span class="ds-badge ds-badge-neutral">Neutral</span>
+              <span class="ds-badge ds-badge-outline">Outline</span>
+            </div>
+          </div>
+          <div id="badge-code" class="ds-code-panel" style="display:none">
+            <button class="ds-copy-btn" data-code="badge">Copy</button>
+            <pre class="ds-code"><code>{`<span class="ds-badge ds-badge-rose">Rose</span>
+<span class="ds-badge ds-badge-sky">Sky</span>
+<span class="ds-badge ds-badge-lime">Lime</span>
+<span class="ds-badge ds-badge-yellow">Yellow</span>
+<span class="ds-badge ds-badge-peach">Peach</span>
+<span class="ds-badge ds-badge-neutral">Neutral</span>
+<span class="ds-badge ds-badge-outline">Outline</span>`}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEFORE / AFTER SLIDER -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Before &amp; After</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Drag-to-reveal comparison slider. Used in case studies to walk through design progress. The same component that ships in the Moralis dashboard case study.</p>
+        <div class="ds-preview-block">
+          <div class="ds-preview-tabs">
+            <button class="ds-tab is-active" data-panel="ba-preview">Preview</button>
+            <button class="ds-tab" data-panel="ba-code">Code</button>
+          </div>
+          <div id="ba-preview" class="ds-preview-canvas" style="padding:24px">
+            <BeforeAfterSlider
+              beforeSrc="/projects/moralis-dashboard/images/Before.png"
+              afterSrc="/projects/moralis-dashboard/images/After.png"
+              beforeAlt="Moralis dashboard — before redesign"
+              afterAlt="Moralis dashboard — after redesign"
+              aspectRatio="16 / 9"
+            />
+          </div>
+          <div id="ba-code" class="ds-code-panel" style="display:none">
+            <button class="ds-copy-btn" data-code="ba">Copy</button>
+            <pre class="ds-code"><code>{`<div class="split-slider" style="aspect-ratio: 16 / 9;">
+  <img src="/before.png" alt="Before" draggable="false" />
+
+  <div class="split-after-panel">
+    <img src="/after.png" alt="After" draggable="false" />
+  </div>
+
+  <div class="split-divider" style="left: 50%;">
+    <div class="split-handle">
+      <!-- chevron icons -->
+    </div>
+  </div>
+</div>
+
+<!-- Add a small drag-to-reveal script that updates
+     .split-after-panel's clip-path and .split-divider's left -->`}</code></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── SECTION 5: Foundations ─────────────────── -->
+    <section id="foundations" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">05</span>
+        <h2 class="ds-section-title">Foundations</h2>
+      </div>
+      <p class="ds-section-desc">Core design tokens — the single source of truth for every visual decision.</p>
+
+      <!-- Radius -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Border Radius</h3>
+        <div class="ds-radius-grid">
+          {[
+            { name: 'sm',   val: '4px',    px: 4 },
+            { name: 'md',   val: '8px',    px: 8 },
+            { name: 'lg',   val: '16px',   px: 16 },
+            { name: 'full', val: '9999px', px: 9999 },
+          ].map(r => (
+            <div class="ds-radius-item">
+              <div class="ds-radius-box" style={`border-radius: ${r.px}px`}></div>
+              <p class="ds-mono ds-muted">{r.name}</p>
+              <p class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{r.val}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Shadows -->
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Shadows</h3>
+        <div class="ds-shadow-grid">
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-sm)">sm</div>
+            <p class="ds-mono ds-muted">shadow-sm</p>
+          </div>
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-md)">md</div>
+            <p class="ds-mono ds-muted">shadow-md</p>
+          </div>
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-glow-pink)">glow-coral</div>
+            <p class="ds-mono ds-muted">glow-coral</p>
+          </div>
+          <div class="ds-shadow-item">
+            <div class="ds-shadow-box" style="box-shadow: var(--ds-shadow-glow-teal)">glow-golden</div>
+            <p class="ds-mono ds-muted">glow-golden</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 6: Interaction States ─────────── -->
+    <section id="states" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">06</span>
+        <h2 class="ds-section-title">Interaction States</h2>
+      </div>
+      <p class="ds-section-desc">Every interactive element communicates its state clearly.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">State Gallery</h3>
+        <div class="ds-states-grid">
+          <div class="ds-state-item">
+            <div class="ds-state-demo">
+              <button class="ds-btn ds-btn-primary">Default</button>
+            </div>
+            <p class="ds-mono ds-muted" style="font-size:11px">default</p>
+          </div>
+          <div class="ds-state-item">
+            <div class="ds-state-demo">
+              <button class="ds-btn ds-btn-primary ds-state-force-hover">Hover</button>
+            </div>
+            <p class="ds-mono ds-muted" style="font-size:11px">:hover</p>
+          </div>
+          <div class="ds-state-item">
+            <div class="ds-state-demo">
+              <button class="ds-btn ds-btn-primary ds-state-force-active">Active</button>
+            </div>
+            <p class="ds-mono ds-muted" style="font-size:11px">:active</p>
+          </div>
+          <div class="ds-state-item">
+            <div class="ds-state-demo">
+              <button class="ds-btn ds-btn-primary ds-state-force-focus">Focus</button>
+            </div>
+            <p class="ds-mono ds-muted" style="font-size:11px">:focus</p>
+          </div>
+          <div class="ds-state-item">
+            <div class="ds-state-demo">
+              <button class="ds-btn ds-btn-primary" disabled>Disabled</button>
+            </div>
+            <p class="ds-mono ds-muted" style="font-size:11px">:disabled</p>
+          </div>
+          <div class="ds-state-item">
+            <div class="ds-state-demo">
+              <button class="ds-btn ds-btn-primary ds-btn-loading">
+                <span class="ds-spinner"></span>
+                Loading
+              </button>
+            </div>
+            <p class="ds-mono ds-muted" style="font-size:11px">loading</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Focus Ring</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:16px">Tab to the input below to see the pink focus ring.</p>
+        <input type="text" class="ds-input" placeholder="Tab to focus me" style="max-width:320px" />
+      </div>
+
+    </section>
+
+    <!-- ── SECTION 7: Navigation ──────────────────── -->
+    <section id="navigation" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">07</span>
+        <h2 class="ds-section-title">Navigation</h2>
+      </div>
+      <p class="ds-section-desc">Nav links with blob hover — pill que escala con spring para feedback táctil.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Nav Link States</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Hover sobre cada item para ver la animación. El estado activo mantiene el blob visible.</p>
+
+        <!-- Demo strip -->
+        <div class="ds-preview-canvas" style="display:flex;align-items:center;justify-content:center;gap:4px;min-height:96px;padding:24px">
+          {['Work', 'Fun', 'About', 'Resume'].map((label, i) => (
+            <a class:list={['ds-navitem', i === 0 ? 'ds-navitem--active' : '']} href="#navigation">
+              <span class="ds-navitem-blob" aria-hidden="true"></span>
+              <span class="ds-navitem-label">{label}</span>
+            </a>
+          ))}
+        </div>
+
+        <!-- States breakdown -->
+        <div class="ds-nav-states-grid">
+          {[
+            { label: 'Default',  state: '',                     desc: 'opacity 50%, sin blob'         },
+            { label: 'Hover',    state: 'ds-navitem--hover',    desc: 'blob scale 1, opacity 15%'     },
+            { label: 'Active',   state: 'ds-navitem--active',   desc: 'blob persiste, text peach'     },
+            { label: 'Pressed',  state: 'ds-navitem--pressed',  desc: 'blob sólido 90%, label blanco' },
+          ].map(s => (
+            <div class="ds-nav-state-card">
+              <div class="ds-nav-state-preview">
+                <a class:list={['ds-navitem', s.state]} href="#navigation">
+                  <span class="ds-navitem-blob" aria-hidden="true"></span>
+                  <span class="ds-navitem-label">Work</span>
+                </a>
+              </div>
+              <p class="ds-mono" style="font-size:11px;font-weight:600;color:var(--ds-text);margin-bottom:2px">{s.label}</p>
+              <p class="ds-mono ds-muted" style="font-size:10px">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Especificaciones</h3>
+        <div class="ds-nav-specs">
+          {[
+            { prop: 'Color',           value: 'var(--ds-peach) · #ED7752'                  },
+            { prop: 'Color deep',      value: 'var(--ds-peach-deep) · #C95E38'             },
+            { prop: 'Blob default',    value: 'opacity 0, scale 0.82'                      },
+            { prop: 'Blob hover',      value: 'opacity 15%, scale 1'                       },
+            { prop: 'Blob active',     value: 'opacity 18%, scale 1'                       },
+            { prop: 'Blob pressed',    value: 'opacity 90%, scale 0.94 · label blanco'     },
+            { prop: 'Easing hover',    value: 'cubic-bezier(0.34, 1.56, 0.64, 1) · 220ms' },
+            { prop: 'Easing press',    value: 'ease-out · 60ms'                            },
+            { prop: 'Padding',         value: '6px 12px · border-radius 9999px'            },
+            { prop: 'Cursor',          value: 'dot Peach #ED7752'                          },
+          ].map(r => (
+            <div class="ds-nav-spec-row">
+              <span class="ds-mono ds-muted" style="font-size:11px;min-width:120px">{r.prop}</span>
+              <span class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{r.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 8: Cursor ──────────────────────── -->
+    <section id="cursor" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">08</span>
+        <h2 class="ds-section-title">Cursor</h2>
+      </div>
+      <p class="ds-section-desc">Custom cursor system. Replaces the OS pointer with a contextual peach dot that grows into a label-icon pill on interactive elements.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">How It Works</h3>
+        <p style="font-size:14px;color:var(--ds-text);line-height:1.7;max-width:560px;margin-bottom:16px">
+          Add a <code class="ds-mono" style="font-size:12px;color:var(--ds-accent);background:rgba(237,119,82,0.08);padding:2px 6px;border-radius:3px">data-cursor</code> attribute to any interactive element. The global cursor script reads the value and morphs the cursor's label and icon. Defined types live in <code class="ds-mono" style="font-size:12px;color:var(--ds-accent);background:rgba(237,119,82,0.08);padding:2px 6px;border-radius:3px">src/scripts/custom-cursor.ts</code>.
+        </p>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Cursor Types</h3>
+        <p class="ds-muted" style="font-size:13px;margin-bottom:20px">Hover the cards below to see the cursor change.</p>
+        <div class="ds-preview-block">
+          <div class="ds-preview-tabs">
+            <button class="ds-tab is-active" data-panel="cur-preview">Preview</button>
+            <button class="ds-tab" data-panel="cur-code">Code</button>
+          </div>
+          <div id="cur-preview" class="ds-preview-canvas">
+            <div class="ds-states-grid">
+              {[
+                { type: 'pointer',     label: 'Default dot',     hint: 'no label, no icon' },
+                { type: 'email',       label: '"Email"',         hint: 'mail destination' },
+                { type: 'case-study',  label: '"View Case Study"', hint: 'project links' },
+                { type: 'overview',    label: '"Overview"',      hint: 'section nav' },
+                { type: 'site',        label: '"Visit Site"',    hint: 'external links' },
+                { type: 'coming-soon', label: '"Coming Soon"',   hint: 'unreleased' },
+              ].map(c => (
+                <div class="ds-state-item">
+                  <div class="ds-state-demo" data-cursor={c.type} style="cursor:none;flex-direction:column;gap:6px;min-height:96px">
+                    <code class="ds-mono" style="font-size:11px;color:var(--ds-accent)">data-cursor="{c.type}"</code>
+                    <span class="ds-mono ds-muted" style="font-size:10px">{c.hint}</span>
+                  </div>
+                  <p class="ds-mono" style="font-size:11px;color:var(--ds-text)">{c.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div id="cur-code" class="ds-code-panel" style="display:none">
+            <button class="ds-copy-btn" data-code="cur">Copy</button>
+            <pre class="ds-code"><code>{`<a href="mailto:hi@example.com" data-cursor="email">
+  Email me
+</a>
+
+<a href="/projects/redesign" data-cursor="case-study">
+  Read the case study
+</a>
+
+<a href="https://example.com" data-cursor="site">
+  Visit the live site
+</a>`}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 9: Animations ──────────────────── -->
+    <section id="animations" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">09</span>
+        <h2 class="ds-section-title">Animations</h2>
+      </div>
+      <p class="ds-section-desc">Intentional motion. Calm, tactile, never flashy.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Easing Curves</h3>
+        <div class="ds-easing-grid">
+          {[
+            { name: 'ds-ease (spring)', val: 'cubic-bezier(0.16, 1, 0.3, 1)', class: 'ease-spring' },
+            { name: 'ease-in-out',      val: 'ease-in-out',                    class: 'ease-inout'  },
+            { name: 'ease-out',         val: 'ease-out',                       class: 'ease-out'    },
+          ].map(e => (
+            <div class="ds-easing-item">
+              <div class="ds-easing-track">
+                <div class={`ds-easing-ball ${e.class}`}></div>
+              </div>
+              <div>
+                <p class="ds-mono" style="font-size:12px;color:var(--ds-text)">{e.name}</p>
+                <p class="ds-mono ds-muted" style="font-size:11px">{e.val}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Hover Lift</h3>
+        <div class="ds-preview-canvas">
+          <div class="ds-preview-row">
+            <div class="ds-card ds-hover-lift" style="width:180px;padding:20px;cursor:pointer">
+              <p class="ds-mono ds-muted" style="font-size:11px">Hover me</p>
+              <p style="font-size:15px;color:var(--ds-text);margin-top:8px">translateY(-4px)</p>
+            </div>
+            <div class="ds-card ds-hover-glow" style="width:180px;padding:20px;cursor:pointer">
+              <p class="ds-mono ds-muted" style="font-size:11px">Hover me</p>
+              <p style="font-size:15px;color:var(--ds-text);margin-top:8px">Glow pulse</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Keyframes</h3>
+        <div class="ds-keyframe-demos">
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo">
+              <div class="ds-kf-glow-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">glow-pulse</code>
+              <p class="ds-keyframe-desc">Peach glow breathing on accent elements</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">2s infinite</span>
+          </div>
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo">
+              <div class="ds-kf-fade-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">fade-up</code>
+              <p class="ds-keyframe-desc">Opacity 0→1 + translateY(20px)→0</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">0.6s ease</span>
+          </div>
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo" style="width:140px">
+              <div class="ds-kf-shimmer-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">shimmer</code>
+              <p class="ds-keyframe-desc">Background-position sweep for skeleton states</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">1.5s linear</span>
+          </div>
+
+          <div class="ds-keyframe-card">
+            <div class="ds-kf-demo">
+              <div class="ds-kf-spin-demo"></div>
+            </div>
+            <div class="ds-kf-info">
+              <code class="ds-mono ds-keyframe-name">spin</code>
+              <p class="ds-keyframe-desc">Full 360° rotation for loading indicators</p>
+            </div>
+            <span class="ds-mono ds-keyframe-duration">1s linear</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 10: Grid & Spacing ─────────────── -->
+    <section id="spacing" class="ds-section">
+      <div class="ds-section-label-row">
+        <span class="ds-label ds-mono">10</span>
+        <h2 class="ds-section-title">Grid &amp; Spacing</h2>
+      </div>
+      <p class="ds-section-desc">8pt grid system. Every measurement is a multiple of 4.</p>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">Spacing Scale</h3>
+        <div class="ds-spacing-scale">
+          {[
+            { name: 'space-1', val: '4px',  px: 4  },
+            { name: 'space-2', val: '8px',  px: 8  },
+            { name: 'space-3', val: '12px', px: 12 },
+            { name: 'space-4', val: '16px', px: 16 },
+            { name: 'space-6', val: '24px', px: 24 },
+            { name: 'space-8', val: '32px', px: 32 },
+            { name: 'space-12', val: '48px', px: 48 },
+            { name: 'space-16', val: '64px', px: 64 },
+          ].map(s => (
+            <div class="ds-spacing-row">
+              <span class="ds-mono ds-muted" style="font-size:11px;min-width:72px">{s.name}</span>
+              <div class="ds-spacing-bar" style={`width:${s.px * 2}px`}></div>
+              <span class="ds-mono" style="font-size:11px;color:var(--ds-accent)">{s.val}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <h3 class="ds-subsection-title">12-Column Grid</h3>
+        <div class="ds-grid-demo">
+          {Array.from({ length: 12 }).map(_ => (
+            <div class="ds-grid-col">
+              <div class="ds-grid-col-inner"></div>
+            </div>
+          ))}
+        </div>
+        <p class="ds-muted" style="font-size:13px;margin-top:12px">12 columns · 24px gutter · 64px margin</p>
+      </div>
+    </section>
+
+    <!-- Footer spacer -->
+    <div style="height: 120px"></div>
+
+  </main>
+</div>
+
+</BaseLayout>
+
+<!-- Bundle CSS payload, smuggled into the DOM as a JSON island so the
+     download handler can read it without re-fetching anything. -->
+<script id="ds-css-payload" type="application/json" set:html={JSON.stringify(downloadBundle)}></script>
+
+<!-- ════════════════════════════════════════════════════════
+     SCRIPTS — interactivity for the design-system page.
+     Mirrors figma.astro's behavior; lives here so figma.astro
+     stays untouched for side-by-side comparison.
+════════════════════════════════════════════════════════ -->
+<script>
+  // ── Sidebar active section on scroll ──────────────────
+  const sections = document.querySelectorAll<HTMLElement>('.ds-section');
+  const navLinks = document.querySelectorAll<HTMLElement>('.ds-nav-link');
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+          });
+          const link = document.querySelector<HTMLElement>(`.ds-nav-link[href="#${e.target.id}"]`);
+          if (link) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'true');
+          }
+        }
+      });
+    },
+    { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+  );
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // ── Browse System: smooth scroll to first content section ─
+  // (base.css forces scroll-behavior:auto globally, so do it explicitly.)
+  const dsBrowseBtn = document.getElementById('ds-browse-system');
+  dsBrowseBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById('colors');
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', '#colors');
+  });
+
+  // Sidebar nav links — also smooth-scroll within the page.
+  document.querySelectorAll<HTMLAnchorElement>('.ds-nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', href);
+    });
+  });
+
+  // ── Preview tab toggle ────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-preview-tabs').forEach(tabs => {
+    tabs.querySelectorAll<HTMLElement>('.ds-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const panelId = tab.dataset.panel;
+        if (!panelId) return;
+        tabs.querySelectorAll('.ds-tab').forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const block = tabs.closest<HTMLElement>('.ds-preview-block');
+        if (!block) return;
+        block.querySelectorAll<HTMLElement>('.ds-preview-canvas, .ds-code-panel').forEach(p => {
+          p.style.display = p.id === panelId ? '' : 'none';
+        });
+      });
+    });
+  });
+
+  // ── Copy buttons ──────────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const code = btn.nextElementSibling?.textContent ?? '';
+      navigator.clipboard.writeText(code.trim()).then(() => {
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  });
+
+  // ── Button color palette tabs ─────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-btn-palette-tabs').forEach(paletteTabs => {
+    paletteTabs.querySelectorAll<HTMLElement>('.ds-btn-palette-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const color = tab.dataset.color;
+        if (!color) return;
+        paletteTabs.querySelectorAll('.ds-btn-palette-tab').forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const block = paletteTabs.closest<HTMLElement>('.ds-preview-block');
+        if (!block) return;
+        block.querySelectorAll<HTMLElement>('.ds-btn-color-panel').forEach(panel => {
+          panel.style.display = panel.dataset.color === color ? '' : 'none';
+        });
+      });
+    });
+  });
+
+  // ── Color swatch copy ─────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-swatch[data-copy]').forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      const hex = swatch.dataset.copy ?? '';
+      navigator.clipboard.writeText(hex).then(() => {
+        const original = swatch.querySelector<HTMLElement>('.ds-swatch-hex');
+        if (original) {
+          const prev = original.textContent;
+          original.textContent = 'Copied!';
+          setTimeout(() => { original.textContent = prev; }, 1500);
+        }
+      });
+      swatch.classList.remove('ds-just-copied');
+      void swatch.offsetWidth;
+      swatch.classList.add('ds-just-copied');
+      swatch.addEventListener('animationend', () => swatch.classList.remove('ds-just-copied'), { once: true });
+    });
+  });
+
+  // ── Color set stop copy ────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.ds-color-set-stop[data-copy]').forEach(stop => {
+    stop.addEventListener('click', () => {
+      const hex = stop.dataset.copy ?? '';
+      navigator.clipboard.writeText(hex).then(() => {
+        const hexEl = stop.querySelectorAll<HTMLElement>('.ds-mono')[1];
+        if (hexEl) {
+          const prev = hexEl.textContent;
+          hexEl.textContent = 'Copied!';
+          setTimeout(() => { hexEl.textContent = prev; }, 1500);
+        }
+      });
+    });
+  });
+
+  // ── Download CSS ──────────────────────────────────────
+  // Bundle = theme.css + base.css + design-system.css, exactly as the
+  // site loads them. The payload was inlined at build time as JSON.
+  document.getElementById('ds-download-css')?.addEventListener('click', function () {
+    const btn = this as HTMLButtonElement;
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<span class="ds-spinner" style="margin-right:8px"></span>Preparing…';
+    btn.style.opacity = '0.75';
+    btn.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+      const payloadEl = document.getElementById('ds-css-payload');
+      if (!payloadEl?.textContent) {
+        btn.innerHTML = originalHTML;
+        btn.style.opacity = '';
+        btn.style.pointerEvents = '';
+        return;
+      }
+      const css = JSON.parse(payloadEl.textContent) as string;
+      const blob = new Blob([css], { type: 'text/css' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'tatiana-design-system.css';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      btn.innerHTML = '✓ Downloaded';
+      btn.style.opacity = '';
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.pointerEvents = '';
+      }, 2200);
+    }, 320);
+  });
+
+  // ── Section scroll reveal ──────────────────────────────
+  const dsRevealEls = document.querySelectorAll<HTMLElement>(
+    '.ds-section-label-row, .ds-section-desc, .ds-subsection, .ds-overview-grid'
+  );
+  const dsRevealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('ds-reveal-visible');
+          dsRevealObserver.unobserve(e.target);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -40px 0px', threshold: 0.04 }
+  );
+  dsRevealEls.forEach((el) => {
+    el.classList.add('ds-reveal');
+    dsRevealObserver.observe(el);
+  });
+
+  // ── Stats count-up animation ──────────────────────────
+  const countEls = document.querySelectorAll<HTMLElement>('[data-count-to]');
+  const countObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        const target = parseInt(el.dataset.countTo ?? '0', 10);
+        const duration = 900;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(ease * target));
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        countObserver.unobserve(el);
+      });
+    },
+    { threshold: 0.5 }
+  );
+  countEls.forEach(el => countObserver.observe(el));
+
+  // ── Scroll progress bar ────────────────────────────────
+  const dsMainEl = document.querySelector<HTMLElement>('.ds-main');
+  const dsProgressEl = document.getElementById('ds-progress');
+  if (dsMainEl && dsProgressEl) {
+    const updateProgress = () => {
+      const { scrollTop, scrollHeight, clientHeight } = dsMainEl;
+      const pct = scrollHeight <= clientHeight ? 0 : scrollTop / (scrollHeight - clientHeight);
+      dsProgressEl.style.transform = `scaleX(${Math.min(pct, 1).toFixed(4)})`;
+    };
+    dsMainEl.addEventListener('scroll', updateProgress, { passive: true });
+  }
+</script>

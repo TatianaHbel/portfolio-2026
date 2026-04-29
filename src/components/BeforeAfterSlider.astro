@@ -24,37 +24,21 @@ const {
   {title && <h4 class="!text-foreground">{title}</h4>}
 
   <div
-    class="split-slider relative w-full overflow-hidden select-none"
-    style={`cursor: ew-resize; aspect-ratio: ${aspectRatio};`}
+    class="split-slider"
+    style={`aspect-ratio: ${aspectRatio};`}
     aria-label="Before and after comparison slider"
   >
     <!-- Before (base layer) -->
-    <img
-      class="absolute inset-0 w-full h-full object-cover"
-      src={beforeSrc}
-      alt={beforeAlt}
-      draggable="false"
-    />
+    <img src={beforeSrc} alt={beforeAlt} draggable="false" />
 
     <!-- After (clipped layer) -->
-    <div
-      class="split-after-panel absolute inset-0 overflow-hidden"
-      style="clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);"
-    >
-      <img
-        class="absolute inset-0 w-full h-full object-cover"
-        src={afterSrc}
-        alt={afterAlt}
-        draggable="false"
-      />
+    <div class="split-after-panel">
+      <img src={afterSrc} alt={afterAlt} draggable="false" />
     </div>
 
-    <!-- Vertical divider -->
-    <div
-      class="split-divider absolute top-0 bottom-0 w-[2px] bg-white/80 shadow-[0_0_8px_rgba(0,0,0,0.4)] -translate-x-1/2 z-10"
-      style="left: 50%;"
-    >
-      <div class="split-handle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg flex items-center justify-center gap-[3px]">
+    <!-- Vertical divider with drag handle -->
+    <div class="split-divider" style="left: 50%;">
+      <div class="split-handle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
@@ -65,22 +49,6 @@ const {
     </div>
   </div>
 </div>
-
-<style>
-  @keyframes handle-pulse {
-    0%, 100% { scale: 1;    box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    50%       { scale: 1.16; box-shadow: 0 4px 14px rgba(0,0,0,0.22); }
-  }
-
-  .split-slider:hover .split-handle {
-    animation: handle-pulse 1.6s ease-in-out infinite;
-  }
-
-  .split-slider:active .split-handle,
-  .split-slider.dragging .split-handle {
-    animation: none;
-  }
-</style>
 
 <script>
   document.querySelectorAll<HTMLElement>('.split-slider').forEach((container) => {

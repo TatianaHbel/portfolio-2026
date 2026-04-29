@@ -1,0 +1,61 @@
+/* ════════════════════════════════════════════════════════
+   DESIGN SYSTEM — FOUNDATIONS
+   Token-visualization helpers: radius, shadow, spacing,
+   and grid demonstrations. Used by the Foundations and
+   Grid & Spacing sections of the design-system page.
+   ──────────────────────────────────────────────────────── */
+
+/* ── Radius ──────────────────────────────────────── */
+.ds-radius-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.ds-radius-item { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.ds-radius-box {
+  width: 64px; height: 64px;
+  background: var(--ds-surface-2);
+  border: 1px solid var(--ds-border);
+}
+
+/* ── Shadows ─────────────────────────────────────── */
+.ds-shadow-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.ds-shadow-item { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.ds-shadow-box {
+  width: 96px; height: 64px;
+  background: var(--ds-surface-2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ds-font-mono);
+  font-size: 11px;
+  color: var(--ds-text-muted);
+}
+
+/* ── Spacing scale ───────────────────────────────── */
+.ds-spacing-scale { display: flex; flex-direction: column; gap: 12px; }
+.ds-spacing-row { display: flex; align-items: center; gap: 16px; }
+.ds-spacing-bar {
+  height: 6px;
+  background: var(--ds-red);
+  border-radius: 0;
+  min-width: 4px;
+}
+
+/* ── 12-column grid demo ─────────────────────────── */
+.ds-grid-demo {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+  height: 48px;
+}
+.ds-grid-col-inner {
+  height: 100%;
+  background: rgba(218,109,91,0.10);
+  border: 1px solid rgba(218,109,91,0.25);
+  border-radius: 0;
+}

@@ -1,0 +1,292 @@
+/* ════════════════════════════════════════════════════════
+   DESIGN SYSTEM — COMPONENTS
+   Interactive UI primitives: buttons, inputs, cards,
+   badges, spinner. The pieces a developer is most likely
+   to copy-paste into another project.
+   ──────────────────────────────────────────────────────── */
+
+/* ── Badges ───────────────────────────────────────── */
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-family: var(--ds-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.ds-badge-rose    { background: rgba(237,82,122,0.12);  color: var(--ds-rose-700); }
+.ds-badge-sky     { background: rgba(82,200,237,0.15);  color: var(--ds-sky-700); }
+.ds-badge-lime    { background: rgba(171,186,43,0.15);  color: var(--ds-lime-700); }
+.ds-badge-yellow  { background: rgba(248,232,22,0.2);   color: var(--ds-yellow-700); }
+.ds-badge-peach   { background: rgba(237,119,82,0.12);  color: var(--ds-peach-deep); }
+.ds-badge-neutral { background: rgba(46,49,65,0.07);    color: var(--ds-text-muted); }
+.ds-badge-outline { background: transparent; border: 1px solid var(--ds-border); color: var(--ds-text-muted); }
+/* Legacy aliases — keep older markup working */
+.ds-badge-pink    { background: rgba(237,119,82,0.12);  color: var(--ds-peach-deep); }
+.ds-badge-teal    { background: rgba(82,200,237,0.15);  color: var(--ds-sky-700); }
+.ds-badge-carmine { background: rgba(237,82,122,0.12);  color: var(--ds-rose-700); }
+
+/* ── Buttons — base ───────────────────────────────── */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-family: var(--ds-font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ds-duration) var(--ds-ease),
+              color var(--ds-duration) var(--ds-ease),
+              border-color var(--ds-duration) var(--ds-ease),
+              transform var(--ds-duration) var(--ds-ease);
+  border-radius: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.ds-btn-sm { padding: 7px 14px; font-size: 12px; }
+.ds-btn-lg { padding: 15px 32px; font-size: 15px; }
+
+.ds-btn-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.ds-btn-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ds-btn-col-label {
+  font-family: var(--ds-font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ds-text-muted);
+}
+.ds-btn-col-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.ds-btn-state {
+  min-width: 88px;
+  justify-content: center;
+}
+
+/* ── Buttons — semantic variants ─────────────────── */
+.ds-btn-primary {
+  background: var(--ds-peach);
+  color: #fff;
+}
+.ds-btn-primary:hover:not(:disabled) {
+  background: var(--ds-peach-deep);
+  transform: translateY(-1px);
+}
+.ds-btn-primary:active:not(:disabled) { transform: translateY(0); }
+.ds-btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.ds-btn-secondary {
+  background: var(--ds-surface);
+  color: var(--ds-text);
+  border: 1px solid var(--ds-border);
+}
+.ds-btn-secondary:hover:not(:disabled) {
+  background: var(--ds-surface-2);
+  border-color: rgba(47,47,47,0.25);
+}
+
+.ds-btn-ghost {
+  background: transparent;
+  color: var(--ds-accent);
+  border: 1px solid rgba(237,119,82,0.35);
+}
+.ds-btn-ghost:hover:not(:disabled) {
+  background: rgba(237,119,82,0.07);
+  border-color: var(--ds-accent);
+}
+
+.ds-btn-destructive {
+  background: var(--ds-coral-deep);
+  color: #fff;
+}
+.ds-btn-destructive:hover:not(:disabled) { background: #9A3D2A; }
+
+.ds-btn-loading {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+/* ── Buttons — palette tab selector ──────────────── */
+.ds-btn-palette-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 4px;
+  background: var(--ds-surface-2);
+  border-bottom: 1px solid var(--ds-border);
+  overflow-x: auto;
+}
+.ds-btn-palette-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 16px;
+  font-family: var(--ds-font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ds-text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--ds-duration) var(--ds-ease),
+              border-color var(--ds-duration) var(--ds-ease);
+}
+.ds-btn-palette-tab:hover { color: var(--ds-text); }
+.ds-btn-palette-tab.is-active {
+  color: var(--ds-text);
+  border-bottom-color: var(--tab-color, var(--ds-accent));
+}
+.ds-btn-palette-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Buttons — secondary color variants ───────────
+   Each color follows the same shape: filled / outline /
+   ghost. Add a new color by copying any block. */
+/* Rose */
+.ds-btn-rose { background: var(--ds-rose-500); color: #fff; }
+.ds-btn-rose:hover:not(:disabled) { background: var(--ds-rose-700); transform: translateY(-1px); }
+.ds-btn-rose:active:not(:disabled) { transform: translateY(0); }
+.ds-btn-rose:disabled { opacity: 0.35; cursor: not-allowed; }
+.ds-btn-rose-outline { background: transparent; color: var(--ds-rose-500); border: 1px solid var(--ds-rose-500); }
+.ds-btn-rose-outline:hover:not(:disabled) { background: var(--ds-rose-100); }
+.ds-btn-rose-ghost { background: transparent; color: var(--ds-rose-500); border: 1px solid rgba(237,82,122,0.3); }
+.ds-btn-rose-ghost:hover:not(:disabled) { background: var(--ds-rose-100); border-color: var(--ds-rose-500); }
+
+/* Sky */
+.ds-btn-sky { background: var(--ds-sky-500); color: #fff; }
+.ds-btn-sky:hover:not(:disabled) { background: var(--ds-sky-700); transform: translateY(-1px); }
+.ds-btn-sky:active:not(:disabled) { transform: translateY(0); }
+.ds-btn-sky:disabled { opacity: 0.35; cursor: not-allowed; }
+.ds-btn-sky-outline { background: transparent; color: var(--ds-sky-700); border: 1px solid var(--ds-sky-500); }
+.ds-btn-sky-outline:hover:not(:disabled) { background: var(--ds-sky-100); }
+.ds-btn-sky-ghost { background: transparent; color: var(--ds-sky-700); border: 1px solid rgba(82,200,237,0.35); }
+.ds-btn-sky-ghost:hover:not(:disabled) { background: var(--ds-sky-100); border-color: var(--ds-sky-500); }
+
+/* Lime */
+.ds-btn-lime { background: var(--ds-lime-500); color: #2E3141; }
+.ds-btn-lime:hover:not(:disabled) { background: var(--ds-lime-700); color: #fff; transform: translateY(-1px); }
+.ds-btn-lime:active:not(:disabled) { transform: translateY(0); }
+.ds-btn-lime:disabled { opacity: 0.35; cursor: not-allowed; }
+.ds-btn-lime-outline { background: transparent; color: var(--ds-lime-700); border: 1px solid var(--ds-lime-500); }
+.ds-btn-lime-outline:hover:not(:disabled) { background: var(--ds-lime-100); }
+.ds-btn-lime-ghost { background: transparent; color: var(--ds-lime-700); border: 1px solid rgba(171,186,43,0.4); }
+.ds-btn-lime-ghost:hover:not(:disabled) { background: var(--ds-lime-100); border-color: var(--ds-lime-500); }
+
+/* Yellow */
+.ds-btn-yellow { background: var(--ds-yellow-500); color: #2E3141; }
+.ds-btn-yellow:hover:not(:disabled) { background: var(--ds-yellow-700); color: #fff; transform: translateY(-1px); }
+.ds-btn-yellow:active:not(:disabled) { transform: translateY(0); }
+.ds-btn-yellow:disabled { opacity: 0.35; cursor: not-allowed; }
+.ds-btn-yellow-outline { background: transparent; color: var(--ds-yellow-700); border: 1px solid var(--ds-yellow-500); }
+.ds-btn-yellow-outline:hover:not(:disabled) { background: var(--ds-yellow-100); }
+.ds-btn-yellow-ghost { background: transparent; color: var(--ds-yellow-700); border: 1px solid rgba(248,232,22,0.5); }
+.ds-btn-yellow-ghost:hover:not(:disabled) { background: var(--ds-yellow-100); border-color: var(--ds-yellow-500); }
+
+/* Peach */
+.ds-btn-peach { background: var(--ds-peach); color: #fff; }
+.ds-btn-peach:hover:not(:disabled) { background: var(--ds-peach-deep); transform: translateY(-1px); }
+.ds-btn-peach:active:not(:disabled) { transform: translateY(0); }
+.ds-btn-peach:disabled { opacity: 0.35; cursor: not-allowed; }
+.ds-btn-peach-outline { background: transparent; color: var(--ds-peach-deep); border: 1px solid var(--ds-peach); }
+.ds-btn-peach-outline:hover:not(:disabled) { background: rgba(237,119,82,0.08); }
+.ds-btn-peach-ghost { background: transparent; color: var(--ds-peach-deep); border: 1px solid rgba(237,119,82,0.35); }
+.ds-btn-peach-ghost:hover:not(:disabled) { background: rgba(237,119,82,0.07); border-color: var(--ds-peach); }
+
+/* ── Inputs ───────────────────────────────────────── */
+.ds-input-group { display: flex; flex-direction: column; gap: 6px; }
+.ds-input-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ds-text);
+}
+.ds-input-label-error { color: var(--ds-red); }
+.ds-input {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-bottom: 2px solid rgba(47,47,47,0.25);
+  color: var(--ds-text);
+  padding: 10px 14px;
+  font-family: var(--ds-font-ui);
+  font-size: 14px;
+  border-radius: 3px;
+  outline: none;
+  transition: border-color var(--ds-duration) var(--ds-ease),
+              box-shadow var(--ds-duration) var(--ds-ease);
+  width: 100%;
+}
+.ds-input::placeholder { color: var(--ds-text-muted); opacity: 0.6; }
+.ds-input:focus {
+  border-color: var(--ds-coral);
+  border-bottom-color: var(--ds-coral);
+  box-shadow: 0 0 0 3px rgba(218,109,91,0.15);
+}
+.ds-input:disabled { opacity: 0.4; cursor: not-allowed; }
+.ds-input-error {
+  border-color: rgba(196,90,73,0.4);
+  border-bottom-color: var(--ds-red-deep);
+}
+.ds-input-error:focus {
+  border-color: var(--ds-coral-deep);
+  box-shadow: 0 0 0 3px rgba(196,90,73,0.15);
+}
+.ds-input-hint { font-size: 12px; color: var(--ds-text-muted); }
+.ds-input-error-msg { font-size: 12px; color: var(--ds-red); }
+
+/* ── Cards ────────────────────────────────────────── */
+.ds-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: 4px;
+  padding: 28px;
+  transition: transform var(--ds-duration) var(--ds-ease),
+              box-shadow var(--ds-duration) var(--ds-ease);
+}
+.ds-card:hover { transform: translateY(-3px); box-shadow: var(--ds-shadow-md); }
+.ds-card-tag { margin-bottom: 14px; }
+.ds-card-title {
+  font-family: var(--ds-font-display);
+  font-size: 22px;
+  color: var(--ds-text);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.ds-card-body { font-size: 14px; color: var(--ds-text-muted); line-height: 1.65; }
+
+/* ── Spinner (used by buttons in loading state) ──── */
+.ds-spinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: ds-spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes ds-spin {
+  to { transform: rotate(360deg); }
+}

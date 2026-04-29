@@ -1,0 +1,28 @@
+/* ════════════════════════════════════════════════════════
+   DESIGN SYSTEM — TYPOGRAPHY
+   Text-level utilities and the type scale used across
+   docs and case studies.
+   ──────────────────────────────────────────────────────── */
+
+.ds-mono    { font-family: var(--ds-font-mono); }
+.ds-muted   { color: var(--ds-text-muted); }
+.ds-label   {
+  font-family: var(--ds-font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ds-text-muted);
+}
+
+/* ── Type scale (rows on the typography section) ─── */
+.ds-type-scale { display: flex; flex-direction: column; gap: 0; }
+.ds-type-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--ds-border);
+}
+.ds-type-row:last-child { border-bottom: none; }
+.ds-type-label { font-size: 11px; padding-top: 4px; }
