@@ -32,7 +32,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#DA6D5B',
       cursorType: 'case-study',
       status: 'published',
-      image: '/vibe-coding-thumbnail.svg',
+      image: '/media/thumbnails/vibe-coding-thumbnail.svg',
     },
     {
       title: 'UX at a Web3 Startup',
@@ -42,7 +42,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#1A316E50',
       cursorType: 'case-study',
       status: 'published',
-      image: '/moralis-developers-01.jpg',
+      image: '/media/thumbnails/moralis-developers-01.jpg',
     },
     {
       title: 'Redesigning Web3 Trading',
@@ -52,7 +52,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#DDD0FC50',
       cursorType: 'case-study',
       status: 'coming-soon',
-      image: '/redesigning-thumbnail.gif',
+      video: '/media/thumbnails/redesigning-thumbnail.webm',
       thumbnailScale: 1.12,
     },
   ],
@@ -65,7 +65,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#F0EDE8',
       cursorType: 'case-study',
       status: 'published',
-      image: '/personal-brand-thumbnail.svg',
+      image: '/media/thumbnails/personal-brand-thumbnail.svg',
       objectFit: 'cover',
     },
     {
@@ -76,7 +76,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#00144550',
       cursorType: 'case-study',
       status: 'published',
-      image: '/thumbnail-bridge-the-gap.jpg',
+      image: '/media/thumbnails/thumbnail-bridge-the-gap.jpg',
     },
     {
       title: 'The future of AI Agents',
@@ -86,7 +86,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#E98D3450',
       cursorType: 'case-study',
       status: 'coming-soon',
-      video: '/gradient_amadeus_thumbnail.webm',
+      video: '/media/thumbnails/gradient_amadeus_thumbnail.webm',
       overlayText: 'The Future of AI Agents',
     },
   ],

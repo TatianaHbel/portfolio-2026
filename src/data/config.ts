@@ -1,4 +1,4 @@
-export const resumeUrl = '/Resume/CV_Tatiana Hernandez_2026.pdf';
+export const resumeUrl = '/documents/resume/cv-tatiana-hernandez-2026.pdf';
 
 export const gaId = 'G-VK8HBQF5MC';
 
