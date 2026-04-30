@@ -27,6 +27,7 @@ const {
 } = Astro.props;
 
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const ogImageURL = canonicalURL ? new URL(ogImage, canonicalURL).href : ogImage;
 
 // Page label shown in loader for non-home pages (e.g. "About — Tatiana" → "About")
 const isHome = Astro.url.pathname === '/';
@@ -55,7 +56,7 @@ const pageLabel = isHome ? '' : title.split(/\s[—–|]\s/)[0].trim();
     <meta property="og:site_name" content="Tatiana Hernandez | Product Designer & Engineer" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -63,7 +64,7 @@ const pageLabel = isHome ? '' : title.split(/\s[—–|]\s/)[0].trim();
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Favicon -->
     <link rel="icon" href="/site/favicon.ico" sizes="16x16" type="image/x-icon" />
