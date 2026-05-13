@@ -1,0 +1,140 @@
+---
+import type { FunProjectStatus } from '../data/fun';
+
+interface Props {
+  id: string;
+  title: string;
+  label: string;
+  iframeUrl?: string;
+  gradient?: string;
+  status?: FunProjectStatus;
+}
+
+const {
+  id,
+  title,
+  label,
+  iframeUrl,
+  gradient = 'linear-gradient(135deg, #DA6D5B 20%, #ED527A 100%)',
+  status = 'wip',
+} = Astro.props;
+---
+
+<div class="fun-project" data-reveal>
+  <button
+    class="fun-trigger group block w-full text-left"
+    data-cursor="pointer"
+    data-fun-trigger={id}
+    aria-expanded="false"
+    aria-controls={`fun-panel-${id}`}
+  >
+    <div class="flex flex-col gap-2">
+      <!-- Thumbnail -->
+      <div
+        class="relative w-full aspect-[16/9] border-1 border-foreground/10 overflow-hidden"
+        style={`background: ${gradient}`}
+      >
+        {status === 'wip' && <span class="project-card__status">WIP</span>}
+        <div class="absolute inset-0 bg-background/0 transition-colors duration-300 group-hover:bg-background/30" />
+        <!-- Expand arrow, visible on hover -->
+        <span class="fun-arrow absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 transition-all duration-200 group-hover:opacity-100">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 2v10M2 7l5 5 5-5"/>
+          </svg>
+        </span>
+      </div>
+
+      <!-- Caption -->
+      <div class="flex flex-col justify-between gap-0.5 mt-1 transition-colors duration-300 lg:flex-row">
+        <h3 class="project-card__title !text-[17px] overflow-hidden !text-foreground">{title}</h3>
+        <h4 class="project-card__label !text-[15px] overflow-hidden transition-all duration-300 group-hover:!text-foreground group-hover:!opacity-100">{label}</h4>
+      </div>
+    </div>
+  </button>
+
+  <!-- Expand-inline iframe panel -->
+  <div
+    id={`fun-panel-${id}`}
+    class="fun-panel"
+    data-fun-panel={id}
+    data-iframe-src={iframeUrl}
+  >
+    <div class="fun-panel-inner border-1 border-foreground/10 overflow-hidden">
+      <!-- iframe is injected by JS on first expand for performance -->
+    </div>
+  </div>
+</div>
+
+<style>
+  .fun-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .fun-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      margin-top 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 0;
+  }
+
+  .fun-panel[data-expanded="true"] {
+    grid-template-rows: 1fr;
+    margin-top: 0.75rem;
+  }
+
+  .fun-panel-inner {
+    overflow: hidden;
+    height: min(680px, 82vh);
+  }
+
+  .fun-panel-inner iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Arrow rotates when panel is open */
+  .fun-trigger[aria-expanded="true"] .fun-arrow svg {
+    transform: rotate(180deg);
+  }
+
+  .fun-arrow svg {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-fun-trigger]').forEach((trigger) => {
+    const id = trigger.getAttribute('data-fun-trigger');
+    const panel = document.querySelector<HTMLElement>(`[data-fun-panel="${id}"]`);
+    if (!panel) return;
+
+    let loaded = false;
+
+    trigger.addEventListener('click', () => {
+      const willExpand = trigger.getAttribute('aria-expanded') !== 'true';
+
+      panel.dataset.expanded = String(willExpand);
+      trigger.setAttribute('aria-expanded', String(willExpand));
+
+      if (willExpand && !loaded) {
+        const src = panel.dataset.iframeSrc;
+        const inner = panel.querySelector<HTMLElement>('.fun-panel-inner');
+        if (src && inner) {
+          const iframe = document.createElement('iframe');
+          iframe.src = src;
+          iframe.title = trigger.querySelector('h3')?.textContent ?? 'Fun project';
+          iframe.allow = 'camera; microphone';
+          inner.appendChild(iframe);
+          loaded = true;
+        }
+      }
+    });
+  });
+</script>

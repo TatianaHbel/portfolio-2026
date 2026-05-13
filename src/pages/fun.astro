@@ -3,10 +3,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Fun — Tatiana Hernandez" description="Fun experiments and side projects by Tatiana Hernandez.">
-  <div class="min-h-screen px-6 py-24 flex items-center justify-center">
-    <div class="text-center flex flex-col gap-4">
-      <h1>Fun</h1>
-      <p>Coming soon.</p>
-    </div>
+  <div class="flex flex-col p-6 w-full items-center font-geist-sans">
+    <main class="flex flex-col w-full max-w-[1800px]">
+
+      <!-- Header -->
+      <div class="pt-[120px] pb-8">
+        <h1 class="animate-slide-in-up" style="animation-delay: 0.15s">Fun</h1>
+        <p class="!text-foreground-light mt-2 animate-slide-in-up" style="animation-delay: 0.25s">Vibe code fun experiments that are still a work in progress.</p>
+      </div>
+
+      <!-- Iframe -->
+      <div class="w-full animate-slide-in-up border-1 border-foreground/10 overflow-hidden" style="animation-delay: 0.35s; height: min(780px, 85vh)">
+        <iframe
+          src="https://photobooth-thebell.netlify.app"
+          title="Photobooth"
+          allow="camera; microphone"
+          class="w-full border-0 block"
+          style="height: calc(100% + 80px)"
+          loading="lazy"
+        />
+      </div>
+
+    </main>
   </div>
 </BaseLayout>
