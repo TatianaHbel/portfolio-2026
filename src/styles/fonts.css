@@ -157,3 +157,11 @@
   line-gap-override: 18.94%;
   size-adjust: 105.61%;
 }
+
+@font-face {
+  font-family: "Homemade Apple";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/homemade-apple.ttf) format("truetype");
+}

@@ -10,6 +10,7 @@
   --font-geist-mono: "Geist Mono", "Geist Mono Fallback";    /* Code / h4        */
   --font-crimson-pro: "Crimson Pro", "Crimson Pro Fallback";  /* Serif body       */
   --font-tiempos-text: "tiemposText", "tiemposText Fallback"; /* h1–h3 display    */
+  --font-handwriting: "Homemade Apple", cursive;              /* Handwriting accent */
 }
 
 /* ── Brand Design System tokens — single source of truth ── */
@@ -66,9 +67,10 @@
   --ds-border:        rgba(46, 49, 65, 0.10);
 
   /* Typography */
-  --ds-font-display: "tiemposText", serif;
-  --ds-font-ui:      "Geist", "Geist Fallback", sans-serif;
-  --ds-font-mono:    "Geist Mono", "Geist Mono Fallback", monospace;
+  --ds-font-display:      "tiemposText", serif;
+  --ds-font-ui:           "Geist", "Geist Fallback", sans-serif;
+  --ds-font-mono:         "Geist Mono", "Geist Mono Fallback", monospace;
+  --ds-font-handwriting:  "Homemade Apple", cursive;
 
   /* Gradients */
   --ds-gradient-brand: linear-gradient(135deg, var(--ds-coral) 20%, var(--ds-accent-rose) 100%);

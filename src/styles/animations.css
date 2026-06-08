@@ -135,13 +135,6 @@
   animation: heartbeat 1.5s ease infinite;
 }
 
-@utility vibecode-delight {
-  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  &:hover {
-    color: var(--color-primary);
-  }
-}
-
 /* ─── Accessibility ─── */
 
 @media (prefers-reduced-motion: reduce) {
