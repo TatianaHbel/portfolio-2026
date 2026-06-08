@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="ShieldPay — Tatiana Hernandez"
+  description="A UX case study for ShieldPay."
+>
+  <div id="iframe-wrapper" class="w-full">
+    <iframe
+      id="shieldpay-iframe"
+      src="https://shieldpay-task.netlify.app/portfolio-preview"
+      title="ShieldPay UX Case Study"
+      style="width: 100%; border: none; display: block;"
+      loading="eager"
+    ></iframe>
+  </div>
+</BaseLayout>
+
+<script>
+  function fitIframe() {
+    const header = document.getElementById('site-header');
+    const footer = document.querySelector('footer');
+    const iframe = document.getElementById('shieldpay-iframe') as HTMLIFrameElement;
+    if (!iframe) return;
+    const headerH = header?.offsetHeight ?? 64;
+    const footerH = footer?.offsetHeight ?? 66;
+    iframe.style.height = `calc(100dvh - ${headerH}px - ${footerH}px)`;
+  }
+
+  fitIframe();
+  window.addEventListener('resize', fitIframe);
+</script>

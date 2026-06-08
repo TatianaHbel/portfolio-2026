@@ -35,6 +35,16 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       image: '/media/thumbnails/vibe-coding-thumbnail.svg',
     },
     {
+      title: 'ShieldPay',
+      label: 'UX Case Study · 2025',
+      href: '/projects/shieldpay',
+      aspect: 'aspect-[10/7]',
+      placeholderColor: '#1A2E4A50',
+      cursorType: 'case-study',
+      status: 'published',
+      image: '/media/thumbnails/shieldpay-thumbnail.jpg',
+    },
+    {
       title: 'UX at a Web3 Startup',
       label: 'Moralis - Shipped 2024-2026',
       href: '/projects/moralis-dashboard',
