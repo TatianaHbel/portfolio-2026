@@ -74,7 +74,7 @@ const skills = [
         <h1 class="hero-h1-light">One of a</h1>
       </div>
       <div class="overflow-hidden mb-6">
-        <h1 class="hero-h1-light italic">kind.</h1>
+        <h1 class="hero-h1-light"><span style="font-family: var(--ds-font-handwriting)">kind.</span></h1>
       </div>
       <h2 class="text-background leading-[1.1] mb-3 text-[clamp(1.4rem,3.5vw,2.2rem)]">
         Product Designer. <em>Coder.</em>
@@ -108,46 +108,7 @@ const skills = [
   </section>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 2 · SKILLS — What I bring to the table
-  ═══════════════════════════════════════════ -->
-  <section class="skills-table-section overflow-hidden">
-    <div class="skills-orbit" id="skills-cluster" aria-label="Skills">
-
-      <!-- Center: icon + title + subtitle (always visible) -->
-      <div class="skills-center">
-        <div class="skills-icon" aria-hidden="true">
-          <svg width="44" height="44" viewBox="0 0 351 350" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M267.839 0.520205C233.1 6.1852 194.47 41.9362 173.223 88.0852C170.691 93.5852 168.071 99.7732 167.402 101.835C166.732 103.898 165.834 105.585 165.407 105.585C164.98 105.585 161.33 100.123 157.297 93.4482C141.701 67.6332 126.333 51.4142 108.263 41.6982C64.9113 18.3882 27.6283 27.5692 9.23233 66.0852C-8.63167 103.488 -0.328674 154.972 32.0333 207.464C47.7003 232.875 67.7053 258.726 84.3643 275.085C89.9653 280.585 99.2763 290.485 105.056 297.085C120.719 314.972 133.749 326.262 151.566 337.387C176.316 352.84 189.097 353.169 209.216 338.873C240.057 316.958 302.071 235.971 327.359 184.585C336.825 165.349 340.462 154.251 345.991 127.741C352.102 98.4362 351.705 71.0232 344.866 50.0712C336.992 25.9492 320.94 9.71121 298.037 2.70021C290.385 0.358205 275.447 -0.720795 267.839 0.520205Z"/>
-          </svg>
-        </div>
-        <h2 class="skills-heading">What I bring to<br/>the table</h2>
-        <p class="skills-sub">Digital experiences designed to be built,<br class="hidden lg:inline"/> shipped, and used.</p>
-      </div>
-
-      <!-- Mobile: badges in a simple flex-wrap below the title -->
-      <div class="skills-mobile-wrap">
-        {skills.map(s => <span class="skill-badge-mobile">{s.label}</span>)}
-      </div>
-
-      <!-- Desktop: orbit badges — JS sets left/top px from data-x/y, then WAAPI animates -->
-      {skills.map(s => (
-        <span
-          class="skill-badge"
-          data-x={s.x}
-          data-y={s.y}
-          data-sr={`${s.sr}deg`}
-          data-sd={s.sd}
-          data-er={`${s.er}deg`}
-        >
-          {s.label}
-        </span>
-      ))}
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       SECTION 3 · ABOUT — Bio
+       SECTION 2 · ABOUT — Bio
   ═══════════════════════════════════════════ -->
   <section class="about-bio px-6 md:px-12 py-24 md:py-32">
     <div class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 items-start">
@@ -173,7 +134,7 @@ const skills = [
         <div>
           <h4 class="!text-primary font-mono uppercase tracking-widest text-[11px] mb-4">about <span style="background: var(--ds-gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">me</span></h4>
           <div class="mb-8">
-            <h2 class="leading-tight">I love to <em class="about-hover-word">create</em> and <em class="about-hover-word">try</em> new things.</h2>
+            <h2 class="leading-tight">I love to <em class="about-hover-word" style="font-family: var(--ds-font-handwriting); font-style: normal;">create</em> and <em class="about-hover-word">try</em> new things.</h2>
           </div>
           <div class="flex flex-col gap-4 text-foreground/65 max-w-lg">
             <p class="reveal-block" style="--delay:0ms">I'm a product designer with a natural curiosity for how things work. I've always been drawn to testing and exploring new tools before anyone else — so picking up code felt like the next logical step. Now I design and build, and I can't imagine it any other way.</p>
@@ -199,7 +160,7 @@ const skills = [
   </section>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 4 · EXPERIENCE — 2 column
+       SECTION 3 · EXPERIENCE
   ═══════════════════════════════════════════ -->
   <section class="about-experience px-6 md:px-12 py-24 md:py-32">
     <div class="max-w-[1800px] mx-auto flex flex-col gap-8">
@@ -271,6 +232,45 @@ const skills = [
   </section>
 
   <!-- ═══════════════════════════════════════════
+       SECTION 4 · SKILLS — What I bring to the table
+  ═══════════════════════════════════════════ -->
+  <section class="skills-table-section overflow-hidden">
+    <div class="skills-orbit" id="skills-cluster" aria-label="Skills">
+
+      <!-- Center: icon + title + subtitle (always visible) -->
+      <div class="skills-center">
+        <div class="skills-icon" aria-hidden="true">
+          <svg width="44" height="44" viewBox="0 0 351 350" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M267.839 0.520205C233.1 6.1852 194.47 41.9362 173.223 88.0852C170.691 93.5852 168.071 99.7732 167.402 101.835C166.732 103.898 165.834 105.585 165.407 105.585C164.98 105.585 161.33 100.123 157.297 93.4482C141.701 67.6332 126.333 51.4142 108.263 41.6982C64.9113 18.3882 27.6283 27.5692 9.23233 66.0852C-8.63167 103.488 -0.328674 154.972 32.0333 207.464C47.7003 232.875 67.7053 258.726 84.3643 275.085C89.9653 280.585 99.2763 290.485 105.056 297.085C120.719 314.972 133.749 326.262 151.566 337.387C176.316 352.84 189.097 353.169 209.216 338.873C240.057 316.958 302.071 235.971 327.359 184.585C336.825 165.349 340.462 154.251 345.991 127.741C352.102 98.4362 351.705 71.0232 344.866 50.0712C336.992 25.9492 320.94 9.71121 298.037 2.70021C290.385 0.358205 275.447 -0.720795 267.839 0.520205Z"/>
+          </svg>
+        </div>
+        <h2 class="skills-heading">What I bring to<br/>the table</h2>
+        <p class="skills-sub">Digital experiences designed to be built,<br class="hidden lg:inline"/> shipped, and used.</p>
+      </div>
+
+      <!-- Mobile: badges in a simple flex-wrap below the title -->
+      <div class="skills-mobile-wrap">
+        {skills.map(s => <span class="skill-badge-mobile">{s.label}</span>)}
+      </div>
+
+      <!-- Desktop: orbit badges — JS sets left/top px from data-x/y, then WAAPI animates -->
+      {skills.map(s => (
+        <span
+          class="skill-badge"
+          data-x={s.x}
+          data-y={s.y}
+          data-sr={`${s.sr}deg`}
+          data-sd={s.sd}
+          data-er={`${s.er}deg`}
+        >
+          {s.label}
+        </span>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
        SECTION 5 · CONNECT
   ═══════════════════════════════════════════ -->
   <section class="connect-section px-6 md:px-12 py-24 md:py-40">
@@ -284,7 +284,7 @@ const skills = [
       </div>
 
       <!-- Heading -->
-      <h2 class="connect-heading reveal-block mb-4">Ready to build something<br/><em>amazing?</em></h2>
+      <h2 class="connect-heading reveal-block mb-4">Ready to build something<br/><em style="font-family: var(--ds-font-handwriting); font-style: normal;">amazing?</em></h2>
 
       <!-- Available badge + subtitle -->
       <div class="flex flex-col items-center gap-3 mb-12 reveal-block">

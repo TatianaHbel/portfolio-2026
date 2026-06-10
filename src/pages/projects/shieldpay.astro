@@ -18,14 +18,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
+  document.documentElement.classList.add('cursor-disabled');
+  document.getElementById('custom-cursor')?.remove();
+  document.querySelector('footer')?.remove();
+
   function fitIframe() {
     const header = document.getElementById('site-header');
-    const footer = document.querySelector('footer');
     const iframe = document.getElementById('shieldpay-iframe') as HTMLIFrameElement;
     if (!iframe) return;
     const headerH = header?.offsetHeight ?? 64;
-    const footerH = footer?.offsetHeight ?? 66;
-    iframe.style.height = `calc(100dvh - ${headerH}px - ${footerH}px)`;
+    iframe.style.height = `calc(100dvh - ${headerH}px)`;
   }
 
   fitIframe();
