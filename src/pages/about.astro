@@ -116,13 +116,20 @@ const skills = [
       <!-- Left: polaroid photo -->
       <div class="reveal-block flex md:justify-start">
         <div class="about-polaroid">
-          <div class="about-polaroid-image bg-foreground/8">
+          <div class="about-polaroid-image bg-foreground/8" style="aspect-ratio: auto; overflow: hidden; position: relative;">
             <img
-              src="/media/photos/about/tati_02.jpg"
+              src="/media/photos/about/tatianna_asciikit_normal.png"
               alt="Tatiana Hernandez — portrait"
-              class="w-full h-full object-cover opacity-0 transition-opacity duration-700"
-              loading="lazy"
+              class="about-photo-normal w-full h-auto block opacity-0 transition-opacity duration-700"
+              loading="eager"
               onload="this.style.opacity='1'"
+            />
+            <img
+              src="/media/photos/about/tatianna_asciikit_hover.png"
+              alt=""
+              class="about-photo-hover absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300"
+              loading="lazy"
+              aria-hidden="true"
             />
           </div>
           <div class="about-polaroid-chin"></div>
@@ -647,18 +654,21 @@ const skills = [
 
   /* ── About section polaroid ──────────────── */
   .about-polaroid {
-    background: #fff;
+    background: #E9EFF4;
     box-shadow: 0 10px 48px rgba(0,0,0,0.12), 0 2px 10px rgba(0,0,0,0.07);
     display: flex;
     flex-direction: column;
     width: 284px;
     flex-shrink: 0;
-    padding: 12px 12px 0;        /* thin white border: top + sides */
+    padding: 12px 12px 0;
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
   }
   .about-polaroid:hover {
     transform: rotate(2deg) translateY(-4px);
     box-shadow: 0 18px 56px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.09);
+  }
+  .about-polaroid:hover .about-photo-hover {
+    opacity: 1;
   }
   @media (min-width: 768px) {
     .about-polaroid { width: 400px; }
@@ -670,7 +680,7 @@ const skills = [
   }
   .about-polaroid-chin {
     height: 68px;
-    background: #fff;
+    background: #E9EFF4;
   }
 
   /* ── About hover words ───────────────────── */
