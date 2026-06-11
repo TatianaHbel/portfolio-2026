@@ -42,7 +42,7 @@ export const homeProjectColumns: Record<'left' | 'right', HomeProjectCardData[]>
       placeholderColor: '#1A2E4A50',
       cursorType: 'case-study',
       status: 'published',
-      image: '/media/thumbnails/shieldpay-thumbnail.jpg',
+      video: '/media/thumbnails/shieldpay-thumbnail-hq.webm',
     },
     {
       title: 'UX at a Web3 Startup',
